@@ -54,14 +54,4 @@
 
        @yield('formulario')
     </body>
-
-<?php echo '<script type="text/javascript">';
-        echo     "$('ul.sidebar-menu li').each(function(indice, elemento) {
-                    htm=$(elemento).html();
-                    if(htm.split('<a href=".'"'.$valida_ruta_url.'"'.">').length>1){
-                        $(elemento).addClass('active');
-                    }
-                });";
-      echo '</script>';
-?>
 </html>

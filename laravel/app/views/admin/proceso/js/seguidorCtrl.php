@@ -1,5 +1,7 @@
+<?php
+    $cargoS= Cargo::find(Auth::user()->nivel_id+1);
+?>
 <script>
-
     (function(){
         angular.module("app")
             .config(function($routeProvider) {
@@ -19,6 +21,7 @@
                     });
             })
             .controller("listardoCtrl", function($scope) {
+                $scope.textoNivel='<?php echo $cargoS->nombre; ?>';
                 $scope.columnDef = [
                     {
                         columnHeaderDisplayName: 'Nombres',
@@ -46,7 +49,9 @@
                 };
             })
             .controller("agregarCtrl", function($scope, Service,$location) {
+                $scope.textoNivel='<?php echo $cargoS->nombre; ?>';
                 $scope.seguidor = {};
+                $scope.seguidor.nivel='<?php echo $cargoS->id; ?>';
 
                 $scope.guardarSeguidor = function () {
                     Service.postSeguidor($scope.seguidor).then(function(response){

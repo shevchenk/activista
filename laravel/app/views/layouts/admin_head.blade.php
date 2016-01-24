@@ -3,8 +3,8 @@
             <a href="admin" class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
                 <?php
-                    $cargo= Cargo::find(Auth::user()->nivel_id);
-                    echo $cargo->nombre;
+                    $cargoF= Cargo::find(Auth::user()->nivel_id);
+                    echo $cargoF->nombre;
                 ?>
             </a>
             <!-- Header Navbar: style can be found in header.less -->

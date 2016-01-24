@@ -25,9 +25,6 @@
 {{ HTML::script('lib/bower_components/adapt-strap/dist/adapt-strap.min.js') }}
 {{ HTML::script('lib/bower_components/adapt-strap/dist/adapt-strap.tpl.min.js') }}
 
-
-@include( 'admin.js.slct_global_ajax' )
-@include( 'admin.js.slct_global' )
 @include( 'admin.proceso.js.appAngular' )
 @include( 'admin.proceso.js.seguidorCtrl' )
 @stop
@@ -70,8 +67,4 @@
     </div>
 
 </section><!-- /.content -->
-@stop
-
-@section('formulario')
-    @include( 'admin.proceso.form.problemaDetalle' )
 @stop

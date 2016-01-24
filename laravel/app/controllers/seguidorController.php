@@ -51,10 +51,21 @@ class SeguidorController extends \BaseController
             'paterno' => array_key_exists('paterno', $data) ? $data['paterno']: "",
             'materno' => array_key_exists('materno', $data) ? $data['materno']: "",
             'nombres' => array_key_exists('nombres', $data) ? $data['nombres']: "",
+            'email' => array_key_exists('email', $data) ? $data['email']: "",
             'dni' => array_key_exists('dni', $data) ? $data['dni']: "",
+            'password' => array_key_exists('dni', $data) ? Hash::make($data['dni']): "",
+            'nivel_id' => array_key_exists('nivel', $data) ? $data['nivel']: "",
             'fecha_ingreso' => date('Y-m-d'),
+            'usuario_created_at' => Auth::user()->id,
+            'created_at' => date('Y-m-d H:i:s'),
             'estado' => 1,
         ));
+
+        $activistaCargo = new ActivistaCargo;
+        $activistaCargo->activista_id=$activista_id;
+        $activistaCargo->cargo_id= array_key_exists('nivel', $data) ? $data['nivel']: "";
+        $activistaCargo->usuario_created_at= Auth::user()->id;
+        $activistaCargo->save();
 
         // @todo manejar errores
         $results = array(
