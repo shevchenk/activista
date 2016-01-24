@@ -1,0 +1,470 @@
+<div class="row">
+    <div class="col-sm-10 text-right">
+        <a href="admin.proceso.perfil" class="btn btn-danger"><i class="fa fa-pencil"></i> Editar Perfil</a>
+        <!--<a href="#/editar" class="btn btn-danger"><i class="fa fa-pencil"></i> Editar Perfil</a>-->
+    </div>
+</div>
+
+<div  bs-tabs>
+
+            <div title="Datos Personales" bs-pane>
+                <p></p>
+                <fieldset class="col-sm-3">
+                    <legend>Formas de apoyo</legend>
+                    <ul>
+                        <li  ng-repeat="tipo in perfil.activismo | filter:{ selected: true}">
+                            {{tipo.nombre}}
+                        </li>
+                    </ul>
+                    <p></p><br/>
+                    <fieldset>
+                        <legend>Soy Lider: </legend>
+                        <div class="checkbox">
+                          <div ng-switch="perfil.soy_lider ">
+                              <div ng-switch-when="1">SI</div>
+                              <div ng-switch-when="0">No</div>
+                          </div>
+                            <p class="help-block bg-warning" style="padding: 15px;">* Active esta opción si quiere tener seguidores</p>
+                        </div>
+                    </fieldset>
+                </fieldset>
+                <fieldset class="col-sm-9">
+                    <legend>Datos Personales</legend>
+                    <div class="row">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="">DNI</label>
+                                <div class=" col-sm-10">
+                                    <div class="form-control-static">
+                                        {{perfil.dni}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="">Paterno</label>
+                                <div class="col-sm-10 form-control-static">
+                                    {{perfil.paterno}}
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <label class="col-sm-2 control-label" for="">Materno</label>
+                                <div class="form-control-static col-sm-10">
+                                    {{perfil.materno}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="">Nombres</label>
+                                <div class="form-control-static col-sm-10">
+                                    {{perfil.nombres}}
+                                </div>
+                            </div>
+
+                            <div class="form-group ">
+                                <label class="col-sm-2 control-label" for="">Sexo</label>
+                                <div class="form-control-static col-sm-10">
+                                    <div ng-switch="perfil.sexo ">
+                                        <div ng-switch-when="1">Masculino</div>
+                                        <div ng-switch-when="2">Femenino</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class=" col-sm-2 control-label" for="">Op. Sexual</label>
+                                <div class="form-control-static  col-sm-10">
+                                    <div ng-switch="perfil.orientacion_sexual ">
+                                        <div ng-switch-when="1">Heterosexual</div>
+                                        <div ng-switch-when="2">FemeHomosexualnino</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="">Estado Civil</label>
+                                <div class="form-control-static col-sm-10">
+                                    <div ng-switch="perfil.estado_civil ">
+                                        <div ng-switch-when="1">Soltero</div>
+                                        <div ng-switch-when="2">Casado</div>
+                                        <div ng-switch-when="3">Divorsiado</div>
+                                        <div ng-switch-when="4">Viudo</div>
+                                        <div ng-switch-when="5">Conviviente</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class=" col-sm-2 control-label" for="">Grado de Instruccion</label>
+                                <div class="form-control-static col-sm-10">
+                                    <div ng-switch="perfil.grado_instruccion ">
+                                        <div ng-switch-when="1">Sin Nivel</div>
+                                        <div ng-switch-when="2">Inicial o Preescolar</div>
+                                        <div ng-switch-when="3">Primaria</div>
+                                        <div ng-switch-when="4">Secundaria</div>
+                                        <div ng-switch-when="5">Superior</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class=" col-sm-2 control-label" for="">Profesion/Ocp</label>
+                                <div class="form-control-static  col-sm-10">
+                                    {{perfil.profesion}}
+                                </div>
+                            </div>
+
+                            <div class="form-group ">
+                                <label class="col-sm-2 control-label" for="">Celular</label>
+                                <div class="form-control-static col-sm-10">
+                                    {{perfil.celular}}
+                                </div>
+                            </div>
+
+                            <div class="form-group ">
+                                <label class="col-sm-2 control-label" for="">Correo Electronico</label>
+                                <div class="form-control-static col-sm-10">
+                                    {{perfil.email}}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label  col-sm-2" for="">Facebook</label>
+                                <div class="form-control-static  col-sm-10">
+                                    {{perfil.fb_url}}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </fieldset>
+            </div>
+            <div  title="Lugar de Nacimiento" bs-pane>
+                <p></p>
+                <fieldset>
+                    <legend>
+                        Lugar de nacimiento
+                    </legend>
+                    <div class="form-group col-sm-3">
+                        <label class="" for=""><i class="fa fa-calendar"></i> Fech Nac</label>
+                        <div class="form-control-static">
+                            {{perfil.fecha_nacimiento}}
+                        </div>
+
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label class="" for="">Region</label>
+                        <div class="form-control-static">
+                            {{ perfil.n_departamento_texto }}
+                        </div>
+                        <select class="form-control" style="display: none"
+                                ng-model="perfil.n_departamento"
+                                ng-options="dep.id as dep.nombre for dep in departamentos"
+                                ng-change="ActualizarProvincias(perfil.n_departamento, 'nProvincias')"
+                                ></select>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label class="" for="">Provincias</label>
+                        <div class="form-control-static">
+                            {{ perfil.n_provincia_texto }}
+                        </div>
+                        <select class="form-control" style="display: none"
+                                ng-model="perfil.n_provincia"
+                                ng-options="dep.id as dep.nombre for dep in nProvincias"
+                                ng-change="ActualizarDistritos(perfil.n_provincia, 'nDistritos')"
+                                /></select>
+                    </div>
+
+                    <div class="form-group col-sm-3">
+                        <label class="" for="">Distrito</label>
+                        <div class="form-control-static">
+                            {{ perfil.n_distrito_texto }}
+                        </div>
+                        <select class="form-control" style="display: none"
+                                ng-model="perfil.n_distrito"
+                                ng-options="dep.id as dep.nombre for dep in nDistritos"
+                                /></select>
+                    </div>
+                </fieldset>
+            </div>
+            <div bs-pane title="Domicilio">
+                <fieldset>
+                    <legend>
+                        Domicilio
+                    </legend>
+                    <div class="form-group col-sm-4">
+                        <label class="" for="">Region</label>
+                        <div class="form-control-static">
+                            {{ perfil.d_departamento_texto }}
+                        </div>
+                        <select class="form-control hidden"
+                                ng-model="perfil.d_departamento"
+                                ng-options="dep.id as dep.nombre for dep in departamentos"
+                                ng-change="ActualizarProvincias(perfil.d_departamento, 'dProvincias')"
+                                ></select>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label class="" for="">Provincia</label>
+                        <div class="form-control-static">
+                            {{ perfil.d_provincia_texto }}
+                        </div>
+                        <select class="form-control hidden"
+                                ng-model="perfil.d_provincia"
+                                ng-options="dep.id as dep.nombre for dep in dProvincias"
+                                ng-change="ActualizarDistritos(perfil.d_provincia, 'dDistritos')"
+                                /></select>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label class="" for="">Distrito</label>
+                        <div class="form-control-static">
+                            {{ perfil.d_distrito_texto }}
+                        </div>
+                        <select class="form-control hidden"
+                                ng-model="perfil.d_distrito"
+                                ng-options="dep.id as dep.nombre for dep in dDistritos"
+                                /></select>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label class="" for="">Urbanizacion</label>
+                        <div class="form-control-static">
+                            {{ perfil.d_urbanizacion }}
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label class="" for="">Avenida</label>
+                        <div class="form-control-static">
+                            {{ perfil.d_avenida }}
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label class="" for="">Nro</label>
+                        <div class="form-control-static">
+                            {{ perfil.d_numero }}
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label class="" for="">Telefono</label>
+                        <div class="form-control-static">
+                            {{ perfil.d_telefono }}
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+            <div style="display:<?php if(Auth::user()->nivel_id>2){ echo "none"; } ?>" bs-pane title="Centro Votación"><p></p>
+                <fieldset>
+                    <legend>
+                        Centro de votación
+                    </legend>
+                    <div class="form-group col-sm-4">
+                        <label class="" for="">Region</label>
+                        <div class="form-control-static">
+                            {{ perfil.cv_departamento_texto }}
+                        </div>
+                        <select class="form-control hidden"
+                                ng-model="perfil.cv_departamento"
+                                ng-options="dep.id as dep.nombre for dep in departamentos"
+                                ng-change="ActualizarProvincias(perfil.cv_departamento, 'cvProvincias')"
+                                ></select>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label class="" for="">Provincia</label>
+                        <div class="form-control-static">
+                            {{ perfil.cv_provincia_texto }}
+                        </div>
+                        <select class="form-control hidden"
+                                ng-model="perfil.cv_provincia"
+                                ng-options="dep.id as dep.nombre for dep in cvProvincias"
+                                ng-change="ActualizarDistritos(perfil.cv_provincia, 'cvDistritos')"
+                                /></select>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label class="" for="">Distrito</label>
+                        <div class="form-control-static">
+                            {{ perfil.cv_distrito_texto }}
+                        </div>
+                        <select class="form-control hidden"
+                                ng-model="perfil.cv_distrito"
+                                ng-options="dep.id as dep.nombre for dep in cvDistritos"
+                                /></select>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label class="" for="">Colegio</label>
+                        <div class="form-control-static">
+                            {{ perfil.cv_colegio }}
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label class="" for="">Mesa</label>
+                        <div class="form-control-static">
+                            {{ perfil.cv_mesa }}
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div bs-pane title="Centro Labores"><p></p>
+                <fieldset>
+                    <legend>
+                        Centro de labores
+                    </legend>
+                    <div class="form-group col-sm-4">
+                        <label class="" for="">Region</label>
+                        <div class="form-control-static">
+                            {{ perfil.cl_departamento_texto }}
+                        </div>
+                        <select class="form-control hidden"
+                                ng-model="perfil.cl_departamento"
+                                ng-options="dep.id as dep.nombre for dep in departamentos"
+                                ng-change="ActualizarProvincias(perfil.cl_departamento, 'clProvincias')"
+                                ></select>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label class="" for="">Provincia</label>
+                        <div class="form-control-static">
+                            {{ perfil.cl_provincia_texto }}
+                        </div>
+                        <select class="form-control hidden"
+                                ng-model="perfil.cl_provincia"
+                                ng-options="dep.id as dep.nombre for dep in clProvincias"
+                                ng-change="ActualizarDistritos(perfil.cl_provincia, 'clDistritos')"
+                                /></select>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label class="" for="">Distrito</label>
+                        <div class="form-control-static">
+                            {{ perfil.cl_distrito_texto }}
+                        </div>
+                        <select class="form-control hidden"
+                                ng-model="perfil.cl_distrito"
+                                ng-options="dep.id as dep.nombre for dep in clDistritos"
+                                /></select>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <label class="" for="">Urbanizacion</label>
+                        <div class="form-control-static">
+                            {{ perfil.cl_urbanizacion }}
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label class="" for="">Direccion</label>
+                        <div class="form-control-static">
+                            {{ perfil.cl_direccion }}
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-1">
+                        <label class="" for="">Nro</label>
+                        <div class="form-control-static">
+                            {{ perfil.cl_numero }}
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <label class="" for="">Telefono</label>
+                        <div class="form-control-static">
+                            {{ perfil.cl_telefono }}
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label class="" for="">Nombre</label>
+                        <div class="form-control-static">
+                            {{ perfil.cl_nombre }}
+                        </div>
+                    </div>
+
+
+                </fieldset>
+            </div>
+            <div bs-pane title="Mi lider">
+
+
+                <p>
+                <div class="col-sm-10">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div ng-show="!perfil.lider_padre || perfil.lider_padre == 0"
+                                 class=" col-sm-12 alert alert-warning">
+                                * Usted no tiene un lider asignado
+                            </div>
+                            <div ng-show="perfil.lider_padre > 0"
+                                 class=" col-sm-12 alert alert-info">
+                                * Usted esta asignado al lider <strong>{{ liderPadre.nombres }} {{ liderPadre.paterno }} {{ liderPadre.materno }}</strong>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <form class="form-horizontal" ng-show="perfil.lider_padre > 0">
+                    <fieldset class="col-sm-12">
+                        <legend>Datos Mi lider</legend>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Nombres y apellidos </label>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">{{ liderPadre.nombres }} {{ liderPadre.paterno }} {{ liderPadre.materno }}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">DNI</label>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">{{ liderPadre.dni }}</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Celular</label>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">{{ liderPadre.celular }}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">{{ liderPadre.email }}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Urbanizacoin</label>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">{{ liderPadre.d_urbanizacion }}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Direccion</label>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">{{ liderPadre.d_avenidoa }}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Nro</label>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">{{ liderPadre.d_numero }}</p>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <fieldset>
+                            <legend>Por favor , seleccione al menus un grupo de su lider</legend>
+
+                            <div class="row">
+                                <div class="col-sm-3" ng-repeat="grupo in grupos" style="border:1px solid #ccc; border-radius:10px;margin: 10px;padding: 10px" >
+                                    <div class="list-group">
+                                        <h4 class="list-group-item-heading" style="padding: 5px;">{{grupo.nombre}}</h4>
+                                        <p style="min-height: 150px" class="list-group-item-text">{{grupo.descripcion}}</p>
+                                        <p>
+                                            <strong>FB link:</strong>
+                                            <a ng-href="{{grupo.fb_url}}" target='_blank'>Facebook</a>
+                                        </p>
+                                    </div>
+                                    <button class="btn btn-danger" ng-if="grupo.unido == 1" ng-click="salirGrupo(grupo)">Salir de Grupo</button>
+                                    <button class="btn btn-success" ng-if="grupo.unido != 1" ng-click="entrarGrupo(grupo)">Unirme</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div ng-if="!grupos.length"> El lider no cuenta con grupos creado</div>
+
+                            </div>
+
+
+                        </fieldset>
+                    </div>
+                </div>
+                </p>
+            </div>
+</div>

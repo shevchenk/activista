@@ -1,0 +1,17 @@
+<h1>Listado de Grupos</h1>
+<br/>
+<br/>
+
+<div class="row">
+    <div class="col-sm-3" ng-repeat="grupo in grupos" style="border:1px solid #ccc; border-radius:10px;margin: 10px;padding: 10px" >
+        <div class="list-group">
+            <h4 class="list-group-item-heading" style="padding: 5px;">{{grupo.nombre}}</h4>
+            <p style="min-height: 150px" class="list-group-item-text">{{grupo.descripcion}}</p>
+            <p>
+                <strong>FB link:</strong>
+                <a ng-href="{{grupo.fb_url}}" target='_blank'>Facebook</a>
+            </p>
+        </div>
+        <button class="btn btn-danger" ng-if="grupo.unido == 1" ng-click="salirGrupo(grupo)">Salir de Grupo</button>
+        <button class="btn btn-success" ng-if="grupo.unido != 1" ng-click="entrarGrupo(grupo)">Unirme</button>
+    </div>

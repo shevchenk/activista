@@ -1,0 +1,402 @@
+<div>
+    <!-- Tab panes -->
+    <div bs-tabs>
+        <div title="Datos Personales" bs-pane>
+            <p></p>
+            <fieldset class="col-sm-3">
+                <legend>Formas de apoyo</legend>
+                <div class="checkbox" ng-repeat="tipo in perfil.activismo">
+                    <label for="{{item.id}}"><input class="simple" id="{{item.id}}" type="checkbox" ng-model="tipo.selected"> {{tipo.nombre}}</label>
+                </div>
+                <p></p><br/>
+                <fieldset>
+                    <legend>Activar mi cuenta como lider</legend>
+                    <div class="checkbox">
+                        <div toggle-switch class="switch-success" ng-model="perfil.soy_lider" on-label="SI"
+                             off-label="NO"></div>
+                        <p class="help-block bg-warning" style="padding: 15px;">* Active esta opción si quiere tener seguidores</p>
+                    </div>
+                </fieldset>
+            </fieldset>
+            <fieldset class="col-sm-9">
+                <legend>Datos Personales</legend>
+                <div class="row">
+                    <div class="form-group col-sm-3">
+                        <label class="" for="">DNI</label>
+                        <input type="text" class="form-control" ng-model="perfil.dni"/>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label class="" for="">Paterno</label>
+                        <input type="text" class="form-control" ng-model="perfil.paterno"/>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label class="" for="">Materno</label>
+                        <input type="text" class="form-control"  ng-model="perfil.materno"/>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label class="" for="">Nombres</label>
+                        <input type="text" class="form-control"  ng-model="perfil.nombres"/>
+                    </div>
+
+                    <div class="form-group col-sm-4">
+                        <label for="">Sexo</label>
+                        <select class="form-control"  ng-model="perfil.sexo">
+                            <option value="1">Masculino</option>
+                            <option value="2">Femenino</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="">Op. Sexual</label>
+                        <select class="form-control" ng-model="perfil.orientacion_sexual">
+                            <option value="1">Heterosexual</option>
+                            <option value="2">Homosexual</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="">Estado Civil</label>
+                        <select class="form-control" ng-model="perfil.estado_civil">
+                            <option value="1">Soltero</option>
+                            <option value="2">Casado</option>
+                            <option value="3">Divorsiado</option>
+                            <option value="4">Viudo</option>
+                            <option value="5">Conviviente</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-sm-3">
+                        <label class="" for="">Grado de Instruccion</label>
+                        <select class="form-control" ng-model="perfil.grado_instruccion">
+                            <option value="1">Sin Nivel</option>
+                            <option value="2">Inicial o Preescolar</option>
+                            <option value="3">Primaria</option>
+                            <option value="4">Secundaria</option>
+                            <option value="5">Superior</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-sm-2">
+                        <label class="" for="">Profesion/Ocp</label>
+                        <input type="text" class="form-control" ng-model="perfil.profesion"/>
+                    </div>
+
+                    <div class="form-group col-sm-2">
+                        <label class="" for="">Celular</label>
+                        <input type="text" class="form-control" ng-model="perfil.celular"/>
+                    </div>
+
+                    <div class="form-group col-sm-3">
+                        <label class="" for="">Correo Electronico</label>
+                        <input type="text" class="form-control" ng-model="perfil.email"/>
+                    </div>
+
+                    <div class="form-group col-sm-2">
+                        <label class="" for="">Twitter</label>
+                        <input type="text" class="form-control"  ng-model="perfil.twitter"/>
+                    </div>
+
+                </div>
+            </fieldset>
+        </div>
+        <div title="Lugar de Nacimiento" bs-pane>
+            <p></p>
+            <fieldset>
+                <legend>
+                    Lugar de nacimiento
+                </legend>
+                <div class="form-group col-sm-3">
+                    <label class="" for=""><i class="fa fa-calendar"></i> Fech Nac</label>
+                    <input type="text" class="form-control" ng-model="perfil.fecha_nacimiento"
+                           data-date-format="yyyy-MM-dd" data-model-date-format="yyyy-MM-dd"
+                           data-date-type="string"
+                           data-min-date="02/10/70"
+                           data-max-date="today"
+                           data-autoclose="1"
+                           bs-datepicker/>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label class="" for="">Region</label>
+                    <select class="form-control"
+                            ng-model="perfil.n_departamento"
+                            ng-options="dep.id as dep.nombre for dep in departamentos"
+                            ng-change="ActualizarProvincias(perfil.n_departamento, 'nProvincias')"
+                            ></select>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label class="" for="">Provincias</label>
+                    <select class="form-control"
+                            ng-model="perfil.n_provincia"
+                            ng-options="dep.id as dep.nombre for dep in nProvincias"
+                            ng-change="ActualizarDistritos(perfil.n_provincia, 'nDistritos')"
+                            /></select>
+                </div>
+
+                <div class="form-group col-sm-3">
+                    <label class="" for="">Distrito</label>
+                    <select class="form-control"
+                            ng-model="perfil.n_distrito"
+                            ng-options="dep.id as dep.nombre for dep in nDistritos"
+                            /></select>
+                </div>
+            </fieldset>
+        </div>
+        <div bs-pane title="Domicilio"><p></p>
+            <fieldset>
+                <legend>
+                    Domicilio
+                </legend>
+                <div class="form-group col-sm-4">
+                    <label class="" for="">Region</label>
+                    <select class="form-control"
+                            ng-model="perfil.d_departamento"
+                            ng-options="dep.id as dep.nombre for dep in departamentos"
+                            ng-change="ActualizarProvincias(perfil.d_departamento, 'dProvincias')"
+                            ></select>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label class="" for="">Provincia</label>
+                    <select class="form-control"
+                            ng-model="perfil.d_provincia"
+                            ng-options="dep.id as dep.nombre for dep in dProvincias"
+                            ng-change="ActualizarDistritos(perfil.d_provincia, 'dDistritos')"
+                            /></select>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label class="" for="">Distrito</label>
+                    <select class="form-control"
+                            ng-model="perfil.d_distrito"
+                            ng-options="dep.id as dep.nombre for dep in dDistritos"
+                            /></select>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label class="" for="">Urbanizacion</label>
+                    <input type="text" class="form-control" ng-model="perfil.d_urbanizacion"/>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label class="" for="">Avenida</label>
+                    <input type="text" class="form-control" ng-model="perfil.d_avenida"/>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label class="" for="">Nro</label>
+                    <input type="text" class="form-control" ng-model="perfil.d_numero"/>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label class="" for="">Telefono</label>
+                    <input type="text" class="form-control" ng-model="perfil.d_telefono"/>
+                </div>
+
+            </fieldset>
+        </div>
+        <div style="display:<?php if(Auth::user()->nivel_id>2){ echo "none"; } ?>" bs-pane title="Centro Votación"><p></p>
+            <fieldset>
+                <legend>
+                    Centro de votación
+                </legend>
+                <div class="form-group col-sm-4">
+                    <label class="" for="">Region</label>
+                    <select class="form-control"
+                            ng-model="perfil.cv_departamento"
+                            ng-options="dep.id as dep.nombre for dep in departamentos"
+                            ng-change="ActualizarProvincias(perfil.cv_departamento, 'cvProvincias')"
+                            ></select>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label class="" for="">Provincia</label>
+                    <select class="form-control"
+                            ng-model="perfil.cv_provincia"
+                            ng-options="dep.id as dep.nombre for dep in cvProvincias"
+                            ng-change="ActualizarDistritos(perfil.cv_provincia, 'cvDistritos')"
+                            /></select>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label class="" for="">Distrito</label>
+                    <select class="form-control"
+                            ng-model="perfil.cv_distrito"
+                            ng-options="dep.id as dep.nombre for dep in cvDistritos"
+                            /></select>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label class="" for="">Colegio</label>
+                    <input type="text" class="form-control" ng-model="perfil.cv_colegio"/>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label class="" for="">Mesa</label>
+                    <input type="text" class="form-control" ng-model="perfil.cv_mesa"/>
+                </div>
+            </fieldset>
+        </div>
+        <div  bs-pane title="Centro Labores"><p></p>
+            <fieldset>
+                <legend>
+                    Centro de labores
+                </legend>
+                <div class="form-group col-sm-4">
+                    <label class="" for="">Region</label>
+                    <select class="form-control"
+                            ng-model="perfil.cl_departamento"
+                            ng-options="dep.id as dep.nombre for dep in departamentos"
+                            ng-change="ActualizarProvincias(perfil.cl_departamento, 'clProvincias')"
+                            ></select>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label class="" for="">Provincia</label>
+                    <select class="form-control"
+                            ng-model="perfil.cl_provincia"
+                            ng-options="dep.id as dep.nombre for dep in clProvincias"
+                            ng-change="ActualizarDistritos(perfil.cl_provincia, 'clDistritos')"
+                            /></select>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label class="" for="">Distrito</label>
+                    <select class="form-control"
+                            ng-model="perfil.cl_distrito"
+                            ng-options="dep.id as dep.nombre for dep in clDistritos"
+                            /></select>
+                </div>
+                <div class="form-group col-sm-2">
+                    <label class="" for="">Urbanizacion</label>
+                    <input type="text" class="form-control" ng-model="perfil.cl_urbanizacion"/>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label class="" for="">Direccion</label>
+                    <input type="text" class="form-control" ng-model="perfil.cl_direccion"/>
+                </div>
+                <div class="form-group col-sm-1">
+                    <label class="" for="">Nro</label>
+                    <input type="text" class="form-control" ng-model="perfil.cl_numero"/>
+                </div>
+                <div class="form-group col-sm-2">
+                    <label class="" for="">Telefono</label>
+                    <input type="text" class="form-control"  ng-model="perfil.cl_telefono"/>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label class="" for="">Nombre</label>
+                    <input type="text" class="form-control" ng-model="perfil.cl_nombre"/>
+                </div>
+
+
+            </fieldset>
+        </div>
+        <div bs-pane title="Mi lider">
+
+{{ formularioBuscarLider}}
+            <p>
+            <div class="col-sm-10">
+                <div class="row">
+                    <div class="col-sm-2 " >
+                        <p></p>
+                        <button ng-show="!formularioBuscarLider" class="btn btn-info" ng-click="formularioBuscarLider = true"> + Buscar un Lider</button>
+                        <button ng-show="formularioBuscarLider" class="btn btn-danger" ng-click="formularioBuscarLider = false"> + Ocultar formulario</button>
+                    </div>
+                    <div class="col-sm-8">
+                        <div ng-show="!perfil.lider_padre || perfil.lider_padre == 0"
+                             class=" col-sm-12 alert alert-warning">
+                            * Usted no tiene un lider asignado
+                        </div>
+                        <div ng-show="perfil.lider_padre > 0"
+                             class=" col-sm-12 alert alert-info">
+                            * Usted esta asignado al lider <strong>{{ liderPadre.nombres }} {{ liderPadre.paterno }} {{ liderPadre.materno }}</strong>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            </p>
+
+
+            <div class="row" ng-if="formularioBuscarLider">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <!--========== Advanced Implementation with search ========== -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" ng-change="buscarLider()" ng-model="liderSearchKey">
+                                                        <span class="input-group-addon">
+                                                          <i class="glyphicon glyphicon-search"></i>
+                                                        </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <ad-table-ajax table-name="lideres"
+                                               column-definition="lideresColumnDef"
+                                               table-classes="table table-bordered"
+                                               page-sizes="[5, 20, 50]"
+                                               pagination-btn-group-classes="pagination pagination-sm"
+                                               ajax-config="lideresAjaxConfig"
+                                               page-loader="methods.pageLoader">
+                                </ad-table-ajax>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <form class="form-horizontal" ng-show="perfil.lider_padre > 0 && !formularioBuscarLider">
+                <fieldset class="col-sm-12">
+                    <legend>Datos Mi lider</legend>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Nombres y apellidos </label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static">{{ liderPadre.nombres }} {{ liderPadre.paterno }} {{ liderPadre.materno }}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">DNI</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static">{{ liderPadre.dni }}</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Celular</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static">{{ liderPadre.celular }}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static">{{ liderPadre.email }}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Urbanizacoin</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static">{{ liderPadre.d_urbanizacion }}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Direccion</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static">{{ liderPadre.d_avenidoa }}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Nro</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static">{{ liderPadre.d_numero }}</p>
+                        </div>
+                    </div>
+                </fieldset>
+
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row" ng-show="showGuardar">
+    <div class="col-sm-offset-4 col-sm-6 text-right">
+        <a href="#/"  class="btn btn-default ">Cancelar</a>
+        <button  class="btn btn-success " ng-click="guardarDatos()">Guardar Datos</button>
+    </div>
+</div>

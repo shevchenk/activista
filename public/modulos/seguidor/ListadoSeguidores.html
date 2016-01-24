@@ -1,0 +1,19 @@
+<h1>Registro de Seguidores</h1>
+<div class="row">
+    <div class="pull-left">
+        <a href="#/agregar" type="button" class="btn btn-success"> <i class="fa fa-plus-circle"></i> Agregar Seguidor</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="panel-body">
+        <ad-table-ajax column-definition="columnDef"
+                       table-classes="table table-bordered table-hover"
+                       page-sizes="[5, 20, 50]"
+                       pagination-btn-group-classes="pagination pagination-sm"
+                       ajax-config="tableConfig"
+                       row-class-provider="checkStatus"
+                       page-loader="methods.pageLoader">
+        </ad-table-ajax>
+    </div>
+</div>

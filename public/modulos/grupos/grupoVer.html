@@ -1,0 +1,11 @@
+<h2>{{grupo.nombre}}</h2>
+<p>
+    {{grupo.descripcion}}
+</p>
+
+<div class="list-group">
+    <a class="list-group-item" ng-repeat="pre in grupo.preguntas">
+        <h4 class="list-group-item-heading">{{pre.pregunta}}</h4>
+        <p class="list-group-item-text">{{pre.respuesta}}</p>
+    </a>
+</div>
