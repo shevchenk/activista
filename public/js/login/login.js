@@ -20,8 +20,10 @@ $(document).ready(function() {
         var button = $(event.relatedTarget); // captura al boton
         var modal = $(this); //captura el modal
         variables=button.data('img');
+        $(".visibles").css("display","none");
+        $("#visible"+variables).css("display","");
 
-        $("#imagenppk").attr('src','img/imagenppk/'+variables+ '?nocache=' + (new Date()).getTime());
+        //$("#imagenppk").attr('src','img/imagenppk/'+variables+ '?nocache=' + (new Date()).getTime());
         //$("#imagenppk").fadeOut(3000,function(){
         //    $("#imagenppk").fadeIn(3000);
         //});

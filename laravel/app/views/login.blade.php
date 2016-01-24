@@ -88,7 +88,7 @@
                     </label>
 				</div>
 				<div class="col-xs-4">
-					<a class="btn btn-sm btn-info" data-img="simpatizante.jpg" data-target="#imagenppkModal" data-toggle="modal">.::Ver Detalle::.</a>
+					<a class="btn btn-sm btn-info" data-img="4" data-target="#imagenppkModal" data-toggle="modal">.::Ver Detalle::.</a>
 				</div>
 			</div>
 			<div class="col-md-12">
@@ -98,7 +98,7 @@
                     </label>
 				</div>
 				<div class="col-xs-4">
-					<a class="btn btn-sm btn-info" data-img="seguidor.jpg" data-target="#imagenppkModal" data-toggle="modal">.::Ver Detalle::.</a>
+					<a class="btn btn-sm btn-info" data-img="3" data-target="#imagenppkModal" data-toggle="modal">.::Ver Detalle::.</a>
 				</div>
             </div>
             <div class="col-md-12">
@@ -108,7 +108,7 @@
                     </label>
 				</div>
 				<div class="col-xs-4">
-					<a class="btn btn-sm btn-info" data-img="activista.jpg" data-target="#imagenppkModal" data-toggle="modal">.::Ver Detalle::.</a>
+					<a class="btn btn-sm btn-info" data-img="2" data-target="#imagenppkModal" data-toggle="modal">.::Ver Detalle::.</a>
 				</div>
             </div>
             <div class="col-md-12" style="margin-bottom: 10px">
@@ -118,7 +118,7 @@
                     </label>
 				</div>
 				<div class="col-xs-4">
-					<a class="btn btn-sm btn-info" data-img="lider.jpg" data-target="#imagenppkModal" data-toggle="modal">.::Ver Detalle::.</a>
+					<a class="btn btn-sm btn-info" data-img="1" data-target="#imagenppkModal" data-toggle="modal">.::Ver Detalle::.</a>
 				</div>
 			</div>
 				<div class="form-group">
