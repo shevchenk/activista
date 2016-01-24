@@ -361,11 +361,11 @@
                         <div class="col-sm-8">
                             <div ng-show="!perfil.lider_padre || perfil.lider_padre == 0"
                                  class=" col-sm-12 alert alert-warning">
-                                * Usted no tiene un lider asignado
+                                * Usted no tiene un activista asignado
                             </div>
                             <div ng-show="perfil.lider_padre > 0"
                                  class=" col-sm-12 alert alert-info">
-                                * Usted esta asignado al lider <strong>{{ liderPadre.nombres }} {{ liderPadre.paterno }} {{ liderPadre.materno }}</strong>
+                                * Usted esta asignado a <strong>{{ liderPadre.nombres }} {{ liderPadre.paterno }} {{ liderPadre.materno }}</strong>
                             </div>
                         </div>
 
@@ -423,7 +423,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <fieldset>
-                            <legend>Por favor , seleccione al menus un grupo de su lider</legend>
+                            <legend>Por favor , seleccione al menus un grupo</legend>
 
                             <div class="row">
                                 <div class="col-sm-3" ng-repeat="grupo in grupos" style="border:1px solid #ccc; border-radius:10px;margin: 10px;padding: 10px" >
