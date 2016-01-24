@@ -83,7 +83,7 @@
                     <li role="presentation" class="active" ><a href="#home" aria-controls="home" role="tab" data-toggle="tab" ng-click="showGuardar = true">Datos Personales</a></li>
                     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" ng-click="showGuardar = true">Lugar de Nacimiento</a></li>
                     <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" ng-click="showGuardar = true">Domicilio</a></li>
-                    <li role="presentation" ng-if="idNivel == 3"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" ng-click="showGuardar = true">Centro de votacion</a></li>
+                    <li role="presentation" ng-if="idNivel == 2"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" ng-click="showGuardar = true">Centro de votacion</a></li>
                     <li role="presentation"><a href="#labores" aria-controls="labores" role="tab" data-toggle="tab" ng-click="showGuardar = true">Centro de Labores</a></li>
                     <li role="presentation" ng-if="seguirAlguien > 0"><a href="#lideres" aria-controls="lideres" role="tab" data-toggle="tab" ng-click="showGuardar = false">Seleccionar @{{textoNivel}}</a></li>
                 </ul>
@@ -261,7 +261,7 @@
 
                         </fieldset>
                     </div>
-                    <div  ng-if="idNivel == 3" role="tabpanel" class="tab-pane" id="settings"><p></p>
+                    <div ng-if="idNivel == 2" role="tabpanel" class="tab-pane" id="settings"><p></p>
                         <fieldset>
                             <legend>
                                 Centro de votación
