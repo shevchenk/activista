@@ -7,7 +7,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                  <img id="imagenppk" src="" width="880px;" height="390px;" />
+                  <img id="imagenppk" src="" class="img-responsive" />
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

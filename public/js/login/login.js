@@ -22,9 +22,9 @@ $(document).ready(function() {
         variables=button.data('img');
 
         $("#imagenppk").attr('src','img/imagenppk/'+variables+ '?nocache=' + (new Date()).getTime());
-        $("#imagenppk").fadeOut(3000,function(){
-            $("#imagenppk").fadeIn(3000);
-        });
+        //$("#imagenppk").fadeOut(3000,function(){
+        //    $("#imagenppk").fadeIn(3000);
+        //});
 
     });
 

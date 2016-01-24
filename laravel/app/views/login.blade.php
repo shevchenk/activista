@@ -27,7 +27,7 @@
 <body bgcolor="#FFF">
 <div id="mainWrap">
 	<div id="loggit">
-		<h1><i class="fa fa-lock"></i>Soy PPKausa </h1>
+		<h1><i class="fa fa-lock"></i> Soy PPKausa </h1>
 			<h3 id="mensaje_msj"  class="label-success">
 			<?=	Session::get('msj'); ?>			
 			</h3>
@@ -111,7 +111,7 @@
 					<a class="btn btn-sm btn-info" data-img="activista.jpg" data-target="#imagenppkModal" data-toggle="modal">.::Ver Detalle::.</a>
 				</div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12" style="margin-bottom: 10px">
             	<div class="radio col-xs-8">
 					<label>
                         <input type='radio' name='rdb_check' value='1' class='flat-red' >&nbsp;Sé un Lider

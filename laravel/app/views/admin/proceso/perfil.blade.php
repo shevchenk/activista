@@ -83,30 +83,16 @@
                     <li role="presentation" class="active" ><a href="#home" aria-controls="home" role="tab" data-toggle="tab" ng-click="showGuardar = true">Datos Personales</a></li>
                     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" ng-click="showGuardar = true">Lugar de Nacimiento</a></li>
                     <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" ng-click="showGuardar = true">Domicilio</a></li>
-                    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" ng-click="showGuardar = true">Centro de votacion</a></li>
+                    <li role="presentation" ng-if="0"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" ng-click="showGuardar = true">Centro de votacion</a></li>
                     <li role="presentation"><a href="#labores" aria-controls="labores" role="tab" data-toggle="tab" ng-click="showGuardar = true">Centro de Labores</a></li>
-                    <li role="presentation"><a href="#lideres" aria-controls="lideres" role="tab" data-toggle="tab" ng-click="showGuardar = false">Seleccionar Lider</a></li>
+                    <li role="presentation"><a href="#lideres" aria-controls="lideres" role="tab" data-toggle="tab" ng-click="showGuardar = false">Seleccionar Activista</a></li>
                 </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content" >
                     <div role="tabpanel" class="tab-pane active" id="home">
                         <p></p>
-                        <fieldset class="col-sm-3">
-                            <legend>Formas de apoyo</legend>
-                            <div class="checkbox" ng-repeat="tipo in perfil.activismo">
-                                <label for="@{{item.id}}"><input class="simple" id="@{{item.id}}" type="checkbox" ng-model="tipo.selected"> @{{tipo.nombre}}</label>
-                            </div>
-<p></p><br/>
-                            <fieldset>
-                                <legend>Activar mi cuenta como lider</legend>
-                                <div class="checkbox">
-                                    <div toggle-switch class="switch-success" ng-model="perfil.soy_lider" on-label="SI"
-                                         off-label="NO"></div>
-                                    <p class="help-block bg-warning" style="padding: 15px;">* Active esta opción si quiere tener seguidores</p>
-                                </div>
-                            </fieldset>
-                        </fieldset>
+
                         <fieldset class="col-sm-9">
                             <legend>Datos Personales</legend>
                             <div class="row">
@@ -275,7 +261,7 @@
 
                         </fieldset>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="settings"><p></p>
+                    <div  ng-if="0" role="tabpanel" class="tab-pane" id="settings"><p></p>
                         <fieldset>
                             <legend>
                                 Centro de votación
@@ -379,11 +365,11 @@
                                 <div class="col-sm-8">
                                     <div ng-show="!perfil.lider_padre || perfil.lider_padre == 0"
                                          class=" col-sm-12 alert alert-warning">
-                                        * Usted no tiene un lider asignado
+                                        * Usted no tiene a nadie asignado
                                     </div>
                                     <div ng-show="perfil.lider_padre > 0"
                                          class=" col-sm-12 alert alert-info">
-                                        * Usted esta asignado al lider <strong>@{{ liderPadre.nombres }} @{{ liderPadre.paterno }} @{{ liderPadre.materno }}</strong>
+                                        * Usted esta asignado a <strong>@{{ liderPadre.nombres }} @{{ liderPadre.paterno }} @{{ liderPadre.materno }}</strong>
                                     </div>
                                 </div>
 
@@ -427,7 +413,7 @@
                         <form class="form-horizontal" ng-show="perfil.lider_padre > 0 && !formularioBuscarLider">
                             <div class="row">
                                 <fieldset class="col-sm-12">
-                                    <legend>Datos Mi lider</legend>
+                                    <legend>Datos Mi Activista</legend>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Nombres y apellidos </label>
                                         <div class="col-sm-10">
@@ -477,7 +463,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <fieldset>
-                                        <legend>Por favor , seleccione al menus un grupo de su lider</legend>
+                                        <legend>Por favor , seleccione al menus un grupo de su activista</legend>
 
                                         <div class="row">
                                             <div class="col-sm-3" ng-repeat="grupo in grupos" style="border:1px solid #ccc; border-radius:10px;margin: 10px;padding: 10px" >

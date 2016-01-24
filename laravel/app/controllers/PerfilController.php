@@ -199,10 +199,18 @@ class PerfilController extends \BaseController
             $where  .=  " and CONCAT(paterno,materno, nombres, dni, email) like  '%" . Input::get('texto'). "%' ";
         }
 
+        if ( Input::get('texto')) {
+            $where  .=  " and CONCAT(paterno,materno, nombres, dni, email) like  '%" . Input::get('texto'). "%' ";
+        }
+
+        if ( Input::get('nivel')) {
+            $where  .=  " and nivel_id = ".Input::get('nivel');
+        }
 
 
-        $activistas = DB::select('select * from activistas where soy_lider = 1 ' . $where );
-        $count = DB::select('select count(*) count from activistas where soy_lider = 1 ' . $where );
+
+        $activistas = DB::select('select * from activistas where  1=1 ' . $where );
+        $count = DB::select('select count(*) count from activistas where 1=1  ' . $where );
 
 
         return Response::json(array('results'=>array("list"=>$activistas,'totalResults'=>$count[0]->count)));

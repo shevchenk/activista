@@ -130,7 +130,9 @@
                 $scope.lideresAjaxConfig = {
                     url: 'perfil/buscarlider',
                     method: 'get',
-                    params:{},
+                    params:{
+                        nivel: 2
+                    },
                     paginationConfig: {
                         response: {
                             totalItems: 'results.totalResults',

@@ -9,25 +9,6 @@
 
             <div title="Datos Personales" bs-pane>
                 <p></p>
-                <fieldset class="col-sm-3">
-                    <legend>Formas de apoyo</legend>
-                    <ul>
-                        <li  ng-repeat="tipo in perfil.activismo | filter:{ selected: true}">
-                            {{tipo.nombre}}
-                        </li>
-                    </ul>
-                    <p></p><br/>
-                    <fieldset>
-                        <legend>Soy Lider: </legend>
-                        <div class="checkbox">
-                          <div ng-switch="perfil.soy_lider ">
-                              <div ng-switch-when="1">SI</div>
-                              <div ng-switch-when="0">No</div>
-                          </div>
-                            <p class="help-block bg-warning" style="padding: 15px;">* Active esta opción si quiere tener seguidores</p>
-                        </div>
-                    </fieldset>
-                </fieldset>
                 <fieldset class="col-sm-9">
                     <legend>Datos Personales</legend>
                     <div class="row">
@@ -247,7 +228,8 @@
 
                 </fieldset>
             </div>
-            <div style="display:<?php if(Auth::user()->nivel_id>2){ echo "none"; } ?>" bs-pane title="Centro Votación"><p></p>
+
+            <div ng-if="0" bs-pane title="Centro Votación"><p></p>
                 <fieldset>
                     <legend>
                         Centro de votación
@@ -298,6 +280,7 @@
                     </div>
                 </fieldset>
             </div>
+
             <div bs-pane title="Centro Labores"><p></p>
                 <fieldset>
                     <legend>

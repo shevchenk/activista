@@ -3,21 +3,7 @@
     <div bs-tabs>
         <div title="Datos Personales" bs-pane>
             <p></p>
-            <fieldset class="col-sm-3">
-                <legend>Formas de apoyo</legend>
-                <div class="checkbox" ng-repeat="tipo in perfil.activismo">
-                    <label for="{{item.id}}"><input class="simple" id="{{item.id}}" type="checkbox" ng-model="tipo.selected"> {{tipo.nombre}}</label>
-                </div>
-                <p></p><br/>
-                <fieldset>
-                    <legend>Activar mi cuenta como lider</legend>
-                    <div class="checkbox">
-                        <div toggle-switch class="switch-success" ng-model="perfil.soy_lider" on-label="SI"
-                             off-label="NO"></div>
-                        <p class="help-block bg-warning" style="padding: 15px;">* Active esta opción si quiere tener seguidores</p>
-                    </div>
-                </fieldset>
-            </fieldset>
+
             <fieldset class="col-sm-9">
                 <legend>Datos Personales</legend>
                 <div class="row">
