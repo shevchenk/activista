@@ -83,9 +83,9 @@
                     <li role="presentation" class="active" ><a href="#home" aria-controls="home" role="tab" data-toggle="tab" ng-click="showGuardar = true">Datos Personales</a></li>
                     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" ng-click="showGuardar = true">Lugar de Nacimiento</a></li>
                     <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" ng-click="showGuardar = true">Domicilio</a></li>
-                    <li role="presentation" ng-if="0"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" ng-click="showGuardar = true">Centro de votacion</a></li>
+                    <li role="presentation" ng-if="idNivel == 3"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" ng-click="showGuardar = true">Centro de votacion</a></li>
                     <li role="presentation"><a href="#labores" aria-controls="labores" role="tab" data-toggle="tab" ng-click="showGuardar = true">Centro de Labores</a></li>
-                    <li role="presentation"><a href="#lideres" aria-controls="lideres" role="tab" data-toggle="tab" ng-click="showGuardar = false">Seleccionar Activista</a></li>
+                    <li role="presentation" ng-if="seguirAlguien > 0"><a href="#lideres" aria-controls="lideres" role="tab" data-toggle="tab" ng-click="showGuardar = false">Seleccionar @{{textoNivel}}</a></li>
                 </ul>
 
                 <!-- Tab panes -->
@@ -261,7 +261,7 @@
 
                         </fieldset>
                     </div>
-                    <div  ng-if="0" role="tabpanel" class="tab-pane" id="settings"><p></p>
+                    <div  ng-if="idNivel == 3" role="tabpanel" class="tab-pane" id="settings"><p></p>
                         <fieldset>
                             <legend>
                                 Centro de votación
@@ -359,7 +359,7 @@
                             <div class="row">
                                 <div class="col-sm-2 " >
                                     <p></p>
-                                    <button ng-show="!formularioBuscarLider" class="btn btn-info" ng-click="formularioBuscarLider = true"> + Buscar un Lider</button>
+                                    <button ng-show="!formularioBuscarLider" class="btn btn-info" ng-click="formularioBuscarLider = true"> + Buscar un @{{textoNivel}}</button>
                                     <button ng-show="formularioBuscarLider" class="btn btn-danger" ng-click="formularioBuscarLider = false"> + Ocultar formulario</button>
                                 </div>
                                 <div class="col-sm-8">
@@ -413,7 +413,7 @@
                         <form class="form-horizontal" ng-show="perfil.lider_padre > 0 && !formularioBuscarLider">
                             <div class="row">
                                 <fieldset class="col-sm-12">
-                                    <legend>Datos Mi Activista</legend>
+                                    <legend>Datos Mi @{{textoNivel}}</legend>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Nombres y apellidos </label>
                                         <div class="col-sm-10">
@@ -463,7 +463,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <fieldset>
-                                        <legend>Por favor , seleccione al menus un grupo de su activista</legend>
+                                        <legend>Por favor , seleccione al menus un grupo de su @{{textoNivel}}</legend>
 
                                         <div class="row">
                                             <div class="col-sm-3" ng-repeat="grupo in grupos" style="border:1px solid #ccc; border-radius:10px;margin: 10px;padding: 10px" >
@@ -480,7 +480,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div ng-if="!grupos.length"> El lider no cuenta con grupos creado</div>
+                                            <div ng-if="!grupos.length"> El @{{textoNivel}} no cuenta con grupos creado</div>
 
                                         </div>
 
@@ -510,8 +510,4 @@
 
 
 </section><!-- /.content -->
-@stop
-
-@section('formulario')
-@include( 'admin.proceso.form.problemaDetalle' )
 @stop

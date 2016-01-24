@@ -1,9 +1,22 @@
+<?php
+    $nivelId = Auth::user()->nivel_id;
+    $seguirAlguien= $nivelId-1;
+    $cargoS= Cargo::find($seguirAlguien);
+    if(count($cargoS<=0)){
+        $cargoS= new stdClass();
+        $cargoS->nombre='';
+    }
+?>
 <script>
 
     (function(){
 
         angular.module("app")
             .controller("perfilCtrl", function($scope, perfilSvc , $alert, notificaciones , $http) {
+                $scope.textoNivel='<?php echo $cargoS->nombre; ?>';
+                $scope.seguirAlguien='<?php echo $seguirAlguien; ?>';
+                $scope.idNivel='<?php echo $nivelId; ?>';
+
                 $scope.perfil = {};
                 $scope.liderPadre = {};
                 $scope.buscar = {}
@@ -106,7 +119,7 @@
                 // ========== Advanced Implementation with search ========== //
                 $scope.lideresColumnDef = [
                     {
-                        columnHeaderDisplayName: 'Asignarme Lider',
+                        columnHeaderDisplayName: 'Asignarme '+$scope.textoNivel,
                         template: '<button class="btn btn-success" ng-click="asignarmeLider(item.id)"> + Asignar</button>',
                         width: '10em'
                     },
@@ -131,7 +144,7 @@
                     url: 'perfil/buscarlider',
                     method: 'get',
                     params:{
-                        nivel: 2
+                        nivel: $scope.seguirAlguien
                     },
                     paginationConfig: {
                         response: {
