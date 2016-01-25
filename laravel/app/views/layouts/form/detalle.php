@@ -7,8 +7,8 @@
                 </button>
               </div>
               <div class="modal-body">
-                  
-                  <div class="visibles" id="visible4">
+                  <img id="imagenppk" src="" class="img-responsive" />
+                  <!--div class="visibles" id="visible4">
                   <font color="#1F0E66" size="+5">Como Simpatizante estoy dispuesto a:</font>
                     <font color="#CC0099" size="+3">
                     <ul> 
@@ -65,7 +65,7 @@
                       <li>Construir, Registrar, Monitorear y Dirigir equipos de 10 Activistas.</li>
                     </ul>
                     </font>
-                  </div>
+                  </div-->
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
