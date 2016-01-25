@@ -58,7 +58,7 @@
 					</div>
 				</div>
 				<div class="form-group formSubmit">
-					<div class="col-sm-7">
+					<div class="col-sm-6">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="remember" checked autocomplete="off"> Mantener activa la session
@@ -66,10 +66,12 @@
 						</div>
 					</div>
 					<div class="col-sm-5 submitWrap">
-						<button type="button" id="btnIniciar" class="btn btn-primary btn-lg">Iniciar</button>				
+						<button type="button" id="btnIniciar" class="btn btn-primary btn-lg">Iniciar sesión</button>
 					</div>
 				</div>					
-				<div class="load" align="center" style="display:none"><i class="fa fa-spinner fa-spin fa-3x"></i></div>	
+				<div class="load" align="center" style="display:none"><i class="fa fa-spinner fa-spin fa-3x"></i></div>
+				<hr/>
+
 				<div class="form-group">
 					<div class="col-xs-12">
 						<button type="button" id="btnRegistrar" class="col-sm-12 btn btn-warning btn-lg">Registrate Aquí</button>
