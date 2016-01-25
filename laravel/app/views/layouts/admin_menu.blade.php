@@ -17,7 +17,7 @@
                                             ?>
 
                                                 <div class="form-group row options-menu" style="display:{{ $display }}">
-                                                    <a   class="col-sm-9 bg-teal" href="admin.{{ $k->ruta }}">
+                                                    <a   class="col-sm-9 bg-light-blue disabled" href="admin.{{ $k->ruta }}">
                                                         <i class="fa fa-angle-double-right"></i><font size="+1"> <?php echo str_replace('textoSeguir',$cargoS->nombre,$k->opcion) ?></font>
                                                     </a>
                                                 </div>
