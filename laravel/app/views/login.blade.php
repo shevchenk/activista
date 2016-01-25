@@ -82,43 +82,83 @@
 		<form action="check/nuevo" id="newForm" style="display:none" method="post" class="form-horizontal">
 			<div class="row">
 			<div class="col-md-12">
-				<div class=" radio col-xs-8">
+				<div class=" radio col-xs-9">
 					<label>
-                        <input type='radio' name='rdb_check' value='4' class='flat-red'  >&nbsp;Sé un Simptizante
+                        <input type='radio' name='rdb_check' value='8' class='flat-red'  >&nbsp;Sé un Simptizante
                     </label>
 				</div>
-				<div class="col-xs-4">
-					<a class="btn btn-sm btn-info" data-img="4" data-target="#imagenppkModal" data-toggle="modal">.::Ver Detalle::.</a>
+				<div class="col-xs-3">
+					<a class="btn btn-sm btn-info" data-img="4" data-target="#imagenppkModal" data-toggle="modal">.:Ver Detalle:.</a>
 				</div>
 			</div>
 			<div class="col-md-12">
-				<div class="radio col-xs-8">
+				<div class="radio col-xs-9">
 					<label>
-                        <input type='radio' name='rdb_check' value='3' class='flat-red' >&nbsp;Sé un Seguidor
+                        <input type='radio' name='rdb_check' value='7' class='flat-red' >&nbsp;Sé un Seguidor
                     </label>
 				</div>
-				<div class="col-xs-4">
-					<a class="btn btn-sm btn-info" data-img="3" data-target="#imagenppkModal" data-toggle="modal">.::Ver Detalle::.</a>
+				<div class="col-xs-3">
+					<a class="btn btn-sm btn-info" data-img="3" data-target="#imagenppkModal" data-toggle="modal">.:Ver Detalle:.</a>
 				</div>
             </div>
             <div class="col-md-12">
-                <div class="radio col-xs-8">
+                <div class="radio col-xs-9">
 					<label>
-                        <input type='radio' name='rdb_check' value='2' class='flat-red' >&nbsp;Sé un Activista
+                        <input type='radio' name='rdb_check' value='6' class='flat-red' >&nbsp;Sé un Activista
                     </label>
 				</div>
-				<div class="col-xs-4">
-					<a class="btn btn-sm btn-info" data-img="2" data-target="#imagenppkModal" data-toggle="modal">.::Ver Detalle::.</a>
+				<div class="col-xs-3">
+					<a class="btn btn-sm btn-info" data-img="2" data-target="#imagenppkModal" data-toggle="modal">.:Ver Detalle:.</a>
 				</div>
             </div>
-            <div class="col-md-12" style="margin-bottom: 10px">
-            	<div class="radio col-xs-8">
+            <div class="col-md-12">
+            	<div class="radio col-xs-9">
 					<label>
-                        <input type='radio' name='rdb_check' value='1' class='flat-red' >&nbsp;Sé un Lider
+                        <input type='radio' name='rdb_check' value='5' class='flat-red' >&nbsp;Sé un Lider Operativo
                     </label>
 				</div>
-				<div class="col-xs-4">
-					<a class="btn btn-sm btn-info" data-img="1" data-target="#imagenppkModal" data-toggle="modal">.::Ver Detalle::.</a>
+				<div class="col-xs-3">
+					<a class="btn btn-sm btn-info" data-img="1" data-target="#imagenppkModal" data-toggle="modal">.:Ver Detalle:.</a>
+				</div>
+			</div>
+			<div class="col-md-12">
+            	<div class="radio col-xs-9">
+					<label>
+                        <input type='radio' name='rdb_check' value='4' class='flat-red' >&nbsp;Sé un Lider Zonal
+                    </label>
+				</div>
+				<div class="col-xs-3">
+					<a class="btn btn-sm btn-info" data-img="1" data-target="#imagenppkModal" data-toggle="modal">.:Ver Detalle:.</a>
+				</div>
+			</div>
+			<div class="col-md-12">
+            	<div class="radio col-xs-9">
+					<label>
+                        &nbsp;Sé un Lider Distrital
+                    </label>
+				</div>
+				<div class="col-xs-3">
+					<a class="btn btn-sm btn-info" data-img="1" data-target="#imagenppkModal" data-toggle="modal">.:Ver Detalle:.</a>
+				</div>
+			</div>
+			<div class="col-md-12">
+            	<div class="radio col-xs-9">
+					<label>
+                        &nbsp;Sé un Lider Provincial
+                    </label>
+				</div>
+				<div class="col-xs-3">
+					<a class="btn btn-sm btn-info" data-img="1" data-target="#imagenppkModal" data-toggle="modal">.:Ver Detalle:.</a>
+				</div>
+			</div>
+			<div class="col-md-12">
+            	<div class="radio col-xs-9">
+					<label>
+                        &nbsp;Sé un Lider Nacional
+                    </label>
+				</div>
+				<div class="col-xs-3">
+					<a class="btn btn-sm btn-info" data-img="1" data-target="#imagenppkModal" data-toggle="modal">.:Ver Detalle:.</a>
 				</div>
 			</div>
 				<div class="form-group">
