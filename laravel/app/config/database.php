@@ -55,8 +55,8 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'soyppk_act',
-			'username'  => 'soyppk_act',
+			'database'  => 'activista',
+			'username'  => 'root',
 			'password'  => '123',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_general_ci',

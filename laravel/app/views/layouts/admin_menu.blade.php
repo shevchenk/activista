@@ -1,3 +1,10 @@
+<?php
+    $cargoS= Cargo::find(Auth::user()->nivel_id+1);
+    if( count($cargoS)<=0 ){
+        $cargoS= new stdClass();
+        $cargoS->nombre='';
+    }
+?>
 <!-- sidebar menu: : style can be found in sidebar.less -->
                     <!--ul class="sidebar-menu"-->
                         @if (isset($menus))
@@ -10,7 +17,7 @@
                                             ?>
 
                                                 <a  style="display:{{ $display }}" class="col-sm-9 btn btn-app" href="admin.{{ $k->ruta }}">
-                                                    <i class="fa fa-angle-double-right"></i><font size="+1"> {{ $k->opcion }}</font>
+                                                    <i class="fa fa-angle-double-right"></i><font size="+1"> <?php echo str_replace('textoSeguir',$cargoS->nombre,$k->opcion) ?></font>
                                                 </a>
                                                 <br>
                                         @endforeach

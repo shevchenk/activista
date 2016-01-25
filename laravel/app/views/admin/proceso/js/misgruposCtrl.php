@@ -169,6 +169,7 @@
             })
             .controller("grupoEditarCtrl", function($scope, grupoSvc ,grupoCrearSvc, $alert, notificaciones, $location, $routeParams, perfilSvc) {
                 $scope.grupo = {};
+                $scope.cargando = true;
 
 
 
@@ -196,8 +197,6 @@
                         $scope.grupo.edad_desde = $scope.grupo.edad_desde*1;
                         $scope.grupo.edad_hasta = $scope.grupo.edad_hasta*1;
 
-
-                        debugger
                         // mis grupos
                         $scope.grupo.preguntas.forEach(function(item){
                             item.estado = !!item.estado;
@@ -206,7 +205,7 @@
                         grupoCrearSvc.getPreguntas().then(function (res) {
                            var preg = $scope.grupo.preguntas;
                             $scope.grupo.preguntas = angular.extend( res.data, preg);
-
+                            $scope.cargando = false;
                         });
 
 
