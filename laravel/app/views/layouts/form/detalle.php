@@ -1,12 +1,11 @@
 <div class="modal fade" id="imagenppkModal" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
-              <div class="modal-header logo">
-                <button class="btn btn-sm btn-default pull-right" data-dismiss="modal">
-                    <i class="fa fa-close"></i>
-                </button>
-              </div>
+
               <div class="modal-body">
+                  <button class="btn btn-sm btn-default pull-right" data-dismiss="modal">
+                      <i class="fa fa-close"></i>
+                  </button>
                   <img id="imagenppk" src="" class="img-responsive" />
                   <!--div class="visibles" id="visible4">
                   <font color="#1F0E66" size="+5">Como Simpatizante estoy dispuesto a:</font>

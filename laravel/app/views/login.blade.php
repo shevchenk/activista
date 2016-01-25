@@ -35,7 +35,7 @@
 			<h3 id="mensaje_error" style="display:none" class="label-danger">			
 			</h3>
 
-            <h3 id="mensaje_inicio">Por Favor <strong>Logeate</strong></h3>            
+            <h3 id="mensaje_inicio">Por Favor <strong>Logeate</strong></h3>
         
 
 		<form action="check/login" id="logForm" method="post" class="form-horizontal">
@@ -72,7 +72,7 @@
 				<div class="load" align="center" style="display:none"><i class="fa fa-spinner fa-spin fa-3x"></i></div>	
 				<div class="form-group">
 					<div class="col-xs-12">
-						<button type="button" id="btnRegistrar" class="col-sm-12 btn btn-success btn-lg">Registrate Aquí</button>
+						<button type="button" id="btnRegistrar" class="col-sm-12 btn btn-warning btn-lg">Registrate Aquí</button>
 					</div>
 				</div>
 			</div>
@@ -81,7 +81,7 @@
 
 		<form action="check/nuevo" id="newForm" style="display:none" method="post" class="form-horizontal">
 			<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12 ">
 				<div class=" radio col-xs-8">
 					<label>
                         <input type='radio' name='rdb_check' value='4' class='flat-red'  >&nbsp;Sé un Simptizante
@@ -179,10 +179,10 @@
 				</div>
 				<div class="form-group formSubmit">
 					<div class="col-xs-6">
-						<button type="button" id="btnNuevo" class="col-sm-12 btn btn-success btn-lg">Registrar</button>
+						<button type="button" id="btnNuevo" class="col-sm-12 btn btn-info btn-lg">Crear Cuenta</button>
 					</div>
 					<div class="col-xs-6">
-						<button type="button" id="btnRegresar" class="col-sm-12 btn btn-danger btn-lg">Cancelar</button>
+						<button type="button" id="btnRegresar" class="col-sm-12 btn btn-link btn-lg">Cancelar</button>
 					</div>
 				</div>					
 				<div class="load" align="center" style="display:none"><i class="fa fa-spinner fa-spin fa-3x"></i></div>	

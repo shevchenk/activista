@@ -25,13 +25,14 @@ $(document).ready(function() {
         $("#visible"+variables).css("display","");
         */
         $("#imagenppk").attr('src','img/imagenppk/img'+variables+'.png?nocache=' + (new Date()).getTime());
-        $("#imagenppk").fadeOut(3000,function(){
-            $("#imagenppk").fadeIn(3000);
-        });
+        //$("#imagenppk").fadeOut(3000,function(){
+        //    $("#imagenppk").fadeIn(3000);
+        //});
 
     });
 
     $('#imagenppkModal').on('hide.bs.modal', function (event) {
+			$("#imagenppk").attr('src','');
     });
 });
 
