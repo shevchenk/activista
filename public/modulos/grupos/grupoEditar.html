@@ -106,22 +106,22 @@
             </p>
         </div>
 
-        <!--<div class="row">-->
-            <!--<div class="col-sm-10">-->
-                <!--<table class="table table-bordered table-hover">-->
-                    <!--<tr>-->
-                        <!--<th></th>-->
-                        <!--<th>Tipo de referencia</th>-->
-                        <!--<th>Detalle de preferencia</th>-->
-                    <!--</tr>-->
-                    <!--<tr ng-repeat="pregunta in grupo.preguntas">-->
-                        <!--<td><input type="checkbox" ng-model="pregunta.estado"/></td>-->
-                        <!--<td>{{pregunta.pregunta}}</td>-->
-                        <!--<td><textarea class="form-control" rows="1" ng-model="pregunta.respuesta"></textarea></td>-->
-                    <!--</tr>-->
-                <!--</table>-->
-            <!--</div>-->
-        <!--</div>-->
+        <div class="row">
+            <div class="col-sm-10">
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <th></th>
+                        <th>Tipo de referencia</th>
+                        <th>Detalle de preferencia</th>
+                    </tr>
+                    <tr ng-repeat="pregunta in grupo.preguntas">
+                        <td><input type="checkbox" ng-model="pregunta.estado"/></td>
+                        <td>{{pregunta.pregunta}}</td>
+                        <td><textarea class="form-control" rows="1" ng-model="pregunta.respuesta"></textarea></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
 
     </div>
 </div>
@@ -129,13 +129,11 @@
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
         <button type="submit"
-                ng-click="guardarGrupo()"
-                class="btn btn-success">Crear Grupo</button>
+                ng-click="editarGrupo()"
+                class="btn btn-success">Guardar Grupo</button>
         <a href="#/" class="btn btn-link">Cancelar</a>
     </div>
 </div>
 
-<!--<pre>-->
-  <!--{{grupo | json}}-->
-<!--</pre>-->
+
 
