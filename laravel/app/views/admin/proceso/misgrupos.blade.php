@@ -64,6 +64,8 @@
     <div  class="col-sm-10 content-inner">
         <!-- angular templating -->
         <!-- this is where content will be injected -->
+        <div id="alerts-container"></div>
+
         <div ng-view></div>
     </div>
 

@@ -62,6 +62,7 @@
 <section class="content contaier" ng-app="app">
 
     <div  class="col-sm-12 content-inner">
+        <div id="alerts-container"></div>
 
         <div ng-view></div>
     </div>

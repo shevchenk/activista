@@ -48,15 +48,20 @@
                     }
                 };
             })
-            .controller("agregarCtrl", function($scope, Service,$location) {
+            .controller("agregarCtrl", function($scope, Service,$location,notificaciones) {
                 $scope.textoNivel='<?php echo $cargoS->nombre; ?>';
                 $scope.seguidor = {};
                 $scope.seguidor.nivel='<?php echo $cargoS->id; ?>';
 
                 $scope.guardarSeguidor = function () {
                     Service.postSeguidor($scope.seguidor).then(function(response){
-                        $location.path("/");
-                        notificaciones.showNotification(res.data.message);
+                        if (response.data.code == "ok") {
+                            $location.path("/");
+                            notificaciones.showNotification(response.data.message);
+                        } else {
+//                            $location.path("/");
+                            notificaciones.showError(response.data.message);
+                        }
                     });
                 };
 
