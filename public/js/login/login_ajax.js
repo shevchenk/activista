@@ -51,6 +51,13 @@ var Login={
                     $("#password").val( $("#passwordn").val() );
                     $("#btnIniciar").click();
                 }
+                else{
+                    validaciones="";
+                    $.each(obj.msj,function(index,datos){
+                        validaciones+=datos+"\n";
+                    });
+                    alert(validaciones);
+                }
             },
             error: function(){
                 $(".load").hide();

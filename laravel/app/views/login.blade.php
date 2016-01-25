@@ -148,7 +148,7 @@
 				<div class="form-group">
 					<div class="col-xs-12">
 						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+							<span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
 							<input type="text" name="email" id="email" class="form-control input-lg" placeholder="Email" autocomplete="off" required>
 						</div>
 					</div>

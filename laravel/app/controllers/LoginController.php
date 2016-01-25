@@ -78,6 +78,33 @@ class LoginController extends BaseController
     public function postNuevo(){
         if (Request::ajax()) {
 
+            $reglas = array(
+                'dni'      => 'required|min:8|unique:activistas',
+                'email'    => 'required|email',
+                'passwordn'   => 'min:6',
+            );
+
+            $mensaje = array(
+                'required'  => ':attribute Es requerido',
+                'regex'     => ':attribute Solo debe ser Texto',
+                'numeric'   => ':attribute seleccione una opcion',
+                'email'     => ':attribute No es un email válido ejemplo@ejemplo.ejemplo',
+                'unique'    => ':attribute Ya existente',
+                'min'       => ':attribute No cumple con el minimo de :min caracteres',
+            );
+
+            $validator = Validator::make(Input::all(), $reglas, $mensaje);
+
+            if ($validator->fails()) {
+                return Response::json(
+                    array(
+                    'rst' => 2,
+                    'msj' => $validator->messages(),
+                    )
+                );
+            }
+
+
             $activista = new Usuario;
             $activista->paterno = Input::get('paterno');
             $activista->materno = Input::get('materno');
