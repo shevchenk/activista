@@ -42,7 +42,6 @@ class GrupoController extends \BaseController
 
     public function postGuardargrupo() {
         $data = Input::all();
-
         $grupo_id = DB::table("grupos")->insertGetId(array(
             'activista_id' => $this->userID,
             'nombre' => array_key_exists('titulo', $data) ? $data['titulo']: "",
@@ -61,9 +60,8 @@ class GrupoController extends \BaseController
                 "pregunta_id"=>$pre['id'],
                 "grupo_id"=>$grupo_id,
                 "respuesta"=>array_key_exists('respuesta', $pre) ? $pre["respuesta"]: "",
-                "estado"=>array_key_exists('estado', $pre) && $pre['estado'] == true ? 1: ""
+                "estado"=>(array_key_exists('estado', $pre) && $pre['estado'] == "true") ? 1 : ""
             ));
-            die($pre["estado"]);
         }
 
         // @todo manejar errores
@@ -152,7 +150,7 @@ class GrupoController extends \BaseController
                 "pregunta_id"=>$pre['id'],
                 "grupo_id"=>$grupo_id,
                 "respuesta"=>array_key_exists('respuesta', $pre) ? $pre['respuesta']: "",
-                "estado"=>array_key_exists('estado', $pre) && $pre['estado'] == true? 1 : ""
+                "estado"=>array_key_exists('estado', $pre) && $pre['estado'] == "true"? 1 : ""
             ));
         }
 

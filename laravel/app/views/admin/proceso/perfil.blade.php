@@ -388,7 +388,10 @@
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" ng-change="buscarLider()" ng-model="liderSearchKey">
+                                                        <input type="text" class="form-control"
+                                                               ng-keypress="buscarByPress($event)"
+                                                               ng-change="buscarLider()"
+                                                               ng-model="liderSearchKey">
                                                         <span class="input-group-addon">
                                                           <i class="glyphicon glyphicon-search"></i>
                                                         </span>

@@ -156,11 +156,17 @@
 
                 // live search implementation
                 $scope.liderSearchKey = $scope.lideresAjaxConfig.params.texto;
-                $scope.buscarLider = function () {
-                    if ( $scope.liderSearchKey) {
+                $scope.buscarLider = function (keyEvent) {
+//                    if ( $scope.liderSearchKey) {
+//                        $scope.lideresAjaxConfig.params.texto = $scope.liderSearchKey;
+//                    }
+                };
+
+                $scope.buscarByPress = function (keyEvent) {
+                    if (keyEvent.which === 13) {
                         $scope.lideresAjaxConfig.params.texto = $scope.liderSearchKey;
                     }
-                };
+                }
 
 
                 $scope.asignarmeLider = function(item) {

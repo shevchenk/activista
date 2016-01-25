@@ -123,6 +123,11 @@
 
                 grupoCrearSvc.getPreguntas().then(function (res) {
                     $scope.grupo.preguntas = res.data;
+
+                    $scope.grupo.preguntas.forEach(function (item) {
+                        item.estado = false;
+                    });
+
                 });
 
                 $scope.guardarGrupo = function() {
@@ -162,8 +167,10 @@
 
 
             })
-            .controller("grupoEditarCtrl", function($scope, grupoSvc , $alert, notificaciones, $location, $routeParams, perfilSvc) {
+            .controller("grupoEditarCtrl", function($scope, grupoSvc ,grupoCrearSvc, $alert, notificaciones, $location, $routeParams, perfilSvc) {
                 $scope.grupo = {};
+
+
 
                 // busqueda de region/departameto
                 perfilSvc.getRegion().then(function(response){
@@ -182,16 +189,28 @@
                 $scope.dataReady = function (){
                     grupoSvc.getGrupo($routeParams.id).then(function(response) {
 //                    console.log(response);
+
                         $scope.grupo = response.data;
 
                         $scope.grupo.departamento = $scope.grupo.region;
                         $scope.grupo.edad_desde = $scope.grupo.edad_desde*1;
                         $scope.grupo.edad_hasta = $scope.grupo.edad_hasta*1;
 
+
+                        debugger
                         // mis grupos
                         $scope.grupo.preguntas.forEach(function(item){
                             item.estado = !!item.estado;
-                        })
+                        });
+
+                        grupoCrearSvc.getPreguntas().then(function (res) {
+                           var preg = $scope.grupo.preguntas;
+                            $scope.grupo.preguntas = angular.extend( res.data, preg);
+
+                        });
+
+
+
                     });
                 };
 
