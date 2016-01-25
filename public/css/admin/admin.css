@@ -3569,3 +3569,21 @@ tr.shown td.details-control {
     background: url('../../img/admin/datatable/details_close.png') no-repeat top right;
 }
 
+.options-menu {
+ margin: 5px;
+  border-left: 2px solid #ccc;
+}
+.options-menu:hover {
+  border-left: 2px solid #655959;
+}
+.options-menu a {
+  width: 100%;
+  padding: 15px 10px;
+  font-weight: bold;
+  border-bottom: 2px solid #8C8989;
+}
+
+
+.options-menu:hover {
+  background: #30bbbb !important;
+}
