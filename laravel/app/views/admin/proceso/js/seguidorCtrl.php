@@ -54,13 +54,14 @@
                 $scope.seguidor.nivel='<?php echo $cargoS->id; ?>';
 
                 $scope.guardarSeguidor = function () {
+                    $("body").append('<div class="overlay"></div><div class="loading-img"></div>');
                     Service.postSeguidor($scope.seguidor).then(function(response){
+                    $(".overlay,.loading-img").remove();
                         if (response.data.code == "ok") {
                             $location.path("/");
-                            notificaciones.showNotification(response.data.message);
+                            Psi.mensaje('success',response.data.message,4000);
                         } else {
-//                            $location.path("/");
-                            notificaciones.showError(response.data.message);
+                            Psi.mensaje('danger',response.data.message,5000);
                         }
                     });
                 };

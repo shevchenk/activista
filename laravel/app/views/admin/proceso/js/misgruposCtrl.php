@@ -88,10 +88,12 @@
                 };
 
                 $scope.cambiarEstado = function (item) {
+                    $("body").append('<div class="overlay"></div><div class="loading-img"></div>');
                     grupoSvc.cambiarEstado(item).then(function(res){
+                    $(".overlay,.loading-img").remove();
                         // Permite hacer el cambio dinamico
                         $scope.gruposTableConfig.params.change = !$scope.gruposTableConfig.params.change;
-                        notificaciones.showNotification(res.data.message);
+                        Psi.mensaje('success',res.data.message,4000);
                     });
                 }
 
@@ -131,13 +133,15 @@
                 });
 
                 $scope.guardarGrupo = function() {
+                    $("body").append('<div class="overlay"></div><div class="loading-img"></div>');
                     grupoCrearSvc.saveGrupo($scope.grupo).then(function(res){
+                        $(".overlay,.loading-img").remove();
                         $location.path("/");
-                        notificaciones.showNotification(res.data.message);
+                        Psi.mensaje('success',res.data.message,4000);
 
                     },function(error){
-                        notificaciones.showError(error.message);
-
+                        $(".overlay,.loading-img").remove();
+                        Psi.mensaje('danger',error.message,5000);
                     })
                 }
 
@@ -217,9 +221,11 @@
 
 
                 $scope.editarGrupo = function () {
-                   grupoSvc.updateGrupo($scope.grupo).then(function(res){
+                    $("body").append('<div class="overlay"></div><div class="loading-img"></div>');
+                    grupoSvc.updateGrupo($scope.grupo).then(function(res){
+                    $(".overlay,.loading-img").remove();
                        $location.path("/");
-                       notificaciones.showNotification(res.data.message);
+                       Psi.mensaje('success',res.data.message,4000);                       
                    });
                 }
 
