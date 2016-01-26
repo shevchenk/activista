@@ -106,7 +106,7 @@
             <div class="col-md-12 row">
                 <div class="radio col-xs-8">
 					<label>
-                        <input type='radio' name='rdb_check' value='6' class='flat-red' >&nbsp;Sé un Activista
+                        &nbsp;Sé un Activista
                     </label>
 				</div>
 				<div class="col-xs-3">
@@ -116,7 +116,7 @@
             <div class="col-md-12 row">
             	<div class="radio col-xs-8">
 					<label>
-                        <input type='radio' name='rdb_check' value='5' class='flat-red' >&nbsp;Sé un Lider Operativo
+                        &nbsp;Sé un Lider Operativo
                     </label>
 				</div>
 				<div class="col-xs-3">
@@ -126,7 +126,7 @@
 			<div class="col-md-12 row">
             	<div class="radio col-xs-8">
 					<label>
-                        <input type='radio' name='rdb_check' value='4' class='flat-red' >&nbsp;Sé un Lider Zonal
+                        &nbsp;Sé un Lider Zonal
                     </label>
 				</div>
 				<div class="col-xs-3">
