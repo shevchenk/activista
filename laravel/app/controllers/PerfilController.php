@@ -183,22 +183,6 @@ class PerfilController extends \BaseController
         $where = ' ';
 
 
-        if ( Input::get('departamento')) {
-            $where  .=  " and d_departamento = ".Input::get('departamento');
-        }
-
-        if ( Input::get('provincia')) {
-            $where  .=  " and d_provincia = ".Input::get('provincia');
-        }
-
-        if ( Input::get('distrito')) {
-            $where  .=  " and d_distrito = ".Input::get('distrito');
-        }
-
-        if ( Input::get('texto')) {
-            $where  .=  " and CONCAT(paterno,materno, nombres, dni, email) like  '%" . Input::get('texto'). "%' ";
-        }
-
         if ( Input::get('texto')) {
             $where  .=  " and CONCAT(paterno,materno, nombres, dni, email) like  '%" . Input::get('texto'). "%' ";
         }
@@ -208,7 +192,6 @@ class PerfilController extends \BaseController
         }
 
 
-
         $activistas = DB::select('select * from activistas where  1=1 ' . $where );
         $count = DB::select('select count(*) count from activistas where 1=1  ' . $where );
 
@@ -216,7 +199,6 @@ class PerfilController extends \BaseController
         return Response::json(array('results'=>array("list"=>$activistas,'totalResults'=>$count[0]->count)));
 
     }
-
 
 
     public function postAsignarlider () {

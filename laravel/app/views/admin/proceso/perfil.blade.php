@@ -502,7 +502,7 @@
 
        <div class="row" ng-show="showGuardar">
            <div class="col-sm-offset-4 col-sm-6 text-right">
-               <button  class="btn btn-default ">Cancelar</button>
+               <button  class="btn btn-default " ng-click="volverAPerfil()">Cancelar</button>
                <button  class="btn btn-success " ng-click="guardarDatos()">Guardar Datos</button>
            </div>
        </div>

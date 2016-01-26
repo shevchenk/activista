@@ -78,6 +78,7 @@
                             function(response){
                                 notificaciones.showNotification(response.data.message);
                                 console.log(response)
+                                window.location.href = "admin.proceso.perfilView#/"
                             },
                             function(error){
                                 console.log(error);
@@ -191,6 +192,10 @@
                         //actualizar boton
                         item.unido = 0;
                     });
+                }
+
+                $scope.volverAPerfil = function () {
+                    window.location.href = "admin.proceso.perfilView#/";
                 }
 
             });
