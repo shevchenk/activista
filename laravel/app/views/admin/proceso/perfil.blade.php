@@ -98,19 +98,19 @@
                             <div class="row">
                                 <div class="form-group col-sm-3">
                                     <label class="" for="">DNI</label>
-                                    <input type="text" class="form-control" ng-model="perfil.dni"/>
+                                    <input disabled type="text" class="form-control" ng-model="perfil.dni"/>
                                 </div>
                                 <div class="form-group col-sm-3">
                                     <label class="" for="">Paterno</label>
-                                    <input type="text" class="form-control" ng-model="perfil.paterno"/>
+                                    <input disabled type="text" class="form-control" ng-model="perfil.paterno"/>
                                 </div>
                                 <div class="form-group col-sm-3">
                                     <label class="" for="">Materno</label>
-                                    <input type="text" class="form-control"  ng-model="perfil.materno"/>
+                                    <input  disabled type="text" class="form-control"  ng-model="perfil.materno"/>
                                 </div>
                                 <div class="form-group col-sm-3">
                                     <label class="" for="">Nombres</label>
-                                    <input type="text" class="form-control"  ng-model="perfil.nombres"/>
+                                    <input  disabled type="text" class="form-control"  ng-model="perfil.nombres"/>
                                 </div>
 
                                 <div class="form-group col-sm-4">
