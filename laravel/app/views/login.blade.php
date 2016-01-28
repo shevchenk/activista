@@ -153,6 +153,16 @@
 					<a class="btn btn-sm btn-info" data-img="1" data-target="#imagenppkModal" data-toggle="modal">.:Ver Detalle:.</a>
 				</div>
 			</div>
+			<div class="col-md-12 row">
+            	<div class="radio col-xs-8">
+					<label>
+                        &nbsp;Sé un Lider Regional
+                    </label>
+				</div>
+				<div class="col-xs-3">
+					<a class="btn btn-sm btn-info" data-img="1" data-target="#imagenppkModal" data-toggle="modal">.:Ver Detalle:.</a>
+				</div>
+			</div>
 			<div class="col-md-12 row form-group">
             	<div class="radio col-xs-8">
 					<label>
