@@ -25,13 +25,8 @@
                                         @endforeach
                             @endforeach
                         @endif
-                        <!--li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-shield"></i> <span>{{ trans('greetings.menu_info') }}</span>
-                                <i class="fa fa-angle-left pull-right"></i>
+                        <div class="form-group row options-menu">
+                            <a   class="col-sm-9 bg-light-blue disabled" href="admin.mantenimiento.misdatos">
+                                <i class="fa fa-angle-double-right"></i><font size="+1"> Cambiar Contraseña</font>
                             </a>
-                            <ul class="treeview-menu">
-                                <li><a href="admin.mantenimiento.misdatos"><i class="fa fa-angle-double-right"></i>{{ trans('greetings.menu_info_actualizar') }} </a></li>
-                            </ul>
-                        </li-->
-                    <!--/ul-->
+                        </div>

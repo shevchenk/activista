@@ -57,7 +57,7 @@ class UsuarioController extends BaseController
             if ( Auth::attempt($userdata) ) {
                 
                 if ( Input::get('newpassword')!='' ) {
-                $usuarios = Persona::find(Auth::user()->id);
+                $usuarios = Usuario::find(Auth::user()->id);
                 $usuarios->password = Hash::make(Input::get('newpassword'));
                 $usuarios->save();
                 }
