@@ -3587,3 +3587,7 @@ tr.shown td.details-control {
 .options-menu:hover {
   background: #30bbbb !important;
 }
+
+a.bg-light-blue:hover {
+  background-color: #2E4552 !important;
+}

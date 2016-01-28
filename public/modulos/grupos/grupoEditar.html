@@ -1,7 +1,7 @@
 <div class="row pull-right">
-    <a href="#/"> << Regresar a MIS GRUPOS</a>
+    <a href="#/"> << Regresar a MIS Páginas</a>
 </div>
-<h1>Editar Grupo</h1>
+<h1>Editar Página</h1>
 
 <div class="overlay" ng-if="cargando">
     <i class="fa fa-refresh fa-spin"></i>
@@ -9,11 +9,11 @@
 
 
 <div bs-tabs>
-    <div data-title="Datos del grupo" bs-pane>
+    <div data-title="Datos de la página" bs-pane>
         <p>
         <form class="form-horizontal">
             <div class="form-group">
-                <label class="col-sm-2 control-label">Nombre del Grupo</label>
+                <label class="col-sm-2 control-label">Nombre de la Página</label>
                 <div class="col-sm-10">
                     <input type="text"
                            ng-model="grupo.titulo"
@@ -29,10 +29,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="fb_url" class="col-sm-2 control-label">Facebook Url</label>
+                <label for="fb_url" class="col-sm-2 control-label">Fan page</label>
                 <div class="col-sm-10">
                     <input type="text"  ng-model="grupo.fb_url"
-                           class="form-control" id="fb_url" placeholder="http://fb.com/gtrdceer">
+                           class="form-control" id="fb_url" placeholder="http://fb.com/fanpage">
                 </div>
             </div>
         </form>
@@ -135,7 +135,7 @@
     <div class="col-sm-offset-2 col-sm-10">
         <button type="submit"
                 ng-click="editarGrupo()"
-                class="btn btn-success">Guardar Grupo</button>
+                class="btn btn-success">Guardar Página</button>
         <a href="#/" class="btn btn-link">Cancelar</a>
     </div>
 </div>
