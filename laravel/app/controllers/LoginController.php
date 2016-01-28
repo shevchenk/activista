@@ -122,6 +122,24 @@ class LoginController extends BaseController
             $activistaCargo->usuario_created_at= $activista->id;
             $activistaCargo->save();
 
+            $parametros=array(
+                            'email'      => Input::get('email'),
+                            'persona'   => $activista->paterno." ".$activista->materno.", ".$activista->nombres,
+                        );
+
+            try{
+                Mail::send('emails', $parametros , 
+                    function($message) {
+                    $message
+                        ->to(Input::get('email'))
+                        ->subject('.::Bienvenido PPKausa::.');
+                    }
+                );
+            }
+            catch(Exception $e){
+                //echo $qem[$k]->email."<br>";
+            }
+
             return Response::json(
                 array(
                     'rst'    => '1',
