@@ -31,8 +31,9 @@
                 <table class="table table-hover table-striped">
                     <tbody>
                     <tr ng-repeat="mensaje in mensajesEnviados">
-                        <td class="mailbox-subject"><b>{{mensaje.asunto}}</b> </td>
+                        <td class="mailbox-subject"><b>{{mensaje.asunto | truncate:30}}</b> </td>
                         <td class="mailbox-attachment"></td>
+                        <td class="mailbox-date">{{mensaje.mensaje | truncate:100}}</td>
                         <td class="mailbox-date">{{mensaje.fecha_ago}}</td>
                     </tr>
 
