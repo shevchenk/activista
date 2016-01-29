@@ -27,7 +27,7 @@
 {{ HTML::script('lib/bower_components/adapt-strap/dist/adapt-strap.tpl.min.js') }}
 
 @include( 'admin.proceso.js.appAngular' )
-@include( 'admin.proceso.js.comunicacionCtrl' )
+@include( 'admin.proceso.js.ComunicacionCtrl' )
 @stop
         <!-- Right side column. Contains the navbar and content of the page -->
 @section('contenido')
