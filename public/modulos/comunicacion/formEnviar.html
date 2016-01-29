@@ -1,0 +1,31 @@
+<div class="col-md-9">
+    <div class="box box-primary">
+        <form name="form" class="css-form" novalidate>
+            <div class="box-header with-border">
+                <h3 class="box-title">Enviar Mensaje</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <div class="form-group">
+                    <input class="form-control" placeholder="Asunto:" ng-model="mensaje.asunto" required>
+                </div>
+                <div class="form-group">
+                    <textarea required ng-model="mensaje.descripcion" id="compose-textarea" class="form-control" style="height: 300px" placeholder="Descripcion"></textarea>
+                </div>
+                <div class="form-group hide">
+                    <div class="btn btn-default btn-file">
+                        <i class="fa fa-paperclip"></i> Attachment
+                        <input type="file" name="attachment">
+                    </div>
+                    <p class="help-block">Max. 32MB</p>
+                </div>
+            </div><!-- /.box-body -->
+            <div class="box-footer">
+                <div class="pull-right">
+                    <!--<button class="btn btn-default"><i class="fa fa-pencil"></i> Draft</button>-->
+                    <button type="submit" class="btn btn-primary" ng-click="enviarMensaje(form)"><i class="fa fa-envelope-o"></i> Enviar</button>
+                </div>
+                <button class="btn btn-default" ng-click="ocultarFormulario()"><i class="fa fa-times"></i> Cancelar</button>
+            </div><!-- /.box-footer -->
+        </form>
+    </div><!-- /. box -->
+</div><!-- /.col -->

@@ -7,7 +7,8 @@
             'ngAnimate',
             'toggle-switch',
             'adaptv.adaptStrap',
-            'ngRoute'
+            'ngRoute',
+            'ngResource'
         ])
             .factory('notificaciones', function($alert){
                 return {
@@ -35,6 +36,25 @@
                     }
                 }
             })
+            .factory('Mensaje', function($resource){
+                var Comunicacion = $resource('comunicacion/comunicacion/:id', {id:'@id'}, {
+                    query: {
+                        method: 'GET',
+                        isArray: true
+                    }
+                });
+
+                Object.defineProperty(Comunicacion.prototype, 'fecha_ago', {
+                    get: function () {
+                        moment.locale('es');
+                        return moment(this.created_at).fromNow();
+                    }
+                });
+
+                return Comunicacion;
+
+            })
+
             .factory('Service', function($http) {
                 return {
                     getApoyos : function() {
