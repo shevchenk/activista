@@ -64,4 +64,4 @@ Route::controller('opcion', 'OpcionController');
 Route::controller('perfil', 'PerfilController');
 Route::controller('grupo', 'grupoController');
 Route::controller('seguidor', 'seguidorController');
-Route::controller('comunicacion', 'comunicacionController');
+Route::controller('comunicacion', 'ComunicacionController');
