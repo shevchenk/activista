@@ -13,7 +13,7 @@
 
 {{ HTML::script('lib/angular.min.js') }}
 {{ HTML::script('lib/angular-route.js') }}
-
+{{ HTML::script('//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-resource.js') }}
 {{ HTML::script('lib/angular-sanitize.min.js') }}
 {{ HTML::script('lib/angular-animate.js') }}
 {{ HTML::script('lib/angular-strap.min.js') }}

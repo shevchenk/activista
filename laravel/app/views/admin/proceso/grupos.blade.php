@@ -13,6 +13,7 @@
 
 {{ HTML::script('//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js') }}
 {{ HTML::script('//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js') }}
+{{ HTML::script('//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-resource.js') }}
 {{ HTML::script('//cdn.jsdelivr.net/angularjs/1.4.5/angular-sanitize.min.js') }}
 {{ HTML::script('//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js') }}
 {{ HTML::script('//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.3.5/angular-strap.min.js') }}
