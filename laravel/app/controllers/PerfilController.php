@@ -191,8 +191,13 @@ class PerfilController extends \BaseController
             $where  .=  " and nivel_id = ".Input::get('nivel');
         }
 
+        $field = "  id ";
+        $orderby = "  order by $field ".$data['sort_dir'];
+        $ini = $data['skip'];
+        $fin = $data['limit'];
+        $limit = $orderby. " limit $ini,$fin ";
 
-        $activistas = DB::select('select * from activistas where  1=1 ' . $where );
+        $activistas = DB::select('select * from activistas where  1=1 ' . $where . $orderby . $limit);
         $count = DB::select('select count(*) count from activistas where 1=1  ' . $where );
 
 

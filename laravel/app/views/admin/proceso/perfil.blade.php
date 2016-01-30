@@ -358,7 +358,7 @@
                             <div class="row">
                                 <div class="col-sm-2 " >
                                     <p></p>
-                                    <button ng-show="!formularioBuscarLider" class="btn btn-info" ng-click="formularioBuscarLider = true"> + Buscar un @{{textoNivel}}</button>
+                                    <button ng-show="!formularioBuscarLider" class="btn btn-info" ng-click="formularioBuscarLider = true;"> + Buscar un @{{textoNivel}}</button>
                                     <button ng-show="formularioBuscarLider" class="btn btn-danger" ng-click="formularioBuscarLider = false"> + Ocultar formulario</button>
                                 </div>
                                 <div class="col-sm-8">
@@ -378,7 +378,7 @@
                      </p>
 
 
-                        <div class="row" ng-show="formularioBuscarLider">
+                        <div class="row" ng-if="formularioBuscarLider">
                             <div class="row">
                                 <div class="col-sm-12">
                                     <!--========== Advanced Implementation with search ========== -->
@@ -388,9 +388,8 @@
                                                 <div class="col-lg-6">
                                                     <div class="input-group">
                                                         <input type="text" class="form-control"
-                                                               ng-keypress="buscarByPress($event)"
-                                                               ng-change="buscarLider()"
-                                                               ng-model="liderSearchKey">
+                                                               ng-keypress="buscarByPress($event, liderSearchKey)"
+                                                               ng-model="liderSearchKey"> @{{liderSearchKey}}
                                                         <span class="input-group-addon">
                                                           <i class="glyphicon glyphicon-search"></i>
                                                         </span>
@@ -412,7 +411,7 @@
                                 </div>
                             </div>
                         </div>
-                        <form class="form-horizontal" ng-show="perfil.lider_padre > 0 && !formularioBuscarLider">
+                        <form class="form-horizontal" ng-if="perfil.lider_padre > 0 && !formularioBuscarLider">
                             <div class="row">
                                 <fieldset class="col-sm-12">
                                     <legend>Datos Mi @{{textoNivel}}</legend>

@@ -86,11 +86,17 @@ class GrupoController extends \BaseController
     }
 
     public function getGruposbyid() {
-
+        $data = Input::all();
         $where = " where 1 = 1 and estado = 1 ";
         $where  .= ' and activista_id = '.Input::get('activista_id');
 
-        $rows = DB::select('select * from grupos  ' . $where );
+        $field = "  id ";
+        $orderby = "  order by $field ".$data['sort_dir'];
+        $ini = $data['skip'];
+        $fin = $data['limit'];
+        $limit = $orderby. " limit $ini,$fin ";
+
+        $rows = DB::select('select * from grupos  ' . $where .$limit );
         $count = DB::select('select count(*) count from grupos   ' . $where );
 
 

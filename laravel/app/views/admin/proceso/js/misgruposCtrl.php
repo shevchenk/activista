@@ -143,32 +143,7 @@
                         $(".overlay,.loading-img").remove();
                         Psi.mensaje('danger',error.message,5000);
                     })
-                }
-
-                // busqueda de region/departameto
-                perfilSvc.getRegion().then(function(response){
-                    $scope.departamentos = response.data;
-                });
-                perfilSvc.getProvincia().then(function(response){
-                    $scope.Provincias = response.data;
-
-                });
-                perfilSvc.getDistritos().then(function(response){
-                    $scope.Distritos = response.data;
-
-                });
-
-                // cuando se ejecuta departamento
-                $scope.ActualizarProvincias = function(departamento, provincias) {
-                    perfilSvc.getProvincia(departamento).then(function(response){  $scope[provincias] = response.data;      })
                 };
-
-                // cuando se ejecuta departamento
-                $scope.ActualizarDistritos = function(provincia, distritos) {
-                    perfilSvc.getDistritos(provincia).then(function(response){  $scope[distritos] = response.data;      })
-                };
-
-
 
             })
             .controller("grupoEditarCtrl", function($scope, grupoSvc ,grupoCrearSvc, $alert, notificaciones, $location, $routeParams, perfilSvc) {
@@ -177,19 +152,7 @@
 
 
 
-                // busqueda de region/departameto
-                perfilSvc.getRegion().then(function(response){
-                    $scope.departamentos = response.data;
-                    perfilSvc.getProvincia().then(function(response){
-                        $scope.Provincias = response.data;
-                        perfilSvc.getDistritos().then(function(response){
-                            $scope.Distritos = response.data;
 
-                            $scope.dataReady();
-
-                        });
-                    });
-                });
 
                 $scope.dataReady = function (){
                     grupoSvc.getGrupo($routeParams.id).then(function(response) {
@@ -217,7 +180,7 @@
                     });
                 };
 
-
+                $scope.dataReady();
 
 
                 $scope.editarGrupo = function () {
@@ -229,6 +192,43 @@
                    });
                 }
 
+            })
+            .directive('ubigeo', function () {
+                return {
+                    restrict: 'E',
+                    templateUrl: 'modulos/grupos/ubigeo.html',
+                    scope: {
+                        grupo: '='
+                    },
+                    controller : function ($scope, perfilSvc) {
+                        // busqueda de region/departameto
+                        perfilSvc.getRegion().then(function(response){
+                            $scope.departamentos = response.data;
+                        });
+                        perfilSvc.getProvincia().then(function(response){
+                            $scope.Provincias = response.data;
+
+                        });
+                        perfilSvc.getDistritos().then(function(response){
+                            $scope.Distritos = response.data;
+
+                        });
+
+
+                        // cuando se ejecuta departamento
+                        $scope.ActualizarProvincias = function(departamento, provincias) {
+                            $scope.Provincias = [];
+                            perfilSvc.getProvincia(departamento).then(function(response){  $scope[provincias] = response.data;      })
+                        };
+
+                        // cuando se ejecuta departamento
+                        $scope.ActualizarDistritos = function(provincia, distritos) {
+                            $scope.Distritos=[];
+                            perfilSvc.getDistritos(provincia).then(function(response){  $scope[distritos] = response.data;      })
+                        };
+
+                    }
+                }
             })
 
     })()
