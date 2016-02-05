@@ -43,14 +43,6 @@
 
               <div class="col-sm-12">
                 <div class="col-sm-4">
-                  <label class="control-label">Fecha de Nacimiento
-                      <a id="error_fecha_nac" style="display:none" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="bottom" title="Fecha de Nacimiento">
-                          <i class="fa fa-exclamation"></i>
-                      </a>
-                  </label>
-                  <input type="text" class="form-control" placeholder="AAAA-MM-DD" id="txt_fecha_nac" name="txt_fecha_nac" onfocus="blur()"/>
-                </div>
-                <div class="col-sm-4">
                   <label class="control-label">DNI
                       <a id="error_dni" style="display:none" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="bottom" title="Ingrese DNI">
                           <i class="fa fa-exclamation"></i>
@@ -58,16 +50,6 @@
                   </label>
                   <input type="text" class="form-control" placeholder="Ingrese DNI" name="txt_dni" id="txt_dni">
                 </div>
-                <div class="col-sm-4">
-                  <label class="control-label">Password
-                      <a id="error_password" style="display:none" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="bottom" title="Ingrese Password">
-                          <i class="fa fa-exclamation"></i>
-                      </a>
-                  </label>
-                  <input type="password" class="form-control" placeholder="Ingrese Password" name="txt_password" id="txt_password">
-                </div>
-              </div>
-              <div class="col-sm-12">
                 <div class="col-sm-4">
                   <label class="control-label">Email
                       <a id="error_email" style="display:none" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="bottom" title="Ingrese email">
@@ -81,9 +63,27 @@
                   </label>
                   <select class="form-control" name="slct_sexo" id="slct_sexo">
                       <option value='' style="display:none">.:Seleccione:.</option>
-                      <option value='F'>Femenino</option>
-                      <option value='M' selected>Masculino</option>
+                      <option value='2'>Femenino</option>
+                      <option value='1' selected>Masculino</option>
                   </select>
+                </div>
+              </div>
+              <div class="editar col-sm-12">
+                <div class="col-sm-4">
+                  <label class="control-label">Fecha de Nacimiento
+                      <a id="error_fecha_nac" style="display:none" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="bottom" title="Fecha de Nacimiento">
+                          <i class="fa fa-exclamation"></i>
+                      </a>
+                  </label>
+                  <input type="text" class="form-control" placeholder="AAAA-MM-DD" id="txt_fecha_nac" name="txt_fecha_nac" onfocus="blur()"/>
+                </div>
+                <div class="col-sm-4">
+                  <label class="control-label">Password
+                      <a id="error_password" style="display:none" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="bottom" title="Ingrese Password">
+                          <i class="fa fa-exclamation"></i>
+                      </a>
+                  </label>
+                  <input type="password" class="form-control" placeholder="Ingrese Password" name="txt_password" id="txt_password">
                 </div>
                 <div class="col-sm-4">
                   <label class="control-label">Estado:

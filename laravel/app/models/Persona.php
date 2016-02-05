@@ -40,6 +40,22 @@ class Persona extends Base implements UserInterface, RemindableInterface
     /**
      * Cargos relationship
      */
+    public static function getCargar()
+    {
+        $sql="  SELECT a.id,a.dni,a.paterno,a.materno,a.nombres,a.email,
+                a.password, a.fecha_nacimiento,a.sexo,a.estado,
+                MAX( IF(pc.estado=1,pc.cargo_id,NULL) ) cargo_id,
+                GROUP_CONCAT( CONCAT(c.nombre,'_',pc.created_at) SEPARATOR '|')
+                cargos
+                FROM activistas a
+                INNER JOIN activista_cargo pc ON a.id=pc.activista_id
+                INNER JOIN cargos c ON c.id=pc.cargo_id
+                GROUP BY a.id";
+        $personas = DB::select($sql);
+
+        return $personas;
+    }
+
     public function cargos()
     {
         return $this->belongsToMany('Cargo');
