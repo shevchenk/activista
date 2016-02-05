@@ -155,17 +155,9 @@
                     }
                 };
 
-                // live search implementation
-                $scope.liderSearchKey = $scope.lideresAjaxConfig.params.texto;
-                $scope.buscarLider = function (keyEvent) {
-//                    if ( $scope.liderSearchKey) {
-//                        $scope.lideresAjaxConfig.params.texto = $scope.liderSearchKey;
-//                    }
-                };
-
-                $scope.buscarByPress = function (keyEvent) {
+                $scope.buscarByPress = function (keyEvent, liderSearchKey) {
                     if (keyEvent.which === 13) {
-                        $scope.lideresAjaxConfig.params.texto = $scope.liderSearchKey;
+                        $scope.lideresAjaxConfig.params.texto = liderSearchKey;
                     }
                 }
 

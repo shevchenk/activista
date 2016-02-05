@@ -1,0 +1,30 @@
+<div class="form-horizontal">
+    <div class="form-group" >
+        <label class="col-sm-3 control-label" for="">Region</label>
+        <div class="col-sm-9">
+            <select class="form-control"
+                    ng-model="grupo.departamento"
+                    ng-options="dep.id as dep.nombre for dep in departamentos"
+                    ng-change="ActualizarProvincias(grupo.departamento, 'Provincias')"></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="">Provincias</label>
+        <div class="col-sm-9">
+            <select class="form-control" ng-disabled="Provincias.length === 0"
+                    ng-model="grupo.provincia"
+                    ng-options="dep.id as dep.nombre for dep in Provincias"
+                    ng-change="ActualizarDistritos(grupo.provincia, 'Distritos')"/></select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="">Distrito</label>
+        <div class="col-sm-9">
+            <select class="form-control " ng-disabled="Distritos.length === 0"
+                    ng-model="grupo.distrito"
+                    ng-options="dep.id as dep.nombre for dep in Distritos"/></select>
+        </div>
+    </div>
+
+</div>

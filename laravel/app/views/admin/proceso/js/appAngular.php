@@ -37,7 +37,9 @@
                 }
             })
             .factory('Mensaje', function($resource){
-                var Comunicacion = $resource('comunicacion/comunicacion/:id', {id:'@id'}, {
+                var Comunicacion = $resource('comunicacion/comunicacion/:id',
+                    { id:'@id' },
+                    {
                     query: {
                         method: 'GET',
                         isArray: true
@@ -53,6 +55,42 @@
 
                 return Comunicacion;
 
+            })
+            .factory('TipoAcceso', function($resource){
+                var TipoAcceso = $resource('comunicacion/tipoacceso/:id',
+                    { id:'@id' },
+                    {
+                        query: {
+                            method: 'GET',
+                            isArray: true
+                        }
+                    });
+                return TipoAcceso;
+            })
+            .factory('Bandeja', function($resource){
+                var Bandeja = $resource('comunicacion/bandeja/:id',
+                    { id:'@id' },
+                    {
+                        query: {
+                            method: 'GET',
+                            isArray: true
+                        }
+                    });
+
+                Object.defineProperty(Bandeja.prototype, 'fecha_ago', {
+                    get: function () {
+                        moment.locale('es');
+                        return moment(this.created_at).fromNow();
+                    }
+                });
+                Object.defineProperty(Bandeja.prototype, 'respondido_ago', {
+                    get: function () {
+                        moment.locale('es');
+                        return moment(this.respondido_at).fromNow();
+                    }
+                });
+
+                return Bandeja;
             })
 
             .factory('Service', function($http) {
