@@ -28,7 +28,15 @@ class OpcionController extends \BaseController
         //si la peticion es ajax
         if ( Request::ajax() ) {
             
-            if (Input::get('cargo_id')) {
+            if (Input::get('cid')) {
+                $cargoId = Input::get('cid');
+                $sql="  SELECT o.id,o.nombre,co.id co
+                        FROM opciones o
+                        LEFT JOIN cargo_opcion co ON co.opcion_id=o.id 
+                                AND co.cargo_id='".$cargoId."'
+                        WHERE o.estado=1";
+                $opciones = DB::select($sql);
+            } elseif (Input::get('cargo_id')) {
                 $cargoId = Input::get('cargo_id');
                 $opciones = DB::table('cargo_opcion as co')
                         ->rightJoin(
