@@ -1,0 +1,24 @@
+<div class="col-md-9">
+    <div class="box box-primary">
+        <form name="form" class="css-form" novalidate>
+            <div class="box-header with-border">
+                <h3 class="box-title">Mensaje</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <div class="form-group">
+                    <b> {{mensaje.asunto}}</b>
+                </div>
+                <div class="form-group">
+                    {{mensaje.mensaje}}
+                </div>
+                <hr>
+                <div class="form-group">
+                    {{ mensaje.respuesta }}
+                </div>
+            </div><!-- /.box-body -->
+        </form>
+    </div><!-- /. box -->
+</div><!-- /.col -->
+<pre>
+    {{mesaje | json}}
+</pre>

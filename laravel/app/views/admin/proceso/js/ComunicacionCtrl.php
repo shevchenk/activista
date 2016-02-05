@@ -18,10 +18,32 @@ $cargoS= Cargo::find(Auth::user()->nivel_id+1);
             })
             .controller("bandejaCtrl", function($scope , Mensaje , notificaciones) {
                 var actualizarMensajesEnviados = function () {
-                    Mensaje.query().$promise.then(function(response){
-                        $scope.mensajesEnviados = response;
-                    });
+                    $scope.mensajesEnviados = Mensaje.query();
                 };
+
+                $scope.flagMostrarBandeja = true;
+                $scope.flagEnviarMensaje = false;
+                $scope.flagMostrarEnviados = false;
+
+                $scope.mostrarFormulario = function () {
+                    $scope.flagMostrarBandeja = false;
+                    $scope.flagEnviarMensaje = true;
+                    $scope.flagMostrarEnviados = false;
+                }
+
+                $scope.mostrarBandeja = function () {
+                    $scope.flagMostrarBandeja = true;
+                    $scope.flagEnviarMensaje = false;
+                    $scope.flagMostrarEnviados = false;
+                }
+
+                $scope.mostrarMensajesEnviados = function () {
+                    $scope.flagMostrarBandeja = false;
+                    $scope.flagEnviarMensaje = false;
+                    $scope.flagMostrarEnviados = true;
+                }
+
+
                 $scope.textoNivel='<?php echo $cargoS->nombre; ?>';
                 $scope.formulario = false;
                 $scope.mensaje = {};
@@ -30,13 +52,20 @@ $cargoS= Cargo::find(Auth::user()->nivel_id+1);
 
 
 
+
+
+
                 $scope.mostrarFormulario = function () {
-                    $scope.formulario = true;
-                }
+                    $scope.flagMostrarBandeja = false;
+                    $scope.flagEnviarMensaje = true;
+                    $scope.flagMostrarEnviados = false;
+                };
 
                 $scope.ocultarFormulario = function () {
-                    $scope.formulario = false;
-                }
+                    $scope.flagMostrarBandeja = true;
+                    $scope.flagEnviarMensaje = false;
+                    $scope.flagMostrarEnviados = false;
+                };
 
                 $scope.enviarMensaje = function (form) {
                     if (form.$valid) {
@@ -45,7 +74,7 @@ $cargoS= Cargo::find(Auth::user()->nivel_id+1);
                         mensaje.descripcion = $scope.mensaje.descripcion;
                         mensaje.$save(function(response){
                             $scope.mensaje = {};
-                            $scope.formulario = false;
+                            $scope.ocultarFormulario();
                             actualizarMensajesEnviados();
 
                         },function(error){
@@ -63,8 +92,8 @@ $cargoS= Cargo::find(Auth::user()->nivel_id+1);
                     restrict: 'EAC',
                     templateUrl: 'modulos/comunicacion/formEnviar.html',
                     controller: function ($scope) {
-                        $scope.volverABandeja = function (formulario) {
-                            formulario = false;
+                        $scope.volverABandeja = function () {
+                            $scope.ocultarFormulario()
                         }
                     }
                 }
@@ -74,6 +103,44 @@ $cargoS= Cargo::find(Auth::user()->nivel_id+1);
                     restrict: 'EAC',
                     templateUrl: 'modulos/comunicacion/listado.html'
                 }
+            })
+            .directive('bandeja', function () {
+                return {
+                    restrict: 'EAC',
+                    scope: {},
+                    templateUrl: 'modulos/comunicacion/bandejaMensajes.html',
+                    controller: function ($scope, Bandeja) {
+                        $scope.RespuestaView = false;
+                        $scope.bandeja = Bandeja.query();
+
+                        $scope.verRespuesta = function (id) {
+                            $scope.respuesta_id = id;
+                            $scope.RespuestaView = true;
+
+                        }
+
+                    }
+                }
+            })
+            .directive('verRespuesta', function () {
+                return {
+                    restrict: 'EAC',
+                    scope: {
+                        mensaje: '='
+                    },
+                    templateUrl: 'modulos/comunicacion/verRespuesta.html',
+                    controller: function ($scope, Bandeja) {
+                            $scope.mensaje = Bandeja.get({id: $scope.mensaje});
+                            $scope.verRespuesta = function (id) {
+                                $scope.respuesta_id = id;
+                                $scope.verRespuesta = true;
+
+                            }
+
+                    }
+                }
             });
+
+
     })()
 </script>

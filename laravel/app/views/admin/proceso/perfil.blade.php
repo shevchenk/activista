@@ -164,7 +164,7 @@
                                 </div>
 
                                 <div class="form-group col-sm-2">
-                                    <label class="" for="">Twitter</label>
+                                    <label class="" for="">Facebook</label>
                                     <input type="text" class="form-control"  ng-model="perfil.twitter"/>
                                 </div>
 
