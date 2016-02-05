@@ -281,7 +281,7 @@ class CargoController extends \BaseController
             $cargo->save();
 
             //estado 0, en la tabla cargo_opcion, para este cargo
-            if ($estado == 0) {
+            /*if ($estado == 0) {
                 DB::table('cargo_opcion')
                     ->where('cargo_id', $cargoId)
                     ->update(
@@ -289,7 +289,7 @@ class CargoController extends \BaseController
                             'estado' => $estado,
                             'usuario_updated_at' => Auth::user()->id
                         ));
-            }
+            }*/
 
             return Response::json(
                 array(
