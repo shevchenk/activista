@@ -60,7 +60,7 @@ class PersonaController extends BaseController
                 'paterno' => $required.'|'.$regex,
                 'materno' => $required.'|'.$regex,
                 'email' => 'required|email|unique:activistas,email',
-                'password'      => 'required|min:6',
+                //'password'      => 'required|min:6',
                 'dni'      => 'required|min:8|unique:activistas,dni',
             );
 
@@ -118,20 +118,10 @@ class PersonaController extends BaseController
                 //echo $qem[$k]->email."<br>";
             }*/
 
-            if ($estado == 0 ) {
-                return Response::json(
-                    array(
-                    'rst'=>1,
-                    'msj'=>'Registro actualizado correctamente',
-                    )
-                );
-            }
-
-            
             return Response::json(
                 array(
                 'rst'=>1,
-                'msj'=>'Registro realizado correctamente'.$personaId,
+                'msj'=>'Registro realizado correctamente',
                 )
             );
         }
@@ -177,12 +167,12 @@ class PersonaController extends BaseController
             $activista = Usuario::find($personaId);
             $activista->paterno = Input::get('paterno');
             $activista->materno = Input::get('materno');
-            $activista->nombres = Input::get('nombre');
+            $activista->nombres = Input::get('nombres');
             $activista->email = Input::get('email');
             $activista->sexo = Input::get('sexo');
             $activista->dni = Input::get('dni');
             $activista->fecha_ingreso = date("Y-m-d");
-            $activista->fecha_nac = Input::get('fecha_nac');
+            $activista->fecha_nacimiento = Input::get('fecha_nac');
             $activista->estado = Input::get('estado');
             if (Input::get('password')<>'') 
                 $activista->password =  Hash::make(Input::get('password'));
@@ -195,7 +185,7 @@ class PersonaController extends BaseController
                               ->where('cargo_id',Input::get('cargos'))
                               ->count()<1 
             ){
-                DB::table('activistas_cargo')
+                DB::table('activista_cargo')
                 ->where('activista_id', $personaId)
                 ->update(array('estado' => 0,
                                 'usuario_updated_at'=>Auth::user()->id
