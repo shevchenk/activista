@@ -1,13 +1,13 @@
 <script type="text/javascript">
 $(document).ready(function() {  
     Persona.CargarPersonas(activarTabla);
+    slctGlobal.listarSlctFijo('cargo','slct_cargos');
 
     $('#personaModal').on('show.bs.modal', function (event) {
-
+        
         $('#txt_fecha_nac').daterangepicker({
             format: 'YYYY-MM-DD',
-            singleDatePicker: true,
-            showDropdowns: true
+            singleDatePicker: true
         });
 
         var button = $(event.relatedTarget); // captura al boton
@@ -19,20 +19,22 @@ $(document).ready(function() {
         modal.find('.modal-title').text(titulo+' Persona');
         $('#form_personas [data-toggle="tooltip"]').css("display","none");
         $("#form_personas input[type='hidden']").remove();
-        slctGlobal.listarSlct('cargo','slct_cargos','simple');
+        
         if(titulo=='Nuevo'){
             
             modal.find('.modal-footer .btn-primary').text('Guardar');
             modal.find('.modal-footer .btn-primary').attr('onClick','Agregar();');
             $('#form_personas #slct_estado').val(1); 
-            $('#form_personas #txt_nombre').focus();
+            $('#form_personas #txt_nombres').focus();
+            var datos={estado:1};
+            $('#form_personas #slct_cargos').val( '' );
+            $('.editar').css('display','none');
         }
         else{
-            Persona.CargarSedes(PersonaObj[persona_id].id); //no es multiselect
             modal.find('.modal-footer .btn-primary').text('Actualizar');
             modal.find('.modal-footer .btn-primary').attr('onClick','Editar();');
             //PersonaObj[persona_id]
-            $('#form_personas #txt_nombre').val( PersonaObj[persona_id].nombre );
+            $('#form_personas #txt_nombres').val( PersonaObj[persona_id].nombres );
             $('#form_personas #txt_paterno').val( PersonaObj[persona_id].paterno );
             $('#form_personas #txt_materno').val( PersonaObj[persona_id].materno );
             $('#form_personas #txt_fecha_nac').val( PersonaObj[persona_id].fecha_nacimiento );
@@ -41,26 +43,25 @@ $(document).ready(function() {
             $('#form_personas #txt_email').val( PersonaObj[persona_id].email );
             $('#form_personas #slct_sexo').val( PersonaObj[persona_id].sexo );
             $('#form_personas #slct_estado').val( PersonaObj[persona_id].estado );
+            $('#form_personas #slct_cargos').val( PersonaObj[persona_id].cargo_id );
             $("#form_personas").append("<input type='hidden' value='"+PersonaObj[persona_id].id+"' name='id'>");
+            $('.editar').css('display','');
+            var datos={estado:1};
         }
+
+
         $( "#form_personas #slct_estado" ).trigger('change');
-        $( "#form_personas #slct_estado" ).change(function() {
-            if ($( "#form_personas #slct_estado" ).val()==1) {
-                $('#f_sedes_cargo').removeAttr('disabled');
-            }
-            else {
-                $('#f_sedes_cargo').attr('disabled', 'disabled');
-            }
-        });
     });
 
     $('#personaModal').on('hide.bs.modal', function (event) {
         var modal = $(this); //captura el modal
         modal.find('.modal-body input').val(''); // busca un input para copiarle texto
-        $('#slct_cargos').multiselect('destroy');
         $("#t_cargoPersona").html('');
     });
 });
+
+eventoSlctGlobalSimple=function(){
+}
 
 activarTabla=function(){
     $("#t_personas").dataTable(); // inicializo el datatable    
@@ -84,47 +85,11 @@ Agregar=function(){
         Persona.AgregarEditarPersona(0);
     }
 };
-AgregarSede=function(){
-    //añadir registro "opcion" por usuario
-    var cargo_id=$('#slct_cargos option:selected').val();
-    var cargo=$('#slct_cargos option:selected').text();
-    var buscar_cargo = $('#cargo_'+cargo_id).text();
-    if (cargo_id!=='') {
-        if (buscar_cargo==="") {
 
-            var html='';
-            html+="<li class='list-group-item'><div class='row'>";
-            html+="<div class='col-sm-4' id='cargo_"+cargo_id+"'><h5>"+cargo+"</h5></div>";
-
-            html+="<div class='col-sm-6'>";
-            html+="<select class='form-control' multiple='multiple' name='slct_sedes"+cargo_id+"[]' id='slct_sedes"+cargo_id+"'></select></div>";
-            var envio = {cargo_id: cargo_id,estado:1};
-
-            html+='<div class="col-sm-2">';
-            html+='<button type="button" id="'+cargo_id+'" Onclick="EliminarSede(this)" class="btn btn-danger btn-sm" >';
-            html+='<i class="fa fa-minus fa-sm"></i> </button></div>';
-            html+="</div></li>";
-
-            $("#t_cargoPersona").append(html);
-            slctGlobal.listarSlct('sede','slct_sedes'+cargo_id,'multiple',null,envio);
-            cargos_selec.push(cargo_id);
-        } else 
-            alert("Ya se agrego este Cargo");
-    } else 
-        alert("Seleccione Cargo");
-
-};
-EliminarSede=function(obj){
-    //console.log(obj);
-    var valor= obj.id;
-    obj.parentNode.parentNode.parentNode.remove();
-    var index = cargos_selec.indexOf(valor);
-    cargos_selec.splice( index, 1 );
-};
 validaPersonas=function(){
     $('#form_personas [data-toggle="tooltip"]').css("display","none");
     var a=[];
-    a[0]=valida("txt","nombre","");
+    a[0]=valida("txt","nombres","");
     var rpta=true;
 
     for(i=0;i<a.length;i++){
@@ -161,7 +126,7 @@ HTMLCargarPersona=function(datos){
         html+="<tr>"+
             "<td >"+data.paterno+' '+"</td>"+
             "<td >"+data.materno+"</td>"+
-            "<td >"+data.nombre+"</td>"+
+            "<td >"+data.nombres+"</td>"+
             "<td >"+data.email+"</td>"+
             "<td >"+data.dni+"</td>"+
             "<td id='estado_"+data.id+"' data-estado='"+data.estado+"'>"+estadohtml+"</td>"+

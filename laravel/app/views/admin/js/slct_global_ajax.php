@@ -54,10 +54,10 @@ var slctGlobal={
             },
             success : function(obj) {
                 var html="";
+                html += "<option value=''>Seleccione</option>";
                 if(obj.rst==1){
                     $.each(obj.datos,function(index,data){
-                            html += "<option value=\"" + data.id + "\">" + data.nombre + "</option>";
-
+                        html += "<option value=\"" + data.id + "\">" + data.nombre + "</option>";
                     });
                 }
                 $("#"+slct).html(html);

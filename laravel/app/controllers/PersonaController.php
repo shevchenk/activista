@@ -13,7 +13,7 @@ class PersonaController extends BaseController
     {
         //si la peticion es ajax
         if ( Request::ajax() ) {
-            $personas = Persona::get(Input::all());
+            $personas = Persona::getCargar();
             return Response::json(array('rst'=>1,'datos'=>$personas));
         }
     }
@@ -56,12 +56,12 @@ class PersonaController extends BaseController
             $regex='regex:/^([a-zA-Z .,ñÑÁÉÍÓÚáéíóú]{2,60})$/i';
             $required='required';
             $reglas = array(
-                'nombre' => $required.'|'.$regex,
+                'nombres' => $required.'|'.$regex,
                 'paterno' => $required.'|'.$regex,
                 'materno' => $required.'|'.$regex,
-                'email' => 'required|email|unique:personas,email',
-                'password'      => 'required|min:6',
-                'dni'      => 'required|min:8|unique:personas,dni',
+                'email' => 'required|email|unique:activistas,email',
+                //'password'      => 'required|min:6',
+                'dni'      => 'required|min:8|unique:activistas,dni',
             );
 
             $mensaje= array(
@@ -81,101 +81,47 @@ class PersonaController extends BaseController
                 );
             }
 
-            $persona = new Persona;
-            $persona['paterno'] = Input::get('paterno');
-            $persona['materno'] = Input::get('materno');
-            $persona['nombre'] = Input::get('nombre');
-            $persona['email'] = Input::get('email');
-            $persona['dni'] = Input::get('dni');
-            $persona['sexo'] = Input::get('sexo');
-            $persona['password'] = Hash::make(Input::get('password'));
-            $persona['fecha_nacimiento'] = Input::get('fecha_nac');
-            $persona['estado'] = Input::get('estado');
-            $persona['usuario_created_at'] = Auth::user()->id;
-            $persona->save();
-            $personaId = $persona->id;
-            //si es cero no seguir, si es 1 ->estado se debe copiar de celulas
-            $estado = Input::get('estado');
-            if ($estado == 0 ) {
-                return Response::json(
-                    array(
-                    'rst'=>1,
-                    'msj'=>'Registro actualizado correctamente',
-                    )
+            $activista = new Usuario;
+            $activista->paterno = Input::get('paterno');
+            $activista->materno = Input::get('materno');
+            $activista->nombres = Input::get('nombres');
+            $activista->email = Input::get('email');
+            $activista->dni = Input::get('dni');
+            $activista->sexo = Input::get('sexo');
+            $activista->fecha_ingreso = date("Y-m-d");
+            $activista->password =  Hash::make(Input::get('dni'));
+            $activista->nivel_id = Input::get('cargos');
+            $activista->usuario_created_at = Auth::user()->id;
+            $activista->save();
+
+            $activistaCargo = new ActivistaCargo;
+            $activistaCargo->activista_id=$activista->id;
+            $activistaCargo->cargo_id= Input::get('cargos');
+            $activistaCargo->usuario_created_at= $activista->id;
+            $activistaCargo->save();
+
+            /*$parametros=array(
+                            'email'      => Input::get('email'),
+                            'persona'   => $activista->paterno." ".$activista->materno.", ".$activista->nombres,
+                        );
+
+            try{
+                Mail::send('emails', $parametros , 
+                    function($message) {
+                    $message
+                        ->to(Input::get('email'))
+                        ->subject('.::Bienvenido PPKausa::.');
+                    }
                 );
             }
+            catch(Exception $e){
+                //echo $qem[$k]->email."<br>";
+            }*/
 
-            if (Input::has('cargos_selec')) {
-                $cargos=Input::get('cargos_selec');
-                $cargos = explode(',', $cargos);
-                if (is_array($cargos)) {
-                    for ($i=0; $i<count($cargos); $i++) {
-                        $cargoId = $cargos[$i];
-                        $cargo = Cargo::find($cargoId);
-                        $persona->cargos()->save($cargo, 
-                            array(
-                                'estado' => 1,
-                                'usuario_created_at' => Auth::user()->id
-                                )
-                            );
-                        $sedes = Input::get('sedes'.$cargoId);
-
-                        //busco el id
-                        $cargoPersona = DB::table('cargo_persona')
-                                        ->where('persona_id', '=', $personaId)
-                                        ->where('cargo_id', '=', $cargoId)
-                                        ->first();
-
-                        for ($j=0; $j<count($sedes); $j++) {
-                            //recorrer las sedes y buscar si exten
-                            $sedeId = $sedes[$j];
-                            DB::table('sede_cargo_persona')->insert(
-                                array(
-                                    'sede_id' => $sedeId,
-                                    'cargo_persona_id' => $cargoPersona->id,
-                                    'estado' => 1,
-                                    'usuario_created_at' => Auth::user()->id
-                                )
-                            );
-                        }
-                    }
-                } else {
-                    $cargoId = $cargos;
-                    $cargo = Cargo::find($cargoId);
-                    $persona->cargos()->save($cargo, 
-                        array(
-                            'estado' => 1,
-                            'usuario_created_at' => Auth::user()->id
-                            )
-                        );
-                    $sedes = Input::get('sedes'.$cargoId);
-
-                    //busco el id
-                    $cargoPersona = DB::table('cargo_persona')
-                                    ->where('persona_id', '=', $personaId)
-                                    ->where('cargo_id', '=', $cargoId)
-                                    ->first();
-
-                    for ($j=0; $j<count($sedes); $j++) {
-                        //recorrer las sedes y buscar si exten
-                        $sedeId = $sedes[$j];
-
-                        DB::table('sede_cargo_persona')->insert(
-                            array(
-                                'sede_id' => $sedeId,
-                                'cargo_persona_id' => $cargoPersona->id,
-                                'estado' => 1,
-                                'usuario_created_at' => Auth::user()->id
-                            )
-                        );
-                        
-                    }
-                }
-            }
             return Response::json(
                 array(
                 'rst'=>1,
-                'msj'=>'Registro realizado correctamente'.$personaId,
+                'msj'=>'Registro realizado correctamente',
                 )
             );
         }
@@ -193,11 +139,11 @@ class PersonaController extends BaseController
             $regex='regex:/^([a-zA-Z .,ñÑÁÉÍÓÚáéíóú]{2,60})$/i';
             $required='required';
             $reglas = array(
-                'nombre' => $required.'|'.$regex,
+                'nombres' => $required.'|'.$regex,
                 'paterno' => $required.'|'.$regex,
                 'materno' => $required.'|'.$regex,
-                'email' => 'required|email|unique:personas,email,'.Input::get('id'),
-                'dni'      => 'required|min:8|unique:personas,dni,'.Input::get('id'),
+                'email' => 'required|email|unique:activistas,email,'.Input::get('id'),
+                'dni'      => 'required|min:8|unique:activistas,dni,'.Input::get('id'),
                 //'password'      => 'required|min:6',
             );
 
@@ -217,118 +163,63 @@ class PersonaController extends BaseController
                 );
             }
             $personaId = Input::get('id');
-            $persona = Persona::find($personaId);
-            $persona['paterno'] = Input::get('paterno');
-            $persona['materno'] = Input::get('materno');
-            $persona['nombre'] = Input::get('nombre');
-            $persona['email'] = Input::get('email');
-            $persona['dni'] = Input::get('dni');
-            $persona['sexo'] = Input::get('sexo');
+
+            $activista = Usuario::find($personaId);
+            $activista->paterno = Input::get('paterno');
+            $activista->materno = Input::get('materno');
+            $activista->nombres = Input::get('nombres');
+            $activista->email = Input::get('email');
+            $activista->sexo = Input::get('sexo');
+            $activista->dni = Input::get('dni');
+            $activista->fecha_ingreso = date("Y-m-d");
+            $activista->fecha_nacimiento = Input::get('fecha_nac');
+            $activista->estado = Input::get('estado');
             if (Input::get('password')<>'') 
-                $persona['password'] = Hash::make(Input::get('password'));
-            $persona['fecha_nacimiento'] = Input::get('fecha_nac');
-            $persona['estado'] = Input::get('estado');
-            $persona['usuario_updated_at'] = Auth::user()->id;
-            $persona->save();
-            
-            $cargos = Input::get('cargos_selec');
-            $estado = Input::get('estado');
+                $activista->password =  Hash::make(Input::get('password'));
+            $activista->nivel_id = Input::get('cargos');
+            $activista->usuario_updated_at = Auth::user()->id;
+            $activista->save();
 
-            DB::table('cargo_persona')
-                ->where('persona_id', $personaId)
-                ->update(array('estado' => 0));
+            if( ActivistaCargo::where('activista_id',$personaId)
+                              ->where('estado','1')
+                              ->where('cargo_id',Input::get('cargos'))
+                              ->count()<1 
+            ){
+                DB::table('activista_cargo')
+                ->where('activista_id', $personaId)
+                ->update(array('estado' => 0,
+                                'usuario_updated_at'=>Auth::user()->id
+                        )
+                );
 
-            if ($estado == 0 ) {
-                return Response::json(
-                    array(
-                    'rst'=>1,
-                    'msj'=>'Registro actualizado correctamente',
-                    )
+                $activistaCargo = new ActivistaCargo;
+                $activistaCargo->activista_id=$activista->id;
+                $activistaCargo->cargo_id= Input::get('cargos');
+                $activistaCargo->usuario_created_at= $activista->id;
+                $activistaCargo->save();
+            }
+
+
+            /*$parametros=array(
+                            'email'      => Input::get('email'),
+                            'persona'   => $activista->paterno." ".$activista->materno.", ".$activista->nombres,
+                        );
+
+            try{
+                Mail::send('emails', $parametros , 
+                    function($message) {
+                    $message
+                        ->to(Input::get('email'))
+                        ->subject('.::Bienvenido PPKausa::.');
+                    }
                 );
             }
-            
-            if ($cargos) {//si selecciono algun cargo
-                $cargos = explode(',', $cargos);
-                $sedes=array();
+            catch(Exception $e){
+                //echo $qem[$k]->email."<br>";
+            }*/
 
-                //recorrer os cargos y verificar si existen
-                for ($i=0; $i<count($cargos); $i++) {
-                    $cargoId = $cargos[$i];
-                    $cargo = Cargo::find($cargoId);
-                    $cargoPersona = DB::table('cargo_persona')
-                                    ->where('persona_id', '=', $personaId)
-                                    ->where('cargo_id', '=', $cargoId)
-                                    ->first();
-                    $fechIng = '';
-                    $fechaRet = '';
-                    if (is_null($cargoPersona)) {
-                        $persona->cargos()->save(
-                            $cargo,
-                            array(
-                                'estado'=>1,
-                                'usuario_created_at' => Auth::user()->id/*,
-                                'fecha_ingreso'=>$fechIng,
-                                'fecha_retiro'=>$fechaRet*/
-                            )
-                        );
-                    } else {
-                        DB::table('cargo_persona')
-                            ->where('persona_id', '=', $personaId)
-                            ->where('cargo_id', '=', $cargoId)
-                            ->update(
-                                array(
-                                    'estado'=>1,
-                                    'usuario_updated_at' => Auth::user()->id/*,
-                                    'fecha_ingreso'=>$fechIng,
-                                    'fecha_retiro'=>$fechaRet*/
-                                )
-                            );
-                    }
-                    //busco el id
-                    $cargoPersona = DB::table('cargo_persona')
-                                    ->where('persona_id', '=', $personaId)
-                                    ->where('cargo_id', '=', $cargoId)
-                                    ->first();
-                    DB::table('sede_cargo_persona')
-                            //->where('sede_id', '=', $sedeId)
-                            ->where('cargo_persona_id', '=', $cargoPersona->id)
-                            ->update(
-                                array(
-                                    'estado' => 0,
-                                    'usuario_updated_at' => Auth::user()->id
-                                    )
-                                );
-                    //almacenar las sedes seleccionadas
-                    $sedes = Input::get('sedes'.$cargoId);
-                    for ($j=0; $j<count($sedes); $j++) {
-                        //recorrer las sedes y buscar si exten
-                        $sedeId = $sedes[$j];
-                        $sedeCargoPersona=DB::table('sede_cargo_persona')
-                                ->where('sede_id', '=', $sedeId)
-                                ->where('cargo_persona_id', $cargoPersona->id)
-                                ->first();
-                        if (is_null($sedeCargoPersona)) {
-                            DB::table('sede_cargo_persona')->insert(
-                                array(
-                                    'sede_id' => $sedeId,
-                                    'cargo_persona_id' => $cargoPersona->id,
-                                    'estado' => 1,
-                                    'usuario_created_at' => Auth::user()->id
-                                )
-                            );
-                        } else {
-                            DB::table('sede_cargo_persona')
-                            ->where('sede_id', '=', $sedeId)
-                            ->where('cargo_persona_id', '=', $cargoPersona->id)
-                            ->update(
-                                array(
-                                    'estado' => 1,
-                                    'usuario_updated_at' => Auth::user()->id
-                                ));
-                        }
-                    }
-                }
-            }
+
+            
             return Response::json(
                 array(
                 'rst'=>1,

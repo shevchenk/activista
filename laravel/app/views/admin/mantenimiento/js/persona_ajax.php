@@ -35,9 +35,12 @@ var Persona={
                     cargos_selec=[];
                 }
                 else{ 
-                    $.each(obj.msj,function(index,datos){
-                        $("#error_"+index).attr("data-original-title",datos);
-                        $('#error_'+index).css('display','');
+                    contador=0;
+                    $.each(obj.msj,function(index,data){
+                        contador++;
+                        if(contador==1){
+                            alert(data[0]);
+                        }
                     });
                 }
             },
@@ -60,7 +63,6 @@ var Persona={
             dataType    : 'json',
             beforeSend : function() {
                 $("body").append('<div class="overlay"></div><div class="loading-img"></div>');
-                slctGlobal.listarSlct('cargo','slct_cargos','simple');//para que cargue antes el cargo
             },
             success : function(obj) {
                 if(obj.rst==1){
@@ -79,10 +81,10 @@ var Persona={
             }
         });
     },
-    CargarSedes:function(persona_id){
+    CargarAreas:function(persona_id){
         //getOpciones
         $.ajax({
-            url         : 'persona/cargarsedes',
+            url         : 'persona/cargarareas',
             type        : 'POST',
             cache       : false,
             dataType    : 'json',
@@ -92,7 +94,7 @@ var Persona={
                 
             },
             success : function(obj) {
-                //CARGAR sedes
+                //CARGAR areas
                 if(obj.datos[0].DATA !== null){
                     var cargos = obj.datos[0].DATA.split("|"); 
 
@@ -102,14 +104,14 @@ var Persona={
                         var data = opcion.split("-");
                         html+="<li class='list-group-item'><div class='row'>";
                         html+="<div class='col-sm-4' id='cargo_"+data[0]+"'><h5>"+$("#slct_cargos option[value=" +data[0] +"]").text()+"</h5></div>";
-                        var sedes = data[1].split(",");
-                        html+="<div class='col-sm-6'><select class='form-control' multiple='multiple' name='slct_sedes"+data[0]+"[]' id='slct_sedes"+data[0]+"'></select></div>";
+                        var areas = data[1].split(",");
+                        html+="<div class='col-sm-6'><select class='form-control' multiple='multiple' name='slct_areas"+data[0]+"[]' id='slct_areas"+data[0]+"'></select></div>";
                         //var envio = {cargo_id: data[0]};
                         var envio = {cargo_id: data[0],estado:1};
-                        slctGlobal.listarSlct('sede','slct_sedes'+data[0],'multiple',sedes,envio);
+                        slctGlobal.listarSlct('area','slct_areas'+data[0],'multiple',areas,envio);
 
                         html+='<div class="col-sm-2">';
-                        html+='<button type="button" id="'+data[0]+'" Onclick="EliminarSede(this)" class="btn btn-danger btn-sm" >';
+                        html+='<button type="button" id="'+data[0]+'" Onclick="EliminarArea(this)" class="btn btn-danger btn-sm" >';
                         html+='<i class="fa fa-minus fa-sm"></i> </button></div>';
                         html+="</div></li>";
                         cargos_selec.push(data[0]);
