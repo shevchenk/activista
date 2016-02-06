@@ -21,7 +21,7 @@
                     });
             })
             .controller("listardoCtrl", function($scope) {
-                $scope.textoNivel='<?php echo $cargoS->nombre; ?>';
+                $scope.textoNivel='<?php echo $cargoS ? $cargoS->nombre : ''; ?>';
                 $scope.columnDef = [
                     {
                         columnHeaderDisplayName: 'Nombres',
@@ -49,9 +49,9 @@
                 };
             })
             .controller("agregarCtrl", function($scope, Service,$location,notificaciones) {
-                $scope.textoNivel='<?php echo $cargoS->nombre; ?>';
+                $scope.textoNivel='<?php echo $cargoS ? $cargoS->nombre : ''; ?>';
                 $scope.seguidor = {};
-                $scope.seguidor.nivel='<?php echo $cargoS->id; ?>';
+                $scope.seguidor.nivel='<?php echo $cargoS ? $cargoS->id : ''; ?>';
 
                 $scope.guardarSeguidor = function () {
                     $("body").append('<div class="overlay"></div><div class="loading-img"></div>');
