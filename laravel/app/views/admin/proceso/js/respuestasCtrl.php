@@ -16,11 +16,15 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
                     templateUrl : 'modulos/respuestas/responder.html',
                     controller  : 'ResponderCtrl'
                 })
+                .when('/enviarMensaje', {
+                    templateUrl : 'modulos/respuestas/enviarMensaje.html',
+                    controller  : 'enviarMensajeCtrl'
+                })
                 .otherwise({
                     redirectTo: '/'
                 });
         })
-        .controller("bandejaCtrl", function($scope , Mensaje , notificaciones) {
+        .controller("bandejaCtrl", function($scope , Mensaje , notificaciones, $location) {
             var actualizarMensajesSinResponder = function () {
                 var params = {
                     estado: "0",
@@ -35,6 +39,10 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
             $scope.mensaje = {};
             $scope.mensajesEnviados = [];
             actualizarMensajesSinResponder();
+
+            $scope.irEnviarMensaje = function () {
+                $location.path("/enviarMensaje");
+            }
 
 
 
@@ -75,6 +83,34 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
                     notificaciones.showError("Por Favor agregre el asunto y descripcion antes de enviar.")
                 }
             };
+        })
+
+        .controller('enviarMensajeCtrl', function($scope, Mensaje, $location, TipoAcceso, notificaciones){
+            $scope.mensaje = new Mensaje();
+            $scope.mensaje.acceso = "2";
+            $scope.tipo_accesos = TipoAcceso.query();
+
+            $scope.volver = function () {
+                $location.path('/');
+            };
+
+
+            $scope.EnviarMensaje = function (form) {
+                if (form.$valid) {
+                    $scope.mensaje.envioEnMasa= 1;
+                    $scope.mensaje.$save(function() {
+                        $scope.mensaje = {};
+                        notificaciones.showNotification('Se envio Mensaje');
+                        $location.path("/");
+
+                    },function(error){
+                        console.log(error);
+                    });
+                } else {
+                    notificaciones.showError("Por Favor llene todos los campos antes de enviar.")
+                }
+            }
+
 
         })
         .directive('listMessage', function () {

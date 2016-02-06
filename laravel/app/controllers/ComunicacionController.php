@@ -43,7 +43,37 @@ class ComunicacionController extends \BaseController
     public function postComunicacion() {
         $data = Input::all();
 
-        if (!empty($data['editar'])) {
+        if (!empty($data['envioEnMasa'])) {
+            // mensaje enviado por libre para muchos grupos
+            $idMensaje = DB::table("mensajes")->insertGetId(array(
+                'activista_id' => $this->userID,
+                'asunto' => array_key_exists('asunto', $data) ? $data['asunto']: "",
+                'mensaje' => array_key_exists('mensaje', $data) ? $data['mensaje']: "",
+                'estado' => 1,
+                'created_at' => date('Y-m-d H:i:s'),
+                'reponsed_at' => date('Y-m-d H:i:s'),
+            ));
+
+            // registra la respuesta automaticamente
+            $id = DB::table("respuestas")->insertGetId(array(
+                'mensaje_id' => $idMensaje,
+                'respondido_por' => $this->userID,
+                'respondido_at' => date('Y-m-d H:i:s'),
+                'respuesta' => $data['respuesta'],
+                'tipo_acceso_id' => $data['acceso'],
+                'estado' => 1,
+            ));
+
+            // @todo : agregar el guardar accesos cuando se haga para paginas , grupo de personas , etc
+
+            $results = array(
+                "code"=>"ok",
+                "message"=>"Mensaje Enviado"
+            );
+
+
+
+        } elseif (!empty($data['editar'])) {
             DB::table("mensajes")
                 ->where('id', $data['id'])
                 ->update(array(
