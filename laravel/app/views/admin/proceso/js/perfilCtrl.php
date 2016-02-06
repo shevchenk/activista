@@ -40,7 +40,6 @@
                 $scope.seguirAlguien='<?php echo $seguirAlguien; ?>';
                 $scope.idNivel='<?php echo $nivelId; ?>';
 
-                $scope.pNivel = Nivel.get({id: $scope.perfil.nivel_id});
 
                 Service.getPerfil().then(function(response){
                     $scope.perfil = response.data;

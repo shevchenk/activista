@@ -91,10 +91,15 @@ class GrupoController extends \BaseController
         $where  .= ' and activista_id = '.Input::get('activista_id');
 
         $field = "  id ";
-        $orderby = "  order by $field ".$data['sort_dir'];
-        $ini = $data['skip'];
-        $fin = $data['limit'];
+        $orderby = '';
+        if (array_key_exists('sort_dir', $data))
+            $orderby = " order by $field ".$data['sort_dir'];
+        $ini = array_key_exists('skip', $data) ? $data['skip'] : '';
+        $fin = array_key_exists('limit', $data)? $data['limit'] : '';
         $limit = $orderby. " limit $ini,$fin ";
+
+        if (empty($ini))
+            $limit = '';
 
         $rows = DB::select('select * from grupos  ' . $where .$limit );
         $count = DB::select('select count(*) count from grupos   ' . $where );
