@@ -65,7 +65,7 @@
                         $scope.perfil.cl_departamento_texto = jQuery('[ng-model="perfil.cl_departamento"] option:selected').text();
                         $scope.perfil.cl_provincia_texto = jQuery('[ng-model="perfil.cl_provincia"] option:selected').text();
                         $scope.perfil.cl_distrito_texto = jQuery('[ng-model="perfil.cl_distrito"] option:selected').text();
-
+                        $scope.$apply();
                     },1000);
 
                     Service.getApoyos()
