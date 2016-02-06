@@ -1,5 +1,5 @@
 <?php
-$cargoS= Cargo::find(Auth::user()->nivel_id+1);
+$cargoS= Cargo::find(Auth::user()->nivel_id);
 ?>
 <script>
 (function(){
