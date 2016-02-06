@@ -377,7 +377,7 @@
                                                     <div class="input-group">
                                                         <input type="text" class="form-control"
                                                                ng-keypress="buscarByPress($event, liderSearchKey)"
-                                                               ng-model="liderSearchKey"> @{{liderSearchKey}}
+                                                               ng-model="liderSearchKey">
                                                         <span class="input-group-addon">
                                                           <i class="glyphicon glyphicon-search"></i>
                                                         </span>
