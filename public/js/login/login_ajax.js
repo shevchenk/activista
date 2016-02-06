@@ -15,7 +15,7 @@ var Login={
                 $(".load").hide();
                 
                 if(obj.rst==1 && obj.estado==1){
-                    window.location='admin.inicio';
+                    window.location='admin.proceso.perfilView';
                 }
                 else if(obj.rst==1){
                     MostrarMensaje(obj.msj);
