@@ -33,21 +33,13 @@
             <div class="row form-group">
               <div class="col-sm-12">
                 <div class="col-sm-6">
-                  <label class="control-label">Menus:
+                  <label class="control-label">Opcion:
                   </label>
-                  <select class="form-control" name="slct_menus" id="slct_menus">
+                  <select class="form-control" name="slct_opciones" id="slct_opciones">
                   </select>
-                </div>
-                <div class="col-sm-6">
-                    <br>
-                    <button type="button" class="btn btn-success" Onclick="AgregarOpcion();">
-                      <i class="fa fa-plus fa-sm"></i>
-                      &nbsp;Nuevo
-                    </button>
                 </div>
               </div>
             </div>
-            <ul class="list-group" id="t_opcionCargo"></ul>
           </fieldset>
         </form>
       </div>

@@ -14,8 +14,9 @@ $(document).ready(function() {
         $('#form_cargos [data-toggle="tooltip"]').css("display","none");
         $("#form_cargos input[type='hidden']").remove();
 
-
-        slctGlobal.listarSlct('menu','slct_menus','simple');
+        data={cid:cargo_id};
+        slctGlobal.listarSlct('opcion','slct_opciones','multiple',null,data);
+        
         if(titulo=='Nuevo'){
             modal.find('.modal-footer .btn-primary').text('Guardar');
             modal.find('.modal-footer .btn-primary').attr('onClick','Agregar();');
@@ -23,7 +24,6 @@ $(document).ready(function() {
             $('#form_cargos #txt_nombre').focus();
         }
         else{
-            Cargos.CargarOpciones(cargo_id); //no es multiselect
             modal.find('.modal-footer .btn-primary').text('Actualizar');
             modal.find('.modal-footer .btn-primary').attr('onClick','Editar();');
 
@@ -74,6 +74,7 @@ Agregar=function(){
         Cargos.AgregarEditarCargo(0);
     }
 };
+/*
 AgregarOpcion=function(){
     //añadir registro "opcion" por usuario
     var menu_id=$('#slct_menus option:selected').val();
@@ -103,7 +104,7 @@ AgregarOpcion=function(){
     } else 
         alert("Seleccione Menu");
 
-};
+};*/
 EliminarOpcion=function(obj){
     //console.log(obj);
     var valor= obj.id;
