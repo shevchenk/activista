@@ -28,9 +28,9 @@ class OpcionController extends \BaseController
         //si la peticion es ajax
         if ( Request::ajax() ) {
             
-            if (Input::get('cid')) {
+            if (Input::has('cid')) {
                 $cargoId = Input::get('cid');
-                $sql="  SELECT o.id,o.nombre,co.id co
+                $sql="  SELECT o.id,o.nombre,IFNULL(co.estado,'0') estado
                         FROM opciones o
                         LEFT JOIN cargo_opcion co ON co.opcion_id=o.id 
                                 AND co.cargo_id='".$cargoId."'
@@ -93,7 +93,7 @@ class OpcionController extends \BaseController
             $regex='regex:/^([a-zA-Z .,ñÑÁÉÍÓÚáéíóú]{2,60})$/i';
             $required='required';
             $reglas = array(
-                'nombre' => $required.'|'.$regex,
+                'nombre' => $required.'|'.$regex."|unique:opciones",
                 //'path' =>$regex.'|unique:modulos,path,',
             );
 
@@ -141,7 +141,7 @@ class OpcionController extends \BaseController
             $regex='regex:/^([a-zA-Z .,ñÑÁÉÍÓÚáéíóú]{2,60})$/i';
             $required='required';
             $reglas = array(
-                'nombre' => $required.'|'.$regex,
+                'nombre' => $required.'|'.$regex.'|unique:opciones,nombre,'.Input::get('id'),
             );
 
             $mensaje= array(

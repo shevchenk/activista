@@ -33,9 +33,15 @@ var Cargos={
                     $('#cargoModal .modal-footer [data-dismiss="modal"]').click();
                 }
                 else{ 
-                    $.each(obj.msj,function(index,datos){
-                        $("#error_"+index).attr("data-original-title",datos);
+                    contador=0;
+                    $.each(obj.msj,function(index,data){
+                        $("#error_"+index).attr("data-original-title",data);
                         $('#error_'+index).css('display','');
+
+                        contador++;
+                        if(contador==1){
+                            alert(data[0]);
+                        }
                     });
                 }
             },
@@ -63,6 +69,32 @@ var Cargos={
                 if(obj.rst==1){
                     HTMLCargarCargo(obj.datos);
                     CargoObj=obj.datos;
+                }
+                $(".overlay,.loading-img").remove();
+            },
+            error: function(){
+                $(".overlay,.loading-img").remove();
+                $("#msj").html('<div class="alert alert-dismissable alert-danger">'+
+                                    '<i class="fa fa-ban"></i>'+
+                                    '<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>'+
+                                    '<b>Ocurrio una interrupción en el proceso,Favor de intentar nuevamente.'+
+                                '</div>');
+            }
+        });
+    },
+    Opciones:function(data,evento){
+        $.ajax({
+            url         : 'opcion/listar',
+            type        : 'POST',
+            cache       : false,
+            dataType    : 'json',
+            data        : data,
+            beforeSend : function() {
+                $("body").append('<div class="overlay"></div><div class="loading-img"></div>');
+            },
+            success : function(obj) {
+                if(obj.rst==1){
+                    evento(obj.datos);
                 }
                 $(".overlay,.loading-img").remove();
             },

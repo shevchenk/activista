@@ -87,7 +87,7 @@ class CargoController extends \BaseController
             $regex='regex:/^([a-zA-Z .,ñÑÁÉÍÓÚáéíóú]{2,60})$/i';
             $required='required';
             $reglas = array(
-                'nombre' => $required.'|'.$regex,
+                'nombre' => $required.'|'.$regex.'|unique:cargos',
                 //'path' =>$regex.'|unique:modulos,path,',
             );
 
@@ -113,40 +113,25 @@ class CargoController extends \BaseController
             $cargo->usuario_created_at = Auth::user()->id;
             $cargo->save();
 
-            $menus = Input::get('menus_selec');
+            $cargoId=$cargo->id;
+            $opciones = Input::get('opciones');
             $estado = Input::get('estado');
-            if ($estado == 0 ) {
-                return Response::json(
-                    array(
-                    'rst'=>1,
-                    'msj'=>'Registro actualizado correctamente',
-                    )
-                );
-            }
-            if ($menus) {//si selecciono algun menu
-                $menus = explode(',', $menus);
-                $opciones = array();
-                $opcionId = array();
-                for ($i=0; $i<count($menus); $i++) {
-                    $menuId = $menus[$i];
-                    //almacenar las opciones seleccionadas
-                    $opciones[] = Input::get('opciones'.$menuId);
-                }
+
+            if ($opciones) {
                 for ($i=0; $i<count($opciones); $i++) {
-                    for ($j=0; $j <count($opciones[$i]); $j++) {
-                        //buscar la opcion en ls BD
-                        $opcionId[] = $opciones[$i][$j];
+                    $datos=explode("_",$opciones[$i]);
+                    $opcionId = $datos[1];
+                    $estado = $datos[0];
+
+                    if($estado==1){
+                        $cargoOpcion= new CargoOpcion;
+                        $cargoOpcion->cargo_id = $cargoId;
+                        $cargoOpcion->opcion_id = $opcionId;
+                        $cargoOpcion->usuario_created_at= Auth::user()->id;
+                        $cargoOpcion->save();
                     }
                 }
-
-                for ($i=0; $i<count($opcionId); $i++) {
-                    $opcion = Opcion::find($opcionId[$i]);
-                    $cargo->opciones()->save(
-                        $opcion, array('estado' => 1)
-                    );
-                }
             }
-
 
             return Response::json(
                 array(
@@ -169,7 +154,7 @@ class CargoController extends \BaseController
             $regex='regex:/^([a-zA-Z .,ñÑÁÉÍÓÚáéíóú]{2,60})$/i';
             $required='required';
             $reglas = array(
-                'nombre' => $required.'|'.$regex,
+                'nombre' => $required.'|'.$regex.'|unique:cargos,nombre,'.Input::get('id'),
             );
 
             $mensaje= array(
@@ -195,7 +180,7 @@ class CargoController extends \BaseController
             $cargos->usuario_updated_at = Auth::user()->id;
             $cargos->save();
             
-            $menus = Input::get('menus_selec');
+            $opciones = Input::get('opciones');
             $estado = Input::get('estado');
 
             DB::table('cargo_opcion')
@@ -216,41 +201,32 @@ class CargoController extends \BaseController
                 );
             }
 
-            if ($menus) {//si selecciono algun menu
-
-                $menus = explode(',', $menus);
-                $opciones=array();
-
-                for ($i=0; $i<count($menus); $i++) {
-                    $menuId = $menus[$i];
-                    //almacenar las opciones seleccionadas
-                    $opciones[] = Input::get('opciones'.$menuId);
-                }
-
+            if ($opciones) {
                 for ($i=0; $i<count($opciones); $i++) {
-                    for ($j=0; $j <count($opciones[$i]); $j++) {
-                        //buscar la opcion en ls BD
-                        $opcionId = $opciones[$i][$j];
-                        $opcion = Opcion::find($opcionId);
-                        $cargoOpciones = DB::table('cargo_opcion')
+                    $datos=explode("_",$opciones[$i]);
+                    $opcionId = $datos[1];
+                    $estado = $datos[0];
+
+                    $cargoOpciones = DB::table('cargo_opcion')
+                                        ->where('cargo_id', '=', $cargoId)
+                                        ->where('opcion_id', '=', $opcionId)
+                                        ->first();
+                    if (is_null($cargoOpciones) AND $estado==1) {
+                        $cargoOpcion= new CargoOpcion;
+                        $cargoOpcion->cargo_id = $cargoId;
+                        $cargoOpcion->opcion_id = $opcionId;
+                        $cargoOpcion->usuario_created_at= Auth::user()->id;
+                        $cargoOpcion->save();
+                    } else {
+                        //update a la tabla cargo_opcion
+                        DB::table('cargo_opcion')
                             ->where('cargo_id', '=', $cargoId)
                             ->where('opcion_id', '=', $opcionId)
-                            ->first();
-                        if (is_null($cargoOpciones)) {
-                            $cargos->opciones()->save(
-                                $opcion, array('estado' => 1,'usuario_created_at' => Auth::user()->id)
+                            ->update(array(
+                                'estado' => 1,
+                                'usuario_updated_at' => Auth::user()->id
+                                )
                             );
-                        } else {
-                            //update a la tabla cargo_opcion
-                            DB::table('cargo_opcion')
-                                ->where('cargo_id', '=', $cargoId)
-                                ->where('opcion_id', '=', $opcionId)
-                                ->update(array(
-                                    'estado' => 1,
-                                    'usuario_updated_at' => Auth::user()->id
-                                    )
-                                );
-                        }
                     }
                 }
             }
