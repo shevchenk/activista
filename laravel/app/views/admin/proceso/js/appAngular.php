@@ -19,7 +19,7 @@
                             type: 'success',
                             show: true,
                             container: '#alerts-container',
-                            duration: '3',
+                            duration: '5',
                             animation: "am-fade-and-slide-top"
                         });
                     },
@@ -30,7 +30,7 @@
                             type: 'danger',
                             show: true,
                             container: '#alerts-container',
-                            duration: '3',
+                            duration: '5',
                             animation: "am-fade-and-slide-top"
                         });
                     }

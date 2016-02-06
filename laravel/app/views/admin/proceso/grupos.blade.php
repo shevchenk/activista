@@ -37,16 +37,8 @@
 <!-- Content Header (Page header) -->
 <!-- Content Header (Page header) -->
 <style xmlns="http://www.w3.org/1999/html">
-    .top {
-        position: fixed;
-        z-index: 99999;
-        width: 85%;
-        top: 6px;
-    }
 
-    .tab-pane {
-        min-height: 200px;
-    }
+
     .content .content-inner{
         padding-bottom: 40px;
     }

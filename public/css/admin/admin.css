@@ -3591,3 +3591,40 @@ tr.shown td.details-control {
 a.bg-light-blue:hover {
   background-color: #2E4552 !important;
 }
+
+.top {
+  position: fixed;
+  z-index: 99999;
+  min-width: 500px;
+  top: 6px;
+  right: 10px;
+}
+
+.tab-pane {
+  min-height: 400px;
+}
+
+.form-group {
+  margin-bottom: 0px;
+}
+.pointer {
+  cursor: pointer;
+}
+.top {
+  position: fixed;
+  z-index: 99999;
+  min-width: 500px;
+  top: 50px;
+  right: 10px;
+}
+
+.tab-pane {
+  min-height: 400px;
+}
+
+.form-group {
+  margin-bottom: 0px;
+}
+.pointer {
+  cursor: pointer;
+}
