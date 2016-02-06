@@ -32,13 +32,17 @@
 
             <div class="row form-group">
               <div class="col-sm-12">
-                <div class="col-sm-6">
                   <label class="control-label">Opcion:
                   </label>
-                  <select class="form-control" name="slct_opciones" id="slct_opciones">
-                  </select>
+                  <table id="tb_opciones" class="table table-bordered table-hover">
+                    <thead>
+                      <th>Nombre</th>
+                      <th>Estado</th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
                 </div>
-              </div>
             </div>
           </fieldset>
         </form>

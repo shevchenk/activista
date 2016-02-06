@@ -13,17 +13,18 @@ $(document).ready(function() {
         modal.find('.modal-title').text(titulo+' Nivel');
         $('#form_cargos [data-toggle="tooltip"]').css("display","none");
         $("#form_cargos input[type='hidden']").remove();
-
-        data={cid:cargo_id};
-        slctGlobal.listarSlct('opcion','slct_opciones','multiple',null,data);
+        var data={};
         
         if(titulo=='Nuevo'){
+            data={cid:"0"};
             modal.find('.modal-footer .btn-primary').text('Guardar');
             modal.find('.modal-footer .btn-primary').attr('onClick','Agregar();');
             $('#form_cargos #slct_estado').val(1); 
             $('#form_cargos #txt_nombre').focus();
         }
         else{
+            data={cid:cargo_id};
+            
             modal.find('.modal-footer .btn-primary').text('Actualizar');
             modal.find('.modal-footer .btn-primary').attr('onClick','Editar();');
 
@@ -31,6 +32,8 @@ $(document).ready(function() {
             $('#form_cargos #slct_estado').val( CargoObj[cargo_id-1].estado );
             $("#form_cargos").append("<input type='hidden' value='"+button.data('id')+"' name='id'>");
         }
+
+            Cargos.Opciones(data,opcionesHTML);
         $( "#form_cargos #slct_estado" ).trigger('change');
         $( "#form_cargos #slct_estado" ).change(function() {
             if ($( "#form_cargos #slct_estado" ).val()==1) {
@@ -46,11 +49,43 @@ $(document).ready(function() {
     $('#cargoModal').on('hide.bs.modal', function (event) {
         var modal = $(this); //captura el modal
         modal.find('.modal-body input').val(''); // busca un input para copiarle texto
-        $("#slct_menus").multiselect('destroy');
         $("#t_opcionCargo").html('');
         menus_selec=[];
     });
 });
+
+opcionesHTML=function(datos){
+    var html="";
+
+    $.each(datos,function(index,data){
+        estadohtml='<span id="s_'+data.id+'" onClick="activarOpcion('+data.id+')" class="btn btn-danger">Sin Acceso</span>';
+        if(data.estado==1){
+            estadohtml='<span id="s_'+data.id+'" onClick="desactivarOpcion('+data.id+')" class="btn btn-success">Con Acceso</span>';
+        }
+
+        html+="<tr>"+
+            "<td >"+data.nombre+"<input type='hidden' value='"+data.estado+"_"+data.id+"' name='opciones[]'' id='o_"+data.id+"'></td>"+
+            "<td >"+estadohtml+"</td>";
+        html+="</tr>";
+    });
+    $("#tb_opciones tbody").html(html); 
+}
+
+activarOpcion=function(id){
+    //alert("activiando");
+    $("span#s_"+id).attr("onClick","desactivarOpcion("+id+")");
+    $("span#s_"+id).removeClass("btn-danger").addClass('btn-success');
+    $("span#s_"+id).html('Con Acceso');
+    $("#o_"+id).val("1_"+id);
+}
+
+desactivarOpcion=function(id){
+    //alert("desactiviando");
+    $("span#s_"+id).attr("onClick","activarOpcion("+id+")");
+    $("span#s_"+id).removeClass("btn-success").addClass('btn-danger');
+    $("span#s_"+id).html('Sin Acceso');
+    $("#o_"+id).val("0_"+id);
+}
 
 activarTabla=function(){
     $("#t_cargos").dataTable(); // inicializo el datatable    
