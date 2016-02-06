@@ -1,6 +1,9 @@
 <?php
     $nivelId = Auth::user()->nivel_id;
     $seguirAlguien= $nivelId-1;
+    if($nivelId==10 or $nivelId==11){
+        $seguirAlguien=0;
+    }
     $cargoS= Cargo::find($seguirAlguien);
     if( count($cargoS)<=0 ){
         $cargoS= new stdClass();

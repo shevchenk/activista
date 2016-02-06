@@ -3,7 +3,7 @@
 Route::get(
     '/', function () {
         if (Session::has('accesos')) {
-            return Redirect::to('/admin.inicio');
+            return Redirect::to('/admin.proceso.perfilView');
         } else {
             return View::make('login');
         }
