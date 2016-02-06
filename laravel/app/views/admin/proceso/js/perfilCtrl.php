@@ -31,14 +31,21 @@
                     });
             })
 
-            .controller("perfilViewCtrl", function($scope, Service , $alert, notificaciones, $location, perfilSvc) {
+            .controller("perfilViewCtrl", function($scope, Service , $alert, notificaciones, $location, perfilSvc, Nivel) {
                 $scope.perfil = {};
+                // cargo de la persona
+                $scope.pNivel = {};
+                // texto del nivel superior
                 $scope.textoNivel='<?php echo $cargoS->nombre; ?>';
                 $scope.seguirAlguien='<?php echo $seguirAlguien; ?>';
                 $scope.idNivel='<?php echo $nivelId; ?>';
 
+                $scope.pNivel = Nivel.get({id: $scope.perfil.nivel_id});
+
                 Service.getPerfil().then(function(response){
                     $scope.perfil = response.data;
+
+                    $scope.pNivel = Nivel.get({id: $scope.perfil.nivel_id});
 
                     setTimeout(function(){
                         $scope.perfil.n_departamento_texto = jQuery('[ng-model="perfil.n_departamento"] option:selected').text();

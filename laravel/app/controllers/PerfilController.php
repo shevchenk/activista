@@ -130,6 +130,16 @@ class PerfilController extends \BaseController
         return Response::json($results);
     }
 
+
+    public function getNiveles($nivel_id = 0) {
+        if($nivel_id >0) {
+            return Response::json(DB::select('select * from cargos where id = '.$nivel_id)[0]);
+        } else {
+            return Response::json(DB::select('select * from cargos '));
+
+        }
+    }
+
     public  function getProvincias() {
 
         $dep = Input::get('iddepartamento');

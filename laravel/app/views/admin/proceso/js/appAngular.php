@@ -67,6 +67,17 @@
                     });
                 return TipoAcceso;
             })
+            .factory('Nivel', function($resource){
+                var Nivel = $resource('perfil/niveles/:id',
+                    { id:'@id' },
+                    {
+                        query: {
+                            method: 'GET',
+                            isArray: true
+                        }
+                    });
+                return Nivel;
+            })
             .factory('Bandeja', function($resource){
                 var Bandeja = $resource('comunicacion/bandeja/:id',
                     { id:'@id' },
