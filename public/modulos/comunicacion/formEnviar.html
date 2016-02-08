@@ -10,14 +10,11 @@
                     <input class="form-control" placeholder="Asunto:" ng-model="mensaje.asunto" required>
                 </div>
                 <div class="form-group">
-                    <textarea required ng-model="mensaje.descripcion" id="compose-textarea" class="form-control" style="height: 300px" placeholder="Descripcion"></textarea>
+                    <textarea required ng-model="mensaje.mensaje" id="compose-textarea" class="form-control" style="height: 300px" placeholder="Descripcion"></textarea>
                 </div>
-                <div class="form-group hide">
-                    <div class="btn btn-default btn-file">
-                        <i class="fa fa-paperclip"></i> Attachment
-                        <input type="file" name="attachment">
-                    </div>
-                    <p class="help-block">Max. 32MB</p>
+                <div class="form-group ">
+                    <upload-file></upload-file>
+                    <p class="help-block">Max. 90MB</p>
                 </div>
             </div><!-- /.box-body -->
             <div class="box-footer">

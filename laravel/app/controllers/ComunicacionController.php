@@ -50,8 +50,10 @@ class ComunicacionController extends \BaseController
                 'asunto' => array_key_exists('asunto', $data) ? $data['asunto']: "",
                 'mensaje' => array_key_exists('mensaje', $data) ? $data['mensaje']: "",
                 'estado' => 1,
+                'activo' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'reponsed_at' => date('Y-m-d H:i:s'),
+                'archivo_id' => array_key_exists('archivo_id', $data) ? $data['archivo_id']: "",
             ));
 
             // registra la respuesta automaticamente
@@ -78,6 +80,7 @@ class ComunicacionController extends \BaseController
                 ->where('id', $data['id'])
                 ->update(array(
                     'estado' => 1,
+                    'archivo_id' => array_key_exists('archivo_id', $data) ? $data['archivo_id']: "",
                     'reponsed_at' => date('Y-m-d H:i:s'),
                 ));
 
@@ -99,9 +102,11 @@ class ComunicacionController extends \BaseController
             $id = DB::table("mensajes")->insertGetId(array(
                 'activista_id' => $this->userID,
                 'asunto' => array_key_exists('asunto', $data) ? $data['asunto']: "",
-                'mensaje' => array_key_exists('descripcion', $data) ? $data['descripcion']: "",
+                'mensaje' => array_key_exists('mensaje', $data) ? $data['mensaje']: "",
                 'estado' => 0,
+                'activo' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
+                'archivo_id' => array_key_exists('archivo_id', $data) ? $data['archivo_id']: "",
             ));
 
             if ($id) {
@@ -197,7 +202,48 @@ class ComunicacionController extends \BaseController
 
     }
 
+    public function postComunicacionfile() {
+        if (Input::hasFile('file')) {
 
+            $filename = Input::file('file')->getClientOriginalName();
+            $extension = Input::file('file')->getClientOriginalExtension();
+
+            try {
+                $ubicacion = 'img/upload';
+                $fileName  = str_random(11) . '_' . $filename;
+                $file = Input::file('file')->move($ubicacion, $fileName);
+
+
+                $id = DB::table("archivos")->insertGetId(array(
+                    'name' => $filename,
+                    'ubicacion' => $ubicacion . '/' . $fileName ,
+                    'type' => $extension
+                ));
+
+
+            } catch(Exception $e) {
+
+
+            }
+
+            return Response::json($id);
+        }
+    }
+
+    public function getArchivos ($archivo_id = 0) {
+        $unico = $archivo_id > 0 ;
+        $sql = 'select * from archivos ';
+        if ($unico) {
+            $sql .= ' where id = '.$archivo_id;
+        }
+
+
+        if ($unico)
+            return Response::json(DB::select($sql)[0]);
+        else
+            return Response::json(DB::select($sql));
+
+    }
 
 
 

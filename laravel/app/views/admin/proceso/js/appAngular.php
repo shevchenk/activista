@@ -8,7 +8,8 @@
             'toggle-switch',
             'adaptv.adaptStrap',
             'ngRoute',
-            'ngResource'
+            'ngResource',
+            'ngFileUpload'
         ])
             .factory('notificaciones', function($alert){
                 return {
@@ -77,6 +78,17 @@
                         }
                     });
                 return TipoAcceso;
+            })
+            .factory('Archivo', function($resource){
+                var Archivo = $resource('comunicacion/archivos/:id',
+                    { id:'@id' },
+                    {
+                        query: {
+                            method: 'GET',
+                            isArray: true
+                        }
+                    });
+                return Archivo;
             })
             .factory('Nivel', function($resource){
                 var Nivel = $resource('perfil/niveles/:id',

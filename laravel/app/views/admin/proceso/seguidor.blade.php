@@ -24,7 +24,8 @@
 {{ HTML::style('lib/bower_components/adapt-strap/dist/adapt-strap.min.css') }}
 {{ HTML::script('lib/bower_components/adapt-strap/dist/adapt-strap.min.js') }}
 {{ HTML::script('lib/bower_components/adapt-strap/dist/adapt-strap.tpl.min.js') }}
-
+{{ HTML::script('lib/ng-file-upload-shim.min.js') }}
+{{ HTML::script('lib/ng-file-upload.min.js') }}
 @include( 'admin.proceso.js.appAngular' )
 @include( 'admin.proceso.js.seguidorCtrl' )
 @stop

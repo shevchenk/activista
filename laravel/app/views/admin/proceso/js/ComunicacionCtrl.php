@@ -61,33 +61,26 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
 
 
             })
-            .controller('enviarMensajeCtrl', function ($scope, $location, Mensaje, notificaciones) {
+            .controller('enviarMensajeCtrl', function ($scope, $location, Mensaje, notificaciones, Upload) {
                 $scope.mensaje = new Mensaje();
 
                 $scope.volverABandeja = function () {
                     $location.path('/');
-                }
+                };
 
                 $scope.enviarMensaje = function (form) {
                     if (form.$valid) {
-                        var mensaje  = new Mensaje();
-                        mensaje.asunto = $scope.mensaje.asunto;
-                        mensaje.descripcion = $scope.mensaje.descripcion;
-                        mensaje.$save(function(response){
+                        $scope.mensaje.$save(function(){
                             $scope.mensaje = {};
                             $location.path('/mensajes-enviados');
                             notificaciones.success('Mensaje enviado correctamente!');
-
-
                         },function(error){
                             console.log(error);
                         });
                     } else {
                         notificaciones.showError("Por Favor agregre el asunto y descripcion antes de enviar.")
                     }
-
-                }
-
+                };
             })
             .directive('composeMessage', function () {
                 return {
@@ -153,12 +146,50 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
                             $scope.verRespuesta = function (id) {
                                 $scope.respuesta_id = id;
                                 $scope.verRespuesta = true;
-
                             }
-
                     }
                 }
-            });
+            })
+            .directive('uploadFile', function () {
+                return  {
+                    restrict: 'E',
+                    templateUrl: 'modulos/comunicacion/uploadFile.html',
+                    controller: function ($scope, Upload, Archivo) {
+                        $scope.progress = 0;
+                        $scope.file = undefined;
+
+                        $scope.eliminar = function () {
+                            $scope.file = undefined;
+                        };
+
+                        // upload on file select or drop
+                        // https://github.com/danialfarid/ng-file-upload#install
+                        $scope.upload = function (file) {
+                            if (file) {
+                                Upload.upload({
+                                    url: 'comunicacion/comunicacionfile',
+                                    data: {file: file}
+                                }).then(function (resp) {
+                                    $scope.progress = 0;
+                                    console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+                                    $scope.file = Archivo.get({id: resp.data});
+                                    $scope.mensaje.archivo_id = resp.data;
+                                }, function (resp) {
+                                    console.log('Error status: ' + resp.status);
+                                }, function (evt) {
+                                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                                    $scope.progress = progressPercentage;
+                                    console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+                                });
+                            }
+                        };
+                        $scope.subirArchivo = function () {
+                            $scope.upload($scope.file);
+                        }
+                    }
+                }
+            })
+        ;
 
 
     })()
