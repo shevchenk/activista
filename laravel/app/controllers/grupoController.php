@@ -41,6 +41,9 @@ class GrupoController extends \BaseController
     }
 
     public function postGuardargrupo() {
+
+        DB::beginTransaction();
+
         $data = Input::all();
         $grupo_id = DB::table("grupos")->insertGetId(array(
             'activista_id' => $this->userID,
@@ -64,11 +67,29 @@ class GrupoController extends \BaseController
             ));
         }
 
+        $mensaje= new Mensaje;
+        $mensaje->mensaje= array_key_exists('fb_url', $data) ? $data['fb_url']: "";
+        $mensaje->asunto="Nuevo Fan Page";
+        $mensaje->activista_id=Auth::user()->id;
+        $mensaje->estado=1;
+        $mensaje->save();
+
+        $respuesta= new Respuesta;
+        $respuesta->mensaje_id= $mensaje->id;
+        $respuesta->respondido_por=Auth::user()->id;
+        $respuesta->respondido_at=date("Y-m-d H:i:s");
+        $respuesta->respuesta=$data['titulo'].": ".$data['descripcion'];
+        $respuesta->estado=1;
+        $respuesta->url=1;
+        $respuesta->save();
+
         // @todo manejar errores
         $results = array(
             "code"=>"ok",
             "message"=>"Datos correctamente guardados"
         );
+
+        DB::commit();
 
         return Response::json($results);
     }
