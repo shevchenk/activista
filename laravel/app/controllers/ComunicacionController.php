@@ -4,6 +4,7 @@ class ComunicacionController extends \BaseController
 {
 
     private $userID;
+    private $userNivelId;
 
     /**
      * Constructor de la clase
@@ -13,6 +14,7 @@ class ComunicacionController extends \BaseController
     {
         $this->beforeFilter('auth'); // bloqueo de acceso
         $this->userID = Auth::user()->id;
+        $this->userNivelId = Auth::user()->nivel_id;
     }
 
     public function debug($data , $kill = true) {
@@ -170,7 +172,7 @@ class ComunicacionController extends \BaseController
             INNER join respuestas r on r.mensaje_id = m.id
             WHERE m.estado = 1
             AND (activista_id = " .  $this->userID  . 
-            " OR cargo_id IS NULL)".
+            " OR cargo_id IS NULL OR cargo_id = ".$this->userNivelId." )".
             $where.
             " ORDER BY r.respondido_at DESC";
         if ($unico)
