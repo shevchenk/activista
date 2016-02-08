@@ -64,8 +64,9 @@ class ComunicacionController extends \BaseController
                 'respondido_por' => $this->userID,
                 'respondido_at' => date('Y-m-d H:i:s'),
                 'respuesta' => $data['respuesta'],
-                'tipo_acceso_id' => $data['acceso'],
+                'cargo_id' => $data['acceso'],
                 'estado' => 1,
+                'created_at'=> date('Y-m-d H:i:s'),
             ));
 
             // @todo : agregar el guardar accesos cuando se haga para paginas , grupo de personas , etc
@@ -91,8 +92,9 @@ class ComunicacionController extends \BaseController
                 'respondido_por' => $this->userID,
                 'respondido_at' => date('Y-m-d H:i:s'),
                 'respuesta' => $data['respuesta'],
-                'tipo_acceso_id' => $data['acceso'],
+                'cargo_id' => $data['acceso'],
                 'estado' => 1,
+                'created_at'=>date('Y-m-d H:i:s'),
             ));
 
             $results = array(
@@ -156,7 +158,9 @@ class ComunicacionController extends \BaseController
 
     public function getTipoacceso($tipo_acceso_id = 0) {
 
-        $sql = 'select * from tipo_accesos where estado = 1';
+        $sql = 'SELECT 0,"Todos" nombre
+                UNION
+                SELECT id,nombre from cargos where estado = 1';
 
         return Response::json(DB::select($sql));
     }
