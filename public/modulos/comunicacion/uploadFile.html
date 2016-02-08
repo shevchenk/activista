@@ -1,6 +1,8 @@
 <div class="row">
     <div class="col-sm-12" ng-show="!file">
-        <div class="btn btn-info" ngf-max-size="90MB" ngf-select="upload($file)">Subir Archivo</div>
+        <div class="btn btn-info" ngf-max-size="90MB" ngf-select="upload($file)">Subir Archivo
+        <span ng-show="progress > 0">{{progress}}%</span>
+        </div>
         <div class="progress" ng-show="progress > 0 ">
             <div class="progress-bar progress-bar-primary progress-bar-striped"
                  role="progressbar"
