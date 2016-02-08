@@ -4,6 +4,7 @@ class ComunicacionController extends \BaseController
 {
 
     private $userID;
+    private $userNivelId;
 
     /**
      * Constructor de la clase
@@ -13,6 +14,7 @@ class ComunicacionController extends \BaseController
     {
         $this->beforeFilter('auth'); // bloqueo de acceso
         $this->userID = Auth::user()->id;
+        $this->userNivelId = Auth::user()->nivel_id;
     }
 
     public function debug($data , $kill = true) {
@@ -166,35 +168,18 @@ class ComunicacionController extends \BaseController
         $where = '';
 
         if ($unico) {
-            $where = ' where id = '.$bandeja_id . ' ';
+            $where = ' AND m.id = '.$bandeja_id;
         }
 
         $sql = "
-        select * from
-            (
-            select * from
-            (
-            select m.*, r.respuesta, r.tipo_acceso_id, r.respondido_at
-            from mensajes m
-            inner join respuestas r on r.mensaje_id = m.id
-            where m.estado = 1
-            and r.tipo_acceso_id = 1 and activista_id = " .  $this->userID  . "
-            ) q1
-
-            union
-            SELECT * from
-            (
-            select  m.*, r.respuesta, r.tipo_acceso_id , r.respondido_at
-            from mensajes m
-            inner join respuestas r on r.mensaje_id = m.id
-            where m.estado = 1
-            and r.tipo_acceso_id = 2
-            ) q2
-
-            ) bandeja
-            ". $where . "
-            order by respondido_at desc
-        ";
+            SELECT m.*, r.respuesta, r.tipo_acceso_id, r.respondido_at,r.url
+            FROM mensajes m
+            INNER join respuestas r on r.mensaje_id = m.id
+            WHERE m.estado = 1
+            AND (activista_id = " .  $this->userID  . 
+            " OR cargo_id IS NULL OR cargo_id = ".$this->userNivelId." )".
+            $where.
+            " ORDER BY r.respondido_at DESC";
         if ($unico)
             return Response::json(DB::select($sql)[0]);
         else
