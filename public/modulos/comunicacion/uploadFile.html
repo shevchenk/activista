@@ -15,6 +15,6 @@
     <div class="col-sm-12" ng-show="file">
         <img ng-if="file.type == 'jpg'" ng-src="{{file.ubicacion}}"  height="100px" alt="">
         <a target="_blank" ng-href="/public/{{file.ubicacion}}">{{file.name}}</a>
-        <button ng-click="eliminar()" class="btn btn-danger">Eliminar</button>
+        <button  ng-if="!noEliminar" ng-click="eliminar()" class="btn btn-danger">Eliminar</button>
     </div>
 </div>

@@ -279,6 +279,51 @@
 
                 };
             })
+            .directive('uploadFile', function () {
+                return  {
+                    restrict: 'E',
+                    templateUrl: 'modulos/comunicacion/uploadFile.html',
+                    controller: function ($scope, Upload, Archivo) {
+                        $scope.progress = 0;
+                        $scope.file = undefined;
+                        $scope.eliminar = function () {
+                            $scope.file = undefined;
+                            $scope.mensaje.archivo_id = '';
+                        };
+                        // Actuliza el file cuando cuando carga el mensaje
+                        $scope.$watch('mensaje.id', function (n , o) {
+                            if (n) {
+                                $scope.file = Archivo.get({id: $scope.mensaje.archivo_id});
+                            }
+                        });
+
+                        // upload on file select or drop
+                        // https://github.com/danialfarid/ng-file-upload#install
+                        $scope.upload = function (file) {
+                            if (file) {
+                                Upload.upload({
+                                    url: 'comunicacion/comunicacionfile',
+                                    data: {file: file}
+                                }).then(function (resp) {
+                                    $scope.progress = 0;
+                                    console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+                                    $scope.file = Archivo.get({id: resp.data});
+                                    $scope.mensaje.archivo_id = resp.data;
+                                }, function (resp) {
+                                    console.log('Error status: ' + resp.status);
+                                }, function (evt) {
+                                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                                    $scope.progress = progressPercentage;
+                                    console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+                                });
+                            }
+                        };
+                        $scope.subirArchivo = function () {
+                            $scope.upload($scope.file);
+                        }
+                    }
+                }
+            })
     })()
 
 </script>
