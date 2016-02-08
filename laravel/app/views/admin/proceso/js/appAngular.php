@@ -12,6 +12,17 @@
         ])
             .factory('notificaciones', function($alert){
                 return {
+                    success: function(message) {
+                        $alert({
+                            title: message,
+                            placement: 'top',
+                            type: 'success',
+                            show: true,
+                            container: '#alerts-container',
+                            duration: '5',
+                            animation: "am-fade-and-slide-top"
+                        });
+                    },
                     showNotification: function(message) {
                         $alert({
                             title: message,

@@ -132,6 +132,10 @@ class ComunicacionController extends \BaseController
             $where .= " and id = ".$mensaje_id . ' ' ;
         }
 
+        if (!empty($data['soloEnviados'])) {
+            $where .= " and activista_id = " . $this->userID . ' ' ;
+        }
+
         $sql = 'select * from mensajes ' .$where. ' order by id desc ';
         $rows = DB::select($sql);
 

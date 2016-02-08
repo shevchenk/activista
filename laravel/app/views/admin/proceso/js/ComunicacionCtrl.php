@@ -12,37 +12,31 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
                         templateUrl : 'modulos/comunicacion/bandeja.html',
                         controller  : 'bandejaCtrl'
                     })
+                    .when('/mensajes-enviados', {
+                        templateUrl : 'modulos/comunicacion/listado.html',
+                        controller  : 'mensajesEnviadosCtrl'
+                    })
+                    .when('/enviar-mensaje', {
+                        templateUrl : 'modulos/comunicacion/formEnviar.html',
+                        controller  : 'enviarMensajeCtrl'
+                    })
                     .otherwise({
                         redirectTo: '/'
                     });
             })
-            .controller("bandejaCtrl", function($scope , Mensaje , notificaciones) {
+            .controller("bandejaCtrl", function($scope , $location ,Mensaje , notificaciones) {
                 var actualizarMensajesEnviados = function () {
                     $scope.mensajesEnviados = Mensaje.query();
                 };
+
 
                 $scope.flagMostrarBandeja = true;
                 $scope.flagEnviarMensaje = false;
                 $scope.flagMostrarEnviados = false;
 
-                $scope.mostrarFormulario = function () {
-                    $scope.flagMostrarBandeja = false;
-                    $scope.flagEnviarMensaje = true;
-                    $scope.flagMostrarEnviados = false;
-                }
-
-                $scope.mostrarBandeja = function () {
-                    $scope.flagMostrarBandeja = true;
-                    $scope.flagEnviarMensaje = false;
-                    $scope.flagMostrarEnviados = false;
-                }
-
                 $scope.mostrarMensajesEnviados = function () {
-                    $scope.flagMostrarBandeja = false;
-                    $scope.flagEnviarMensaje = false;
-                    $scope.flagMostrarEnviados = true;
-                }
-
+                    $location.path('/mensajes-enviados');
+                };
 
                 $scope.textoNivel='<?php echo $cargoS->nombre; ?>';
                 $scope.formulario = false;
@@ -50,22 +44,29 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
                 $scope.mensajesEnviados = [];
                 actualizarMensajesEnviados();
 
+            })
+            .controller('mensajesEnviadosCtrl', function ($scope, $location, Mensaje, notificaciones) {
+                $scope.mensajesEnviados = Mensaje.query({soloEnviados: 1});
 
-
-
-
-
-                $scope.mostrarFormulario = function () {
-                    $scope.flagMostrarBandeja = false;
-                    $scope.flagEnviarMensaje = true;
-                    $scope.flagMostrarEnviados = false;
+                $scope.enviarMensaje = function() {
+                    $location.path('/enviar-mensaje')
+                };
+                $scope.mostrarBandeja = function () {
+                    $location.path('/');
                 };
 
-                $scope.ocultarFormulario = function () {
-                    $scope.flagMostrarBandeja = true;
-                    $scope.flagEnviarMensaje = false;
-                    $scope.flagMostrarEnviados = false;
-                };
+                $scope.mostrarMensajesEnviados = function () {
+                    $location.path('/mensajes-enviados');
+                }
+
+
+            })
+            .controller('enviarMensajeCtrl', function ($scope, $location, Mensaje, notificaciones) {
+                $scope.mensaje = new Mensaje();
+
+                $scope.volverABandeja = function () {
+                    $location.path('/');
+                }
 
                 $scope.enviarMensaje = function (form) {
                     if (form.$valid) {
@@ -74,8 +75,9 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
                         mensaje.descripcion = $scope.mensaje.descripcion;
                         mensaje.$save(function(response){
                             $scope.mensaje = {};
-                            $scope.ocultarFormulario();
-                            actualizarMensajesEnviados();
+                            $location.path('/mensajes-enviados');
+                            notificaciones.success('Mensaje enviado correctamente!');
+
 
                         },function(error){
                             console.log(error);
@@ -119,6 +121,23 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
 
                         }
 
+                    }
+                }
+            })
+            .directive('mensajesMenu', function ($location) {
+                return {
+                    restrict: 'E',
+                    templateUrl: 'modulos/comunicacion/menu.html',
+                    controller: function ($scope) {
+                        $scope.fnEnviarMensaje = function () {
+                            $location.path('/enviar-mensaje')
+                        };
+                        $scope.fnIrBandeja = function () {
+                            $location.path('/')
+                        };
+                        $scope.fnIrEnviados = function () {
+                            $location.path('/mensajes-enviados');
+                        }
                     }
                 }
             })

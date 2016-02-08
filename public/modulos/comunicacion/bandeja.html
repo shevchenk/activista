@@ -1,42 +1,9 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>
-            Comunicaciones
-            <small ng-if="0">13 new messages</small>
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Mailbox</li>
-        </ol>
-    </section>
-
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <div class="col-md-3">
-                <a ng-if="!formulario" ng-click="mostrarFormulario()" class="btn btn-primary btn-block margin-bottom">Enviar Mensaje</a>
-                <a ng-if="formulario" ng-click="ocultarFormulario()" class="btn btn-primary btn-block margin-bottom">Volver a Mensajes</a>
-                <div class="box box-solid">
-
-                    <div class="box-body no-padding">
-                        <ul class="nav nav-pills nav-stacked">
-                            <!--<li class=""><a href="#"><i class="fa fa-inbox"></i> Bandeja de Mensajes </a></li>-->
-                            <li><a  class="pointer" ng-click="mostrarBandeja()"><i class="fa fa-inbox"></i> Bandeja de Mensajes</a></li>
-                            <li><a  class="pointer" ng-click="mostrarMensajesEnviados()"><i class="fa fa-envelope-o"></i> Mensajes enviados</a></li>
-                        </ul>
-                    </div><!-- /.box-body -->
-                </div><!-- /. box -->
-                <div  class="bg-info" style="clear: both; padding: 10px;">
-                    <p class="">
-                        Si tiene alguna duda o sugerencia por favor envienos un mensaje y les responderemos en la brevedad
-                    </p>
-                </div>
-            </div><!-- /.col -->
-
-            <compose-message ng-if="flagEnviarMensaje"></compose-message>
-            <list-message ng-if="flagMostrarEnviados"></list-message>
+            <mensajes-menu></mensajes-menu>
             <bandeja ng-if="flagMostrarBandeja"></bandeja>
 
         </div><!-- /.row -->
