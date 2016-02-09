@@ -16,9 +16,24 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
                         templateUrl : 'modulos/comunicacion/listado.html',
                         controller  : 'mensajesEnviadosCtrl'
                     })
+
+                    .when('/mensajes-para-responder', {
+                        templateUrl : 'modulos/respuestas/listaMensajes.html',
+                        controller  : 'mensajesParaResponderCtrl'
+                    })
+                    .when('/responder-mensaje/:id', {
+                        templateUrl : 'modulos/respuestas/responder.html',
+                        controller  : 'ResponderMensajeCtrl'
+                    })
+
                     .when('/enviar-mensaje', {
                         templateUrl : 'modulos/comunicacion/formEnviar.html',
                         controller  : 'enviarMensajeCtrl'
+                    })
+                    // Envia un mensaje respondido
+                    .when('/enviarMensaje-respuesta', {
+                        templateUrl : 'modulos/respuestas/enviarMensaje.html',
+                        controller  : 'enviarMensajeRespondidoCtrl'
                     })
                     .when('/ver-respuesta/:id', {
                         templateUrl : 'modulos/comunicacion/verRespuesta.html',
@@ -28,10 +43,13 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
                         redirectTo: '/'
                     });
             })
-            .controller("bandejaCtrl", function($scope , $location ,Mensaje , notificaciones) {
+            .controller("bandejaCtrl", function($scope , $location ,Mensaje , notificaciones, Cargo, Auth) {
                 var actualizarMensajesEnviados = function () {
                     $scope.mensajesEnviados = Mensaje.query();
                 };
+
+                $scope.cargo = Cargo.get();
+                $scope.auth = Auth.get();
 
 
                 $scope.flagMostrarBandeja = true;
@@ -65,6 +83,50 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
 
 
             })
+            .controller("mensajesParaResponderCtrl", function($scope , Mensaje , notificaciones, $location, Cargo) {
+                var actualizarMensajesSinResponder = function () {
+                    var params = {
+                        estado: "0",
+                        soy: 'liebre'
+                    };
+                    Mensaje.query(params).$promise.then(function(response){
+                        $scope.mensajesSinResponder = response;
+                    });
+                };
+                $scope.textoNivel='<?php echo $cargoS->nombre; ?>';
+                $scope.formulario = false;
+                $scope.mensaje = {};
+                $scope.mensajesEnviados = [];
+                actualizarMensajesSinResponder();
+
+
+            })
+            .controller('ResponderMensajeCtrl', function ($scope, Mensaje, $routeParams, $location, notificaciones, TipoAcceso){
+                $scope.mensaje = Mensaje.get({id: $routeParams.id});
+
+                $scope.tipo_accesos = TipoAcceso.query();
+
+
+                $scope.ocultarFormulario = function () {
+                    $location.path("/");
+                };
+
+                $scope.responderMensaje = function (form) {
+                    if (form.$valid) {
+                        $scope.mensaje.editar = true;
+                        $scope.mensaje.$save(function(response){
+                            $scope.mensaje = {};
+                            notificaciones.showNotification('Se envio respuesta');
+                            $location.path("/mensajes-para-responder");
+
+                        },function(error){
+                            console.log(error);
+                        });
+                    } else {
+                        notificaciones.showError("Por Favor agregre el asunto y descripcion antes de enviar.")
+                    }
+                };
+            })
             .controller('enviarMensajeCtrl', function ($scope, $location, Mensaje, notificaciones, Upload) {
                 $scope.mensaje = new Mensaje();
 
@@ -86,8 +148,36 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
                     }
                 };
             })
+            .controller('enviarMensajeRespondidoCtrl', function($scope, Mensaje, $location, TipoAcceso, notificaciones){
+                $scope.mensaje = new Mensaje();
+                $scope.mensaje.acceso = "2";
+                $scope.tipo_accesos = TipoAcceso.query();
+
+                $scope.volver = function () {
+                    $location.path('/');
+                };
+
+
+                $scope.EnviarMensaje = function (form) {
+                    if (form.$valid) {
+                        $scope.mensaje.envioEnMasa= 1;
+                        $scope.mensaje.$save(function() {
+                            $scope.mensaje = {};
+                            notificaciones.showNotification('Se envio Mensaje');
+                            $location.path("/");
+
+                        },function(error){
+                            console.log(error);
+                        });
+                    } else {
+                        notificaciones.showError("Por Favor llene todos los campos antes de enviar.")
+                    }
+                }
+
+
+            })
             .controller('verRespuestaCtrl', function ($scope, Bandeja, $location, $routeParams) {
-                $scope.noEliminar = true;
+                $scope.noEditar = true;
                 $scope.mensaje = Bandeja.get({id: $routeParams.id});
             })
             .directive('composeMessage', function () {
@@ -125,11 +215,12 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
                     }
                 }
             })
-            .directive('mensajesMenu', function ($location) {
+            .directive('mensajesMenu', function ($location, Cargo) {
                 return {
                     restrict: 'E',
                     templateUrl: 'modulos/comunicacion/menu.html',
                     controller: function ($scope) {
+                        $scope.cargo = Cargo.get();
                         $scope.fnEnviarMensaje = function () {
                             $location.path('/enviar-mensaje')
                         };
@@ -139,6 +230,13 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
                         $scope.fnIrEnviados = function () {
                             $location.path('/mensajes-enviados');
                         }
+                        $scope.fnEnviarMensajeRespondido = function () {
+                            $location.path('/enviarMensaje-respuesta');
+                        }
+                        $scope.fnIrMensajesParaResponder = function () {
+                            $location.path('/mensajes-para-responder');
+                        }
+
                     }
                 }
             })

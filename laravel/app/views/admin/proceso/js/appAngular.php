@@ -48,6 +48,18 @@
                     }
                 }
             })
+            .factory('Auth', function ($resource) {
+                var Auth = $resource('comunicacion/auth/:id',
+                    { id:   1 });
+
+                return Auth;
+            })
+            .factory('Cargo', function ($resource) {
+                var Cargo = $resource('comunicacion/cargos/:id',
+                    { id:   1 });
+
+                return Cargo;
+            })
             .factory('Mensaje', function($resource){
                 var Comunicacion = $resource('comunicacion/comunicacion/:id',
                     { id:'@id' },
@@ -292,7 +304,7 @@
                         };
                         // Actuliza el file cuando cuando carga el mensaje
                         $scope.$watch('mensaje.id', function (n , o) {
-                            if (n) {
+                            if (n && $scope.mensaje.archivo_id  && $scope.mensaje.archivo_id > 0) {
                                 $scope.file = Archivo.get({id: $scope.mensaje.archivo_id});
                             }
                         });
@@ -307,7 +319,8 @@
                                 }).then(function (resp) {
                                     $scope.progress = 0;
                                     console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-                                    $scope.file = Archivo.get({id: resp.data});
+                                    if (resp.data && resp.data > 0)
+                                        $scope.file = Archivo.get({id: resp.data});
                                     $scope.mensaje.archivo_id = resp.data;
                                 }, function (resp) {
                                     console.log('Error status: ' + resp.status);

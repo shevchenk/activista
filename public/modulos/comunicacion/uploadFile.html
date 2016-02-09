@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-sm-12" ng-show="!file">
-        <div class="btn btn-info" ngf-max-size="90MB" ngf-select="upload($file)">Subir Archivo
+        <div ng-if="!noEditar" class="btn btn-info" ngf-max-size="90MB" ngf-select="upload($file)">Subir Archivo
         <span ng-show="progress > 0">{{progress}}%</span>
         </div>
         <div class="progress" ng-show="progress > 0 ">
@@ -17,6 +17,6 @@
     <div class="col-sm-12" ng-show="file">
         <img ng-if="file.type == 'jpg'" ng-src="{{file.ubicacion}}"  height="100px" alt="">
         <a target="_blank" ng-href="/public/{{file.ubicacion}}">{{file.name}}</a>
-        <button  ng-if="!noEliminar" ng-click="eliminar()" class="btn btn-danger">Eliminar</button>
+        <button  ng-if="!noEditar" ng-click="eliminar()" class="btn btn-danger">Eliminar</button>
     </div>
 </div>

@@ -23,6 +23,35 @@ class ComunicacionController extends \BaseController
             die();
     }
 
+    public function getAuth($user_id) {
+        return Response::json(Auth::user());
+    }
+
+    public function getCargos($cargo_id) {
+
+        $cargo = Cargo::find(Auth::user()->nivel_id);
+        // agregando padre
+
+        $nivelId = Auth::user()->nivel_id;
+        $seguirAlguien= $nivelId-1;
+        // 10 liebre
+        // 11 administrador
+        if($nivelId==10 or $nivelId==11){
+            $seguirAlguien=0;
+        }
+        $cargoS= Cargo::find($seguirAlguien);
+        if( count($cargoS)<=0 ){
+            $cargoS= new stdClass();
+            $cargoS->nombre='';
+        }
+
+        $cargo->padre = $cargoS;
+
+
+        return Response::json($cargo);
+
+    }
+
     public function errorMessage($message) {
 
         header('HTTP/1.1 401 Internal Server Booboo');
@@ -145,7 +174,8 @@ class ComunicacionController extends \BaseController
             $where .= " and activista_id = " . $this->userID . ' ' ;
         }
 
-        $sql = 'select * from mensajes ' .$where. ' order by id desc ';
+        $sql = "select *  , (select CONCAT(a.nombres,' ', a.paterno) from activistas a  where mensajes.activista_id = a.id) activista_nombre " .            ' from mensajes '
+            .$where. ' order by id desc ';
         $rows = DB::select($sql);
 
         if (!empty($mensaje_id)) {
