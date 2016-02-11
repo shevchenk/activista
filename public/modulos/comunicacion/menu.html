@@ -9,14 +9,14 @@
     </ol>
 </section>
 <div class="col-md-3">
-    <a ng-if="cargo.id < 10" ng-click="fnEnviarMensaje()" class="btn btn-primary btn-block margin-bottom">Redactar Mensaje</a>
-    <a ng-if="cargo.id > 9"  ng-click="fnEnviarMensajeRespondido()" class="btn btn-success btn-block margin-bottom">Enviar Mensaje</a>
+    <a ng-if="cargo.id < 10" ng-click="fnEnviarMensaje()" class="btn btn-primary btn-block margin-bottom">Redactar</a>
+    <a ng-if="cargo.id > 9"  ng-click="fnEnviarMensajeRespondido()" class="btn btn-success btn-block margin-bottom">Redactar</a>
     <div class="box box-solid">
 
         <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">
                 <!--<li class=""><a href="#"><i class="fa fa-inbox"></i> Bandeja de Mensajes </a></li>-->
-                <li><a  class="pointer" ng-click="fnIrBandeja()"><i class="fa fa-inbox"></i> Bandeja de Mensajes</a></li>
+                <li><a  class="pointer" ng-click="fnIrBandeja()"><i class="fa fa-inbox"></i> Recibidos</a></li>
                 <li><a  class="pointer" ng-click="fnIrEnviados()"><i class="fa fa-envelope-o"></i> Enviados</a></li>
                 <li><a  ng-if="cargo.id > 9" class="pointer" ng-click="fnIrMensajesParaResponder()"><i class="fa fa-file-text-o"></i> Mensajes para responder</a></li>
             </ul>
