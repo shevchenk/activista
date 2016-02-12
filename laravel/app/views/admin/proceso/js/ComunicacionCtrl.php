@@ -46,8 +46,8 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
             .controller("bandejaCtrl", function($scope , $location ,Mensaje , notificaciones, Cargo, Auth) {
                 $scope.cargo = Cargo.get();
                 $scope.auth = Auth.get();
-                
-                if($scope.cargo.id>9){
+                $scope.idCargo='<?php echo $cargoS->id; ?>';
+                if($scope.idCargo>9){
                     alert('Es lider o liebre');
                     $location.path("/mensajes-para-responder");
                 }
