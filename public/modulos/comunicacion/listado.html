@@ -30,10 +30,15 @@
             </div>
             <div class="table-responsive mailbox-messages">
                 <table class="table table-hover table-striped">
+                    <thead>
+                            <th>Asunto</th>
+                            <th>Mensaje</th>
+                            <th>Fecha</th>
+                        </thead>
                     <tbody>
                     <tr ng-repeat="mensaje in mensajesEnviados">
                         <td class="mailbox-subject"><b>{{mensaje.asunto | truncate:30}}</b> </td>
-                        <td class="mailbox-attachment"></td>
+                        <!--td class="mailbox-attachment"></td-->
                         <td class="mailbox-date">{{mensaje.mensaje | truncate:100}}</td>
                         <td class="mailbox-date">{{mensaje.fecha_ago}}</td>
                     </tr>

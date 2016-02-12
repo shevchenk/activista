@@ -16,9 +16,9 @@
         <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">
                 <!--<li class=""><a href="#"><i class="fa fa-inbox"></i> Bandeja de Mensajes </a></li>-->
-                <li><a  class="pointer" ng-click="fnIrBandeja()"><i class="fa fa-inbox"></i> Recibidos</a></li>
+                <li><a ng-if="cargo.id < 10" class="pointer" ng-click="fnIrBandeja()"><i class="fa fa-inbox"></i> Recibidos</a></li>
                 <li><a  class="pointer" ng-click="fnIrEnviados()"><i class="fa fa-envelope-o"></i> Enviados</a></li>
-                <li><a  ng-if="cargo.id > 9" class="pointer" ng-click="fnIrMensajesParaResponder()"><i class="fa fa-file-text-o"></i> Mensajes para responder</a></li>
+                <li><a  ng-if="cargo.id > 9" class="pointer" ng-click="fnIrMensajesParaResponder()"><i class="fa fa-file-text-o"></i> Recibidos</a></li>
             </ul>
         </div><!-- /.box-body -->
     </div><!-- /. box -->
