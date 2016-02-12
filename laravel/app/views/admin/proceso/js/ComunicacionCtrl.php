@@ -48,7 +48,7 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
                 $scope.auth = Auth.get();
                 $scope.idCargo='<?php echo $cargoS->id; ?>';
                 if($scope.idCargo>9){
-                    alert('Es lider o liebre');
+                    //alert('Es lider o liebre');
                     $location.path("/mensajes-para-responder");
                 }
 
