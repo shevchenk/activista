@@ -30,6 +30,8 @@
 {{ HTML::script('lib/ng-file-upload-shim.min.js') }}
 {{ HTML::script('lib/ng-file-upload.min.js') }}
 
+@include( 'admin.js.slct_global_ajax' )
+@include( 'admin.js.slct_global' )
 
 @include( 'admin.proceso.js.appAngular' )
 @include( 'admin.proceso.js.ComunicacionCtrl' )

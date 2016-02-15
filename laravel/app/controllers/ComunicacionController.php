@@ -195,6 +195,15 @@ class ComunicacionController extends \BaseController
         return Response::json(DB::select($sql));
     }
 
+    public function postTipoacceso($tipo_acceso_id = 0) {
+
+        $sql = 'SELECT 0 id,"Todos" nombre
+                UNION
+                SELECT id,nombre from cargos where estado = 1';
+
+        return Response::json(DB::select($sql));
+    }
+
     // bandeja id es em id del mensae de la bandeja
     // la bandeja devuelve todos los mensajes que pertenecen al usuario activo
     public function getBandeja($bandeja_id = 0) {

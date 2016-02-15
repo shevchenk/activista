@@ -25,18 +25,13 @@
                             </div>
                             <hr>
                             <div class="form-group">
-                                <textarea required ng-model="mensaje.respuesta" id="compose-textarea" class="form-control" style="height: 100px" placeholder="Reponde el Mensaje"></textarea>
-                            </div>
-                            <hr>
-                            <div class="form-group">
                                 <upload-file></upload-file>
                             </div>
                             <hr>
                             <div class="form-group">
                                 Enviar Respuesta a:
-                                <select name="acceso[]" required
-                                        ng-model="mensaje.acceso">
-                                    <option ng-repeat="acceso in tipo_accesos" value="{{acceso.id}}">{{acceso.nombre}}</option>
+                                <select name="slct_acceso" id="slct_acceso" multiple>
+                                    <option >Seleccione</option>
                                 </select>
                             </div>
 

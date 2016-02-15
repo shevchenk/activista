@@ -43,6 +43,31 @@ var slctGlobal={
             }
         });
     },
+    listarSlctFuncion:function(controlador,funcion,slct,tipo,valarray,data,afectado,afectados,slct_id,slctant,slctant_id, funciones){
+        $.ajax({
+            url         : controlador+'/'+funcion,
+            type        : 'POST',
+            cache       : false,
+            dataType    : 'json',
+            data        : data,
+            beforeSend : function() {
+                //$("body").append('<div class="overlay"></div><div class="loading-img"></div>');
+            },
+            success : function(obj) {
+                if(obj.rst==1){
+                    htmlListarSlct(obj,slct,tipo,valarray,afectado,afectados,slct_id,slctant,slctant_id, funciones);
+                    if (funciones!=='' && funciones!==undefined) {
+                        if (funciones.success!=='' && funciones.success!==undefined) {
+                            funciones.success(obj.datos);
+                        }
+                    }
+                }
+            },
+            error: function(){
+                Psi.mensaje('danger', '<?php echo trans("greetings.mensaje_error"); ?>', 6000);
+            }
+        });
+    },
     listarSlctFijo:function(controlador,slct){
         $.ajax({
             url         : controlador+'/listar',
