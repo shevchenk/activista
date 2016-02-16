@@ -154,7 +154,7 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
                     }
                 };
             })
-            .controller('enviarMensajeRespondidoCtrl', function($scope, Mensaje, $location, notificaciones){
+            .controller('enviarMensajeRespondidoCtrl', function($scope, Mensaje, $location, notificaciones, TipoAcceso){
                 $scope.mensaje = new Mensaje();
                 $scope.mensaje.acceso = "2";
                 $scope.tipo_accesos = TipoAcceso.query();
@@ -179,8 +179,6 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
                         notificaciones.showError("Por Favor llene todos los campos antes de enviar.")
                     }
                 }
-
-                slctGlobal.listarSlctFuncion('comunicacion','tipoacceso','slct_acceso','multiple');
             })
             .controller('verRespuestaCtrl', function ($scope, Bandeja, $location, $routeParams) {
                 $scope.noEditar = true;

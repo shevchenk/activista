@@ -30,8 +30,21 @@
                             <hr>
                             <div class="form-group">
                                 Enviar Respuesta a:
-                                <select name="slct_acceso" id="slct_acceso" multiple>
-                                    <option >Seleccione</option>
+                                <select 
+                                    name="acceso[]" 
+                                    required
+-                                   ng-model="mensaje.acceso"
+                                    id="my-multi2"
+                                    class="sc-multiselect"
+                                    multiple="multiple"
+                                    data-placeholder="Seleccione"
+                                    data-close-on-select="false"
+                                    sc-select2>
+-                                   <option 
+                                        ng-repeat="acceso in tipo_accesos" 
+                                        value="{{acceso.id}}">
+                                            {{acceso.nombre}}
+                                    </option>
                                 </select>
                             </div>
 

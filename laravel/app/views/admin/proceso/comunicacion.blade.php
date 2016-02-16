@@ -26,12 +26,11 @@
 {{ HTML::script('lib/bower_components/adapt-strap/dist/adapt-strap.min.js') }}
 {{ HTML::script('lib/bower_components/adapt-strap/dist/adapt-strap.tpl.min.js') }}
 
+{{ HTML::script('lib/underscore-master/underscore.min.js') }}
+{{ HTML::script('lib/select2-master/dist/js/select2.full.min.js') }}
 
 {{ HTML::script('lib/ng-file-upload-shim.min.js') }}
 {{ HTML::script('lib/ng-file-upload.min.js') }}
-
-@include( 'admin.js.slct_global_ajax' )
-@include( 'admin.js.slct_global' )
 
 @include( 'admin.proceso.js.appAngular' )
 @include( 'admin.proceso.js.ComunicacionCtrl' )
