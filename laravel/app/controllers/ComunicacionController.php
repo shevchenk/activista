@@ -99,6 +99,7 @@ class ComunicacionController extends \BaseController
             ));
 
             // @todo : agregar el guardar accesos cuando se haga para paginas , grupo de personas , etc
+            // array $data['nivelesSelecciondos'] solo ids
 
             $results = array(
                 "code"=>"ok",

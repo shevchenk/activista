@@ -168,6 +168,7 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
                 $scope.EnviarMensaje = function (form) {
                     if (form.$valid) {
                         $scope.mensaje.envioEnMasa= 1;
+                        $scope.mensaje.nivelesSelecciondos = $scope.nivelesSeleccionados;
                         $scope.mensaje.$save(function() {
                             $scope.mensaje = {};
                             notificaciones.showNotification('Se envio Mensaje');
