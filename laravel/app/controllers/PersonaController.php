@@ -2,7 +2,29 @@
 
 class PersonaController extends BaseController
 {
-
+    public function postNivel()
+    {
+        //si la peticion es ajax
+        if ( Request::ajax() ) {
+            
+            if (Input::has('estado')) {
+                $nivel = Input::get('nivel_id');
+                $r = DB::table('activistas')
+                        ->select(
+                            DB::raw('CONCAT(paterno,"",materno,", ",nombres) as nombre'),
+                            'id'
+                        )
+                        ->where('estado', '=', 1)
+                        ->where('nivel_id','=',$nivel)
+                        ->orderBy('paterno')
+                        ->orderBy('materno')
+                        ->orderBy('nombre')
+                        ->get();
+            } 
+            
+            return Response::json(array('rst'=>1,'datos'=>$r));
+        }
+    }
     /**
      * cargar personas
      * POST /persona/cargar

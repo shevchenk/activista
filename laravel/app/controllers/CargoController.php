@@ -2,7 +2,26 @@
 
 class CargoController extends \BaseController
 {
-
+    public function postNivel()
+    {
+        //si la peticion es ajax
+        if ( Request::ajax() ) {
+            
+            if (Input::has('estado')) {
+                $estado = Input::get('estado');
+                $cargos = DB::table('cargos')
+                        ->select(
+                            'nombre','id'
+                        )
+                        ->where('estado', '=', 1)
+                        ->where('id','<',10)
+                        ->orderBy('nombre')
+                        ->get();
+            } 
+            
+            return Response::json(array('rst'=>1,'datos'=>$cargos));
+        }
+    }
     /**
      * cargar modulos, mantenimiento
      * POST /cargo/cargar
