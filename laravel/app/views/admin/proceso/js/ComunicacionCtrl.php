@@ -157,6 +157,7 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
             .controller('enviarMensajeRespondidoCtrl', function($scope, Mensaje, $location, notificaciones, TipoAcceso){
                 $scope.mensaje = new Mensaje();
                 $scope.mensaje.acceso = "2";
+                $scope.nivelesSeleccionados = [];
                 $scope.tipo_accesos = TipoAcceso.query();
 
                 $scope.volver = function () {
