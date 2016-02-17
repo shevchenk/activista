@@ -11,7 +11,7 @@ class PersonaController extends BaseController
                 $nivel = Input::get('nivel_id');
                 $r = DB::table('activistas')
                         ->select(
-                            DB::raw('CONCAT(paterno,"",materno,", ",nombres) as nombre'),
+                            DB::raw('CONCAT(paterno," ",materno,", ",nombres) as nombre'),
                             'id'
                         )
                         ->where('estado', '=', 1)
