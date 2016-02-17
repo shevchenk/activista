@@ -26,6 +26,7 @@ class ReporteController extends BaseController
                 INNER JOIN cargos c ON a.nivel_id=c.id
                 LEFT JOIN grupos g ON a.id= g.activista_id
                 WHERE a.lider_padre = $id
+                AND a.estado=1
                 GROUP BY a.id ";
 
         $r=DB::select($sql);
@@ -54,6 +55,7 @@ class ReporteController extends BaseController
                         INNER JOIN cargos c ON a.nivel_id=c.id
                         LEFT JOIN grupos g ON a.id= g.activista_id
                         WHERE a.lider_padre IN ($idsd) 
+                        AND a.estado=1
                         GROUP BY a.id ";
                 $r=DB::select($sql);
 
