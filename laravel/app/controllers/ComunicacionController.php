@@ -189,7 +189,9 @@ class ComunicacionController extends \BaseController
 
     public function getTipoacceso($tipo_acceso_id = 0) {
 
-        $sql = 'SELECT id,nombre from cargos where estado = 1';
+        $sql = 'SELECT 0 id,"Todos" nombre
+                UNION
+                SELECT id,nombre from cargos where estado = 1';
 
         return Response::json(DB::select($sql));
     }
