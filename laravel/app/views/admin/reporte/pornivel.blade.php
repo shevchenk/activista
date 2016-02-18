@@ -78,6 +78,15 @@
                                 </thead>
                                 <tbody id="tb_reporte">
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Nivel</th>
+                                        <th>Paterno</th>
+                                        <th>Materno</th>
+                                        <th>Nombre</th>
+                                        <th>Cant Pag</th>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>

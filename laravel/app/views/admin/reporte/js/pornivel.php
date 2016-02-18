@@ -37,6 +37,7 @@ DetalleNivel=function(){
 }
 
 HTMLreporte=function(obj){
+    $(".reportes").show();
     var html="";
     $('#t_reporte').dataTable().fnDestroy();
     $('#t_reporte2').dataTable().fnDestroy();
@@ -62,7 +63,10 @@ HTMLreporte=function(obj){
     $("#tb_reporte").html(obj.datos);
     $("#t_reporte").dataTable(
         {
-            "order": [[ 4, "desc" ]],
+            "scrollCollapse": true,
+            "paging":   false,
+            "ordering": false,
+            "scrollY":        "600px",
         }
     ); 
 
@@ -72,7 +76,7 @@ HTMLreporte=function(obj){
     for(i=($("#slct_nivel").val()*1+1); i<obj.niveles.length; i++){
         totalnivel+=obj.niveles[i];
         totalpagina+=obj.paginas[i];
-        html+="<tr>"+
+        html+="<tr style='background-color: "+obj.fondo[i]+";color: "+obj.texto[i]+";'>"+
             "<td>"+obj.cargos[i]+"</td>"+
             "<td>"+obj.niveles[i]+"</td>"+
             "<td>"+obj.paginas[i]+"</td>";
@@ -91,7 +95,6 @@ HTMLreporte=function(obj){
         }
     ); 
     
-    $(".reportes").show();
 };
 
 detalle=function(ruta_id, boton){
