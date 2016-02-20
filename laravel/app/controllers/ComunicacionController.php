@@ -245,7 +245,7 @@ class ComunicacionController extends \BaseController
             INNER join respuestas r on r.mensaje_id = m.id
             WHERE m.estado = 1
             AND (activista_id = " .  $this->userID  . 
-            " OR cargo_id IS NULL OR cargo_id = ".$this->userNivelId." )".
+            " OR m.cargo_id IS NULL OR m.cargo_id = ".$this->userNivelId." )".
             $where.
             " ORDER BY r.respondido_at DESC";
         if ($unico)
