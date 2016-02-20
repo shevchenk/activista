@@ -44,8 +44,7 @@ validaEnter=function(e){
 }
 
 Nuevo=function(){
-    
-	if( $("[name='rdb_check']").attr('checked') ){
+	if( $("[name='rdb_check']").is(':checked')==false ){
         alert("Seleccione un tipo de PPKausa");
     }
     else if( $("#paterno").val()=='' ){

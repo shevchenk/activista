@@ -109,7 +109,7 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
             })
             .controller('ResponderMensajeCtrl', function ($scope, Mensaje, $routeParams, $location, notificaciones, TipoAcceso){
                 $scope.mensaje = Mensaje.get({id: $routeParams.id});
-
+                $scope.nivelesSeleccionados = [];
                 $scope.tipo_accesos = TipoAcceso.query();
 
 
@@ -120,6 +120,7 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
                 $scope.responderMensaje = function (form) {
                     if (form.$valid) {
                         $scope.mensaje.editar = true;
+                        $scope.mensaje.nivelesSelecciondos = $scope.nivelesSeleccionados;
                         $scope.mensaje.$save(function(response){
                             $scope.mensaje = {};
                             notificaciones.showNotification('Se envio respuesta');

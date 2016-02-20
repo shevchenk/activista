@@ -31,13 +31,29 @@
                                 <upload-file></upload-file>
                             </div>
                             <hr>
+                            <button type="button"
+                                    class="btn btn-default"
+                                    ng-model="nivelesSeleccionados"
+                                    data-html="1"
+                                    data-multiple="1"
+                                    data-placeholder="Seleccione a que niveles enviar"
+                                    data-all-none-buttons="1"
+                                    data-all-text="Todos"
+                                    data-max-length="5"
+                                    data-none-text="Ninguno"
+                                    data-animation="am-flip-x"
+                                    bs-options="acceso.id as acceso.nombre for acceso in tipo_accesos"
+                                    bs-select>
+                                Action <span class="caret"></span>
+                            </button>
+                            <!--hr>
                             <div class="form-group">
                                 Enviar Respuesta a:
                                 <select name="acceso[]" required
                                         ng-model="mensaje.acceso">
                                     <option ng-repeat="acceso in tipo_accesos" value="{{acceso.id}}">{{acceso.nombre}}</option>
                                 </select>
-                            </div>
+                            </div-->
 
 
 

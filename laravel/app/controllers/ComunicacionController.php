@@ -76,19 +76,22 @@ class ComunicacionController extends \BaseController
 
         if (!empty($data['envioEnMasa'])) {
             // mensaje enviado por libre para muchos grupos
-            $idMensaje = DB::table("mensajes")->insertGetId(array(
-                'activista_id' => $this->userID,
-                'asunto' => array_key_exists('asunto', $data) ? $data['asunto']: "",
-                'mensaje' => array_key_exists('mensaje', $data) ? $data['mensaje']: "",
-                'estado' => 1,
-                'activo' => 1,
-                'created_at' => date('Y-m-d H:i:s'),
-                'reponsed_at' => date('Y-m-d H:i:s'),
-                'archivo_id' => array_key_exists('archivo_id', $data) ? $data['archivo_id']: "",
-            ));
+            DB::beginTransaction();
+            for ($i=0; $i < count($data['nivelesSelecciondos']); $i++) { 
+                $idMensaje = DB::table("mensajes")->insertGetId(array(
+                    'activista_id' => $this->userID,
+                    'asunto' => array_key_exists('asunto', $data) ? $data['asunto']: "",
+                    'mensaje' => array_key_exists('mensaje', $data) ? $data['mensaje']: "",
+                    'estado' => 1,
+                    'activo' => 1,
+                    'cargo_id'=>$data['nivelesSelecciondos'][$i],
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'archivo_id' => array_key_exists('archivo_id', $data) ? $data['archivo_id']: "",
+                ));
+            }
 
             // registra la respuesta automaticamente
-            $id = DB::table("respuestas")->insertGetId(array(
+            /*$id = DB::table("respuestas")->insertGetId(array(
                 'mensaje_id' => $idMensaje,
                 'respondido_por' => $this->userID,
                 'respondido_at' => date('Y-m-d H:i:s'),
@@ -96,8 +99,8 @@ class ComunicacionController extends \BaseController
                 'cargo_id' => $data['acceso'],
                 'estado' => 1,
                 'created_at'=> date('Y-m-d H:i:s'),
-            ));
-
+            ));*/
+            DB::commit();
             // @todo : agregar el guardar accesos cuando se haga para paginas , grupo de personas , etc
             // array $data['nivelesSelecciondos'] solo ids
 
@@ -109,23 +112,48 @@ class ComunicacionController extends \BaseController
 
 
         } elseif (!empty($data['editar'])) {
-            DB::table("mensajes")
-                ->where('id', $data['id'])
-                ->update(array(
-                    'estado' => 1,
-                    'archivo_id' => array_key_exists('archivo_id', $data) ? $data['archivo_id']: "",
-                    'reponsed_at' => date('Y-m-d H:i:s'),
-                ));
 
-            $id = DB::table("respuestas")->insertGetId(array(
-                'mensaje_id' => $data['id'],
-                'respondido_por' => $this->userID,
-                'respondido_at' => date('Y-m-d H:i:s'),
-                'respuesta' => $data['respuesta'],
-                'cargo_id' => $data['acceso'],
-                'estado' => 1,
-                'created_at'=>date('Y-m-d H:i:s'),
-            ));
+            DB::beginTransaction();
+            $id=0;
+            $mensajeAux="";$mensaje="";
+            for ($i=0; $i < count($data['nivelesSelecciondos']); $i++) { 
+                if( $i==0 ){
+                    $mensajeAux= Mensaje::find($data['id']);
+                    $mensajeAux->estado=1;
+                    $mensajeAux->archivo_id=array_key_exists('archivo_id', $data) ? $data['archivo_id']: "";
+                    $mensajeAux->reponsed_at=date('Y-m-d H:i:s');
+                    $mensajeAux->updated_at=date('Y-m-d H:i:s');
+                    $mensajeAux->cargo_id=$data['nivelesSelecciondos'][$i];
+                    $mensajeAux->save();
+                    $id=$mensajeAux->id;
+                }
+                else{
+                    $mensaje= new Mensaje;
+                    $mensaje->activista_id=$mensajeAux->activista_id;
+                    $mensaje->asunto=$mensajeAux->asunto;
+                    $mensaje->mensaje=$mensajeAux->mensaje;
+                    $mensaje->estado=1;
+                    $mensaje->activo=1;
+                    $mensaje->archivo_id=array_key_exists('archivo_id', $data) ? $data['archivo_id']: "";
+                    $mensaje->reponsed_at=date('Y-m-d H:i:s');
+                    $mensaje->updated_at=date('Y-m-d H:i:s');
+                    $mensaje->cargo_id=$data['nivelesSelecciondos'][$i];
+                    $mensaje->save();
+                    $id=$mensaje->id;
+                }
+
+                $id = DB::table("respuestas")->insertGetId(array(
+                    'mensaje_id' => $id,
+                    'respondido_por' => $this->userID,
+                    'respondido_at' => date('Y-m-d H:i:s'),
+                    'respuesta' => $data['respuesta'],
+                    'cargo_id' => $data['nivelesSelecciondos'][$i],
+                    'estado' => 1,
+                    'created_at'=>date('Y-m-d H:i:s'),
+                ));
+            }
+            
+            DB::commit();
 
             $results = array(
                 "code"=>"ok",
@@ -189,18 +217,14 @@ class ComunicacionController extends \BaseController
 
     public function getTipoacceso($tipo_acceso_id = 0) {
 
-        $sql = 'SELECT 0 id,"Todos" nombre
-                UNION
-                SELECT id,nombre from cargos where estado = 1';
+        $sql = 'SELECT id,nombre from cargos where estado = 1';
 
         return Response::json(DB::select($sql));
     }
 
     public function postTipoacceso($tipo_acceso_id = 0) {
 
-        $sql = 'SELECT 0 id,"Todos" nombre
-                UNION
-                SELECT id,nombre from cargos where estado = 1';
+        $sql = 'SELECT id,nombre from cargos where estado = 1';
 
         return Response::json(DB::select($sql));
     }

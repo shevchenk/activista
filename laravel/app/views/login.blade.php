@@ -86,7 +86,7 @@
 			<div class="col-md-12 row">
 				<div class=" radio col-xs-8">
 					<label>
-                        <input type='radio' name='rdb_check' value='8' class='flat-red'  >&nbsp;Sé un Simptizante
+                        <input type='radio' name='rdb_check' value='9' class='flat-red'  >&nbsp;Sé un Simptizante
                     </label>
 				</div>
 				<div class="col-xs-3">
@@ -96,7 +96,7 @@
 			<div class="col-md-12 row">
 				<div class="radio col-xs-8">
 					<label>
-                        <input type='radio' name='rdb_check' value='7' class='flat-red' >&nbsp;Sé un Seguidor
+                        <input type='radio' name='rdb_check' value='8' class='flat-red' >&nbsp;Sé un Seguidor
                     </label>
 				</div>
 				<div class="col-xs-3">
