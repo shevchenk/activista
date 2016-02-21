@@ -149,7 +149,7 @@ class ComunicacionController extends \BaseController
                     'respondido_at' => date('Y-m-d H:i:s'),
                     'respuesta' => $data['respuesta'],
                     'cargo_id' => $data['nivelesSelecciondos'][$i],
-                    'archivo_id' => $data['respuesta_archivo_id'],
+                    'archivo_id' => array_key_exists('respuesta_archivo_id', $data) ? $data['archirespuesta_archivo_idvo_id']: "",
                     'estado' => 1,
                     'created_at'=>date('Y-m-d H:i:s'),
                 ));
