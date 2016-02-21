@@ -245,7 +245,7 @@ class ComunicacionController extends \BaseController
             SELECT m.*, r.respuesta, r.tipo_acceso_id,r.url, r.archivo_id respuesta_archivo_id,
             IF(r.respondido_at is null,m.created_at,r.respondido_at) respondido_at
             FROM mensajes m
-            INNER join respuestas r on r.mensaje_id = m.id
+            LEFT JOIN respuestas r on r.mensaje_id = m.id
             WHERE m.estado = 1
             AND (activista_id = " .  $this->userID  . 
             " OR m.cargo_id IS NULL OR m.cargo_id = ".$this->userNivelId." )".
