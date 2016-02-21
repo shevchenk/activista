@@ -115,7 +115,8 @@ class ComunicacionController extends \BaseController
 
             DB::beginTransaction();
             $id=0;
-            $mensajeAux="";$mensaje="";
+            $mensajeAux="";
+            $mensaje="";
             for ($i=0; $i < count($data['nivelesSelecciondos']); $i++) { 
                 if( $i==0 ){
                     $mensajeAux= Mensaje::find($data['id']);
@@ -148,6 +149,7 @@ class ComunicacionController extends \BaseController
                     'respondido_at' => date('Y-m-d H:i:s'),
                     'respuesta' => $data['respuesta'],
                     'cargo_id' => $data['nivelesSelecciondos'][$i],
+                    'archivo_id' => $data['respuesta_archivo_id'],
                     'estado' => 1,
                     'created_at'=>date('Y-m-d H:i:s'),
                 ));
@@ -240,7 +242,7 @@ class ComunicacionController extends \BaseController
         }
 
         $sql = "
-            SELECT m.*, r.respuesta, r.tipo_acceso_id, r.respondido_at,r.url
+            SELECT m.*, r.respuesta, r.tipo_acceso_id, r.respondido_at,r.url, r.archivo_id respuesta_archivo_id
             FROM mensajes m
             INNER join respuestas r on r.mensaje_id = m.id
             WHERE m.estado = 1

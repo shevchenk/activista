@@ -24,11 +24,15 @@
                             </div>
                             <hr>
                             <div class="form-group">
+                                <view-file data-id="{{mensaje.archivo_id}}"></view-file>
+                            </div>
+                            <hr>
+                            <div class="form-group">
                                 <textarea required ng-model="mensaje.respuesta" id="compose-textarea" class="form-control" style="height: 100px" placeholder="Reponde el Mensaje"></textarea>
                             </div>
                             <hr>
                             <div class="form-group">
-                                <upload-file></upload-file>
+                                <upload-file data-archivo-id="mensaje.respuesta_archivo_id"></upload-file>
                             </div>
                             <hr>
                             <button type="button"
