@@ -120,6 +120,7 @@ $cargoS= Cargo::find(Auth::user()->nivel_id);
                 $scope.responderMensaje = function (form) {
                     if (form.$valid) {
                         $scope.mensaje.editar = true;
+                        $scope.mensaje.respondiendo = true;
                         $scope.mensaje.nivelesSelecciondos = $scope.nivelesSeleccionados;
                         $scope.mensaje.$save(function(response){
                             $scope.mensaje = {};

@@ -291,21 +291,44 @@
 
                 };
             })
+            .directive('viewFile', function () {
+                return {
+                    restrict: 'E',
+                    scope: {
+                        id: '@id'
+                    },
+                    templateUrl: 'modulos/comunicacion/viewFile.html',
+                    controller: function ($scope, Upload, Archivo) {
+                        if ($scope.id){
+                            $scope.file = Archivo.get({id: $scope.id});
+                        }
+                        // Actuliza el file cuando cuando carga el mensaje
+                        $scope.$watch('id', function (n , o) {
+                            if (n && $scope.id > 0) {
+                                $scope.file = Archivo.get({id: $scope.id});
+                            }
+                        });
+                    }
+                }
+            })
             .directive('uploadFile', function () {
                 return  {
                     restrict: 'E',
                     templateUrl: 'modulos/comunicacion/uploadFile.html',
+                    scope: {
+                        archivoId: '='
+                    },
                     controller: function ($scope, Upload, Archivo) {
                         $scope.progress = 0;
                         $scope.file = undefined;
                         $scope.eliminar = function () {
-                            $scope.file = undefined;
-                            $scope.mensaje.archivo_id = '';
+                            $scope.file = undefined; // Objecto
+                            $scope.archivoId = ''; // id del objecto pasado al mensaje
                         };
                         // Actuliza el file cuando cuando carga el mensaje
-                        $scope.$watch('mensaje.id', function (n , o) {
-                            if (n && $scope.mensaje.archivo_id  && $scope.mensaje.archivo_id > 0) {
-                                $scope.file = Archivo.get({id: $scope.mensaje.archivo_id});
+                        $scope.$watch('archivoId', function (n , o) {
+                            if (n && archivoId  && archivoId > 0) {
+                                $scope.file = Archivo.get({id: $scope.archivoId});
                             }
                         });
 
@@ -319,9 +342,10 @@
                                 }).then(function (resp) {
                                     $scope.progress = 0;
                                     console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-                                    if (resp.data && resp.data > 0)
+                                    if (resp.data && resp.data > 0) {
                                         $scope.file = Archivo.get({id: resp.data});
-                                    $scope.mensaje.archivo_id = resp.data;
+                                        $scope.archivoId = resp.data;
+                                    }
                                 }, function (resp) {
                                     console.log('Error status: ' + resp.status);
                                 }, function (evt) {
