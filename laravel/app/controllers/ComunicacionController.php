@@ -130,7 +130,7 @@ class ComunicacionController extends \BaseController
                 }
                 else{
                     $mensaje= new Mensaje;
-                    //$mensaje->activista_id=$mensajeAux->activista_id;
+                    $mensaje->activista_id=$mensajeAux->activista_id;
                     $mensaje->asunto=$mensajeAux->asunto;
                     $mensaje->mensaje=$mensajeAux->mensaje;
                     $mensaje->estado=1;
