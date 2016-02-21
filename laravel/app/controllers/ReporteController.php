@@ -286,7 +286,6 @@ class ReporteController extends BaseController
         $cabecera.="<th>Nombres</th>";
         $datos="";
         $cont=0;
-        array_push($sum,0);array_push($sum,0);array_push($sum,0);
         foreach ($cargos as $key => $value) {
             array_push($sum,0);
             $cont++;
@@ -318,24 +317,30 @@ class ReporteController extends BaseController
                 $total=0;
                 $inicio=0;
                 foreach ($value as $k => $v) {
-                    $total+=$v;
                     $datos.="<td>".$v."</td>";
-                    $sum[$inicio]+=$v;
-                    $inicio++;
+                    if(is_numeric($v)){
+                        $total+=$v;
+                        $sum[$inicio]+=$v;
+                        $inicio++;
+                    }
                 }
                 $datos.="<td>".$total."</td>";
+                $sum[$inicio]+=$total;
                 $datos.="</tr>";
             }
-            /*$datos.="<tr>";
-                foreach ($sum as $k => $v) { 
-                    $datos.="<td>".$v."</td>";
-                }
-            $datos.="</tr>";*/
+            $datos.="<tr>";
+                $datos.="<td>&nbsp;</td>";
+                $datos.="<td>&nbsp;</td>";
+                $datos.="<td style='text-align:right'><b>Totales:</b></td>";
+            for ($i=0; $i < count($sum); $i++) { 
+                $datos.="<td>".$sum[$i]."</td>";
+            }
+            $datos.="</tr>";
 
         return Response::json(
             array(  'datos'=> $datos,
                     'cabecera'=>$cabecera,
-                    'nro'=>$inicio,
+                    'nro'=>($inicio+3),
                     'rst' => 1
             )
         );
