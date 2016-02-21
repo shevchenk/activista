@@ -207,8 +207,8 @@ class PerfilController extends \BaseController
         $fin = $data['limit'];
         $limit = $orderby. " limit $ini,$fin ";
 
-        $activistas = DB::select('select * from activistas where  1=1 ' . $where  . $limit);
-        $count = DB::select('select count(*) count from activistas where 1=1  ' . $where );
+        $activistas = DB::select('select * from activistas where  estado=1 ' . $where  . $limit);
+        $count = DB::select('select count(*) count from activistas where estado=1  ' . $where );
 
 
         return Response::json(array('results'=>array("list"=>$activistas,'totalResults'=>$count[0]->count)));
