@@ -242,14 +242,15 @@ class ComunicacionController extends \BaseController
         }
 
         $sql = "
-            SELECT m.*, r.respuesta, r.tipo_acceso_id, r.respondido_at,r.url, r.archivo_id respuesta_archivo_id
+            SELECT m.*, r.respuesta, r.tipo_acceso_id,r.url, r.archivo_id respuesta_archivo_id,
+            IF(r.respondido_at is null,m.created_at,r.respondido_at) respondido_at
             FROM mensajes m
             INNER join respuestas r on r.mensaje_id = m.id
             WHERE m.estado = 1
             AND (activista_id = " .  $this->userID  . 
             " OR m.cargo_id IS NULL OR m.cargo_id = ".$this->userNivelId." )".
             $where.
-            " ORDER BY r.respondido_at DESC";
+            " ORDER BY respondido_at DESC";
         if ($unico)
             return Response::json(DB::select($sql)[0]);
         else

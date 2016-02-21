@@ -71,12 +71,13 @@
 				</div>					
 				<div class="load" align="center" style="display:none"><i class="fa fa-spinner fa-spin fa-3x"></i></div>
 				<hr/>
-
-				<div class="form-group">
+				<?php
+				/*<div class="form-group">
 					<div class="col-xs-12">
 						<button type="button" id="btnRegistrar" class="col-sm-12 btn btn-warning btn-lg">Registrate Aquí</button>
 					</div>
-				</div>
+				</div>*/
+				?>
 			</div>
 			</div>	
 		</form>
