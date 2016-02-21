@@ -3,7 +3,7 @@
 
     </div>
     <div class="col-sm-12">
-        <img ng-if="file.type == 'jpg' || file.type == 'jpge' || file.type == 'png'" ng-src="{{file.ubicacion}}"  height="100px" alt="">
+        <img ng-if="file.type == 'jpg' || file.type == 'jpge' || file.type == 'png'" ng-src="{{file.ubicacion}}"  height="100px" alt=""><br>
         <a target="_blank" ng-href="/public/{{file.ubicacion}}">{{file.name}}</a>
     </div>
 </div>

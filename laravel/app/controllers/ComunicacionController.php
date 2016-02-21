@@ -242,7 +242,7 @@ class ComunicacionController extends \BaseController
         }
 
         $sql = "
-            SELECT m.*, r.respuesta, r.tipo_acceso_id, r.respondido_at,r.url
+            SELECT m.*, r.respuesta, r.tipo_acceso_id, r.respondido_at,r.url, r.archivo_id respuesta_archivo_id
             FROM mensajes m
             INNER join respuestas r on r.mensaje_id = m.id
             WHERE m.estado = 1
