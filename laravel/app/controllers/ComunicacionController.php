@@ -187,26 +187,32 @@ class ComunicacionController extends \BaseController
 
     public function getComunicacion($mensaje_id = 0) {
         $data = Input::all();
-        $where = ' where  1 = 1 ';
+        $where = ' WHERE  1 = 1 ';
 
         if (!empty($data['soy']) && $data['soy'] != 'liebre') {
-            $where .= " activista_id = '.$this->userID.' ";
+            $where .= " AND m.activista_id = ".$this->userID;
         }
 
         if (isset($data['estado'])) {
-            $where .= " and estado = ".$data['estado'] . ' ' ;
+            $where .= " AND m.estado = ".$data['estado'] . ' ' ;
         }
 
         if (!empty($mensaje_id)) {
-            $where .= " and id = ".$mensaje_id . ' ' ;
+            $where .= " AND m.id = ".$mensaje_id . ' ' ;
         }
 
         if (!empty($data['soloEnviados'])) {
-            $where .= " and activista_id = " . $this->userID . ' ' ;
+            $where .= " AND m.activista_id = " . $this->userID . ' ' ;
         }
 
-        $sql = "select *  , (select CONCAT(a.nombres,' ', a.paterno) from activistas a  where mensajes.activista_id = a.id) activista_nombre " .            ' from mensajes '
-            .$where. ' order by id desc ';
+
+        $sql = "SELECT m.*  , CONCAT(a.nombres,' ', a.paterno) activista_nombre,
+                c.nombre nivel_nombre  
+                FROM mensajes m
+                INNER JOIN activistas a ON a.id=m.activista_id
+                INNER JOIN cargos c ON c.id=a.nivel_id
+                ".$where. ' 
+                ORDER BY m.id DESC ';
         $rows = DB::select($sql);
 
         if (!empty($mensaje_id)) {
@@ -241,16 +247,23 @@ class ComunicacionController extends \BaseController
             $where = ' AND m.id = '.$bandeja_id;
         }
 
-        $sql = "
-            SELECT m.*, r.respuesta, r.tipo_acceso_id,r.url, r.archivo_id respuesta_archivo_id,
-            IF(r.respondido_at is null,m.created_at,r.respondido_at) respondido_at
-            FROM mensajes m
-            LEFT JOIN respuestas r on r.mensaje_id = m.id
-            WHERE m.estado = 1
-            AND (activista_id = " .  $this->userID  . 
-            " OR m.cargo_id IS NULL OR m.cargo_id = ".$this->userNivelId." )".
-            $where.
-            " ORDER BY respondido_at DESC";
+        $sql = "    SELECT m.*, r.respuesta, r.tipo_acceso_id,r.url, r.archivo_id respuesta_archivo_id,
+                    IF(r.respondido_at is null,m.created_at,r.respondido_at) respondido_at,
+                    CONCAT(a.nombres,' ', a.paterno) activista_nombre,
+                    c.nombre nivel_nombre,
+                    CONCAT(IFNULL(a2.nombres,''),' ', IFNULL(a2.paterno,'')) activista_nombre_r,
+                    IFNULL(c.nombre,'') nivel_nombre_r 
+                    FROM mensajes m
+                    INNER JOIN activistas a ON a.id=m.activista_id
+                    INNER JOIN cargos c ON c.id=a.nivel_id
+                    LEFT JOIN respuestas r on r.mensaje_id = m.id
+                    LEFT JOIN activistas a2 ON a2.id=r.respondido_por
+                    LEFT JOIN cargos c2 ON c2.id=a2.nivel_id
+                    WHERE m.estado = 1
+                    AND (m.activista_id = " .  $this->userID  . 
+                    " OR m.cargo_id IS NULL OR m.cargo_id = ".$this->userNivelId." )".
+                    $where.
+                    " ORDER BY respondido_at DESC";
         if ($unico)
             return Response::json(DB::select($sql)[0]);
         else

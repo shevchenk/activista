@@ -8,6 +8,13 @@
             </div><!-- /.box-header -->
             <div class="box-body">
                 <div class="form-group">
+                    <b> {{mensaje.activista_nombre}}</b>
+                </div>
+                <div class="form-group">
+                    {{mensaje.nivel_nombre}}
+                </div>
+                <hr>
+                <div class="form-group">
                     <b> {{mensaje.asunto}}</b>
                 </div>
                 <div ng-if="mensaje.url == 1" class="form-group">
@@ -18,6 +25,14 @@
                 </div>
                 <div class="form-group">
                     <view-file data-id="{{mensaje.archivo_id}}"></view-file>
+                </div>
+                <hr>
+                <h3 class="box-title">Respuesta</h3>
+                <div class="form-group">
+                    <b> {{mensaje.activista_nombre_r}}</b>
+                </div>
+                <div class="form-group">
+                    {{mensaje.nivel_nombre_r}}
                 </div>
                 <hr>
                 <div class="form-group">

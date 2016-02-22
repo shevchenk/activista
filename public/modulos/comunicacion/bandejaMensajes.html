@@ -15,12 +15,16 @@
                 <div class="table-responsive mailbox-messages">
                     <table class="table table-hover table-striped">
                         <thead>
+                            <th>Usuario</th>
+                            <th>Nivel</th>
                             <th>Asunto</th>
                             <th>Mensaje</th>
                             <th>Fecha</th>
                         </thead>
                         <tbody>
                         <tr ng-repeat="mensaje in bandeja">
+                            <td class="mailbox-subject"><b>{{mensaje.activista_nombre}}</b> </td>
+                            <td class="mailbox-subject">{{mensaje.nivel_nombre}} </td>
                             <td class="mailbox-subject">
                                 <a ng-href="#/ver-respuesta/{{mensaje.id}}"><b>{{mensaje.asunto | truncate:30}}</b></a>
                                 <!-- cuando es un mensaje por fan page -->
