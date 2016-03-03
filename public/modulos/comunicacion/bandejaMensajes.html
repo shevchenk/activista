@@ -28,9 +28,12 @@
                             <td class="mailbox-subject">
                                 <a ng-href="#/ver-respuesta/{{mensaje.id}}"><b>{{mensaje.asunto | truncate:30}}</b></a>
                                 <!-- cuando es un mensaje por fan page -->
-                                <a ng-if="mensaje.url == 1" ng-href="{{mensaje.mensaje | truncate:30}}" target="_blank">Fan Page</a>
+                                
                             </td>
-                            <td class="mailbox-attachment">{{mensaje.mensaje}} </td>
+                            <td class="mailbox-attachment">
+                                <a ng-if="mensaje.url == 1" ng-href="{{mensaje.mensaje}}" target="_blank">
+                                    {{mensaje.mensaje}}
+                                </a> </td>
                             <td class="mailbox-date">{{mensaje.respondido_ago}}</td>
                         </tr>
 
