@@ -345,4 +345,93 @@ class ReporteController extends BaseController
             )
         );
     }
+
+    public function postFanpage()
+    {
+        $nivel=implode(',',Input::get('nivel_id'));
+        $cabecera="";
+
+        if( Input::get('consolidado')==0 ){
+
+        $sql="  SELECT c.nombre cargo, CONCAT(a.paterno,' ',a.materno,', ',a.nombres) persona, g.nombre, g.fb_url url, 
+                    IF(g.estado=1,'Activo','Inactivo') estado,g.inactividad,g.id,
+                    g.estado estado_id
+                FROM grupos g 
+                INNER JOIN activistas a ON a.id=g.activista_id 
+                INNER JOIN cargos c ON c.id=a.nivel_id
+                WHERE nivel_id IN ($nivel)
+                ORDER BY a.id,g.estado DESC,g.inactividad DESC";
+
+            $r=DB::select($sql);
+
+            $cabecera.="<tr>";
+            $cabecera.="<th>Cargo</th>";
+            $cabecera.="<th>Persona</th>";
+            $cabecera.="<th>Nombre</th>";
+            $cabecera.="<th>Fb Url</th>";
+            $cabecera.="<th>Inactividad</th>";
+            $cabecera.="<th>Estado</th>";
+            $cabecera.="</tr>";
+
+            $datos="";
+            foreach ($r as $key => $value) {
+                $datos.="<tr>";
+                $datos.="<td>".$value->cargo."</td>";
+                $datos.="<td>".$value->persona."</td>";
+                $datos.="<td>".$value->nombre."</td>";
+                $datos.="<td><a href='".$value->url."' target='_blank'>".$value->url."</td>";
+                $datos.="<td>".$value->inactividad."</td>";
+                if($value->estado_id==1){
+                    $datos.="<td><a class='btn btn-success btn-sm' onClick='ActualizaEstado(".$value->id.")'>".$value->estado."</a></td>";
+                }
+                else{
+                    $datos.="<td><a class='btn btn-danger btn-sm' onClick='ActualizaEstado(".$value->id.")'>".$value->estado."</a></td>";
+                }
+                $datos.="</tr>";
+            }
+
+        }
+        else{
+            $sql="  SELECT c.nombre cargo, CONCAT(a.paterno,' ',a.materno,', ',a.nombres) persona, g.nombre, 
+                    COUNT(g.id) tf, COUNT( IF(g.estado=1,g.id,NULL) ) tfa, COUNT( IF(g.estado=0,g.id,NULL) ) tfi,
+                    SUM( IF(g.estado=1,g.inactividad,NULL) ) tia, SUM( IF(g.estado=0,g.inactividad,NULL) ) tii
+                    FROM grupos g 
+                    INNER JOIN activistas a ON a.id=g.activista_id 
+                    INNER JOIN cargos c ON c.id=a.nivel_id
+                    WHERE nivel_id IN ($nivel)
+                    GROUP BY a.id
+                    ORDER BY a.id";
+
+            $r=DB::select($sql);
+
+            $cabecera.="<tr>";
+            $cabecera.="<th>Cargo</th>";
+            $cabecera.="<th>Persona</th>";
+            $cabecera.="<th>Total FP</th>";
+            $cabecera.="<th>T. FP Activo</th>";
+            $cabecera.="<th>T. FP Inactivo</th>";
+            $cabecera.="<th>T. Inactividad <br> Activo</th>";
+            $cabecera.="<th>T. Inactividad <br> Inactivo</th>";
+            $cabecera.="</tr>";
+            $datos="";
+            foreach ($r as $key => $value) {
+                $datos.="<tr>";
+                $datos.="<td>".$value->cargo."</td>";
+                $datos.="<td>".$value->persona."</td>";
+                $datos.="<td>".$value->tf."</td>";
+                $datos.="<td>".$value->tfa."</td>";
+                $datos.="<td>".$value->tfi."</td>";
+                $datos.="<td>".$value->tia."</td>";
+                $datos.="<td>".$value->tii."</td>";
+                $datos.="</tr>";
+            }
+        }
+
+        return Response::json(
+            array(  'datos'=> $datos,
+                    'cabecera'=>$cabecera,
+                    'rst' => 1
+            )
+        );
+    }
 }

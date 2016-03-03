@@ -15,6 +15,19 @@ class GrupoController extends \BaseController
         $this->userID = Auth::user()->id;
     }
 
+    public function postActualizaestado()
+    {
+        $id= Input::get('id');
+        $sql = "UPDATE grupos
+                SET inactividad=IF(estado=1,(inactividad+1),inactividad),
+                estado=(estado+1)%2
+                WHERE id=$id";
+
+        $r= DB::update($sql);
+
+        return Response::json(array('rst'=>1, 'msj'=>'Se actualizo correctamente'));
+    }
+
     public function debug($data , $kill = true) {
         var_dump($data);
         if ($kill)
