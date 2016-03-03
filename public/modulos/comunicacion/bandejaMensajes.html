@@ -33,7 +33,8 @@
                             <td class="mailbox-attachment">
                                 <a ng-if="mensaje.url == 1" ng-href="{{mensaje.mensaje}}" target="_blank">
                                     {{mensaje.mensaje}}
-                                </a> </td>
+                                </a>
+                                <div ng-if="mensaje.url != 1 " > {{mensaje.mensaje}} </div> </td>
                             <td class="mailbox-date">{{mensaje.respondido_ago}}</td>
                         </tr>
 
