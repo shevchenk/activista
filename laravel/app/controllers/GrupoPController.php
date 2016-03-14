@@ -7,7 +7,7 @@ class GrupoPController extends \BaseController
     {
         //si la peticion es ajax
         if ( Request::ajax() ) {
-            $cargos = grupo::getCargar();
+            $cargos = Grupo::getCargar();
             return Response::json(array('rst'=>1,'datos'=>$cargos));
         }
     }
