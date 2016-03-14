@@ -1,22 +1,13 @@
 <?php
 
-class TGrupoController extends \BaseController
+class GrupoPController extends \BaseController
 {
 
     public function postCargar()
     {
         //si la peticion es ajax
         if ( Request::ajax() ) {
-            $cargos = Tgrupo::getTgrupo();
-            return Response::json(array('rst'=>1,'datos'=>$cargos));
-        }
-    }
-
-    public function postListar()
-    {
-        //si la peticion es ajax
-        if ( Request::ajax() ) {
-            $cargos = Tgrupo::getListar();
+            $cargos = grupo::getCargar();
             return Response::json(array('rst'=>1,'datos'=>$cargos));
         }
     }
@@ -48,8 +39,9 @@ class TGrupoController extends \BaseController
                 );
             }
 
-            $tgrupo = new Tgrupo;
+            $tgrupo = new Grupo;
             $tgrupo->nombre = Input::get('nombre');
+            $tgrupo->tipo_grupo_id = Input::get('grupo');
             $tgrupo->estado = Input::get('estado');
             $tgrupo->usuario_created_at = Auth::user()->id;
             $tgrupo->save();
@@ -89,8 +81,9 @@ class TGrupoController extends \BaseController
             }
             $cargoId = Input::get('id');
 
-            $tgrupo = Tgrupo::find($cargoId);
+            $tgrupo = Grupo::find($cargoId);
             $tgrupo->nombre = Input::get('nombre');
+            $tgrupo->tipo_grupo_id = Input::get('grupo');
             $tgrupo->estado = Input::get('estado');
             $tgrupo->usuario_updated_at = Auth::user()->id;
             $tgrupo->save();
@@ -110,9 +103,9 @@ class TGrupoController extends \BaseController
         if ( Request::ajax() ) {
             $estado = Input::get('estado');
             $id = Input::get('id');
-            $tgrupo = Tgrupo::find($id);
+            $tgrupo = Grupo::find($id);
             $tgrupo->usuario_updated_at = Auth::user()->id;
-            $tgrupo->estado = Input::get('estado');
+            $tgrupo->estado = $estado;
             $tgrupo->save();
 
             return Response::json(

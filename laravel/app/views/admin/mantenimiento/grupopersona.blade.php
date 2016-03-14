@@ -8,21 +8,21 @@
 
     @include( 'admin.js.slct_global_ajax' )
     @include( 'admin.js.slct_global' )
-    @include( 'admin.mantenimiento.js.tipogrupopersona_ajax' )
-    @include( 'admin.mantenimiento.js.tipogrupopersona' )
+    @include( 'admin.mantenimiento.js.grupopersona_ajax' )
+    @include( 'admin.mantenimiento.js.grupopersona' )
 @stop
 <!-- Right side column. Contains the navbar and content of the page -->
 @section('contenido')
     <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Tipo Grupo
+                Gestion Grupos
                 <small> </small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
                 <li><a href="#">Gestiones</a></li>
-                <li class="active">Tipo Grupo</li>
+                <li class="active">Gestion Grupos</li>
             </ol>
         </section>
 
@@ -36,18 +36,20 @@
                             <h3 class="box-title">Filtros</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body table-responsive">
-                            <table id="t_tgrupo" class="table table-bordered table-striped">
+                            <table id="t_grupo" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
+                                        <th>Grupo</th>
                                         <th>Nombre</th>
                                         <th>Estado</th>
                                         <th> [ ] </th>
                                     </tr>
                                 </thead>
-                                <tbody id="tb_tgrupo">
+                                <tbody id="tb_grupo">
                                 </tbody>
                                 <tfoot>
                                     <tr>
+                                        <th>Grupo</th>
                                         <th>Nombre</th>
                                         <th>Estado</th>
                                         <th> [ ] </th>
@@ -55,7 +57,7 @@
                                 </tfoot>
                             </table>
                             <a class='btn btn-primary btn-sm' class="btn btn-primary" 
-                            data-toggle="modal" data-target="#tgrupoModal" data-titulo="Nuevo"><i class="fa fa-plus fa-lg"></i>&nbsp;Nuevo</a>
+                            data-toggle="modal" data-target="#grupoModal" data-titulo="Nuevo"><i class="fa fa-plus fa-lg"></i>&nbsp;Nuevo</a>
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
                     <!-- Finaliza contenido -->
@@ -66,5 +68,5 @@
 @stop
 
 @section('formulario')
-     @include( 'admin.mantenimiento.form.tgrupo' )
+     @include( 'admin.mantenimiento.form.grupo' )
 @stop

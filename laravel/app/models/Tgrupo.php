@@ -16,4 +16,20 @@ class Tgrupo extends Base
 
         return $r;
     }
+
+    public static function getListar()
+    {
+        $r =DB::table('tipo_grupos_personas')
+                ->select(
+                    'id',
+                    'nombre',
+                    'estado'
+                )
+                ->where('estado','=',1)
+                ->get();
+
+        return $r;
+    }
+
+    
 }
