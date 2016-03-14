@@ -68,3 +68,4 @@ Route::controller('grupo', 'grupoController');
 Route::controller('seguidor', 'seguidorController');
 Route::controller('comunicacion', 'ComunicacionController');
 Route::controller('reporte', 'ReporteController');
+Route::controller('tgrupo', 'TGrupoController');
