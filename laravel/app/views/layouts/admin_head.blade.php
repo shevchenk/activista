@@ -22,14 +22,14 @@
                         <li class="dropdown user user-menu">                            
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <span>{{ Auth::user()->paterno." ".Auth::user()->materno." ".Auth::user()->nombre }} <i class="caret"></i></span>
+                                <span>{{ Auth::user()->paterno." ".Auth::user()->materno." ".Auth::user()->nombres }} <i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue" data-toggle="modal" data-target="#imagenModal">
                                     <img src="img/user/<?= md5('u'.Auth::user()->id).'/'.Auth::user()->imagen; ?>" class="img-circle" alt="User Image" />
                                     <p>
-                                        {{ Auth::user()->paterno." ".Auth::user()->materno." ".Auth::user()->nombre }}
+                                        {{ Auth::user()->paterno." ".Auth::user()->materno." ".Auth::user()->nombres }}
                                         <small>{{ trans('greetings.desde_usuario') }} <?php echo date( "Y-m-d",strtotime(Auth::user()->created_at) ); ?></small>
                                     </p>
                                 </li>
