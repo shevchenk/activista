@@ -2,6 +2,7 @@
 $(document).ready(function() {  
     Persona.CargarPersonas(activarTabla);
     slctGlobal.listarSlctFijo('cargo','slct_cargos');
+    slctGlobal.listarSlctFijo('grupop','slct_grupos');
 
     $('#personaModal').on('show.bs.modal', function (event) {
         
@@ -27,7 +28,7 @@ $(document).ready(function() {
             $('#form_personas #slct_estado').val(1); 
             $('#form_personas #txt_nombres').focus();
             var datos={estado:1};
-            $('#form_personas #slct_cargos').val( '' );
+            $('#form_personas #slct_cargos,#form_personas #slct_grupos').val( '' );
             $('.editar').css('display','none');
         }
         else{
@@ -44,6 +45,7 @@ $(document).ready(function() {
             $('#form_personas #slct_sexo').val( PersonaObj[persona_id].sexo );
             $('#form_personas #slct_estado').val( PersonaObj[persona_id].estado );
             $('#form_personas #slct_cargos').val( PersonaObj[persona_id].cargo_id );
+            $('#form_personas #slct_grupos').val( PersonaObj[persona_id].grupo_persona_id );
             $("#form_personas").append("<input type='hidden' value='"+PersonaObj[persona_id].id+"' name='id'>");
             $('.editar').css('display','');
             var datos={estado:1};

@@ -12,6 +12,15 @@ class GrupoPController extends \BaseController
         }
     }
 
+    public function postListar()
+    {
+        //si la peticion es ajax
+        if ( Request::ajax() ) {
+            $cargos = Grupo::getListar();
+            return Response::json(array('rst'=>1,'datos'=>$cargos));
+        }
+    }
+
     public function postCrear()
     {
         //si la peticion es ajax

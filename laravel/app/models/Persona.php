@@ -43,7 +43,7 @@ class Persona extends Base implements UserInterface, RemindableInterface
     public static function getCargar()
     {
         $sql="  SELECT a.id,a.dni,a.paterno,a.materno,a.nombres,a.email,
-                a.password, a.fecha_nacimiento,a.sexo,a.estado,
+                a.password, a.fecha_nacimiento,a.sexo,a.estado,a.grupo_persona_id,
                 MAX( IF(pc.estado=1,pc.cargo_id,NULL) ) cargo_id,
                 GROUP_CONCAT( CONCAT(c.nombre,'_',pc.created_at) SEPARATOR '|')
                 cargos

@@ -108,6 +108,12 @@
                   <select class="form-control" name="slct_cargos" id="slct_cargos">
                   </select>
                 </div>
+                <div class="col-sm-6">
+                  <label class="control-label">Grupo:
+                  </label>
+                  <select class="form-control" name="slct_grupos" id="slct_grupos">
+                  </select>
+                </div>
               </div>
             </div>
             <ul class="list-group" id="t_cargoPersona"></ul>
