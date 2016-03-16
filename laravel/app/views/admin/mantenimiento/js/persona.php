@@ -126,7 +126,7 @@ HTMLCargarPersona=function(datos){
             estadohtml='<span id="'+data.id+'" onClick="desactivar('+data.id+')" class="btn btn-success">Activo</span>';
         }
         html+="<tr>"+
-            "<td >"+data.nivel"</td>"+
+            "<td >"+data.nivel+"</td>"+
             "<td >"+data.paterno+' '+"</td>"+
             "<td >"+data.materno+"</td>"+
             "<td >"+data.nombres+"</td>"+
