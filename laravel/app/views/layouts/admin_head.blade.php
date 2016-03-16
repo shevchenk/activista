@@ -17,7 +17,7 @@
                     <span class="icon-bar"></span>
                 </a>
                 <div class="navbar-form navbar-left">
-                    <img src="img/imagenppk/portada.jpg" width="450px;" height="90px;" />
+                    <img src="img/imagenppk/freddy.jpg" width="450px;" height="90px;" />
                 </div>
                 <div class="navbar-right">
                     <ul class="nav navbar-nav">             
