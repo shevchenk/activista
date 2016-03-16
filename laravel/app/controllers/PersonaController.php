@@ -113,7 +113,9 @@ class PersonaController extends BaseController
             $activista->fecha_ingreso = date("Y-m-d");
             $activista->password =  Hash::make(Input::get('dni'));
             $activista->nivel_id = Input::get('cargos');
-            $activista->grupo_persona_id = Input::get('grupos');
+            if( Input::has('grupos') ){
+                $activista->grupo_persona_id = Input::get('grupos');
+            }
             $activista->usuario_created_at = Auth::user()->id;
             $activista->save();
 
@@ -200,7 +202,9 @@ class PersonaController extends BaseController
             if (Input::get('password')<>'') 
                 $activista->password =  Hash::make(Input::get('password'));
             $activista->nivel_id = Input::get('cargos');
-            $activista->grupo_persona_id = Input::get('grupos');
+            if( Input::has('grupos') ){
+                $activista->grupo_persona_id = Input::get('grupos');
+            }
             $activista->usuario_updated_at = Auth::user()->id;
             $activista->save();
 
