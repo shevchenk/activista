@@ -42,6 +42,7 @@
                                     <table id="t_personas" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
+                                                <th>Nivel</th>
                                                 <th>Apellido P</th>
                                                 <th>Apellido M</th>
                                                 <th>Nombres</th>
@@ -56,6 +57,7 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
+                                                <th>Nivel</th>
                                                 <th>Apellido P</th>
                                                 <th>Apellido M</th>
                                                 <th>Nombres</th>

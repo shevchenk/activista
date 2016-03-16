@@ -42,7 +42,7 @@ class Persona extends Base implements UserInterface, RemindableInterface
      */
     public static function getCargar()
     {
-        $sql="  SELECT a.id,a.dni,a.paterno,a.materno,a.nombres,a.email,
+        $sql="  SELECT a.id,a.dni,a.paterno,a.materno,a.nombres,a.email,c2.nombre nivel,
                 a.password, a.fecha_nacimiento,a.sexo,a.estado,a.grupo_persona_id,
                 MAX( IF(pc.estado=1,pc.cargo_id,NULL) ) cargo_id,
                 GROUP_CONCAT( CONCAT(c.nombre,'_',pc.created_at) SEPARATOR '|')
@@ -50,6 +50,7 @@ class Persona extends Base implements UserInterface, RemindableInterface
                 FROM activistas a
                 INNER JOIN activista_cargo pc ON a.id=pc.activista_id
                 INNER JOIN cargos c ON c.id=pc.cargo_id
+                INNER JOIN cargos c2 ON c2.id=a.nivel_id
                 GROUP BY a.id";
         $personas = DB::select($sql);
 
