@@ -22,7 +22,8 @@ class ReporteController extends BaseController
         $cargos[9]="Simpatizante";
 
         $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
-                        c.nombre, count(g.id) cant,a.nivel_id
+                        c.nombre, count(g.id) cant,a.nivel_id,
+                        a.dni,a.celular,a.email
                 FROM activistas a
                 INNER JOIN cargos c ON a.nivel_id=c.id
                 LEFT JOIN grupos g ON a.id= g.activista_id
@@ -42,7 +43,7 @@ class ReporteController extends BaseController
                     $html.="<td>".$value->nombres."</td>";
                     $html.="<td>".$value->dni."</td>";
                     $html.="<td>".$value->email."</td>";
-                    $html.="<td>".$value->celul."</td>";
+                    $html.="<td>".$value->celular."</td>";
                     $html.="<td>".$value->cant."</td>";
                 $html.="</tr>";
                 $niveles[$value->nivel_id]++;
@@ -50,7 +51,8 @@ class ReporteController extends BaseController
                 //array_push($ids,$value->id);
                 $id=$value->id;
                 $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
-                                c.nombre, count(g.id) cant,a.nivel_id
+                                c.nombre, count(g.id) cant,a.nivel_id,
+                                a.dni,a.celular,a.email
                         FROM activistas a
                         INNER JOIN cargos c ON a.nivel_id=c.id
                         LEFT JOIN grupos g ON a.id= g.activista_id
@@ -67,7 +69,7 @@ class ReporteController extends BaseController
                         $html.="<td>".$value2->nombres."</td>";
                         $html.="<td>".$value2->dni."</td>";
                         $html.="<td>".$value2->email."</td>";
-                        $html.="<td>".$value2->celul."</td>";
+                        $html.="<td>".$value2->celular."</td>";
                         $html.="<td>".$value2->cant."</td>";
                     $html.="</tr>";
                     $niveles[$value2->nivel_id]++;
@@ -75,7 +77,8 @@ class ReporteController extends BaseController
 
                     $id=$value2->id;
                     $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
-                                    c.nombre, count(g.id) cant,a.nivel_id
+                                    c.nombre, count(g.id) cant,a.nivel_id,
+                                    a.dni,a.celular,a.email
                             FROM activistas a
                             INNER JOIN cargos c ON a.nivel_id=c.id
                             LEFT JOIN grupos g ON a.id= g.activista_id
@@ -92,7 +95,7 @@ class ReporteController extends BaseController
                             $html.="<td>".$value3->nombres."</td>";
                             $html.="<td>".$value3->dni."</td>";
                             $html.="<td>".$value3->email."</td>";
-                            $html.="<td>".$value3->celul."</td>";
+                            $html.="<td>".$value3->celular."</td>";
                             $html.="<td>".$value3->cant."</td>";
                         $html.="</tr>";
                         $niveles[$value3->nivel_id]++;
@@ -100,7 +103,8 @@ class ReporteController extends BaseController
 
                         $id=$value3->id;
                         $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
-                                        c.nombre, count(g.id) cant,a.nivel_id
+                                        c.nombre, count(g.id) cant,a.nivel_id,
+                                        a.dni,a.celular,a.email
                                 FROM activistas a
                                 INNER JOIN cargos c ON a.nivel_id=c.id
                                 LEFT JOIN grupos g ON a.id= g.activista_id
@@ -117,7 +121,7 @@ class ReporteController extends BaseController
                                 $html.="<td>".$value4->nombres."</td>";
                                 $html.="<td>".$value4->dni."</td>";
                                 $html.="<td>".$value4->email."</td>";
-                                $html.="<td>".$value4->celul."</td>";
+                                $html.="<td>".$value4->celular."</td>";
                                 $html.="<td>".$value4->cant."</td>";
                             $html.="</tr>";
                             $niveles[$value4->nivel_id]++;
@@ -125,7 +129,8 @@ class ReporteController extends BaseController
 
                             $id=$value4->id;
                             $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
-                                            c.nombre, count(g.id) cant,a.nivel_id
+                                            c.nombre, count(g.id) cant,a.nivel_id,
+                                            a.dni,a.celular,a.email
                                     FROM activistas a
                                     INNER JOIN cargos c ON a.nivel_id=c.id
                                     LEFT JOIN grupos g ON a.id= g.activista_id
@@ -142,7 +147,7 @@ class ReporteController extends BaseController
                                     $html.="<td>".$value5->nombres."</td>";
                                     $html.="<td>".$value5->dni."</td>";
                                     $html.="<td>".$value5->email."</td>";
-                                    $html.="<td>".$value5->celul."</td>";
+                                    $html.="<td>".$value5->celular."</td>";
                                     $html.="<td>".$value5->cant."</td>";
                                 $html.="</tr>";
                                 $niveles[$value5->nivel_id]++;
@@ -150,7 +155,8 @@ class ReporteController extends BaseController
 
                                 $id=$value5->id;
                                 $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
-                                                c.nombre, count(g.id) cant,a.nivel_id
+                                                c.nombre, count(g.id) cant,a.nivel_id,
+                                                a.dni,a.celular,a.email
                                         FROM activistas a
                                         INNER JOIN cargos c ON a.nivel_id=c.id
                                         LEFT JOIN grupos g ON a.id= g.activista_id
@@ -167,7 +173,7 @@ class ReporteController extends BaseController
                                         $html.="<td>".$value6->nombres."</td>";
                                         $html.="<td>".$value6->dni."</td>";
                                         $html.="<td>".$value6->email."</td>";
-                                        $html.="<td>".$value6->celul."</td>";
+                                        $html.="<td>".$value6->celular."</td>";
                                         $html.="<td>".$value6->cant."</td>";
                                     $html.="</tr>";
                                     $niveles[$value6->nivel_id]++;
@@ -175,7 +181,8 @@ class ReporteController extends BaseController
 
                                     $id=$value6->id;
                                     $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
-                                                    c.nombre, count(g.id) cant,a.nivel_id
+                                                    c.nombre, count(g.id) cant,a.nivel_id,
+                                                    a.dni,a.celular,a.email
                                             FROM activistas a
                                             INNER JOIN cargos c ON a.nivel_id=c.id
                                             LEFT JOIN grupos g ON a.id= g.activista_id
@@ -192,7 +199,7 @@ class ReporteController extends BaseController
                                             $html.="<td>".$value7->nombres."</td>";
                                             $html.="<td>".$value7->dni."</td>";
                                             $html.="<td>".$value7->email."</td>";
-                                            $html.="<td>".$value7->celul."</td>";
+                                            $html.="<td>".$value7->celular."</td>";
                                             $html.="<td>".$value7->cant."</td>";
                                         $html.="</tr>";
                                         $niveles[$value7->nivel_id]++;
@@ -200,7 +207,8 @@ class ReporteController extends BaseController
 
                                         $id=$value7->id;
                                         $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
-                                                        c.nombre, count(g.id) cant,a.nivel_id
+                                                        c.nombre, count(g.id) cant,a.nivel_id,
+                                                        a.dni,a.celular,a.email
                                                 FROM activistas a
                                                 INNER JOIN cargos c ON a.nivel_id=c.id
                                                 LEFT JOIN grupos g ON a.id= g.activista_id
@@ -217,7 +225,7 @@ class ReporteController extends BaseController
                                                 $html.="<td>".$value8->nombres."</td>";
                                                 $html.="<td>".$value8->dni."</td>";
                                                 $html.="<td>".$value8->email."</td>";
-                                                $html.="<td>".$value8->celul."</td>";
+                                                $html.="<td>".$value8->celular."</td>";
                                                 $html.="<td>".$value8->cant."</td>";
                                             $html.="</tr>";
                                             $niveles[$value8->nivel_id]++;
@@ -225,7 +233,8 @@ class ReporteController extends BaseController
 
                                             $id=$value8->id;
                                             $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
-                                                            c.nombre, count(g.id) cant,a.nivel_id
+                                                            c.nombre, count(g.id) cant,a.nivel_id,
+                                                            a.dni,a.celular,a.email
                                                     FROM activistas a
                                                     INNER JOIN cargos c ON a.nivel_id=c.id
                                                     LEFT JOIN grupos g ON a.id= g.activista_id
@@ -242,7 +251,7 @@ class ReporteController extends BaseController
                                                     $html.="<td>".$value9->nombres."</td>";
                                                     $html.="<td>".$value9->dni."</td>";
                                                     $html.="<td>".$value9->email."</td>";
-                                                    $html.="<td>".$value9->celul."</td>";
+                                                    $html.="<td>".$value9->celular."</td>";
                                                     $html.="<td>".$value9->cant."</td>";
                                                 $html.="</tr>";
                                                 $niveles[$value9->nivel_id]++;
@@ -318,7 +327,8 @@ class ReporteController extends BaseController
         $cargos[9]="Simpatizante";
 
         $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
-                        c.nombre, count(g.id) cant,a.nivel_id
+                        c.nombre, count(g.id) cant,a.nivel_id,
+                        a.dni,a.celular,a.email
                 FROM activistas a
                 INNER JOIN cargos c ON a.nivel_id=c.id
                 LEFT JOIN grupos g ON a.id= g.activista_id
@@ -336,6 +346,9 @@ class ReporteController extends BaseController
                     $html.="<td>".$value->paterno."</td>";
                     $html.="<td>".$value->materno."</td>";
                     $html.="<td>".$value->nombres."</td>";
+                    $html.="<td>".$value->dni."</td>";
+                    $html.="<td>".$value->email."</td>";
+                    $html.="<td>".$value->celular."</td>";
                     $html.="<td>".$value->cant."</td>";
                 $html.="</tr>";
                 $niveles[$value->nivel_id]++;
@@ -343,7 +356,8 @@ class ReporteController extends BaseController
                 //array_push($ids,$value->id);
                 $id=$value->id;
                 $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
-                                c.nombre, count(g.id) cant,a.nivel_id
+                                c.nombre, count(g.id) cant,a.nivel_id,
+                                a.dni,a.celular,a.email
                         FROM activistas a
                         INNER JOIN cargos c ON a.nivel_id=c.id
                         LEFT JOIN grupos g ON a.id= g.activista_id
@@ -358,6 +372,9 @@ class ReporteController extends BaseController
                         $html.="<td>".$value2->paterno."</td>";
                         $html.="<td>".$value2->materno."</td>";
                         $html.="<td>".$value2->nombres."</td>";
+                        $html.="<td>".$value2->dni."</td>";
+                        $html.="<td>".$value2->email."</td>";
+                        $html.="<td>".$value2->celular."</td>";
                         $html.="<td>".$value2->cant."</td>";
                     $html.="</tr>";
                     $niveles[$value2->nivel_id]++;
@@ -365,7 +382,8 @@ class ReporteController extends BaseController
 
                     $id=$value2->id;
                     $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
-                                    c.nombre, count(g.id) cant,a.nivel_id
+                                    c.nombre, count(g.id) cant,a.nivel_id,
+                                    a.dni,a.celular,a.email
                             FROM activistas a
                             INNER JOIN cargos c ON a.nivel_id=c.id
                             LEFT JOIN grupos g ON a.id= g.activista_id
@@ -380,6 +398,9 @@ class ReporteController extends BaseController
                             $html.="<td>".$value3->paterno."</td>";
                             $html.="<td>".$value3->materno."</td>";
                             $html.="<td>".$value3->nombres."</td>";
+                            $html.="<td>".$value3->dni."</td>";
+                            $html.="<td>".$value3->email."</td>";
+                            $html.="<td>".$value3->celular."</td>";
                             $html.="<td>".$value3->cant."</td>";
                         $html.="</tr>";
                         $niveles[$value3->nivel_id]++;
@@ -387,7 +408,8 @@ class ReporteController extends BaseController
 
                         $id=$value3->id;
                         $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
-                                        c.nombre, count(g.id) cant,a.nivel_id
+                                        c.nombre, count(g.id) cant,a.nivel_id,
+                                        a.dni,a.celular,a.email
                                 FROM activistas a
                                 INNER JOIN cargos c ON a.nivel_id=c.id
                                 LEFT JOIN grupos g ON a.id= g.activista_id
@@ -402,6 +424,9 @@ class ReporteController extends BaseController
                                 $html.="<td>".$value4->paterno."</td>";
                                 $html.="<td>".$value4->materno."</td>";
                                 $html.="<td>".$value4->nombres."</td>";
+                                $html.="<td>".$value4->dni."</td>";
+                                $html.="<td>".$value4->email."</td>";
+                                $html.="<td>".$value4->celular."</td>";
                                 $html.="<td>".$value4->cant."</td>";
                             $html.="</tr>";
                             $niveles[$value4->nivel_id]++;
@@ -409,7 +434,8 @@ class ReporteController extends BaseController
 
                             $id=$value4->id;
                             $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
-                                            c.nombre, count(g.id) cant,a.nivel_id
+                                            c.nombre, count(g.id) cant,a.nivel_id,
+                                            a.dni,a.celular,a.email
                                     FROM activistas a
                                     INNER JOIN cargos c ON a.nivel_id=c.id
                                     LEFT JOIN grupos g ON a.id= g.activista_id
@@ -424,6 +450,9 @@ class ReporteController extends BaseController
                                     $html.="<td>".$value5->paterno."</td>";
                                     $html.="<td>".$value5->materno."</td>";
                                     $html.="<td>".$value5->nombres."</td>";
+                                    $html.="<td>".$value5->dni."</td>";
+                                    $html.="<td>".$value5->email."</td>";
+                                    $html.="<td>".$value5->celular."</td>";
                                     $html.="<td>".$value5->cant."</td>";
                                 $html.="</tr>";
                                 $niveles[$value5->nivel_id]++;
@@ -431,7 +460,8 @@ class ReporteController extends BaseController
 
                                 $id=$value5->id;
                                 $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
-                                                c.nombre, count(g.id) cant,a.nivel_id
+                                                c.nombre, count(g.id) cant,a.nivel_id,
+                                                a.dni,a.celular,a.email
                                         FROM activistas a
                                         INNER JOIN cargos c ON a.nivel_id=c.id
                                         LEFT JOIN grupos g ON a.id= g.activista_id
@@ -446,6 +476,9 @@ class ReporteController extends BaseController
                                         $html.="<td>".$value6->paterno."</td>";
                                         $html.="<td>".$value6->materno."</td>";
                                         $html.="<td>".$value6->nombres."</td>";
+                                        $html.="<td>".$value6->dni."</td>";
+                                        $html.="<td>".$value6->email."</td>";
+                                        $html.="<td>".$value6->celular."</td>";
                                         $html.="<td>".$value6->cant."</td>";
                                     $html.="</tr>";
                                     $niveles[$value6->nivel_id]++;
@@ -453,7 +486,8 @@ class ReporteController extends BaseController
 
                                     $id=$value6->id;
                                     $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
-                                                    c.nombre, count(g.id) cant,a.nivel_id
+                                                    c.nombre, count(g.id) cant,a.nivel_id,
+                                                    a.dni,a.celular,a.email
                                             FROM activistas a
                                             INNER JOIN cargos c ON a.nivel_id=c.id
                                             LEFT JOIN grupos g ON a.id= g.activista_id
@@ -468,6 +502,9 @@ class ReporteController extends BaseController
                                             $html.="<td>".$value7->paterno."</td>";
                                             $html.="<td>".$value7->materno."</td>";
                                             $html.="<td>".$value7->nombres."</td>";
+                                            $html.="<td>".$value7->dni."</td>";
+                                            $html.="<td>".$value7->email."</td>";
+                                            $html.="<td>".$value7->celular."</td>";
                                             $html.="<td>".$value7->cant."</td>";
                                         $html.="</tr>";
                                         $niveles[$value7->nivel_id]++;
@@ -475,7 +512,8 @@ class ReporteController extends BaseController
 
                                         $id=$value7->id;
                                         $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
-                                                        c.nombre, count(g.id) cant,a.nivel_id
+                                                        c.nombre, count(g.id) cant,a.nivel_id,
+                                                        a.dni,a.celular,a.email
                                                 FROM activistas a
                                                 INNER JOIN cargos c ON a.nivel_id=c.id
                                                 LEFT JOIN grupos g ON a.id= g.activista_id
@@ -490,6 +528,9 @@ class ReporteController extends BaseController
                                                 $html.="<td>".$value8->paterno."</td>";
                                                 $html.="<td>".$value8->materno."</td>";
                                                 $html.="<td>".$value8->nombres."</td>";
+                                                $html.="<td>".$value8->dni."</td>";
+                                                $html.="<td>".$value8->email."</td>";
+                                                $html.="<td>".$value8->celular."</td>";
                                                 $html.="<td>".$value8->cant."</td>";
                                             $html.="</tr>";
                                             $niveles[$value8->nivel_id]++;
@@ -497,7 +538,8 @@ class ReporteController extends BaseController
 
                                             $id=$value8->id;
                                             $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
-                                                            c.nombre, count(g.id) cant,a.nivel_id
+                                                            c.nombre, count(g.id) cant,a.nivel_id,
+                                                            a.dni,a.celular,a.email
                                                     FROM activistas a
                                                     INNER JOIN cargos c ON a.nivel_id=c.id
                                                     LEFT JOIN grupos g ON a.id= g.activista_id
@@ -512,6 +554,9 @@ class ReporteController extends BaseController
                                                     $html.="<td>".$value9->paterno."</td>";
                                                     $html.="<td>".$value9->materno."</td>";
                                                     $html.="<td>".$value9->nombres."</td>";
+                                                    $html.="<td>".$value9->dni."</td>";
+                                                    $html.="<td>".$value9->email."</td>";
+                                                    $html.="<td>".$value9->celular."</td>";
                                                     $html.="<td>".$value9->cant."</td>";
                                                 $html.="</tr>";
                                                 $niveles[$value9->nivel_id]++;
