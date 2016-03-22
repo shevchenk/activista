@@ -81,25 +81,6 @@
                     </div>
                 </div>
             </div><!-- /.box -->
-            <br>
-            <br>
-            <div class="box-body table-responsive">
-                <div class="row form-group reportes" id="reporte2" style="display:none;">
-                    <div class="col-sm-12">
-                        <table id="t_reporte2" class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Nivel</th>
-                                    <th>Total Personas</th>
-                                    <th>Total Paginas</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tb_reporte2">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
             <!-- Finaliza contenido -->
         </div>
     </section><!-- /.content -->
