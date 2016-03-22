@@ -360,7 +360,7 @@ class ReporteController extends BaseController
         $nivelanidado="N".$id;
             foreach ($r as $key => $value) {
                 if( Input::has('persona') ){
-                    $html.="<tr style='background-color: ".$color[$value->nivel_id].";color: ".$color[$value->nivel_id].";'>";
+                    $html.="<tr style='background-color: ".$color[$value->nivel_id].";color: ".$colort[$value->nivel_id].";'>";
                 }
                 else{
                     $html.="<tr id='tr_".$value->id."'>";
@@ -404,7 +404,7 @@ class ReporteController extends BaseController
 
                 foreach ($r2 as $key2 => $value2) {
                     if( Input::has('persona') ){
-                        $html.="<tr style='background-color: ".$color[$value2->nivel_id].";color: ".$color[$value2->nivel_id].";'>";
+                        $html.="<tr style='background-color: ".$color[$value2->nivel_id].";color: ".$colort[$value2->nivel_id].";'>";
                     }
                     else{
                         $html.="<tr id='tr_".$value2->id."'>";
@@ -447,7 +447,7 @@ class ReporteController extends BaseController
 
                     foreach ($r3 as $key3 => $value3) {
                         if( Input::has('persona') ){
-                            $html.="<tr style='background-color: ".$color[$value3->nivel_id].";color: ".$color[$value3->nivel_id].";'>";
+                            $html.="<tr style='background-color: ".$color[$value3->nivel_id].";color: ".$colort[$value3->nivel_id].";'>";
                         }
                         else{
                             $html.="<tr id='tr_".$value3->id."'>";
@@ -490,7 +490,7 @@ class ReporteController extends BaseController
 
                         foreach ($r4 as $key4 => $value4) {
                             if( Input::has('persona') ){
-                                $html.="<tr style='background-color: ".$color[$value4->nivel_id].";color: ".$color[$value4->nivel_id].";'>";
+                                $html.="<tr style='background-color: ".$color[$value4->nivel_id].";color: ".$colort[$value4->nivel_id].";'>";
                             }
                             else{
                                 $html.="<tr id='tr_".$value4->id."'>";
@@ -533,7 +533,7 @@ class ReporteController extends BaseController
 
                             foreach ($r5 as $key5 => $value5) {
                                 if( Input::has('persona') ){
-                                    $html.="<tr style='background-color: ".$color[$value5->nivel_id].";color: ".$color[$value5->nivel_id].";'>";
+                                    $html.="<tr style='background-color: ".$color[$value5->nivel_id].";color: ".$colort[$value5->nivel_id].";'>";
                                 }
                                 else{
                                     $html.="<tr id='tr_".$value5->id."'>";
@@ -576,7 +576,7 @@ class ReporteController extends BaseController
 
                                 foreach ($r6 as $key6 => $value6) {
                                     if( Input::has('persona') ){
-                                        $html.="<tr style='background-color: ".$color[$value6->nivel_id].";color: ".$color[$value6->nivel_id].";'>";
+                                        $html.="<tr style='background-color: ".$color[$value6->nivel_id].";color: ".$colort[$value6->nivel_id].";'>";
                                     }
                                     else{
                                         $html.="<tr id='tr_".$value6->id."'>";
@@ -619,7 +619,7 @@ class ReporteController extends BaseController
 
                                     foreach ($r7 as $key7 => $value7) {
                                         if( Input::has('persona') ){
-                                            $html.="<tr style='background-color: ".$color[$value7->nivel_id].";color: ".$color[$value7->nivel_id].";'>";
+                                            $html.="<tr style='background-color: ".$color[$value7->nivel_id].";color: ".$colort[$value7->nivel_id].";'>";
                                         }
                                         else{
                                             $html.="<tr id='tr_".$value7->id."'>";
@@ -662,7 +662,7 @@ class ReporteController extends BaseController
 
                                         foreach ($r8 as $key8 => $value8) {
                                             if( Input::has('persona') ){
-                                                $html.="<tr style='background-color: ".$color[$value8->nivel_id].";color: ".$color[$value8->nivel_id].";'>";
+                                                $html.="<tr style='background-color: ".$color[$value8->nivel_id].";color: ".$colort[$value8->nivel_id].";'>";
                                             }
                                             else{
                                                 $html.="<tr id='tr_".$value8->id."'>";
@@ -705,7 +705,7 @@ class ReporteController extends BaseController
 
                                             foreach ($r9 as $key9 => $value9) {
                                                 if( Input::has('persona') ){
-                                                    $html.="<tr style='background-color: ".$color[$value9->nivel_id].";color: ".$color[$value9->nivel_id].";'>";
+                                                    $html.="<tr style='background-color: ".$color[$value9->nivel_id].";color: ".$colort[$value9->nivel_id].";'>";
                                                 }
                                                 else{
                                                     $html.="<tr id='tr_".$value9->id."'>";
