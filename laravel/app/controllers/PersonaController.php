@@ -2,6 +2,71 @@
 
 class PersonaController extends BaseController
 {
+
+    public function postEditmultiple()
+    {
+        if ( Request::ajax() ) {
+            $regex='regex:/^([a-zA-Z .,ñÑÁÉÍÓÚáéíóú]{2,60})$/i';
+            $required='required';
+
+            $mensaje= array(
+                'required'    => ':attribute Es requerido',
+                'regex'        => ':attribute Solo debe ser Texto',
+            );
+
+            $error=false;
+            $mensajes=array();
+            $personas=Input::get('persona');
+            $personaError=0;
+
+            DB::beginTransaction();
+            for($i=0;$i<count($personas);$i++){
+                $reglas = array(
+                'email' => 'email|unique:activistas,email,'.$personas[$i],
+                'celular' => 'numeric',
+                );
+
+                $datos=array(
+                    'email'=> Input::get('email_'.$personas[$i]),
+                    'celular'=>Input::get('celular_'.$personas[$i])
+                );
+
+                $validator = Validator::make($datos, $reglas, $mensaje);
+
+                if ( $validator->fails() ) {
+                    $error=true;
+                    $mensajes=$validator->messages();
+                    $personaError=$personas[$i];
+                    break;
+                }
+
+                $activista = Usuario::find($personas[$i]);
+                $activista->celular = Input::get('celular_'.$personas[$i]);
+                $activista->email = Input::get('email_'.$personas[$i]);
+                $activista->save();
+            }
+
+            if($error){
+                DB::rollback();
+                return Response::json(
+                    array(
+                    'rst'=>2,
+                    'msj'=>$mensajes,
+                    'personaError'=>$personaError
+                    )
+                );
+            }
+
+            DB::commit();
+            return Response::json(
+                array(
+                'rst'=>1,
+                'msj'=>'Registro actualizado correctamente',
+                )
+            );
+        }
+    }
+
     public function postNivel()
     {
         //si la peticion es ajax
