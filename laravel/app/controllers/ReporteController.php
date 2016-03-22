@@ -375,8 +375,8 @@ class ReporteController extends BaseController
                         $html.="<td>".$value->celular."</td>";
                     }
                     else{
-                        $html.="<td><input type='text' onKeyPress='AutoCheck(".$value->id.");' value='".$value->email."' name='txt_email_".$value->id."' id='txt_email_".$value->id."'></td>";
-                        $html.="<td><input type='text' onKeyPress='AutoCheck(".$value->id.");' value='".$value->celular."' name='txt_celular_".$value->id."' id='txt_celular_".$value->id."'></td>";
+                        $html.="<td><input type='text' class='form-control' onKeyPress='AutoCheck(".$value->id.");' value='".$value->email."' name='txt_email_".$value->id."' id='txt_email_".$value->id."'></td>";
+                        $html.="<td><input type='text' class='form-control' onKeyPress='AutoCheck(".$value->id.");' value='".$value->celular."' name='txt_celular_".$value->id."' id='txt_celular_".$value->id."'></td>";
                     }
 
                     if( Input::has('persona') ){
@@ -419,8 +419,8 @@ class ReporteController extends BaseController
                             $html.="<td>".$value2->celular."</td>";
                         }
                         else{
-                            $html.="<td><input type='text' onKeyPress='AutoCheck(".$value2->id.");' value='".$value2->email."' name='txt_email_".$value2->id."' id='txt_email_".$value2->id."'></td>";
-                            $html.="<td><input type='text' onKeyPress='AutoCheck(".$value2->id.");' value='".$value2->celular."' name='txt_celular_".$value2->id."' id='txt_celular_".$value2->id."'></td>";
+                            $html.="<td><input type='text' class='form-control' onKeyPress='AutoCheck(".$value2->id.");' value='".$value2->email."' name='txt_email_".$value2->id."' id='txt_email_".$value2->id."'></td>";
+                            $html.="<td><input type='text' class='form-control' onKeyPress='AutoCheck(".$value2->id.");' value='".$value2->celular."' name='txt_celular_".$value2->id."' id='txt_celular_".$value2->id."'></td>";
                         }
 
                         if( Input::has('persona') ){
@@ -462,8 +462,8 @@ class ReporteController extends BaseController
                                 $html.="<td>".$value3->celular."</td>";
                             }
                             else{
-                                $html.="<td><input type='text' onKeyPress='AutoCheck(".$value3->id.");' value='".$value3->email."' name='txt_email_".$value3->id."' id='txt_email_".$value3->id."'></td>";
-                                $html.="<td><input type='text' onKeyPress='AutoCheck(".$value3->id.");' value='".$value3->celular."' name='txt_celular_".$value3->id."' id='txt_celular_".$value3->id."'></td>";
+                                $html.="<td><input type='text' class='form-control' onKeyPress='AutoCheck(".$value3->id.");' value='".$value3->email."' name='txt_email_".$value3->id."' id='txt_email_".$value3->id."'></td>";
+                                $html.="<td><input type='text' class='form-control' onKeyPress='AutoCheck(".$value3->id.");' value='".$value3->celular."' name='txt_celular_".$value3->id."' id='txt_celular_".$value3->id."'></td>";
                             }
                         
                             if( Input::has('persona') ){
@@ -505,8 +505,8 @@ class ReporteController extends BaseController
                                     $html.="<td>".$value4->celular."</td>";
                                 }
                                 else{
-                                    $html.="<td><input type='text' onKeyPress='AutoCheck(".$value4->id.");' value='".$value4->email."' name='txt_email_".$value4->id."' id='txt_email_".$value4->id."'></td>";
-                                    $html.="<td><input type='text' onKeyPress='AutoCheck(".$value4->id.");' value='".$value4->celular."' name='txt_celular_".$value4->id."' id='txt_celular_".$value4->id."'></td>";
+                                    $html.="<td><input type='text' class='form-control' onKeyPress='AutoCheck(".$value4->id.");' value='".$value4->email."' name='txt_email_".$value4->id."' id='txt_email_".$value4->id."'></td>";
+                                    $html.="<td><input type='text' class='form-control' onKeyPress='AutoCheck(".$value4->id.");' value='".$value4->celular."' name='txt_celular_".$value4->id."' id='txt_celular_".$value4->id."'></td>";
                                 }
 
                                 if( Input::has('persona') ){
@@ -548,8 +548,8 @@ class ReporteController extends BaseController
                                         $html.="<td>".$value5->celular."</td>";
                                     }
                                     else{
-                                        $html.="<td><input type='text' onKeyPress='AutoCheck(".$value5->id.");' value='".$value5->email."' name='txt_email_".$value5->id."' id='txt_email_".$value5->id."'></td>";
-                                        $html.="<td><input type='text' onKeyPress='AutoCheck(".$value5->id.");' value='".$value5->celular."' name='txt_celular_".$value5->id."' id='txt_celular_".$value5->id."'></td>";
+                                        $html.="<td><input type='text' class='form-control' onKeyPress='AutoCheck(".$value5->id.");' value='".$value5->email."' name='txt_email_".$value5->id."' id='txt_email_".$value5->id."'></td>";
+                                        $html.="<td><input type='text' class='form-control' onKeyPress='AutoCheck(".$value5->id.");' value='".$value5->celular."' name='txt_celular_".$value5->id."' id='txt_celular_".$value5->id."'></td>";
                                     }
 
                                     if( Input::has('persona') ){
@@ -591,8 +591,8 @@ class ReporteController extends BaseController
                                             $html.="<td>".$value6->celular."</td>";
                                         }
                                         else{
-                                            $html.="<td><input type='text' onKeyPress='AutoCheck(".$value6->id.");' value='".$value6->email."' name='txt_email_".$value6->id."' id='txt_email_".$value6->id."'></td>";
-                                            $html.="<td><input type='text' onKeyPress='AutoCheck(".$value6->id.");' value='".$value6->celular."' name='txt_celular_".$value6->id."' id='txt_celular_".$value6->id."'></td>";
+                                            $html.="<td><input type='text' class='form-control' onKeyPress='AutoCheck(".$value6->id.");' value='".$value6->email."' name='txt_email_".$value6->id."' id='txt_email_".$value6->id."'></td>";
+                                            $html.="<td><input type='text' class='form-control' onKeyPress='AutoCheck(".$value6->id.");' value='".$value6->celular."' name='txt_celular_".$value6->id."' id='txt_celular_".$value6->id."'></td>";
                                         }
                                         
                                         if( Input::has('persona') ){
@@ -634,8 +634,8 @@ class ReporteController extends BaseController
                                                 $html.="<td>".$value7->celular."</td>";
                                             }
                                             else{
-                                                $html.="<td><input type='text' onKeyPress='AutoCheck(".$value7->id.");' value='".$value7->email."' name='txt_email_".$value7->id."' id='txt_email_".$value7->id."'></td>";
-                                                $html.="<td><input type='text' onKeyPress='AutoCheck(".$value7->id.");' value='".$value7->celular."' name='txt_celular_".$value7->id."' id='txt_celular_".$value7->id."'></td>";
+                                                $html.="<td><input type='text' class='form-control' onKeyPress='AutoCheck(".$value7->id.");' value='".$value7->email."' name='txt_email_".$value7->id."' id='txt_email_".$value7->id."'></td>";
+                                                $html.="<td><input type='text' class='form-control' onKeyPress='AutoCheck(".$value7->id.");' value='".$value7->celular."' name='txt_celular_".$value7->id."' id='txt_celular_".$value7->id."'></td>";
                                             }
                                         
                                             if( Input::has('persona') ){
@@ -677,8 +677,8 @@ class ReporteController extends BaseController
                                                     $html.="<td>".$value8->celular."</td>";
                                                 }
                                                 else{
-                                                    $html.="<td><input type='text' onKeyPress='AutoCheck(".$value8->id.");' value='".$value8->email."' name='txt_email_".$value8->id."' id='txt_email_".$value8->id."'></td>";
-                                                    $html.="<td><input type='text' onKeyPress='AutoCheck(".$value8->id.");' value='".$value8->celular."' name='txt_celular_".$value8->id."' id='txt_celular_".$value8->id."'></td>";
+                                                    $html.="<td><input type='text' class='form-control' onKeyPress='AutoCheck(".$value8->id.");' value='".$value8->email."' name='txt_email_".$value8->id."' id='txt_email_".$value8->id."'></td>";
+                                                    $html.="<td><input type='text' class='form-control' onKeyPress='AutoCheck(".$value8->id.");' value='".$value8->celular."' name='txt_celular_".$value8->id."' id='txt_celular_".$value8->id."'></td>";
                                                 }
                                             
                                                 if( Input::has('persona') ){
@@ -720,8 +720,8 @@ class ReporteController extends BaseController
                                                         $html.="<td>".$value9->celular."</td>";
                                                     }
                                                     else{
-                                                        $html.="<td><input type='text' onKeyPress='AutoCheck(".$value9->id.");' value='".$value9->email."' name='txt_email_".$value9->id."' id='txt_email_".$value9->id."'></td>";
-                                                        $html.="<td><input type='text' onKeyPress='AutoCheck(".$value9->id.");' value='".$value9->celular."' name='txt_celular_".$value9->id."' id='txt_celular_".$value9->id."'></td>";
+                                                        $html.="<td><input type='text' class='form-control' onKeyPress='AutoCheck(".$value9->id.");' value='".$value9->email."' name='txt_email_".$value9->id."' id='txt_email_".$value9->id."'></td>";
+                                                        $html.="<td><input type='text' class='form-control' onKeyPress='AutoCheck(".$value9->id.");' value='".$value9->celular."' name='txt_celular_".$value9->id."' id='txt_celular_".$value9->id."'></td>";
                                                     }
                                                 
                                                     if( Input::has('persona') ){

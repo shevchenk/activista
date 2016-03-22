@@ -43,14 +43,14 @@
                             <table id="t_reporte" class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Nivel</th>
-                                        <th>Paterno</th>
-                                        <th>Materno</th>
-                                        <th>Nombre</th>
-                                        <th>Dni</th>
-                                        <th>Email</th>
-                                        <th>Celular</th>
-                                        <th>[]</th>
+                                        <th width="100px;">Nivel</th>
+                                        <th width="100px;">Paterno</th>
+                                        <th width="100px;">Materno</th>
+                                        <th width="100px;">Nombre</th>
+                                        <th width="80px;">Dni</th>
+                                        <th width="250px;">Email</th>
+                                        <th width="150px;">Celular</th>
+                                        <th width="70px;">[]</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tb_reporte">
