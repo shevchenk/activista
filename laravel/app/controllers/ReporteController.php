@@ -729,6 +729,10 @@ class ReporteController extends BaseController
     {
         $id= $this->userID;
         $nivel= $this->userNivelId;
+        if( Input::has('persona') ){
+            $id= Input::get('persona');
+            $nivel= Input::get('nivel');
+        }
         $niveles= array(0,0,0,0,0,0,0,0,0,0);
         $paginas= array(0,0,0,0,0,0,0,0,0,0);
         $color=array('','#A4A4A4','#4BD1E0','#9B1E31','#45298F','#EFEFA2','#D3FFFF','#FF99FF','#D7F336','#8DB4E2','#A4A4A4','#A4A4A4','#A4A4A4');
