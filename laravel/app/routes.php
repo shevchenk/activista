@@ -70,3 +70,4 @@ Route::controller('comunicacion', 'ComunicacionController');
 Route::controller('reporte', 'ReporteController');
 Route::controller('tgrupo', 'TGrupoController');
 Route::controller('grupop', 'GrupoPController');
+Route::controller('mensajeria', 'MensajeriaController');

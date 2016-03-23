@@ -3569,6 +3569,26 @@ tr.shown td.details-control {
     background: url('../../img/admin/datatable/details_close.png') no-repeat top right;
 }
 
+td.checkbox-td{
+  background: url('../../img/icons/stop-24.png') no-repeat top right;
+  cursor: pointer;
+}
+
+td.checkbox-td-check{
+  background: url('../../img/icons/circle-check-24.png') no-repeat top right;
+  cursor: pointer;
+}
+
+td.checkbox-td-check-g{
+  background: url('../../img/icons/green_check_16.png') no-repeat top right;
+  cursor: pointer;
+}
+
+td.checkbox-td-uncheck{
+  background: url('../../img/icons/circle-cross-24.png') no-repeat top right;
+  cursor: pointer;
+}
+
 .options-menu {
  margin: 5px;
   border-left: 2px solid #ccc;
