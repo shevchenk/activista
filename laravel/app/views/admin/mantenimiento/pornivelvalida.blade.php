@@ -62,6 +62,7 @@
                             <table id="t_reporte" class="table table-bordered">
                                 <thead>
                                     <tr>
+                                        <th width="50px;">N°</th>
                                         <th width="80px;">Nivel</th>
                                         <th width="80px;">Paterno</th>
                                         <th width="80px;">Materno</th>
@@ -84,6 +85,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
+                                        <th>N°</th>
                                         <th>Nivel</th>
                                         <th>Paterno</th>
                                         <th>Materno</th>
@@ -101,16 +103,12 @@
                                         <th>Nro Llamadas</th>
                                         <th>Rpta Celular</th>
                                     </tr>
-                                    <tr>
-                                        <td colspan="8">
-                                            <a class="btn btn-sm btn-primary" onclick="Guardar();">
-                                                <i class="fa fa-save fa-lg"></i>
-                                                Guardar
-                                            </a>
-                                        </td>
-                                    </tr>
                                 </tfoot>
                             </table>
+                            <a class="btn btn-sm btn-primary" onclick="Guardar();">
+                                <i class="fa fa-save fa-lg"></i>
+                                Guardar
+                            </a>
                         </form>
                         </div>
                     </div>

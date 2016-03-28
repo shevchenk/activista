@@ -62,7 +62,7 @@ class ReporteController extends BaseController
         $objPHPExcel->getActiveSheet()->setCellValue("A2","Listado de Emails");
         $objPHPExcel->getActiveSheet()->getStyle('A2')->getFont()->setSize(20);
 
-        $cabecera=array('N°','PATERNO','MATERNO','NOMBRE','DNI','TELEFONO','EMAIL','ESTADO EMAIL','ESTADO CEL');
+        $cabecera=array('N°','NIVEL','PATERNO','MATERNO','NOMBRE','DNI','TELEFONO','EMAIL','ESTADO EMAIL','ESTADO CEL');
 
         $objPHPExcel->getActiveSheet()->mergeCells('A2:'.$az[(count($cabecera)-1)].'2');
         $objPHPExcel->getActiveSheet()->getStyle('A2:'.$az[(count($cabecera)-1)].'2')->applyFromArray($styleAlignmentBold);
@@ -77,8 +77,9 @@ class ReporteController extends BaseController
 
         $activistaids= implode(",",$data['idpersonas']);
         $sql="  SELECT a.id,a.paterno,a.materno,a.nombres,a.dni,a.email,a.celular,
-                IFNULL(m.id,'') memail,IFNULL(m2.id,'') mcel
+                IFNULL(m.id,'') memail,IFNULL(m2.id,'') mcel, c.nombre nivel
                 FROM activistas a
+                INNER JOIN cargos c ON c.id=a.nivel_id
                 LEFT JOIN mensajerias m ON m.activista_id=a.id AND m.email>=1
                 LEFT JOIN mensajerias m2 ON m.activista_id=a.id AND m.nrollamada>=1
                 WHERE a.id IN (".$activistaids.")";
@@ -86,12 +87,14 @@ class ReporteController extends BaseController
 
         $cont=0;
         $valorinicial=3;
+        $azcant=0;
 
         foreach($control as $r){ 
         $cont++;
         $valorinicial++;
         $azcant=0;
         $objPHPExcel->getActiveSheet()->setCellValue($az[$azcant].$valorinicial,$cont);$azcant++;
+        $objPHPExcel->getActiveSheet()->setCellValue($az[$azcant].$valorinicial,$r->nivel);$azcant++;
         $objPHPExcel->getActiveSheet()->setCellValue($az[$azcant].$valorinicial,$r->paterno);$azcant++;
         $objPHPExcel->getActiveSheet()->setCellValue($az[$azcant].$valorinicial,$r->materno);$azcant++;
         $objPHPExcel->getActiveSheet()->setCellValue($az[$azcant].$valorinicial,$r->nombres);$azcant++;
@@ -101,7 +104,7 @@ class ReporteController extends BaseController
             if( $r->memail!='' ){
                 $objPHPExcel->getActiveSheet()->setCellValue($az[$azcant].$valorinicial,"Enviado");
             }
-            elseif( in_array('email_'.$r->id.'_1', $data['personas']) ){
+            elseif( isset( $data['personas'] ) AND in_array('email_'.$r->id.'_1', $data['personas']) ){
                 $objPHPExcel->getActiveSheet()->setCellValue($az[$azcant].$valorinicial,"Seleccionado");
             }
             $azcant++;
@@ -109,9 +112,11 @@ class ReporteController extends BaseController
             if( $r->mcel!='' ){
                 $objPHPExcel->getActiveSheet()->setCellValue($az[$azcant].$valorinicial,"Enviado");
             }
-            elseif( in_array('celular_'.$r->id.'_1', $data['personas']) OR in_array('celular_'.$r->id.'_2', $data['personas']) OR
+            elseif( isset( $data['personas'] ) AND (
+                    in_array('celular_'.$r->id.'_1', $data['personas']) OR in_array('celular_'.$r->id.'_2', $data['personas']) OR
                     in_array('celular_'.$r->id.'_3', $data['personas']) OR in_array('celular_'.$r->id.'_4', $data['personas']) OR
                     in_array('celular_'.$r->id.'_5', $data['personas']) OR in_array('celular_'.$r->id.'_6', $data['personas'])
+                    )
             ){
                 $objPHPExcel->getActiveSheet()->setCellValue($az[$azcant].$valorinicial,"Seleccionado");
             }
@@ -862,6 +867,7 @@ class ReporteController extends BaseController
         $cargos[7]="Activista";
         $cargos[8]="Seguidor";
         $cargos[9]="Simpatizante";
+        $contadorValida=0;
 
         $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
                         c.nombre,a.nivel_id,
@@ -925,6 +931,8 @@ class ReporteController extends BaseController
                     $csscel="";
                 }
                 $html.="<tr id='tr_".$value->id."'>";
+                    $contadorValida++;
+                    $html.="<td>".$contadorValida."</td>";
                     $html.="<td><input type='hidden' name='idpersonas[]' value='".$value->id."'>".$value->nombre."</td>";
                     $html.="<td>".$value->paterno."</td>";
                     $html.="<td>".$value->materno."</td>";
@@ -994,6 +1002,8 @@ class ReporteController extends BaseController
                         $csscel="";
                     }
                     $html.="<tr id='tr_".$value2->id."'>";
+                        $contadorValida++;
+                        $html.="<td>".$contadorValida."</td>";
                         $html.="<td><input type='hidden' name='idpersonas[]' value='".$value2->id."'>".$value2->nombre."</td>";
                         $html.="<td>".$value2->paterno."</td>";
                         $html.="<td>".$value2->materno."</td>";
@@ -1063,6 +1073,8 @@ class ReporteController extends BaseController
                             $csscel="";
                         }
                         $html.="<tr id='tr_".$value3->id."'>";
+                            $contadorValida++;
+                            $html.="<td>".$contadorValida."</td>";
                             $html.="<td><input type='hidden' name='idpersonas[]' value='".$value3->id."'>".$value3->nombre."</td>";
                             $html.="<td>".$value3->paterno."</td>";
                             $html.="<td>".$value3->materno."</td>";
@@ -1132,6 +1144,8 @@ class ReporteController extends BaseController
                                 $csscel="";
                             }
                             $html.="<tr id='tr_".$value4->id."'>";
+                                $contadorValida++;
+                                $html.="<td>".$contadorValida."</td>";
                                 $html.="<td><input type='hidden' name='idpersonas[]' value='".$value4->id."'>".$value4->nombre."</td>";
                                 $html.="<td>".$value4->paterno."</td>";
                                 $html.="<td>".$value4->materno."</td>";
@@ -1201,6 +1215,8 @@ class ReporteController extends BaseController
                                     $csscel="";
                                 }
                                 $html.="<tr id='tr_".$value5->id."'>";
+                                    $contadorValida++;
+                                    $html.="<td>".$contadorValida."</td>";
                                     $html.="<td><input type='hidden' name='idpersonas[]' value='".$value5->id."'>".$value5->nombre."</td>";
                                     $html.="<td>".$value5->paterno."</td>";
                                     $html.="<td>".$value5->materno."</td>";
@@ -1270,6 +1286,8 @@ class ReporteController extends BaseController
                                         $csscel="";
                                     }
                                     $html.="<tr id='tr_".$value6->id."'>";
+                                        $contadorValida++;
+                                        $html.="<td>".$contadorValida."</td>";
                                         $html.="<td><input type='hidden' name='idpersonas[]' value='".$value6->id."'>".$value6->nombre."</td>";
                                         $html.="<td>".$value6->paterno."</td>";
                                         $html.="<td>".$value6->materno."</td>";
@@ -1339,6 +1357,8 @@ class ReporteController extends BaseController
                                             $csscel="";
                                         }
                                         $html.="<tr id='tr_".$value7->id."'>";
+                                            $contadorValida++;
+                                            $html.="<td>".$contadorValida."</td>";
                                             $html.="<td><input type='hidden' name='idpersonas[]' value='".$value7->id."'>".$value7->nombre."</td>";
                                             $html.="<td>".$value7->paterno."</td>";
                                             $html.="<td>".$value7->materno."</td>";
@@ -1408,6 +1428,8 @@ class ReporteController extends BaseController
                                                 $csscel="";
                                             }
                                             $html.="<tr id='tr_".$value8->id."'>";
+                                                $contadorValida++;
+                                                $html.="<td>".$contadorValida."</td>";
                                                 $html.="<td><input type='hidden' name='idpersonas[]' value='".$value8->id."'>".$value8->nombre."</td>";
                                                 $html.="<td>".$value8->paterno."</td>";
                                                 $html.="<td>".$value8->materno."</td>";
@@ -1477,6 +1499,8 @@ class ReporteController extends BaseController
                                                     $csscel="";
                                                 }
                                                 $html.="<tr id='tr_".$value9->id."'>";
+                                                    $contadorValida++;
+                                                    $html.="<td>".$contadorValida."</td>";
                                                     $html.="<td><input type='hidden' name='idpersonas[]' value='".$value9->id."'>".$value9->nombre."</td>";
                                                     $html.="<td>".$value9->paterno."</td>";
                                                     $html.="<td>".$value9->materno."</td>";

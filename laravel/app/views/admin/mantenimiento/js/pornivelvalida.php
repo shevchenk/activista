@@ -9,6 +9,7 @@ $(document).ready(function() {
     slctGlobal.listarSlctFuncion('cargo','nivel','slct_nivel','simple',ids,data);
     slctGlobalHtml('slct_persona','simple');
 
+    $("#t_reporte").dataTable(); 
     $("#generar").click(Mostrar);
 });
 
@@ -78,7 +79,16 @@ DetalleNivel=function(){
 
 HTMLreporte=function(obj){
     $(".reportes").show();
+    $('#t_reporte').dataTable().fnDestroy();
     $("#tb_reporte").html(obj.datos);
+    $("#t_reporte").dataTable(
+        {
+            "scrollCollapse": true,
+            "paging":   false,
+            "ordering": true,
+            "scrollY":        "700px",
+        }
+    ); 
 };
 
 detalle=function(ruta_id, boton){
