@@ -12,6 +12,11 @@ $(document).ready(function() {
     $("#generar").click(Mostrar);
 });
 
+ExportaEmail=function(){
+    $("#formValidar").attr("action","reporte/exportaemail");
+    $("#formValidar").submit();
+}
+
 Mostrar=function(){
     var nivel=$("#slct_nivel").val();
     var persona= $("#slct_persona").val();

@@ -67,7 +67,13 @@
                                         <th width="80px;">Materno</th>
                                         <th width="80px;">Nombre</th>
                                         <th width="80px;">Dni</th>
-                                        <th width="200px;">Email</th>
+                                        <th width="200px;">
+                                            Email
+                                            &nbsp;
+                                            <a class="btn btn-success btn-sm" onclick="ExportaEmail();">
+                                                <i class='fa fa-file-excel-o fa-lg'></i>
+                                            </a>
+                                        </th>
                                         <th width="100px;">Rpta Email</th>
                                         <th width="150px;">Celular</th>
                                         <th width="30px;">Nro Llamadas</th>
@@ -83,9 +89,16 @@
                                         <th>Materno</th>
                                         <th>Nombre</th>
                                         <th>Dni</th>
-                                        <th>Email</th>
+                                        <th>
+                                            Email
+                                            &nbsp;
+                                            <a class="btn btn-success btn-sm" onclick="ExportaEmail();">
+                                                <i class='fa fa-file-excel-o fa-lg'></i>
+                                            </a>
+                                        </th>
                                         <th>Rpta Email</th>
                                         <th>Celular</th>
+                                        <th>Nro Llamadas</th>
                                         <th>Rpta Celular</th>
                                     </tr>
                                     <tr>
