@@ -1471,6 +1471,81 @@ class ReporteController extends BaseController
         );
     }
 
+    public function postConsolidadogrupo()
+    {
+        $data= Input::all();
+        $cargos=  DB::table('cargos')
+                    ->whereBetween('id', array((6+1), 9))->get();
+
+        $sum=array(); //inicializa array
+        $left="";
+        $campos="";
+        $cabecera="<tr>";
+        $cabecera.="<th>Paterno</th>";
+        $cabecera.="<th>Materno</th>";
+        $cabecera.="<th>Nombres</th>";
+        $datos="";
+        $cont=0;
+        foreach ($cargos as $key => $value) {
+            array_push($sum,0);
+            $cont++;
+            $cabecera.="<th style='text-align:center'> Nro <br>".$value->nombre."</th>";
+            $campos.=", COUNT(DISTINCT(a$cont.id)) id$cont";
+            $contant=($cont-1);
+                if($contant==0){
+                    $contant="";
+                }
+            $left.=" 
+                    LEFT JOIN activistas a$cont ON a$cont.lider_padre=a$contant.id AND a$cont.estado=1 ";
+        }
+        $cabecera.="<th>Total</th>";
+        $cabecera.="</tr>";
+        array_push($sum,0);
+
+        $sql="  SELECT a.paterno,a.materno,a.nombres $campos
+                FROM activistas a
+                $left
+                WHERE a.grupo_persona_id=".$data['nivel_id']."
+                AND a.estado=1
+                GROUP BY a.id";
+
+        $r = DB::select($sql);
+
+        $inicio=0;
+            foreach ($r as $key => $value) {
+                $datos.="<tr>";
+                $total=0;
+                $inicio=0;
+                foreach ($value as $k => $v) {
+                    $datos.="<td>".$v."</td>";
+                    if(is_numeric($v)){
+                        $total+=$v;
+                        $sum[$inicio]+=$v;
+                        $inicio++;
+                    }
+                }
+                $datos.="<td>".$total."</td>";
+                $sum[$inicio]+=$total;
+                $datos.="</tr>";
+            }
+            $datos.="<tr>";
+                $datos.="<td>&nbsp;</td>";
+                $datos.="<td>&nbsp;</td>";
+                $datos.="<td style='text-align:right'><b>Totales:</b></td>";
+            for ($i=0; $i < count($sum); $i++) { 
+                $datos.="<td>".$sum[$i]."</td>";
+            }
+            $datos.="</tr>";
+
+        return Response::json(
+            array(  'datos'=> $datos,
+                    'cabecera'=>$cabecera,
+                    'nro'=>($inicio+3),
+                    'rst' => 1
+            )
+        );
+    }
+
     public function postFanpage()
     {
         $nivel=implode(',',Input::get('nivel_id'));
