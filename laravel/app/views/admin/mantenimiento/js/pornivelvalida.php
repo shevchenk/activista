@@ -49,14 +49,31 @@ ActivaCheck=function(id,valor){
         $("#"+id).removeClass('checkbox-td-check').addClass('checkbox-td');
         html="<input id='persona_"+id+"' type='hidden' value='"+id.split("_")[1]+"_"+id.split("_")[2]+"_0"+"' name=personas[]>";
     }
+    if( $("#"+id).attr('class')=='checkbox-td sorting_1' && id.split("_")[1]=='email' ){
+        $("#"+id).removeClass('checkbox-td sorting_1').addClass('checkbox-td-check sorting_1');
+        html="<input id='persona_"+id+"' type='hidden' value='"+id.split("_")[1]+"_"+id.split("_")[2]+"_1"+"' name=personas[]>";
+    }
+    else if( $("#"+id).attr('class')=='checkbox-td-check sorting_1' && id.split("_")[1]=='email' ){
+        $("#"+id).removeClass('checkbox-td-check sorting_1').addClass('checkbox-td sorting_1');
+        html="<input id='persona_"+id+"' type='hidden' value='"+id.split("_")[1]+"_"+id.split("_")[2]+"_0"+"' name=personas[]>";
+    }
     else if( valor!=undefined ){
         if( valor==0 && $("#"+id).attr('class')=='checkbox-td-check' ){
             $("#"+id).removeClass('checkbox-td-check').addClass('checkbox-td');
         }
         else if( valor==0 && $("#"+id).attr('class')=='checkbox-td' ){
         }
+        else if( valor==0 && $("#"+id).attr('class')=='checkbox-td-check sorting_1' ){
+            $("#"+id).removeClass('checkbox-td-check sorting_1').addClass('checkbox-td sorting_1');
+        }
+        else if( valor==0 && $("#"+id).attr('class')=='checkbox-td sorting_1' ){
+        }
         else if( $("#"+id).attr('class')=='checkbox-td' ){
             $("#"+id).removeClass('checkbox-td').addClass('checkbox-td-check');
+            html="<input id='persona_"+id+"' type='hidden' value='"+id.split("_")[1]+"_"+id.split("_")[2]+"_"+valor+"' name=personas[]>";
+        }
+        else if( $("#"+id).attr('class')=='checkbox-td sorting_1' ){
+            $("#"+id).removeClass('checkbox-td sorting_1').addClass('checkbox-td-check sorting_1');
             html="<input id='persona_"+id+"' type='hidden' value='"+id.split("_")[1]+"_"+id.split("_")[2]+"_"+valor+"' name=personas[]>";
         }
         else{
