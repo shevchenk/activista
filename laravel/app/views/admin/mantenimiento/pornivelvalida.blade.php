@@ -75,7 +75,9 @@
                                                 <i class='fa fa-file-excel-o fa-lg'></i>
                                             </a>
                                         </th>
-                                        <th width="100px;">Rpta Email</th>
+                                        <th width="33px;">Enviado</th>
+                                        <th width="33px;">Validado</th>
+                                        <th width="33px;">Aceptado</th>
                                         <th width="150px;">Celular</th>
                                         <th width="30px;">Nro Llamadas</th>
                                         <th width="100px;">Rpta Celular</th>
@@ -98,7 +100,9 @@
                                                 <i class='fa fa-file-excel-o fa-lg'></i>
                                             </a>
                                         </th>
-                                        <th>Rpta Email</th>
+                                        <th>Enviado</th>
+                                        <th>Validado</th>
+                                        <th>Aceptado</th>
                                         <th>Celular</th>
                                         <th>Nro Llamadas</th>
                                         <th>Rpta Celular</th>

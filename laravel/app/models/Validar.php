@@ -38,7 +38,9 @@ class Validar extends Base
             $mensajeria->usuario_updated_at=1;
         }
 
-        $mensajeria->email=2;
+        $mensajeria->email=1;
+        $mensajeria->validado=1;
+        $mensajeria->aceptado=1;
         $mensajeria->save();
     }
 

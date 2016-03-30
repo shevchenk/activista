@@ -872,25 +872,10 @@ class ReporteController extends BaseController
         $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
                         c.nombre,a.nivel_id,
                         a.dni,a.celular,a.email,
-                        IFNULL(m.email,0) memail,IFNULL(m.cel,0) mcel,
-                        IF( IFNULL(m.email,0)=0,
-                            'Sin Enviar',
-                            IF(m.email=1,
-                                'Enviado - Sin validar',
-                                IF(m.email=2,
-                                    'Enviado - Validado','Sin Enviar'
-                                )
-                            )
-                        ) emailv,
-                        IF( IFNULL(m.cel,0)=0,
-                            'Sin Llamar',
-                            IF(m.cel=1,
-                                'LLamada - No Acepto',
-                                IF(m.cel=2,
-                                    'Llamada - Acepto','Sin Llamar'
-                                )
-                            )
-                        ) celv,IFNULL(m.nrollamada,0) llamada
+                        IF( IFNULL(m.email,0)=0,'No','Si' ) memail,IFNULL(m.cel,0) mcel,
+                        IFNULL(m.nrollamada,0) llamada,
+                        IF( IFNULL(m.validado,0)=0,'No','Si' ) mvalidado,
+                        IF( IFNULL(m.aceptado,0)=0,'No','Si' ) maceptado
                 FROM activistas a
                 INNER JOIN cargos c ON a.nivel_id=c.id
                 LEFT JOIN mensajerias m ON a.id= m.activista_id
@@ -913,12 +898,10 @@ class ReporteController extends BaseController
             foreach ($r as $key => $value) {
                 $cssemail='checkbox-td';
                 $cssemailr="checkbox-td-uncheck";
-                if( $value->memail==1 || $value->memail==2 ){
+                if( $value->memail=='Si' ){
                     $cssemail="checkbox-td-check-g";
                 }
-                if( $value->memail==2 ){
-                    $cssemailr="checkbox-td-check-g";
-                }
+                
                 $csscel="checkbox-td";
                 $disablede="";
                 $disabled="";
@@ -939,7 +922,9 @@ class ReporteController extends BaseController
                     $html.="<td>".$value->nombres."</td>";
                     $html.="<td>".$value->dni."</td>";
                     $html.="<td id='td_email_".$value->id."' onClick='ActivaCheck(this.id)' class='".$cssemail."'>".$value->email."</td>";
-                    $html.="<td>".$value->emailv."</td>";
+                    $html.="<td>".$value->memail."</td>";
+                    $html.="<td>".$value->mvalidado."</td>";
+                    $html.="<td>".$value->maceptado."</td>";
                     $html.="<td id='td_celular_".$value->id."' class='".$csscel."'>".$value->celular."</td>";
                     $html.="<td>".$value->llamada."</td>";
                     $html.="<td>
@@ -954,25 +939,10 @@ class ReporteController extends BaseController
                 $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
                                 c.nombre, a.nivel_id,
                                 a.dni,a.celular,a.email,
-                                IFNULL(m.email,0) memail,IFNULL(m.cel,0) mcel,
-                                IF( IFNULL(m.email,0)=0,
-                                    'Sin Enviar',
-                                    IF(m.email=1,
-                                        'Enviado - Sin validar',
-                                        IF(m.email=2,
-                                            'Enviado - Validado','Sin Enviar'
-                                        )
-                                    )
-                                ) emailv,
-                                IF( IFNULL(m.cel,0)=0,
-                                    'Sin Llamar',
-                                    IF(m.cel=1,
-                                        'LLamada - No Acepto',
-                                        IF(m.cel=2,
-                                            'Llamada - Acepto','Sin Llamar'
-                                        )
-                                    )
-                                ) celv,IFNULL(m.nrollamada,0) llamada
+                                IF( IFNULL(m.email,0)=0,'No','Si' ) memail,IFNULL(m.cel,0) mcel,
+                                IFNULL(m.nrollamada,0) llamada,
+                                IF( IFNULL(m.validado,0)=0,'No','Si' ) mvalidado,
+                                IF( IFNULL(m.aceptado,0)=0,'No','Si' ) maceptado
                         FROM activistas a
                         INNER JOIN cargos c ON a.nivel_id=c.id
                         LEFT JOIN mensajerias m ON a.id= m.activista_id
@@ -984,12 +954,10 @@ class ReporteController extends BaseController
                 foreach ($r2 as $key2 => $value2) {
                     $cssemail='checkbox-td';
                     $cssemailr="checkbox-td-uncheck";
-                    if( $value2->memail==1 || $value2->memail==2 ){
+                    if( $value2->memail=='Si' ){
                         $cssemail="checkbox-td-check-g";
                     }
-                    if( $value2->memail==2 ){
-                        $cssemailr="checkbox-td-check-g";
-                    }
+                    
                     $csscel="checkbox-td";
                     $disablede="";
                     $disabled="";
@@ -1010,7 +978,9 @@ class ReporteController extends BaseController
                         $html.="<td>".$value2->nombres."</td>";
                         $html.="<td>".$value2->dni."</td>";
                         $html.="<td id='td_email_".$value2->id."' onClick='ActivaCheck(this.id)' class='".$cssemail."'>".$value2->email."</td>";
-                        $html.="<td>".$value2->emailv."</td>";
+                        $html.="<td>".$value2->memail."</td>";
+                        $html.="<td>".$value2->mvalidado."</td>";
+                        $html.="<td>".$value2->maceptado."</td>";
                         $html.="<td id='td_celular_".$value2->id."' class='".$csscel."'>".$value2->celular."</td>";
                         $html.="<td>".$value2->llamada."</td>";
                         $html.="<td>
@@ -1025,25 +995,10 @@ class ReporteController extends BaseController
                     $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
                                     c.nombre, a.nivel_id,
                                     a.dni,a.celular,a.email,
-                                    IFNULL(m.email,0) memail,IFNULL(m.cel,0) mcel,
-                                    IF( IFNULL(m.email,0)=0,
-                                        'Sin Enviar',
-                                        IF(m.email=1,
-                                            'Enviado - Sin validar',
-                                            IF(m.email=2,
-                                                'Enviado - Validado','Sin Enviar'
-                                            )
-                                        )
-                                    ) emailv,
-                                    IF( IFNULL(m.cel,0)=0,
-                                        'Sin Llamar',
-                                        IF(m.cel=1,
-                                            'LLamada - No Acepto',
-                                            IF(m.cel=2,
-                                                'Llamada - Acepto','Sin Llamar'
-                                            )
-                                        )
-                                    ) celv,IFNULL(m.nrollamada,0) llamada
+                                    IF( IFNULL(m.email,0)=0,'No','Si' ) memail,IFNULL(m.cel,0) mcel,
+                                    IFNULL(m.nrollamada,0) llamada,
+                                    IF( IFNULL(m.validado,0)=0,'No','Si' ) mvalidado,
+                                    IF( IFNULL(m.aceptado,0)=0,'No','Si' ) maceptado
                             FROM activistas a
                             INNER JOIN cargos c ON a.nivel_id=c.id
                             LEFT JOIN mensajerias m ON a.id= m.activista_id
@@ -1055,12 +1010,10 @@ class ReporteController extends BaseController
                     foreach ($r3 as $key3 => $value3) {
                         $cssemail='checkbox-td';
                         $cssemailr="checkbox-td-uncheck";
-                        if( $value3->memail==1 || $value3->memail==2 ){
+                        if( $value3->memail=='Si' ){
                             $cssemail="checkbox-td-check-g";
                         }
-                        if( $value3->memail==2 ){
-                            $cssemailr="checkbox-td-check-g";
-                        }
+                        
                         $csscel="checkbox-td";
                         $disablede="";
                         $disabled="";
@@ -1081,7 +1034,9 @@ class ReporteController extends BaseController
                             $html.="<td>".$value3->nombres."</td>";
                             $html.="<td>".$value3->dni."</td>";
                             $html.="<td id='td_email_".$value3->id."' onClick='ActivaCheck(this.id)' class='".$cssemail."'>".$value3->email."</td>";
-                            $html.="<td>".$value3->emailv."</td>";
+                            $html.="<td>".$value3->memail."</td>";
+                            $html.="<td>".$value3->mvalidado."</td>";
+                            $html.="<td>".$value3->maceptado."</td>";
                             $html.="<td id='td_celular_".$value3->id."' class='".$csscel."'>".$value3->celular."</td>";
                             $html.="<td>".$value3->llamada."</td>";
                             $html.="<td>
@@ -1096,25 +1051,10 @@ class ReporteController extends BaseController
                         $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
                                         c.nombre, a.nivel_id,
                                         a.dni,a.celular,a.email,
-                                        IFNULL(m.email,0) memail,IFNULL(m.cel,0) mcel,
-                                        IF( IFNULL(m.email,0)=0,
-                                            'Sin Enviar',
-                                            IF(m.email=1,
-                                                'Enviado - Sin validar',
-                                                IF(m.email=2,
-                                                    'Enviado - Validado','Sin Enviar'
-                                                )
-                                            )
-                                        ) emailv,
-                                        IF( IFNULL(m.cel,0)=0,
-                                            'Sin Llamar',
-                                            IF(m.cel=1,
-                                                'LLamada - No Acepto',
-                                                IF(m.cel=2,
-                                                    'Llamada - Acepto','Sin Llamar'
-                                                )
-                                            )
-                                        ) celv,IFNULL(m.nrollamada,0) llamada
+                                        IF( IFNULL(m.email,0)=0,'No','Si' ) memail,IFNULL(m.cel,0) mcel,
+                                        IFNULL(m.nrollamada,0) llamada,
+                                        IF( IFNULL(m.validado,0)=0,'No','Si' ) mvalidado,
+                                        IF( IFNULL(m.aceptado,0)=0,'No','Si' ) maceptado
                                 FROM activistas a
                                 INNER JOIN cargos c ON a.nivel_id=c.id
                                 LEFT JOIN mensajerias m ON a.id= m.activista_id
@@ -1126,12 +1066,10 @@ class ReporteController extends BaseController
                         foreach ($r4 as $key4 => $value4) {
                             $cssemail='checkbox-td';
                             $cssemailr="checkbox-td-uncheck";
-                            if( $value4->memail==1 || $value4->memail==2 ){
+                            if( $value4->memail=='Si' ){
                                 $cssemail="checkbox-td-check-g";
                             }
-                            if( $value4->memail==2 ){
-                                $cssemailr="checkbox-td-check-g";
-                            }
+                            
                             $csscel="checkbox-td";
                             $disablede="";
                             $disabled="";
@@ -1152,7 +1090,9 @@ class ReporteController extends BaseController
                                 $html.="<td>".$value4->nombres."</td>";
                                 $html.="<td>".$value4->dni."</td>";
                                 $html.="<td id='td_email_".$value4->id."' onClick='ActivaCheck(this.id)' class='".$cssemail."'>".$value4->email."</td>";
-                                $html.="<td>".$value4->emailv."</td>";
+                                $html.="<td>".$value4->memail."</td>";
+                                $html.="<td>".$value4->mvalidado."</td>";
+                                $html.="<td>".$value4->maceptado."</td>";
                                 $html.="<td id='td_celular_".$value4->id."' class='".$csscel."'>".$value4->celular."</td>";
                                 $html.="<td>".$value4->llamada."</td>";
                                 $html.="<td>
@@ -1167,25 +1107,10 @@ class ReporteController extends BaseController
                             $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
                                             c.nombre, a.nivel_id,
                                             a.dni,a.celular,a.email,
-                                            IFNULL(m.email,0) memail,IFNULL(m.cel,0) mcel,
-                                            IF( IFNULL(m.email,0)=0,
-                                                'Sin Enviar',
-                                                IF(m.email=1,
-                                                    'Enviado - Sin validar',
-                                                    IF(m.email=2,
-                                                        'Enviado - Validado','Sin Enviar'
-                                                    )
-                                                )
-                                            ) emailv,
-                                            IF( IFNULL(m.cel,0)=0,
-                                                'Sin Llamar',
-                                                IF(m.cel=1,
-                                                    'LLamada - No Acepto',
-                                                    IF(m.cel=2,
-                                                        'Llamada - Acepto','Sin Llamar'
-                                                    )
-                                                )
-                                            ) celv,IFNULL(m.nrollamada,0) llamada
+                                            IF( IFNULL(m.email,0)=0,'No','Si' ) memail,IFNULL(m.cel,0) mcel,
+                                            IFNULL(m.nrollamada,0) llamada,
+                                            IF( IFNULL(m.validado,0)=0,'No','Si' ) mvalidado,
+                                            IF( IFNULL(m.aceptado,0)=0,'No','Si' ) maceptado
                                     FROM activistas a
                                     INNER JOIN cargos c ON a.nivel_id=c.id
                                     LEFT JOIN mensajerias m ON a.id= m.activista_id
@@ -1197,12 +1122,10 @@ class ReporteController extends BaseController
                             foreach ($r5 as $key5 => $value5) {
                                 $cssemail='checkbox-td';
                                 $cssemailr="checkbox-td-uncheck";
-                                if( $value5->memail==1 || $value5->memail==2 ){
+                                if( $value5->memail=='Si' ){
                                     $cssemail="checkbox-td-check-g";
                                 }
-                                if( $value5->memail==2 ){
-                                    $cssemailr="checkbox-td-check-g";
-                                }
+                                
                                 $csscel="checkbox-td";
                                 $disablede="";
                                 $disabled="";
@@ -1223,7 +1146,9 @@ class ReporteController extends BaseController
                                     $html.="<td>".$value5->nombres."</td>";
                                     $html.="<td>".$value5->dni."</td>";
                                     $html.="<td id='td_email_".$value5->id."' onClick='ActivaCheck(this.id)' class='".$cssemail."'>".$value5->email."</td>";
-                                    $html.="<td>".$value5->emailv."</td>";
+                                    $html.="<td>".$value5->memail."</td>";
+                                    $html.="<td>".$value5->mvalidado."</td>";
+                                    $html.="<td>".$value5->maceptado."</td>";
                                     $html.="<td id='td_celular_".$value5->id."' class='".$csscel."'>".$value5->celular."</td>";
                                     $html.="<td>".$value5->llamada."</td>";
                                     $html.="<td>
@@ -1238,25 +1163,10 @@ class ReporteController extends BaseController
                                 $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
                                                 c.nombre, a.nivel_id,
                                                 a.dni,a.celular,a.email,
-                                                IFNULL(m.email,0) memail,IFNULL(m.cel,0) mcel,
-                                                IF( IFNULL(m.email,0)=0,
-                                                    'Sin Enviar',
-                                                    IF(m.email=1,
-                                                        'Enviado - Sin validar',
-                                                        IF(m.email=2,
-                                                            'Enviado - Validado','Sin Enviar'
-                                                        )
-                                                    )
-                                                ) emailv,
-                                                IF( IFNULL(m.cel,0)=0,
-                                                    'Sin Llamar',
-                                                    IF(m.cel=1,
-                                                        'LLamada - No Acepto',
-                                                        IF(m.cel=2,
-                                                            'Llamada - Acepto','Sin Llamar'
-                                                        )
-                                                    )
-                                                ) celv,IFNULL(m.nrollamada,0) llamada
+                                                IF( IFNULL(m.email,0)=0,'No','Si' ) memail,IFNULL(m.cel,0) mcel,
+                                                IFNULL(m.nrollamada,0) llamada,
+                                                IF( IFNULL(m.validado,0)=0,'No','Si' ) mvalidado,
+                                                IF( IFNULL(m.aceptado,0)=0,'No','Si' ) maceptado
                                         FROM activistas a
                                         INNER JOIN cargos c ON a.nivel_id=c.id
                                         LEFT JOIN mensajerias m ON a.id= m.activista_id
@@ -1268,12 +1178,10 @@ class ReporteController extends BaseController
                                 foreach ($r6 as $key6 => $value6) {
                                     $cssemail='checkbox-td';
                                     $cssemailr="checkbox-td-uncheck";
-                                    if( $value6->memail==1 || $value6->memail==2 ){
+                                    if( $value6->memail=='Si' ){
                                         $cssemail="checkbox-td-check-g";
                                     }
-                                    if( $value6->memail==2 ){
-                                        $cssemailr="checkbox-td-check-g";
-                                    }
+                                    
                                     $csscel="checkbox-td";
                                     $disablede="";
                                     $disabled="";
@@ -1294,7 +1202,9 @@ class ReporteController extends BaseController
                                         $html.="<td>".$value6->nombres."</td>";
                                         $html.="<td>".$value6->dni."</td>";
                                         $html.="<td id='td_email_".$value6->id."' onClick='ActivaCheck(this.id)' class='".$cssemail."'>".$value6->email."</td>";
-                                        $html.="<td>".$value6->emailv."</td>";
+                                        $html.="<td>".$value6->memail."</td>";
+                                        $html.="<td>".$value6->mvalidado."</td>";
+                                        $html.="<td>".$value6->maceptado."</td>";
                                         $html.="<td id='td_celular_".$value6->id."' class='".$csscel."'>".$value6->celular."</td>";
                                         $html.="<td>".$value6->llamada."</td>";
                                         $html.="<td>
@@ -1309,25 +1219,10 @@ class ReporteController extends BaseController
                                     $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
                                                     c.nombre, a.nivel_id,
                                                     a.dni,a.celular,a.email,
-                                                    IFNULL(m.email,0) memail,IFNULL(m.cel,0) mcel,
-                                                    IF( IFNULL(m.email,0)=0,
-                                                        'Sin Enviar',
-                                                        IF(m.email=1,
-                                                            'Enviado - Sin validar',
-                                                            IF(m.email=2,
-                                                                'Enviado - Validado','Sin Enviar'
-                                                            )
-                                                        )
-                                                    ) emailv,
-                                                    IF( IFNULL(m.cel,0)=0,
-                                                        'Sin Llamar',
-                                                        IF(m.cel=1,
-                                                            'LLamada - No Acepto',
-                                                            IF(m.cel=2,
-                                                                'Llamada - Acepto','Sin Llamar'
-                                                            )
-                                                        )
-                                                    ) celv,IFNULL(m.nrollamada,0) llamada
+                                                    IF( IFNULL(m.email,0)=0,'No','Si' ) memail,IFNULL(m.cel,0) mcel,
+                                                    IFNULL(m.nrollamada,0) llamada,
+                                                    IF( IFNULL(m.validado,0)=0,'No','Si' ) mvalidado,
+                                                    IF( IFNULL(m.aceptado,0)=0,'No','Si' ) maceptado
                                             FROM activistas a
                                             INNER JOIN cargos c ON a.nivel_id=c.id
                                             LEFT JOIN mensajerias m ON a.id= m.activista_id
@@ -1339,12 +1234,10 @@ class ReporteController extends BaseController
                                     foreach ($r7 as $key7 => $value7) {
                                         $cssemail='checkbox-td';
                                         $cssemailr="checkbox-td-uncheck";
-                                        if( $value7->memail==1 || $value7->memail==2 ){
+                                        if( $value7->memail=='Si' ){
                                             $cssemail="checkbox-td-check-g";
                                         }
-                                        if( $value7->memail==2 ){
-                                            $cssemailr="checkbox-td-check-g";
-                                        }
+                                        
                                         $csscel="checkbox-td";
                                         $disablede="";
                                         $disabled="";
@@ -1365,7 +1258,9 @@ class ReporteController extends BaseController
                                             $html.="<td>".$value7->nombres."</td>";
                                             $html.="<td>".$value7->dni."</td>";
                                             $html.="<td id='td_email_".$value7->id."' onClick='ActivaCheck(this.id)' class='".$cssemail."'>".$value7->email."</td>";
-                                            $html.="<td>".$value7->emailv."</td>";
+                                            $html.="<td>".$value7->memail."</td>";
+                                            $html.="<td>".$value7->mvalidado."</td>";
+                                            $html.="<td>".$value7->maceptado."</td>";
                                             $html.="<td id='td_celular_".$value7->id."' class='".$csscel."'>".$value7->celular."</td>";
                                             $html.="<td>".$value7->llamada."</td>";
                                             $html.="<td>
@@ -1380,25 +1275,10 @@ class ReporteController extends BaseController
                                         $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
                                                         c.nombre, a.nivel_id,
                                                         a.dni,a.celular,a.email,
-                                                        IFNULL(m.email,0) memail,IFNULL(m.cel,0) mcel,
-                                                        IF( IFNULL(m.email,0)=0,
-                                                            'Sin Enviar',
-                                                            IF(m.email=1,
-                                                                'Enviado - Sin validar',
-                                                                IF(m.email=2,
-                                                                    'Enviado - Validado','Sin Enviar'
-                                                                )
-                                                            )
-                                                        ) emailv,
-                                                        IF( IFNULL(m.cel,0)=0,
-                                                            'Sin Llamar',
-                                                            IF(m.cel=1,
-                                                                'LLamada - No Acepto',
-                                                                IF(m.cel=2,
-                                                                    'Llamada - Acepto','Sin Llamar'
-                                                                )
-                                                            )
-                                                        ) celv,IFNULL(m.nrollamada,0) llamada
+                                                        IF( IFNULL(m.email,0)=0,'No','Si' ) memail,IFNULL(m.cel,0) mcel,
+                                                        IFNULL(m.nrollamada,0) llamada,
+                                                        IF( IFNULL(m.validado,0)=0,'No','Si' ) mvalidado,
+                                                        IF( IFNULL(m.aceptado,0)=0,'No','Si' ) maceptado
                                                 FROM activistas a
                                                 INNER JOIN cargos c ON a.nivel_id=c.id
                                                 LEFT JOIN mensajerias m ON a.id= m.activista_id
@@ -1410,12 +1290,10 @@ class ReporteController extends BaseController
                                         foreach ($r8 as $key8 => $value8) {
                                             $cssemail='checkbox-td';
                                             $cssemailr="checkbox-td-uncheck";
-                                            if( $value8->memail==1 || $value8->memail==2 ){
+                                            if( $value8->memail=='Si' ){
                                                 $cssemail="checkbox-td-check-g";
                                             }
-                                            if( $value8->memail==2 ){
-                                                $cssemailr="checkbox-td-check-g";
-                                            }
+                                            
                                             $csscel="checkbox-td";
                                             $disablede="";
                                             $disabled="";
@@ -1436,7 +1314,9 @@ class ReporteController extends BaseController
                                                 $html.="<td>".$value8->nombres."</td>";
                                                 $html.="<td>".$value8->dni."</td>";
                                                 $html.="<td id='td_email_".$value8->id."' onClick='ActivaCheck(this.id)' class='".$cssemail."'>".$value8->email."</td>";
-                                                $html.="<td>".$value8->emailv."</td>";
+                                                $html.="<td>".$value8->memail."</td>";
+                                                $html.="<td>".$value8->mvalidado."</td>";
+                                                $html.="<td>".$value8->maceptado."</td>";
                                                 $html.="<td id='td_celular_".$value8->id."' class='".$csscel."'>".$value8->celular."</td>";
                                                 $html.="<td>".$value8->llamada."</td>";
                                                 $html.="<td>
@@ -1451,25 +1331,10 @@ class ReporteController extends BaseController
                                             $sql= " SELECT  a.id,a.paterno,a.materno,a.nombres,
                                                             c.nombre, a.nivel_id,
                                                             a.dni,a.celular,a.email,
-                                                            IFNULL(m.email,0) memail,IFNULL(m.cel,0) mcel,
-                                                            IF( IFNULL(m.email,0)=0,
-                                                                'Sin Enviar',
-                                                                IF(m.email=1,
-                                                                    'Enviado - Sin validar',
-                                                                    IF(m.email=2,
-                                                                        'Enviado - Validado','Sin Enviar'
-                                                                    )
-                                                                )
-                                                            ) emailv,
-                                                            IF( IFNULL(m.cel,0)=0,
-                                                                'Sin Llamar',
-                                                                IF(m.cel=1,
-                                                                    'LLamada - No Acepto',
-                                                                    IF(m.cel=2,
-                                                                        'Llamada - Acepto','Sin Llamar'
-                                                                    )
-                                                                )
-                                                            ) celv,IFNULL(m.nrollamada,0) llamada
+                                                            IF( IFNULL(m.email,0)=0,'No','Si' ) memail,IFNULL(m.cel,0) mcel,
+                                                            IFNULL(m.nrollamada,0) llamada,
+                                                            IF( IFNULL(m.validado,0)=0,'No','Si' ) mvalidado,
+                                                            IF( IFNULL(m.aceptado,0)=0,'No','Si' ) maceptado
                                                     FROM activistas a
                                                     INNER JOIN cargos c ON a.nivel_id=c.id
                                                     LEFT JOIN mensajerias m ON a.id= m.activista_id
@@ -1481,12 +1346,10 @@ class ReporteController extends BaseController
                                             foreach ($r9 as $key9 => $value9) {
                                                 $cssemail='checkbox-td';
                                                 $cssemailr="checkbox-td-uncheck";
-                                                if( $value9->memail==1 || $value9->memail==2 ){
+                                                if( $value9->memail=='Si' ){
                                                     $cssemail="checkbox-td-check-g";
                                                 }
-                                                if( $value9->memail==2 ){
-                                                    $cssemailr="checkbox-td-check-g";
-                                                }
+                                                
                                                 $csscel="checkbox-td";
                                                 $disablede="";
                                                 $disabled="";
@@ -1507,7 +1370,9 @@ class ReporteController extends BaseController
                                                     $html.="<td>".$value9->nombres."</td>";
                                                     $html.="<td>".$value9->dni."</td>";
                                                     $html.="<td id='td_email_".$value9->id."' onClick='ActivaCheck(this.id)' class='".$cssemail."'>".$value9->email."</td>";
-                                                    $html.="<td>".$value9->emailv."</td>";
+                                                    $html.="<td>".$value9->memail."</td>";
+                                                    $html.="<td>".$value9->mvalidado."</td>";
+                                                    $html.="<td>".$value9->maceptado."</td>";
                                                     $html.="<td id='td_celular_".$value9->id."' class='".$csscel."'>".$value9->celular."</td>";
                                                     $html.="<td>".$value9->llamada."</td>";
                                                     $html.="<td>

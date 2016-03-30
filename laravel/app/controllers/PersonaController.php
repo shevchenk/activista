@@ -5,6 +5,8 @@ class PersonaController extends BaseController
 
     public function postEditmultiple()
     {
+        set_time_limit(3000);
+        ini_set('memory_limit','512M');
         if ( Request::ajax() ) {
             $regex='regex:/^([a-zA-Z .,ñÑÁÉÍÓÚáéíóú]{2,60})$/i';
             $required='required';

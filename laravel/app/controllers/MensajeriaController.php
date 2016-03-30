@@ -35,7 +35,8 @@ class MensajeriaController extends \BaseController
                     $mensajeria->nrollamada=$mensajeria->nrollamada*1+1;
                 }
                 else{
-                    $mensajeria->email=$per[2];
+                    $mensajeria->email=1;
+                    $mensajeria->validado=1;
                 }
                 $mensajeria->save();
             }
