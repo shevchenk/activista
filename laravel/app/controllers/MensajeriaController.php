@@ -28,11 +28,11 @@ class MensajeriaController extends \BaseController
                 }
                 else{
                     $mensajeria->usuario_updated_at=$this->userID;
-                    $mensajeria->nrollamada=$mensajeria->nrollamada*1+1;
                 }
 
                 if( $per[0]=='celular'){
                     $mensajeria->cel=$per[2];
+                    $mensajeria->nrollamada=$mensajeria->nrollamada*1+1;
                 }
                 else{
                     $mensajeria->email=$per[2];

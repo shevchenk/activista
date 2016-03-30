@@ -18,7 +18,7 @@ Route::get(
     }
 );
 
-
+Route::controller('validar', 'ValidarController');
 
 Route::get("search", function () {
     return Response::json(array("saldo"=>232));
