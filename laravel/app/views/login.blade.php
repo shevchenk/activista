@@ -28,6 +28,9 @@
 <div id="mainWrap">
 	<div id="loggit">
 		<h1><i class="fa fa-lock"></i> Soy PPKausa </h1>
+			<?php if(Session::has('valores') && Session::get('valores')!='')
+					echo "<script>alert('".Session::get('valores')."');</script>";
+			?>
 			<h3 id="mensaje_msj"  class="label-success">
 			<?=	Session::get('msj'); ?>			
 			</h3>
