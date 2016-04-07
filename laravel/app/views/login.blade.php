@@ -28,8 +28,10 @@
 <div id="mainWrap">
 	<div id="loggit">
 		<h1><i class="fa fa-lock"></i> Soy PPKausa </h1>
-			<?php if(Session::get('valores')!='')
-					echo "<script>alert('Gracias');</script>";
+			<?php 	if(Session::get('valores')!=''){
+						$valores=Session::get('valores');
+						echo "<script>alert('$valores');</script>";
+					}
 			?>
 			<h3 id="mensaje_msj"  class="label-success">
 			<?=	Session::get('msj'); ?>			
