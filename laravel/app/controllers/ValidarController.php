@@ -9,7 +9,7 @@ class ValidarController extends \BaseController
             Validar::Emailok();
         }
         $valores=".::Muchas gracias, no te defraudaré::.";
-        return Redirect::to('login')->with('valores',$valores);
+        return Redirect::to('/')->with('valores',$valores);
     }
 
 }
