@@ -16,9 +16,6 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <div class="navbar-form navbar-left">
-                    <img src="img/imagenppk/freddy.jpg" width="450px;" height="90px;" />
-                </div>
                 <div class="navbar-right">
                     <ul class="nav navbar-nav">             
                         <!-- User Account: style can be found in dropdown.less -->
