@@ -1,5 +1,5 @@
 <!-- /.modal -->
-<div class="modal fade" id="grupoModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="grupocargoModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header logo">
@@ -9,24 +9,25 @@
         <h4 class="modal-title">New message</h4>
       </div>
       <div class="modal-body">
-        <form id="form_grupo" name="form_grupo" action="" method="post">
+        <form id="form_grupocargo" name="form_grupocargo" action="" method="post">
           <div class="form-group">
-            <label class="control-label">Tipo Grupo
-                <a id="error_nombre" style="display:none" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="bottom" title="Ingrese Nombre">
-                    <i class="fa fa-exclamation"></i>
-                </a>
+            <label class="control-label">Zona de Influencia
             </label>
-            <select class="form-control" id='slct_grupo' name="slct_grupo">
-              <option value="">.::Seleccione::.</option>
+            <select class="form-control" name="slct_grupop" id="slct_grupop">
+                <option value=''>.::Seleccione::.</option>
             </select>
           </div>
           <div class="form-group">
-            <label class="control-label">Nombre
-                <a id="error_nombre" style="display:none" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="bottom" title="Ingrese Nombre">
-                    <i class="fa fa-exclamation"></i>
-                </a>
+            <label class="control-label">Cargo
             </label>
-            <input type="text" class="form-control" placeholder="Ingrese Nombre" name="txt_nombre" id="txt_nombre">
+            <select class="form-control" name="slct_cargo" id="slct_cargo">
+                <option value=''>.::Seleccione::.</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Fecha de Inicio
+            </label>
+            <input type='text' class='form-control fecha' id='txt_fecha_inicio' name='txt_fecha_inicio' >
           </div>
           <div class="form-group">
             <label class="control-label">Estado:

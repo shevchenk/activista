@@ -72,3 +72,5 @@ Route::controller('tgrupo', 'TGrupoController');
 Route::controller('grupop', 'GrupoPController');
 Route::controller('mensajeria', 'MensajeriaController');
 Route::controller('cargar', 'CargarController');
+Route::controller('cargo_estrategico', 'CargoEstrategicoController');
+Route::controller('grupo_cargo', 'GrupoCargoController');

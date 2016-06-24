@@ -16,13 +16,13 @@
     <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Gestion Grupos
+                Estrategia Organizacional
                 <small> </small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
                 <li><a href="#">Gestiones</a></li>
-                <li class="active">Gestion Grupos</li>
+                <li class="active">Estrategia Organizacional</li>
             </ol>
         </section>
 
@@ -31,36 +31,123 @@
             <div class="row">
                 <div class="col-xs-12">
                     <!-- Inicia contenido -->
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">Filtros</h3>
-                        </div><!-- /.box-header -->
-                        <div class="box-body table-responsive">
-                            <table id="t_grupo" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Grupo</th>
-                                        <th>Nombre</th>
-                                        <th>Estado</th>
-                                        <th> [ ] </th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tb_grupo">
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Grupo</th>
-                                        <th>Nombre</th>
-                                        <th>Estado</th>
-                                        <th> [ ] </th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                            <a class='btn btn-primary btn-sm' class="btn btn-primary" 
-                            data-toggle="modal" data-target="#grupoModal" data-titulo="Nuevo"><i class="fa fa-plus fa-lg"></i>&nbsp;Nuevo</a>
-                        </div><!-- /.box-body -->
-                    </div><!-- /.box -->
-                    <!-- Finaliza contenido -->
+                    <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs logo modal-header">
+                            <li class="logo tab_1 active">
+                                <a href="#tab_1" data-toggle="tab" onclick="ActPest(1);">
+                                    <button class="btn btn-primary btn-sm"><i class="fa fa-cloud fa-lg"></i> </button>
+                                    Gestion de Zona de Influencias
+                                </a>
+                            </li>
+                            <li class="logo tab_2">
+                                <a href="#tab_2" data-toggle="tab" onclick="ActPest(2);">
+                                    <button class="btn btn-primary btn-sm"><i class="fa fa-cloud fa-lg"></i> </button>
+                                    Gestion de Cargos
+                                </a>
+                            </li>
+                            <li class="logo tab_3">
+                                <a href="#tab_3" data-toggle="tab" onclick="ActPest(3);">
+                                    <button class="btn btn-primary btn-sm"><i class="fa fa-edit fa-lg"></i> </button>
+                                    Estrategia Organizacional
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab_1">
+                                <br>
+                                <div class="col-xl-12">
+                                    <div class="form-group">
+                                        <div class="box-body table-responsive">
+                                            <table id="t_grupo" class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Tipo Grupo</th>
+                                                        <th>Zona de Influencia</th>
+                                                        <th>Estado</th>
+                                                        <th> [ ] </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>Tipo Grupo</th>
+                                                        <th>Zona de Influencia</th>
+                                                        <th>Estado</th>
+                                                        <th> [ ] </th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                            <a class='btn btn-primary btn-sm' class="btn btn-primary" 
+                                            data-toggle="modal" data-target="#grupoModal" data-titulo="Nuevo"><i class="fa fa-plus fa-lg"></i>&nbsp;Nuevo</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_2">
+                                <br>
+                                <div class="col-xl-12">
+                                    <div class="form-group">
+                                        <div class="box-body table-responsive">
+                                            <table id="t_cargo" class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Nombre</th>
+                                                        <th>Estado</th>
+                                                        <th> [ ] </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>Nombre</th>
+                                                        <th>Estado</th>
+                                                        <th> [ ] </th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                            <a class='btn btn-primary btn-sm' class="btn btn-primary" 
+                                            data-toggle="modal" data-target="#cargoModal" data-titulo="Nuevo"><i class="fa fa-plus fa-lg"></i>&nbsp;Nuevo</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_3">
+                                <br>
+                                <div class="col-xl-12">
+                                    <div class="form-group">
+                                        <div class="box-body table-responsive">
+                                            <table id="t_grupocargo" class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Zona de Influencia</th>
+                                                        <th>Cargo</th>
+                                                        <th>Fecha de Inicio</th>
+                                                        <th>Estado</th>
+                                                        <th> [ ] </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>Zona de Influencia</th>
+                                                        <th>Cargo</th>
+                                                        <th>Fecha de Inicio</th>
+                                                        <th>Estado</th>
+                                                        <th> [ ] </th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                            <a class='btn btn-primary btn-sm' class="btn btn-primary" 
+                                            data-toggle="modal" data-target="#grupocargoModal" data-titulo="Nuevo"><i class="fa fa-plus fa-lg"></i>&nbsp;Nuevo</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- Finaliza contenido -->
                 </div>
             </div>
 
@@ -69,4 +156,6 @@
 
 @section('formulario')
      @include( 'admin.mantenimiento.form.grupo' )
+     @include( 'admin.mantenimiento.form.cargo_estrategico' )
+     @include( 'admin.mantenimiento.form.grupo_cargo' )
 @stop

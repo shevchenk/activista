@@ -1,5 +1,5 @@
 <!-- /.modal -->
-<div class="modal fade" id="grupoModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="cargoModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header logo">
@@ -9,17 +9,7 @@
         <h4 class="modal-title">New message</h4>
       </div>
       <div class="modal-body">
-        <form id="form_grupo" name="form_grupo" action="" method="post">
-          <div class="form-group">
-            <label class="control-label">Tipo Grupo
-                <a id="error_nombre" style="display:none" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="bottom" title="Ingrese Nombre">
-                    <i class="fa fa-exclamation"></i>
-                </a>
-            </label>
-            <select class="form-control" id='slct_grupo' name="slct_grupo">
-              <option value="">.::Seleccione::.</option>
-            </select>
-          </div>
+        <form id="form_cargo" name="form_cargo" action="" method="post">
           <div class="form-group">
             <label class="control-label">Nombre
                 <a id="error_nombre" style="display:none" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="bottom" title="Ingrese Nombre">
