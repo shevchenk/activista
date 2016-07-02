@@ -1,4 +1,5 @@
 <script type="text/javascript">
+var contadorG=0;
 var cabeceraP=[];
 var columnDefsP=[];
 var targetsA=-1;
@@ -6,7 +7,7 @@ var ValorBuscadoF='';
 $(document).ready(function() {  
     //Persona.CargarPersonas(activarTabla);
     slctGlobal.listarSlctFijo('cargo','slct_cargos');
-    slctGlobal.listarSlctFijo('grupop','slct_grupos');
+    slctGlobal.listarSlctFijo2('grupop','listargrupoe','slct_grupos');
 
     cabeceraP=  [{
                 'id'    :'nivel',
@@ -71,9 +72,9 @@ $(document).ready(function() {
             columnDefsP.push({
                                 "targets": targetsA,
                                 "data": function ( row, type, val, meta ) {
-                                        estadohtml='<span id="'+row.id+'" onClick="activar('+row.id+')" class="btn btn-danger">Inactivo</span>';
+                                        estadohtml='<span id="'+row.id+'" class="btn btn-danger">Inactivo</span>';
                                         if(row.estado==1){
-                                            estadohtml='<span id="'+row.id+'" onClick="desactivar('+row.id+')" class="btn btn-success">Activo</span>';
+                                            estadohtml='<span id="'+row.id+'" class="btn btn-success">Activo</span>';
                                         }
                                         return estadohtml;
                                 },
@@ -87,7 +88,7 @@ $(document).ready(function() {
                                 "data": function ( row, type, val, meta ) {
                                         PersonaObj.push(row);
                                         console.log(PersonaObj);
-                                        return  '<a class="btn btn-primary btn-sm" data-toggle="modal" onClick="CargarPersonaT()" data-target="#personaModal" data-id="'+row.id+'" data-titulo="Editar">'+
+                                        return  '<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#personaModal" data-id="'+row.id+'" data-titulo="Editar">'+
                                                     '<i class="fa fa-edit fa-lg"></i>'+
                                                 '</a>';
                                 },
@@ -134,6 +135,7 @@ $(document).ready(function() {
             $('.editar').css('display','');
             var datos={estado:1};
 
+            Persona.CargarEscalafon(arrPorID[0].id);
 
         $( "#form_personas #slct_estado" ).trigger('change');
     });
@@ -147,8 +149,45 @@ $(document).ready(function() {
     MostrarAjax('persona');
 });
 
-AgregarEscalafon=function(){
-    
+AgregarEscalafon=function(val){
+    contadorG++;
+    html='';
+    html+='<tr>';
+    html+='<td><select name="slct_grupo[]" id="slct_grupo_'+contadorG+'" onChange="CargarCargoEscalafon(this.value,'+contadorG+');"></select></td>';
+    html+='<td><input name="txt_escalafon_id[]" id="txt_escalafon_id_'+contadorG+'" type="hidden" value="0"><select name="slct_cargo[]" id="slct_cargo_'+contadorG+'"></select></td>';
+    html+='<td><input name="txt_fecha_inicio[]" id="txt_fecha_inicio_'+contadorG+'" type="text" class="form-control fecha"></td>';
+    html+='<td><input name="txt_documento_inicio[]" id="txt_documento_inicio_'+contadorG+'" type="text" class="form-control"></td>';
+    html+='<td><input name="txt_fecha_final[]" id="txt_fecha_final_'+contadorG+'" type="text" class="form-control fecha"></td>';
+    html+='<td><input name="txt_documento_final[]" id="txt_documento_final_'+contadorG+'" type="text" class="form-control"></td>';
+    html+="<td><button type='button' onClick='EliminarEscalafon(this);' class='btn btn-sm btn-danger'><i class='fa fa-lg fa-minus'></i></button></td>";
+    html+='</tr>';
+    $("#t_cargoPersona").append(html);
+    $("#slct_grupo_"+contadorG).html( $("#slct_grupos").html() );
+    $('.fecha').daterangepicker({
+        format: 'YYYY-MM-DD',
+        singleDatePicker: true,
+        showDropdowns: true
+    });
+
+    if(typeof(val)!='undefined' ){
+        $("#slct_grupo_"+contadorG).val( val.grupo_persona_id );
+        CargarCargoEscalafon(val.grupo_persona_id,contadorG,val.cargo_estrategico_id);
+        $("#txt_fecha_inicio_"+contadorG).val( val.fecha_inicio );
+        $("#txt_fecha_final_"+contadorG).val( val.fecha_final );
+        $("#txt_documento_inicio_"+contadorG).val( val.documento_inicio );
+        $("#txt_documento_final_"+contadorG).val( val.documento_final );
+        $("#txt_escalafon_id_"+contadorG).val( val.id );
+    }
+}
+
+EliminarEscalafon=function(btn){
+    var tr = btn.parentNode.parentNode;
+    $(tr).remove();
+}
+
+CargarCargoEscalafon=function(val,cont,id){
+    var data={grupo_persona_id:val};
+    slctGlobal.listarSlctFijo2('grupop','listarcargoe','slct_cargo_'+cont,data,id);
 }
 
 CargarPersonaT=function(){
@@ -178,9 +217,7 @@ eventoSlctGlobalSimple=function(){
 };*/
 
 Editar=function(){
-    if(validaPersonas()){
-        Persona.AgregarEditarPersona(1);
-    }
+    Persona.AddEditEscalafon();
 };
 
 validaPersonas=function(){

@@ -12,7 +12,7 @@
 
     @include( 'admin.js.slct_global_ajax' )
     @include( 'admin.js.slct_global' )
-    @include( 'admin.mantenimiento.js.persona_ajax' )
+    @include( 'admin.mantenimiento.js.personaescalafon_ajax' )
     @include( 'admin.mantenimiento.js.personaescalafon' )
 @stop
 <!-- Right side column. Contains the navbar and content of the page -->

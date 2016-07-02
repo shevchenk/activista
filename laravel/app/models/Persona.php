@@ -119,6 +119,16 @@ class Persona extends Base implements UserInterface, RemindableInterface
         return $sedes;
     }
 
+    public static function getCargarEscalafon($array){
+        $sql="  SELECT *
+                FROM escalafon
+                WHERE estado=1 
+                AND activista_id=";
+        $sql.=$array['activista_id'];
+        $r= DB::select($sql);
+        return $r;
+    }
+
 }
 
 

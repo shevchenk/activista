@@ -21,6 +21,25 @@ class GrupoPController extends \BaseController
         }
     }
 
+    public function postListargrupoe()
+    {
+        //si la peticion es ajax
+        if ( Request::ajax() ) {
+            $cargos = Grupo::getListarGrupoEscalafon();
+            return Response::json(array('rst'=>1,'datos'=>$cargos));
+        }
+    }
+
+    public function postListarcargoe()
+    {
+        //si la peticion es ajax
+        if ( Request::ajax() ) {
+            $array['grupo_persona_id']=Input::get('grupo_persona_id');
+            $cargos = Grupo::getListarCargoEscalafon($array);
+            return Response::json(array('rst'=>1,'datos'=>$cargos));
+        }
+    }
+
     public function postCrear()
     {
         //si la peticion es ajax

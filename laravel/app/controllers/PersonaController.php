@@ -172,12 +172,7 @@ class PersonaController extends BaseController
             return Response::json(array('rst'=>1,'datos'=>$personas));
         }
     }
-    /**
-     * Store a newly created resource in storage.
-     * POST /persona/cargarsedes
-     *
-     * @return Response
-     */
+
     public function postCargarsedes()
     {
         $personaId = Input::get('persona_id');
@@ -398,6 +393,68 @@ class PersonaController extends BaseController
                 )
             );    
 
+        }
+    }
+
+    public function postEscalafon()
+    {
+        if ( Request::ajax() ) {
+            $personaId = Input::get('id');
+
+                DB::table('escalafon')
+                ->where('activista_id', $personaId)
+                ->where('estado', 1)
+                ->update(array('estado' => 0,
+                                'usuario_updated_at'=>Auth::user()->id
+                        )
+                );
+
+                $escalafonId=Input::get('escalafon_id');
+                $cargo=Input::get('cargo');
+                $grupo=Input::get('grupo');
+                $fechaInicio=Input::get('fecha_inicio');
+                $fechaFinal=Input::get('fecha_final');
+                $documentoInicio=Input::get('documento_inicio');
+                $documentoFinal=Input::get('documento_final');
+                for ($i=0; $i<count($escalafonId) ; $i++) { 
+                    if( $escalafonId[$i]!=0 ){
+                        $escalafon=Escalafon::find($escalafonId[$i]);
+                        $escalafon->usuario_updated_at=Auth::user()->id;
+                    }
+                    else{
+                        $escalafon=new Escalafon;
+                        $escalafon->activista_id=$personaId;
+                        $escalafon->usuario_created_at=Auth::user()->id;
+                    }
+
+                    $escalafon->cargo_estrategico_id=$cargo[$i];
+                    $escalafon->grupo_persona_id=$grupo[$i];
+                    $escalafon->fecha_inicio=$fechaInicio[$i];
+                    if( trim( $fechaFinal[$i] )!='' )
+                        $escalafon->fecha_final=$fechaFinal[$i];
+
+                    $escalafon->documento_inicio=$documentoInicio[$i];
+                    if( trim( $documentoFinal[$i] )!='' )
+                        $escalafon->documento_final=$documentoFinal[$i];
+                    $escalafon->estado=1;
+                    $escalafon->save();
+                }
+            return Response::json(
+                array(
+                'rst'=>1,
+                'msj'=>'Registro actualizado correctamente',
+                )
+            );
+        }
+    }
+
+    public function postCargarescalafon()
+    {
+        //si la peticion es ajax
+        if ( Request::ajax() ) {
+            $array['activista_id']=Input::get('persona_id');
+            $personas = Persona::getCargarEscalafon($array);
+            return Response::json(array('rst'=>1,'datos'=>$personas));
         }
     }
 

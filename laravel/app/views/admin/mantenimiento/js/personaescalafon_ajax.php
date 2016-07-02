@@ -54,33 +54,50 @@ var Persona={
             },
             success : function(obj) {
                 //CARGAR areas
-                if(obj.datos[0].DATA !== null){
-                    var cargos = obj.datos[0].DATA.split("|"); 
-
-                    var html="";
-
-                    $.each(cargos, function(i,opcion){
-                        var data = opcion.split("-");
-                        html+="<li class='list-group-item'><div class='row'>";
-                        html+="<div class='col-sm-4' id='cargo_"+data[0]+"'><h5>"+$("#slct_cargos option[value=" +data[0] +"]").text()+"</h5></div>";
-                        var areas = data[1].split(",");
-                        html+="<div class='col-sm-6'><select class='form-control' multiple='multiple' name='slct_areas"+data[0]+"[]' id='slct_areas"+data[0]+"'></select></div>";
-                        //var envio = {cargo_id: data[0]};
-                        var envio = {cargo_id: data[0],estado:1};
-                        slctGlobal.listarSlct('area','slct_areas'+data[0],'multiple',areas,envio);
-
-                        html+='<div class="col-sm-2">';
-                        html+='<button type="button" id="'+data[0]+'" Onclick="EliminarArea(this)" class="btn btn-danger btn-sm" >';
-                        html+='<i class="fa fa-minus fa-sm"></i> </button></div>';
-                        html+="</div></li>";
-                        cargos_selec.push(data[0]);
+                if(obj.rst== 1){
+                    $.each(obj.datos, function(id,val){
+                        AgregarEscalafon(val);
                     });
-                    $("#t_cargoPersona").html(html); 
                 }
             },
             error: function(){
             }
         });
     },
+    AddEditEscalafon:function(){
+
+        var datos=$("#form_personas").serialize().split("txt_").join("").split("slct_").join("");
+        accion="persona/escalafon";
+
+        $.ajax({
+            url         : accion,
+            type        : 'POST',
+            cache       : false,
+            dataType    : 'json',
+            data        : datos,
+            beforeSend : function() {
+                $("body").append('<div class="overlay"></div><div class="loading-img"></div>');
+            },
+            success : function(obj) {
+                $(".overlay,.loading-img").remove();
+                if(obj.rst==1){
+                    $("#msj").html('<div class="alert alert-dismissable alert-success">'+
+                                        '<i class="fa fa-check"></i>'+
+                                        '<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>'+
+                                        '<b>'+obj.msj+'</b>'+
+                                    '</div>');
+                    $('#personaModal .modal-footer [data-dismiss="modal"]').click();
+                }
+            },
+            error: function(){
+                $(".overlay,.loading-img").remove();
+                $("#msj").html('<div class="alert alert-dismissable alert-danger">'+
+                                    '<i class="fa fa-ban"></i>'+
+                                    '<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>'+
+                                    '<b>Ocurrio una interrupción en el proceso,Favor de intentar nuevamente.</b>'+
+                                '</div>');
+            }
+        });
+    }
 };
 </script>
