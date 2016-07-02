@@ -102,8 +102,60 @@ class PersonaController extends BaseController
     {
         //si la peticion es ajax
         if ( Request::ajax() ) {
-            $personas = Persona::getCargar();
-            return Response::json(array('rst'=>1,'datos'=>$personas));
+            $array=array();
+            $array['where']='';$array['usuario']=Auth::user()->id;
+            $array['limit']='';$array['order']='';
+
+            if( Input::has('nivel') ){
+                $array['where'].=" AND c2.nombre LIKE '%".Input::get('nivel')."%' ";
+            }
+
+            if( Input::has("nombres") ){
+                $array['where'].=" AND a.nombres LIKE '%".Input::get("nombres")."%' ";
+            }
+
+            if( Input::has("paterno") ){
+                $array['where'].=" AND a.paterno LIKE '%".Input::get("paterno")."%' ";
+            }
+
+            if( Input::has("materno") ){
+                $array['where'].=" AND a.materno LIKE '%".Input::get("materno")."%' ";
+            }
+
+            if( Input::has("dni") ){
+                $array['where'].=" AND a.dni LIKE '%".Input::get("dni")."%' ";
+            }
+
+            if( Input::has("email") ){
+                $array['where'].=" AND a.email LIKE '%".Input::get("email")."%' ";
+            }
+
+            if( Input::has("estado") ){
+                $array['where'].=" AND a.estado='".Input::get("estado")."' ";
+            }
+
+            if (Input::has('draw')) {
+                if (Input::has('order')) {
+                    $inorder=Input::get('order');
+                    $incolumns=Input::get('columns');
+                    $array['order']=  ' ORDER BY '.
+                                      $incolumns[ $inorder[0]['column'] ]['name'].' '.
+                                      $inorder[0]['dir'];
+                }
+
+                $array['limit']=' LIMIT '.Input::get('start').','.Input::get('length');
+                $retorno["draw"]=Input::get('draw');
+            }
+
+            $cant  = Persona::getCargarCount( $array );
+            $aData = Persona::getCargar( $array );
+
+            $aParametro['rst'] = 1;
+            $aParametro["recordsTotal"]=$cant;
+            $aParametro["recordsFiltered"]=$cant;
+            $aParametro['data'] = $aData;
+            $aParametro['msj'] = "No hay personas aún";
+            return Response::json($aParametro);
         }
     }
     /**

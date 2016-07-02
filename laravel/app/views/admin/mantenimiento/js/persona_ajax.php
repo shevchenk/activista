@@ -1,5 +1,5 @@
 <script type="text/javascript">
-var persona_id, cargos_selec=[], PersonaObj;
+var persona_id, cargos_selec=[], PersonaObj=[];
 var Persona={
     AgregarEditarPersona:function(AE){
         $("#form_personas input[name='cargos_selec']").remove();
@@ -25,7 +25,7 @@ var Persona={
                 if(obj.rst==1){
                     $('#t_personas').dataTable().fnDestroy();
 
-                    Persona.CargarPersonas(activarTabla);
+                    MostrarAjax('persona');
                     $("#msj").html('<div class="alert alert-dismissable alert-success">'+
                                         '<i class="fa fa-check"></i>'+
                                         '<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>'+
@@ -55,7 +55,7 @@ var Persona={
             }
         });
     },
-    CargarPersonas:function(evento){
+    /*CargarPersonas:function(evento){
         $.ajax({
             url         : 'persona/cargar',
             type        : 'POST',
@@ -80,6 +80,45 @@ var Persona={
                 '</div>');
             }
         });
+    },*/
+    CargarPersonasTotal:function(columnDefs){
+        $('#t_personas').dataTable().fnDestroy();
+        $('#t_personas')
+            .on( 'page.dt',   function () { $("body").append('<div class="overlay"></div><div class="loading-img"></div>'); } )
+            .on( 'search.dt', function () { $("body").append('<div class="overlay"></div><div class="loading-img"></div>'); } )
+            .on( 'order.dt',  function () { $("body").append('<div class="overlay"></div><div class="loading-img"></div>'); } )
+            .DataTable( {
+                "processing": true,
+                "serverSide": true,
+                "stateSave": true,
+                "searching": false,
+                "ordering": false,
+                "stateLoadCallback": function (settings) {
+                    $("body").append('<div class="overlay"></div><div class="loading-img"></div>');
+                },
+                "stateSaveCallback": function (settings) { // Cuando finaliza el ajax
+                    $(".overlay,.loading-img").remove();
+                },
+                "ajax": {
+                        "url": "persona/cargar",
+                        "type": "POST",
+                        //"async": false,
+                            "data": function(d){
+                                datos=$("#form_filtros").serialize().split("txt_").join("").split("slct_").join("").split("%5B%5D").join("[]").split("+").join(" ").split("%7C").join("|").split("&");
+                                
+                                for (var i = datos.length - 1; i >= 0; i--) {
+                                    if( datos[i].split("[]").length>1 ){
+                                        d[ datos[i].split("[]").join("["+contador+"]").split("=")[0] ] = datos[i].split("=")[1];
+                                        contador++;
+                                    }
+                                    else{
+                                        d[ datos[i].split("=")[0] ] = datos[i].split("=")[1];
+                                    }
+                                };
+                            },
+                        },
+                columnDefs
+            } );
     },
     CargarAreas:function(persona_id){
         //getOpciones
@@ -140,7 +179,7 @@ var Persona={
                 $(".overlay,.loading-img").remove();
                 if(obj.rst==1){
                     $('#t_personas').dataTable().fnDestroy();
-                    Persona.CargarPersonas(activarTabla);
+                    MostrarAjax('persona');
                     $("#msj").html('<div class="alert alert-dismissable alert-success">'+
                                         '<i class="fa fa-check"></i>'+
                                         '<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>'+

@@ -8,7 +8,8 @@ class GrupoCargo extends Base
     {
         //subconsulta
         $sql = "SELECT cg.id, g.nombre grupo, c.nombre cargo,
-                cg.fecha_inicio,cg.estado,CONCAT(g.nombre,' | ',c.nombre) nombre
+                cg.fecha_inicio,cg.estado,CONCAT(g.nombre,' | ',c.nombre) nombre,
+                cg.grupo_persona_id,cg.cargo_estrategico_id
                 FROM grupos_cargos cg 
                 INNER JOIN grupos_personas g ON g.id=cg.grupo_persona_id
                 INNER JOIN cargos_estrategicos c ON c.id=cg.cargo_estrategico_id

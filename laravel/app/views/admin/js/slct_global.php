@@ -212,10 +212,13 @@ filtroSlct=function(slct,tipo,slct_id,afectados,slctant,slctant_id,select,valarr
     $(afectados).multiselect('refresh');
 };
 
-enterGlobal=function(e,etiqueta){
+enterGlobal=function(e,etiqueta,selecciona){
     tecla = (document.all) ? e.keyCode : e.which; // 2
     if (tecla==13){
         $("#"+etiqueta).click(); 
+        if( typeof(selecciona)!='undefined' ){
+            $("#"+etiqueta).focus(); 
+        }
     }
-};
+}
 </script>

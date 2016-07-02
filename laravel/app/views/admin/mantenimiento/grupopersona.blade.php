@@ -3,7 +3,10 @@
 
 @section('includes')
     @parent
+    {{ HTML::style('lib/daterangepicker/css/daterangepicker-bs3.css') }}
     {{ HTML::style('lib/bootstrap-multiselect/dist/css/bootstrap-multiselect.css') }}
+    {{ HTML::script('//cdn.jsdelivr.net/momentjs/2.9.0/moment.min.js') }}
+    {{ HTML::script('lib/daterangepicker/js/daterangepicker_single.js') }}
     {{ HTML::script('lib/bootstrap-multiselect/dist/js/bootstrap-multiselect.js') }}
 
     @include( 'admin.js.slct_global_ajax' )
@@ -16,13 +19,13 @@
     <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Estrategia Organizacional
+                Estructura Organizacional
                 <small> </small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
                 <li><a href="#">Gestiones</a></li>
-                <li class="active">Estrategia Organizacional</li>
+                <li class="active">Estructura Oranizacional</li>
             </ol>
         </section>
 
@@ -36,7 +39,7 @@
                             <li class="logo tab_1 active">
                                 <a href="#tab_1" data-toggle="tab" onclick="ActPest(1);">
                                     <button class="btn btn-primary btn-sm"><i class="fa fa-cloud fa-lg"></i> </button>
-                                    Gestion de Zona de Influencias
+                                    Gestion de Grupos
                                 </a>
                             </li>
                             <li class="logo tab_2">
@@ -48,7 +51,7 @@
                             <li class="logo tab_3">
                                 <a href="#tab_3" data-toggle="tab" onclick="ActPest(3);">
                                     <button class="btn btn-primary btn-sm"><i class="fa fa-edit fa-lg"></i> </button>
-                                    Estrategia Organizacional
+                                    Estructura Organizacion
                                 </a>
                             </li>
                         </ul>
@@ -62,7 +65,11 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Tipo Grupo</th>
-                                                        <th>Zona de Influencia</th>
+                                                        <th>Grupo</th>
+                                                        <th>Region</th>
+                                                        <th>Provincia</th>
+                                                        <th>Distrito</th>
+                                                        <th>Localidad</th>
                                                         <th>Estado</th>
                                                         <th> [ ] </th>
                                                     </tr>
@@ -72,7 +79,11 @@
                                                 <tfoot>
                                                     <tr>
                                                         <th>Tipo Grupo</th>
-                                                        <th>Zona de Influencia</th>
+                                                        <th>Grupo</th>
+                                                        <th>Region</th>
+                                                        <th>Provincia</th>
+                                                        <th>Distrito</th>
+                                                        <th>Localidad</th>
                                                         <th>Estado</th>
                                                         <th> [ ] </th>
                                                     </tr>
@@ -121,7 +132,7 @@
                                             <table id="t_grupocargo" class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr>
-                                                        <th>Zona de Influencia</th>
+                                                        <th>Grupo</th>
                                                         <th>Cargo</th>
                                                         <th>Fecha de Inicio</th>
                                                         <th>Estado</th>
@@ -132,7 +143,7 @@
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>Zona de Influencia</th>
+                                                        <th>Grupo</th>
                                                         <th>Cargo</th>
                                                         <th>Fecha de Inicio</th>
                                                         <th>Estado</th>

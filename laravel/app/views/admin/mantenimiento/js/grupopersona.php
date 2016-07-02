@@ -1,6 +1,13 @@
 <script type="text/javascript">
 var Pest=1;
+var ValorBuscadoF='';
 $(document).ready(function() { 
+    $('.fecha').daterangepicker({
+        format: 'YYYY-MM-DD',
+        singleDatePicker: true,
+        showDropdowns: true
+    });
+
     Grupo.CargarGrupo(HTMLCargarGrupo);
     slctGlobal.listarSlctFijo('tgrupo','slct_grupo');
     $('#grupoModal').on('show.bs.modal', function (event) {
@@ -11,13 +18,15 @@ $(document).ready(function() {
         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
         var modal = $(this); //captura el modal
-        modal.find('.modal-title').text(titulo+' Zona de Influencia');
+        modal.find('.modal-title').text(titulo+' Grupo');
         $('#form_grupo [data-toggle="tooltip"]').css("display","none");
         $("#form_grupo input[type='hidden']").remove();
         $("#form_cargo input[type='text']").val('');
         var data={};
+        $('#slct_provincia,#slct_distrito').html('');
         
         if(titulo=='Nuevo'){
+            slctGlobal.listarSlctFijo2('ubigeo','cargarregion','slct_region');
             data={cid:"0"};
             modal.find('.modal-footer .btn-primary').text('Guardar');
             modal.find('.modal-footer .btn-primary').attr('onClick','Agregar();');
@@ -27,13 +36,21 @@ $(document).ready(function() {
         }
         else{
             data={cid:grupo_id};
+            ValorBuscadoF=grupo_id; // para encontrar valor real
+            var arrPorID = GrupoObj.filter(filtrarPorID);
+            ValidaTerritorial(arrPorID[0].tipo_grupo_id);
             
             modal.find('.modal-footer .btn-primary').text('Actualizar');
             modal.find('.modal-footer .btn-primary').attr('onClick','Editar();');
 
-            $('#form_grupo #txt_nombre').val( GrupoObj[grupo_id-1].nombre );
-            $('#form_grupo #slct_grupo').val( GrupoObj[grupo_id-1].tipo_grupo_id );
-            $('#form_grupo #slct_estado').val( GrupoObj[grupo_id-1].estado );
+            slctGlobal.listarSlctFijo2('ubigeo','cargarregion','slct_region',null,arrPorID[0].departamento_id);
+            CargarProvincia(arrPorID[0].departamento_id,arrPorID[0].provincia_id);
+            CargarDistrito(arrPorID[0].provincia_id,arrPorID[0].distrito_id);
+
+            $('#form_grupo #txt_nombre').val( arrPorID[0].nombre );
+            $('#form_grupo #slct_grupo').val( arrPorID[0].tipo_grupo_id );
+            $('#form_grupo #txt_localidad').val( arrPorID[0].localidad );
+            $('#form_grupo #slct_estado').val( arrPorID[0].estado );
             $("#form_grupo").append("<input type='hidden' value='"+button.data('id')+"' name='id'>");
         }
 
@@ -76,12 +93,13 @@ $(document).ready(function() {
         }
         else{
             data={cid:cargo_id};
-            
+            ValorBuscadoF=cargo_id; // para encontrar valor real
+            var arrPorID = CargoObj.filter(filtrarPorID);
             modal.find('.modal-footer .btn-primary').text('Actualizar');
             modal.find('.modal-footer .btn-primary').attr('onClick','Editar();');
 
-            $('#form_cargo #txt_nombre').val( CargoObj[cargo_id-1].nombre );
-            $('#form_cargo #slct_estado').val( CargoObj[cargo_id-1].estado );
+            $('#form_cargo #txt_nombre').val( arrPorID[0].nombre );
+            $('#form_cargo #slct_estado').val( arrPorID[0].estado );
             $("#form_cargo").append("<input type='hidden' value='"+button.data('id')+"' name='id'>");
         }
 
@@ -109,7 +127,7 @@ $(document).ready(function() {
         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
         var modal = $(this); //captura el modal
-        modal.find('.modal-title').text(titulo+' Estrategia Organizacional');
+        modal.find('.modal-title').text(titulo+' Estructura Organizacion');
         $('#form_grupocargo [data-toggle="tooltip"]').css("display","none");
         $("#form_grupocargo input[type='hidden']").remove();
         $("#form_grupocargo input[type='text'],#form_grupocargo select").val('');
@@ -123,14 +141,15 @@ $(document).ready(function() {
         }
         else{
             data={cid:grupo_cargo_id};
-            
+            ValorBuscadoF=grupo_cargo_id; // para encontrar valor real
+            var arrPorID = GrupoCargoObj.filter(filtrarPorID);
             modal.find('.modal-footer .btn-primary').text('Actualizar');
             modal.find('.modal-footer .btn-primary').attr('onClick','Editar();');
 
-            $('#form_grupocargo #slct_grupop').val( GrupoCargoObj[grupo_cargo_id-1].grupo_persona_id );
-            $('#form_grupocargo #slct_cargo').val( GrupoCargoObj[grupo_cargo_id-1].cargo_estrategico_id );
-            $('#form_grupocargo #txt_fecha_inicio').val( GrupoCargoObj[grupo_cargo_id-1].fecha_inicio_id );
-            $('#form_grupocargo #slct_estado').val( GrupoCargoObj[grupo_cargo_id-1].estado );
+            $('#form_grupocargo #slct_grupop').val( arrPorID[0].grupo_persona_id );
+            $('#form_grupocargo #slct_cargo').val( arrPorID[0].cargo_estrategico_id );
+            $('#form_grupocargo #txt_fecha_inicio').val( arrPorID[0].fecha_inicio );
+            $('#form_grupocargo #slct_estado').val( arrPorID[0].estado );
             $("#form_grupocargo").append("<input type='hidden' value='"+button.data('id')+"' name='id'>");
         }
 
@@ -150,6 +169,24 @@ $(document).ready(function() {
         modal.find('.modal-body input').val(''); // busca un input para copiarle texto
     });
 });
+
+function filtrarPorID(obj) {
+  if ('id' in obj && obj.id==ValorBuscadoF ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+CargarProvincia=function(id,val){
+    var data={departamento_id:id};
+    slctGlobal.listarSlctFijo2('ubigeo','cargarprovincia','slct_provincia',data,val);
+}
+
+CargarDistrito=function(id,val){
+    var data={provincia_id:id};
+    slctGlobal.listarSlctFijo2('ubigeo','cargardistrito','slct_distrito',data,val);
+}
 
 ActPest=function(nro){
     Pest=nro;
@@ -226,6 +263,13 @@ desactivar=function(id){
     }
 };
 
+ValidaTerritorial=function(val){
+    $(".ocultar").css('display','');
+    if( val!=2 ){
+        $(".ocultar").css('display','none');
+    }
+}
+
 validaGrupo=function(){
     var rpta=true;
 
@@ -235,6 +279,22 @@ validaGrupo=function(){
     }
     else if( $.trim($('#form_grupo #txt_nombre').val())=='' ){
         alert('Ingrese Nombre');
+        rpta=false;
+    }
+    else if( $.trim($('#form_grupo #slct_grupo').val())==2 && $.trim($('#form_grupo #slct_region').val())=='' ){
+        alert('Seleccione Region');
+        rpta=false;
+    }
+    else if( $.trim($('#form_grupo #slct_grupo').val())==2 && $.trim($('#form_grupo #slct_provincia').val())=='' ){
+        alert('Seleccione Provincia');
+        rpta=false;
+    }
+    else if( $.trim($('#form_grupo #slct_grupo').val())==2 && $.trim($('#form_grupo #slct_distrito').val())=='' ){
+        alert('Seleccione Distrito');
+        rpta=false;
+    }
+    else if( $.trim($('#form_grupo #slct_grupo').val())==2 && $.trim($('#form_grupo #txt_localidad').val())=='' ){
+        alert('Ingrese Localidad');
         rpta=false;
     }
     return rpta;
@@ -290,6 +350,10 @@ HTMLCargarGrupo=function(datos){
         html+="<tr>"+
             "<td >"+data.grupo+"</td>"+
             "<td >"+data.nombre+"</td>"+
+            "<td >"+$.trim(data.departamento)+"</td>"+
+            "<td >"+$.trim(data.provincia)+"</td>"+
+            "<td >"+$.trim(data.distrito)+"</td>"+
+            "<td >"+$.trim(data.localidad)+"</td>"+
             "<td id='estado_"+data.id+"' data-estado='"+data.estado+"'>"+estadohtml+"</td>"+
             '<td><a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#grupoModal" data-id="'+data.id+'" data-titulo="Editar"><i class="fa fa-edit fa-lg"></i> </a></td>';
 

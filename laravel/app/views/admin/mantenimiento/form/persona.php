@@ -103,17 +103,46 @@
             <div class="row form-group">
               <div class="col-sm-12">
                 <div class="col-sm-6">
-                  <label class="control-label">Rol:
+                  <label class="control-label">Nivel Actual en la Red:
                   </label>
                   <select class="form-control" name="slct_cargos" id="slct_cargos">
                   </select>
                 </div>
-                <div class="col-sm-6">
-                  <label class="control-label">Grupo:
-                  </label>
-                  <select class="form-control" name="slct_grupos" id="slct_grupos">
-                  </select>
-                </div>
+              </div>
+            </div>
+            <ul class="list-group" id="t_cargoPersona"></ul>
+          </fieldset>
+          <fieldset id="f_areas_cargo">
+            <legend>Escalafón del Afiliado
+                    <span> <button type="button" class="btn btn-sm btn-success"><i class='fa fa-lg fa-plus'></i></button> </span>
+            </legend>
+
+            <div class="row form-group">
+              <div class="col-sm-12">
+              <table class='table table-bordered'>
+                <thead>
+                <tr>
+                    <th>Grupo</th>
+                    <th>Cargo</th>
+                    <th>Fecha de Inicio del Cargo</th>
+                    <th>Doc. Para el Inicio del Cargo</th>
+                    <th>Fecha de Final del Cargo</th>
+                    <th>Doc. Para Fin del Cargo</th>
+                    <th>[]</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                <tfoot>
+                    <th>Grupo</th>
+                    <th>Cargo</th>
+                    <th>Fecha de Inicio del Cargo</th>
+                    <th>Doc. Para el Inicio del Cargo</th>
+                    <th>Fecha de Final del Cargo</th>
+                    <th>Doc. Para Fin del Cargo</th>
+                    <th>[]</th>
+                </tfoot>
+              </table>
               </div>
             </div>
             <ul class="list-group" id="t_cargoPersona"></ul>

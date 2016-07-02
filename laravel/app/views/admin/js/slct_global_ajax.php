@@ -68,7 +68,7 @@ var slctGlobal={
             }
         });
     },
-    listarSlctFijo:function(controlador,slct){
+    listarSlctFijo:function(controlador,slct,val){
         $.ajax({
             url         : controlador+'/listar',
             type        : 'POST',
@@ -79,10 +79,45 @@ var slctGlobal={
             },
             success : function(obj) {
                 var html="";
+                var selected="";
                 html += "<option value=''>Seleccione</option>";
                 if(obj.rst==1){
                     $.each(obj.datos,function(index,data){
-                        html += "<option value=\"" + data.id + "\">" + data.nombre + "</option>";
+                        selected="";
+                        if(typeof(val)!='undefined' && val==data.id){
+                            selected="selected";
+                        }
+                        html += "<option value=\"" + data.id + "\" "+selected+">" + data.nombre + "</option>";
+                    });
+                }
+                $("#"+slct).html(html);
+            },
+            error: function(){
+                Psi.mensaje('danger', '<?php echo trans("greetings.mensaje_error"); ?>', 6000);
+            }
+        });
+    },
+    listarSlctFijo2:function(controlador,evento,slct,datos,val){
+        $.ajax({
+            url         : controlador+'/'+evento,
+            type        : 'POST',
+            cache       : false,
+            dataType    : 'json',
+            data        : datos,
+            beforeSend : function() {
+                //$("body").append('<div class="overlay"></div><div class="loading-img"></div>');
+            },
+            success : function(obj) {
+                var html="";
+                var selected="";
+                html += "<option value=''>Seleccione</option>";
+                if(obj.rst==1){
+                    $.each(obj.datos,function(index,data){
+                        selected="";
+                        if(typeof(val)!='undefined' && val==data.id){
+                            selected="selected";
+                        }
+                        html += "<option value=\"" + data.id + "\" "+selected+">" + data.nombre + "</option>";
                     });
                 }
                 $("#"+slct).html(html);

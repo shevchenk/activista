@@ -51,6 +51,12 @@ class GrupoPController extends \BaseController
             $tgrupo = new Grupo;
             $tgrupo->nombre = Input::get('nombre');
             $tgrupo->tipo_grupo_id = Input::get('grupo');
+            if( Input::get('grupo')=='2' ){
+                $tgrupo->departamento_id = Input::get('region');
+                $tgrupo->provincia_id = Input::get('provincia');
+                $tgrupo->distrito_id = Input::get('distrito');
+                $tgrupo->localidad = Input::get('localidad');
+            }
             $tgrupo->estado = Input::get('estado');
             $tgrupo->usuario_created_at = Auth::user()->id;
             $tgrupo->save();
@@ -93,6 +99,18 @@ class GrupoPController extends \BaseController
             $tgrupo = Grupo::find($cargoId);
             $tgrupo->nombre = Input::get('nombre');
             $tgrupo->tipo_grupo_id = Input::get('grupo');
+            if( Input::get('grupo')!='2' ){
+                $tgrupo->departamento_id = NULL;
+                $tgrupo->provincia_id = NULL;
+                $tgrupo->distrito_id = NULL;
+                $tgrupo->localidad = NULL;
+            }
+            else{
+                $tgrupo->departamento_id = Input::get('region');
+                $tgrupo->provincia_id = Input::get('provincia');
+                $tgrupo->distrito_id = Input::get('distrito');
+                $tgrupo->localidad = Input::get('localidad');
+            }
             $tgrupo->estado = Input::get('estado');
             $tgrupo->usuario_updated_at = Auth::user()->id;
             $tgrupo->save();

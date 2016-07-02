@@ -16,7 +16,7 @@
                     <i class="fa fa-exclamation"></i>
                 </a>
             </label>
-            <select class="form-control" id='slct_grupo' name="slct_grupo">
+            <select class="form-control" id='slct_grupo' name="slct_grupo" onChange='ValidaTerritorial(this.value);'>
               <option value="">.::Seleccione::.</option>
             </select>
           </div>
@@ -27,6 +27,28 @@
                 </a>
             </label>
             <input type="text" class="form-control" placeholder="Ingrese Nombre" name="txt_nombre" id="txt_nombre">
+          </div>
+          <div class="form-group ocultar">
+            <label class="control-label">Region</label>
+            <select class="form-control" id='slct_region' name="slct_region" onChange='CargarProvincia(this.value)'>
+              <option value="">.::Seleccione::.</option>
+            </select>
+          </div>
+          <div class="form-group ocultar">
+            <label class="control-label">Provincia</label>
+            <select class="form-control" id='slct_provincia' name="slct_provincia" onChange='CargarDistrito(this.value)'>
+              <option value="">.::Seleccione::.</option>
+            </select>
+          </div>
+          <div class="form-group ocultar">
+            <label class="control-label">Distrito</label>
+            <select class="form-control" id='slct_distrito' name="slct_distrito">
+              <option value="">.::Seleccione::.</option>
+            </select>
+          </div>
+          <div class="form-group ocultar">
+            <label class="control-label">Localidad</label>
+            <input type="text" class="form-control" placeholder="Ingrese Localidad" name="txt_localidad" id="txt_localidad">
           </div>
           <div class="form-group">
             <label class="control-label">Estado:

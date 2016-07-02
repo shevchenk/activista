@@ -37,10 +37,25 @@ class Persona extends Base implements UserInterface, RemindableInterface
 
         return $personas;
     }
-    /**
-     * Cargos relationship
-     */
-    public static function getCargar()
+    
+    public static function getCargarCount( $array )
+    {
+        $sql="  SELECT COUNT(id) cant
+                FROM (
+                    SELECT a.id
+                    FROM activistas a
+                    INNER JOIN activista_cargo pc ON a.id=pc.activista_id
+                    INNER JOIN cargos c ON c.id=pc.cargo_id
+                    INNER JOIN cargos c2 ON c2.id=a.nivel_id ";
+        $sql.=      $array['where'];
+        $sql.="     GROUP BY a.id";
+        $sql.="     ) a ";
+        $personas = DB::select($sql);
+
+        return $personas[0]->cant;
+    }
+
+    public static function getCargar( $array )
     {
         $sql="  SELECT a.id,a.dni,a.paterno,a.materno,a.nombres,a.email,c2.nombre nivel,
                 a.password, a.fecha_nacimiento,a.sexo,a.estado,a.grupo_persona_id,
@@ -50,8 +65,11 @@ class Persona extends Base implements UserInterface, RemindableInterface
                 FROM activistas a
                 INNER JOIN activista_cargo pc ON a.id=pc.activista_id
                 INNER JOIN cargos c ON c.id=pc.cargo_id
-                INNER JOIN cargos c2 ON c2.id=a.nivel_id
-                GROUP BY a.id";
+                INNER JOIN cargos c2 ON c2.id=a.nivel_id ";
+        $sql.=  $array['where'];
+        $sql.=" GROUP BY a.id ";
+        $sql.=  $array['limit'];
+        
         $personas = DB::select($sql);
 
         return $personas;

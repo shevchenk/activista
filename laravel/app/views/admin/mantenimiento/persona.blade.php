@@ -9,6 +9,7 @@
     {{ HTML::script('//cdn.jsdelivr.net/momentjs/2.9.0/moment.min.js') }}
     {{ HTML::script('lib/daterangepicker/js/daterangepicker_single.js') }}
     {{ HTML::script('lib/bootstrap-multiselect/dist/js/bootstrap-multiselect.js') }}
+
     @include( 'admin.js.slct_global_ajax' )
     @include( 'admin.js.slct_global' )
     @include( 'admin.mantenimiento.js.persona_ajax' )
@@ -39,35 +40,18 @@
                                     <h3 class="box-title">Filtros</h3>
                                 </div><!-- /.box-header -->
                                 <div class="box-body table-responsive">
-                                    <table id="t_personas" class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Nivel</th>
-                                                <th>Apellido P</th>
-                                                <th>Apellido M</th>
-                                                <th>Nombres</th>
-                                                <th>Email</th>
-                                                <th>DNI</th>
-                                                <th>Estado</th>
-                                                <th> [ ] </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tb_personas">
-                                            
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Nivel</th>
-                                                <th>Apellido P</th>
-                                                <th>Apellido M</th>
-                                                <th>Nombres</th>
-                                                <th>Email</th>
-                                                <th>DNI</th>
-                                                <th>Estado</th>
-                                                <th> [ ] </th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
+                                    <form name="form_filtros" id="form_filtros" method="POST" action="">
+                                        <table id="t_personas" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr></tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr></tr>
+                                            </tfoot>
+                                        </table>
+                                    </form>
                                     <a class='btn btn-primary btn-sm' class="btn btn-primary" 
                                     data-toggle="modal" data-target="#personaModal" data-titulo="Nuevo"><i class="fa fa-plus fa-lg"></i>&nbsp;Nuevo</a>
                                 </div><!-- /.box-body -->
