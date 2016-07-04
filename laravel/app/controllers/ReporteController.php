@@ -76,15 +76,12 @@ class ReporteController extends BaseController
         $objPHPExcel->getActiveSheet()->getStyle("A3:".$az[($i-1)]."3")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFCCCCCC');
 
         $activistaids= implode(",",$data['idpersonas']);
-        $sql="  SELECT a.id,a.paterno,a.materno,a.nombres,a.dni,a.email,a.celular,
-                IFNULL(m.id,'') memail,IFNULL(m2.id,'') mcel, c.nombre nivel
+        $sql="  SELECT a.id,a.paterno,a.materno,a.nombres,a.dni,a.email,a.celular,c.nombre nivel
                 FROM activistas a
                 INNER JOIN cargos c ON c.id=a.nivel_id
-                LEFT JOIN mensajerias m ON m.activista_id=a.id AND m.email>=1
-                LEFT JOIN mensajerias m2 ON m.activista_id=a.id AND m.nrollamada>=1
+                LEFT JOIN mensajerias m ON m.activista_id=a.id 
                 WHERE a.id IN (".$activistaids.")";
         $control=DB::select($sql);
-        $objPHPExcel->getActiveSheet()->setCellValue("A1",$sql);
         $cont=0;
         $valorinicial=3;
         $azcant=0;
