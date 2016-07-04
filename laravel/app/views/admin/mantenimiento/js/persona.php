@@ -165,7 +165,7 @@ AgregarEscalafon=function(val){
     html='';
     html+='<tr>';
     html+='<td><select disabled name="slct_grupo[]" id="slct_grupo_'+contadorG+'" onChange="CargarCargoEscalafon(this.value,'+contadorG+');"></select></td>';
-    html+='<td><input disabled name="txt_escalafon_id[]" id="txt_escalafon_id_'+contadorG+'" type="hidden" value="0"><select name="slct_cargo[]" id="slct_cargo_'+contadorG+'"></select></td>';
+    html+='<td><input disabled name="txt_escalafon_id[]" id="txt_escalafon_id_'+contadorG+'" type="hidden" value="0"><select disabled name="slct_cargo[]" id="slct_cargo_'+contadorG+'"></select></td>';
     html+='<td><input disabled name="txt_fecha_inicio[]" id="txt_fecha_inicio_'+contadorG+'" type="text" class="form-control fecha"></td>';
     html+='<td><input disabled name="txt_documento_inicio[]" id="txt_documento_inicio_'+contadorG+'" type="text" class="form-control"></td>';
     html+='<td><input disabled name="txt_fecha_final[]" id="txt_fecha_final_'+contadorG+'" type="text" class="form-control fecha"></td>';
