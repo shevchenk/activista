@@ -110,7 +110,6 @@
                 </div>
               </div>
             </div>
-            <ul class="list-group" id="t_cargoPersona"></ul>
           </fieldset>
           <fieldset id="f_areas_cargo">
             <legend>Escalafón del Afiliado
@@ -118,7 +117,7 @@
 
             <div class="row form-group">
               <div class="col-sm-12">
-              <table class='table table-bordered'>
+              <table id="t_cargoPersona" class='table table-bordered'>
                 <thead>
                 <tr>
                     <th>Grupo</th>
@@ -142,7 +141,7 @@
               </table>
               </div>
             </div>
-            <ul class="list-group" id="t_cargoPersona"></ul>
+            <select id='slct_grupos' style='display:none'></select>
           </fieldset>
         </form>
       </div>

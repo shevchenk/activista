@@ -7,7 +7,7 @@ var ValorBuscadoF='';
 $(document).ready(function() {  
     //Persona.CargarPersonas(activarTabla);
     slctGlobal.listarSlctFijo('cargo','slct_cargos');
-    slctGlobal.listarSlctFijo('grupop','slct_grupos');
+    slctGlobal.listarSlctFijo2('grupop','listargrupoe','slct_grupos');
 
     cabeceraP=  [{
                 'id'    :'nivel',
