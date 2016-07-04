@@ -76,7 +76,7 @@ class ReporteController extends BaseController
         $objPHPExcel->getActiveSheet()->getStyle("A3:".$az[($i-1)]."3")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFCCCCCC');
 
         $activistaids= implode(",",$data['idpersonas']);
-        $sql="  SELECT a.id,a.paterno,a.materno,a.nombres,a.dni,a.email,a.celular,c.nombre nivel
+        $sql="  SELECT a.id,a.paterno,a.materno,a.nombres,a.dni,a.email,a.celular,c.nombre nivel, ifnull(m.email,'') memail,ifnull(m.nrollamada,'') mcel
                 FROM activistas a
                 INNER JOIN cargos c ON c.id=a.nivel_id
                 LEFT JOIN mensajerias m ON m.activista_id=a.id 
