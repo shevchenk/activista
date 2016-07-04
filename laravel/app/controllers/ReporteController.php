@@ -84,7 +84,7 @@ class ReporteController extends BaseController
                 LEFT JOIN mensajerias m2 ON m.activista_id=a.id AND m.nrollamada>=1
                 WHERE a.id IN (".$activistaids.")";
         $control=DB::select($sql);
-
+        $objPHPExcel->getActiveSheet()->setCellValue("A1",$sql);
         $cont=0;
         $valorinicial=3;
         $azcant=0;
