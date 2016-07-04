@@ -55,6 +55,30 @@ var Persona={
             }
         });
     },
+    CargarEscalafon:function(persona_id){
+        //getOpciones
+        $.ajax({
+            url         : 'persona/cargarescalafon',
+            type        : 'POST',
+            cache       : false,
+            dataType    : 'json',
+            data        : {persona_id:persona_id},
+            async       : false,
+            beforeSend : function() {
+                
+            },
+            success : function(obj) {
+                //CARGAR areas
+                if(obj.rst== 1){
+                    $.each(obj.datos, function(id,val){
+                        AgregarEscalafon(val);
+                    });
+                }
+            },
+            error: function(){
+            }
+        });
+    },
     /*CargarPersonas:function(evento){
         $.ajax({
             url         : 'persona/cargar',

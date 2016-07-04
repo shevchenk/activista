@@ -114,7 +114,6 @@
           </fieldset>
           <fieldset id="f_areas_cargo">
             <legend>Escalafón del Afiliado
-                    <span> <button type="button" class="btn btn-sm btn-success"><i class='fa fa-lg fa-plus'></i></button> </span>
             </legend>
 
             <div class="row form-group">
@@ -128,7 +127,6 @@
                     <th>Doc. Para el Inicio del Cargo</th>
                     <th>Fecha de Final del Cargo</th>
                     <th>Doc. Para Fin del Cargo</th>
-                    <th>[]</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -140,7 +138,6 @@
                     <th>Doc. Para el Inicio del Cargo</th>
                     <th>Fecha de Final del Cargo</th>
                     <th>Doc. Para Fin del Cargo</th>
-                    <th>[]</th>
                 </tfoot>
               </table>
               </div>

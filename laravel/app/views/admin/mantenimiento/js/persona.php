@@ -146,7 +146,7 @@ $(document).ready(function() {
             var datos={estado:1};
         }
 
-
+        Persona.CargarEscalafon(arrPorID[0].id);
         $( "#form_personas #slct_estado" ).trigger('change');
     });
 
@@ -158,6 +158,36 @@ $(document).ready(function() {
 
     MostrarAjax('persona');
 });
+
+AgregarEscalafon=function(val){
+    contadorG++;
+    html='';
+    html+='<tr>';
+    html+='<td><select disabled name="slct_grupo[]" id="slct_grupo_'+contadorG+'" onChange="CargarCargoEscalafon(this.value,'+contadorG+');"></select></td>';
+    html+='<td><input disabled name="txt_escalafon_id[]" id="txt_escalafon_id_'+contadorG+'" type="hidden" value="0"><select name="slct_cargo[]" id="slct_cargo_'+contadorG+'"></select></td>';
+    html+='<td><input disabled name="txt_fecha_inicio[]" id="txt_fecha_inicio_'+contadorG+'" type="text" class="form-control fecha"></td>';
+    html+='<td><input disabled name="txt_documento_inicio[]" id="txt_documento_inicio_'+contadorG+'" type="text" class="form-control"></td>';
+    html+='<td><input disabled name="txt_fecha_final[]" id="txt_fecha_final_'+contadorG+'" type="text" class="form-control fecha"></td>';
+    html+='<td><input disabled name="txt_documento_final[]" id="txt_documento_final_'+contadorG+'" type="text" class="form-control"></td>';
+    html+='</tr>';
+    $("#t_cargoPersona").append(html);
+    $("#slct_grupo_"+contadorG).html( $("#slct_grupos").html() );
+
+    if(typeof(val)!='undefined' ){
+        $("#slct_grupo_"+contadorG).val( val.grupo_persona_id );
+        CargarCargoEscalafon(val.grupo_persona_id,contadorG,val.cargo_estrategico_id);
+        $("#txt_fecha_inicio_"+contadorG).val( val.fecha_inicio );
+        $("#txt_fecha_final_"+contadorG).val( val.fecha_final );
+        $("#txt_documento_inicio_"+contadorG).val( val.documento_inicio );
+        $("#txt_documento_final_"+contadorG).val( val.documento_final );
+        $("#txt_escalafon_id_"+contadorG).val( val.id );
+    }
+}
+
+CargarCargoEscalafon=function(val,cont,id){
+    var data={grupo_persona_id:val};
+    slctGlobal.listarSlctFijo2('grupop','listarcargoe','slct_cargo_'+cont,data,id);
+}
 
 CargarPersonaT=function(){
 console.log(PersonaObj);
