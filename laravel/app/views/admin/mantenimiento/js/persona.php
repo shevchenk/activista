@@ -1,4 +1,5 @@
 <script type="text/javascript">
+var contadorG=0;
 var cabeceraP=[];
 var columnDefsP=[];
 var targetsA=-1;
