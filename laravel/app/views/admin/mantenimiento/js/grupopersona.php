@@ -233,7 +233,7 @@ Editar=function(){
         }
     }
     else if( Pest==3 ){
-        if(validaCargo()){
+        if(validaGrupoCargo()){
         Grupo.AgregarEditarGrupoCargo(1);
         }
     }
