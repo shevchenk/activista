@@ -237,16 +237,8 @@ Agregar=function(){
 
 validaPersonas=function(){
     $('#form_personas [data-toggle="tooltip"]').css("display","none");
-    var a=[];
-    a[0]=valida("txt","nombres","");
     var rpta=true;
 
-    for(i=0;i<a.length;i++){
-        if(a[i]===false){
-            rpta=false;
-            break;
-        }
-    }
     return rpta;
 };
 

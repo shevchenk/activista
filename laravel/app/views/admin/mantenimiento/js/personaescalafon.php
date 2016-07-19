@@ -143,7 +143,7 @@ $(document).ready(function() {
     $('#personaModal').on('hide.bs.modal', function (event) {
         var modal = $(this); //captura el modal
         modal.find('.modal-body input').val(''); // busca un input para copiarle texto
-        $("#t_cargoPersona").html('');
+        $("#t_cargoPersona tbody").html('');
     });
 
     MostrarAjax('persona');
