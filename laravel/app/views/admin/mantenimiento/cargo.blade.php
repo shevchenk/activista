@@ -16,7 +16,7 @@
     <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Gestion Niveles
+                Gestion Niveles de Redes Sociales
                 <small> </small>
             </h1>
             <ol class="breadcrumb">
