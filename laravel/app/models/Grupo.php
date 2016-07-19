@@ -46,7 +46,7 @@ class Grupo extends Base
                 )
                 ->select(
                     'g.id',
-                    DB::raw('CONCAT(g.nombre," => ",t.nombre) nombre'),
+                    DB::raw('CONCAT(t.nombre," => ",g.nombre) nombre'),
                     't.nombre as grupo',
                     'g.tipo_grupo_id',
                     'g.estado'
