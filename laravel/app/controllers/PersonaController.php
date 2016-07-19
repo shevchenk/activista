@@ -239,6 +239,23 @@ class PersonaController extends BaseController
             $activistaCargo->usuario_created_at= $activista->id;
             $activistaCargo->save();
 
+            $escalafonId=Input::get('escalafon_id');
+            $cargo=Input::get('cargo');
+            $grupo=Input::get('grupo');
+            $fechaInicio=Input::get('fecha_inicio');
+            $documentoInicio=Input::get('documento_inicio');
+            for ($i=0; $i<count($escalafonId) ; $i++) { 
+                $escalafon=new Escalafon;
+                $escalafon->activista_id=$activista->id;
+                $escalafon->usuario_created_at=Auth::user()->id;
+                $escalafon->cargo_estrategico_id=$cargo[$i];
+                $escalafon->grupo_persona_id=$grupo[$i];
+                $escalafon->fecha_inicio=$fechaInicio[$i];
+                $escalafon->documento_inicio=$documentoInicio[$i];
+                $escalafon->estado=1;
+                $escalafon->save();
+            }
+
             /*$parametros=array(
                             'email'      => Input::get('email'),
                             'persona'   => $activista->paterno." ".$activista->materno.", ".$activista->nombres,

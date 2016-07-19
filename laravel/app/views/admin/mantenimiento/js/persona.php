@@ -123,6 +123,7 @@ $(document).ready(function() {
             var datos={estado:1};
             $('#form_personas #slct_cargos,#form_personas #slct_grupos').val( '' );
             $('.editar').css('display','none');
+            AgregarEscalafonNuevo();
         }
         else{
             modal.find('.modal-footer .btn-primary').text('Actualizar');
@@ -160,6 +161,26 @@ $(document).ready(function() {
     MostrarAjax('persona');
 });
 
+AgregarEscalafonNuevo=function(){
+    contadorG++;
+    html='';
+    html+='<tr>';
+    html+='<td><select name="slct_grupo[]" id="slct_grupo_'+contadorG+'"></select></td>';
+    html+='<td><input name="txt_escalafon_id[]" id="txt_escalafon_id_'+contadorG+'" type="hidden" value="0"><select disabled name="slct_cargo[]" id="slct_cargo_'+contadorG+'"><option value="23" selected>Afiliado</option></select></td>';
+    html+='<td><input name="txt_fecha_inicio[]" id="txt_fecha_inicio_'+contadorG+'" type="text" class="form-control fecha"></td>';
+    html+='<td><input name="txt_documento_inicio[]" id="txt_documento_inicio_'+contadorG+'" type="text" class="form-control"></td>';
+    html+='<td><input disabled name="txt_fecha_final[]" id="txt_fecha_final_'+contadorG+'" type="text" class="form-control fecha"></td>';
+    html+='<td><input disabled name="txt_documento_final[]" id="txt_documento_final_'+contadorG+'" type="text" class="form-control"></td>';
+    html+='</tr>';
+    $("#t_cargoPersona tbody").append(html);
+    $("#slct_grupo_"+contadorG).html( $("#slct_grupos").html() );
+    $('.fecha').daterangepicker({
+        format: 'YYYY-MM-DD',
+        singleDatePicker: true,
+        showDropdowns: true
+    });
+}
+
 AgregarEscalafon=function(val){
     contadorG++;
     html='';
@@ -171,7 +192,7 @@ AgregarEscalafon=function(val){
     html+='<td><input disabled name="txt_fecha_final[]" id="txt_fecha_final_'+contadorG+'" type="text" class="form-control fecha"></td>';
     html+='<td><input disabled name="txt_documento_final[]" id="txt_documento_final_'+contadorG+'" type="text" class="form-control"></td>';
     html+='</tr>';
-    $("#t_cargoPersona").append(html);
+    $("#t_cargoPersona tbody").append(html);
     $("#slct_grupo_"+contadorG).html( $("#slct_grupos").html() );
 
     if(typeof(val)!='undefined' ){

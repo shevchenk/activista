@@ -119,7 +119,7 @@
               <div class="col-sm-12">
               <table id="t_cargoPersona" class='table table-bordered'>
                 <thead>
-                <tr>
+                <tr class="logo">
                     <th>Grupo</th>
                     <th>Cargo</th>
                     <th>Fecha de Inicio del Cargo</th>
@@ -131,12 +131,14 @@
                 <tbody>
                 </tbody>
                 <tfoot>
+                <tr class="logo">
                     <th>Grupo</th>
                     <th>Cargo</th>
                     <th>Fecha de Inicio del Cargo</th>
                     <th>Doc. Para el Inicio del Cargo</th>
                     <th>Fecha de Final del Cargo</th>
                     <th>Doc. Para Fin del Cargo</th>
+                </tr>
                 </tfoot>
               </table>
               </div>
