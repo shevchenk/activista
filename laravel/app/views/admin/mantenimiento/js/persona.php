@@ -145,16 +145,16 @@ $(document).ready(function() {
             $("#form_personas").append("<input type='hidden' value='"+arrPorID[0].id+"' name='id'>");
             $('.editar').css('display','');
             var datos={estado:1};
+            Persona.CargarEscalafon(arrPorID[0].id);
         }
 
-        Persona.CargarEscalafon(arrPorID[0].id);
         $( "#form_personas #slct_estado" ).trigger('change');
     });
 
     $('#personaModal').on('hide.bs.modal', function (event) {
         var modal = $(this); //captura el modal
         modal.find('.modal-body input').val(''); // busca un input para copiarle texto
-        $("#t_cargoPersona").html('');
+        $("#t_cargoPersona tbody").html('');
     });
 
     MostrarAjax('persona');
