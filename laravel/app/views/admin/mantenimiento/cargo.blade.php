@@ -22,7 +22,7 @@
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
                 <li><a href="#">Gestiones</a></li>
-                <li class="active">Gestion Niveles</li>
+                <li class="active">Gestion Niveles de Redes Sociales</li>
             </ol>
         </section>
 

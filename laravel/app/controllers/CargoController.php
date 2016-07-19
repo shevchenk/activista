@@ -106,7 +106,7 @@ class CargoController extends \BaseController
             $regex='regex:/^([a-zA-Z .,ñÑÁÉÍÓÚáéíóú]{2,60})$/i';
             $required='required';
             $reglas = array(
-                'nombre' => $required.'|'.$regex.'|unique:cargos',
+                'nombre' => $required.'|unique:cargos',
                 //'path' =>$regex.'|unique:modulos,path,',
             );
 
@@ -173,7 +173,7 @@ class CargoController extends \BaseController
             $regex='regex:/^([a-zA-Z .,ñÑÁÉÍÓÚáéíóú]{2,60})$/i';
             $required='required';
             $reglas = array(
-                'nombre' => $required.'|'.$regex.'|unique:cargos,nombre,'.Input::get('id'),
+                'nombre' => $required.'|unique:cargos,nombre,'.Input::get('id'),
             );
 
             $mensaje= array(
