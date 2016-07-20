@@ -74,8 +74,14 @@
 
                 $scope.CargarCargoEscalafon = function() {
                     var data={grupo_persona_id:$scope.seguidor.grupo};
-                    slctGlobal.listarSlctFijo2('grupop','listarcargoe','slct_cargo',data);
+                    slctGlobal.listarSlctFijo2('grupop','listarcargoe','slct_cargo',data,null,SoloAfiliado);
                 }
+
+                    SoloAfiliado=function(id){
+                        $("#slct_cargo option").css("display","none");
+                        $("#slct_cargo option[data-dat='1']").css("display","").attr("selected","true");
+                    }
+
 
             });
     })()

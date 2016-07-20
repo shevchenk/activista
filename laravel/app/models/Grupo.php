@@ -91,7 +91,8 @@ class Grupo extends Base
                 )
                 ->select(
                     'c.id',
-                    'c.nombre'
+                    'c.nombre',
+                    DB::raw('IF(c.nombre like "%Afiliado%",1,0) as dat')
                 )
                 ->where('c.estado','=','1')
                 ->where('gc.estado','=','1')

@@ -101,7 +101,7 @@ var slctGlobal={
             }
         });
     },
-    listarSlctFijo2:function(controlador,evento,slct,datos,val){
+    listarSlctFijo2:function(controlador,evento,slct,datos,val,accion){
         $.ajax({
             url         : controlador+'/'+evento,
             type        : 'POST',
@@ -129,6 +129,7 @@ var slctGlobal={
                     });
                 }
                 $("#"+slct).html(html);
+                accion(slct);
             },
             error: function(){
                 Psi.mensaje('danger', '<?php echo trans("greetings.mensaje_error"); ?>', 6000);
