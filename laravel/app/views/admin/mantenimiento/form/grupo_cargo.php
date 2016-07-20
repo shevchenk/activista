@@ -11,7 +11,7 @@
       <div class="modal-body">
         <form id="form_grupocargo" name="form_grupocargo" action="" method="post">
           <div class="form-group">
-            <label class="control-label">Zona de Influencia
+            <label class="control-label">Equipo
             </label>
             <select class="form-control" name="slct_grupop" id="slct_grupop">
                 <option value=''>.::Seleccione::.</option>
