@@ -121,7 +121,7 @@
               <table id='t_cargoPersona' class='table table-bordered'>
                 <thead>
                 <tr class="logo">
-                    <th>Grupo</th>
+                    <th>Equipo</th>
                     <th>Cargo</th>
                     <th>Fecha de Inicio del Cargo</th>
                     <th>Doc. Para el Inicio del Cargo</th>
@@ -134,7 +134,7 @@
                 </tbody>
                 <tfoot>
                 <tr class="logo">
-                    <th>Grupo</th>
+                    <th>Equipo</th>
                     <th>Cargo</th>
                     <th>Fecha de Inicio del Cargo</th>
                     <th>Doc. Para el Inicio del Cargo</th>
