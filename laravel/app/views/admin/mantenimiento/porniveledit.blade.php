@@ -18,13 +18,13 @@
             <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Miembros integrantes de la red
+            Editar Celular y Email de los miembros integrantes de su red social
             <small> </small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
             <li><a href="#">Reporte</a></li>
-            <li class="active">Por Nivel</li>
+            <li class="active">Editar Celular y Emaild</li>
         </ol>
     </section>
 
