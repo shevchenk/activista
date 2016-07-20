@@ -18,7 +18,7 @@
             <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1 id="titulo">
-            Reporte Consolidado por Nivel
+            Reporte consolidado por nivel de la red social
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>

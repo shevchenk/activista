@@ -18,7 +18,7 @@
             <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Miembros integrantes de la red por Niveles
+            Miembros integrantes de la red social por niveles
             <small> </small>
         </h1>
         <ol class="breadcrumb">
