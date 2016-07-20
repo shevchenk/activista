@@ -50,6 +50,7 @@ class TGrupoController extends \BaseController
 
             $tgrupo = new Tgrupo;
             $tgrupo->nombre = Input::get('nombre');
+            $tgrupo->ubigeo = Input::get('ubigeo');
             $tgrupo->estado = Input::get('estado');
             $tgrupo->usuario_created_at = Auth::user()->id;
             $tgrupo->save();
@@ -91,6 +92,7 @@ class TGrupoController extends \BaseController
 
             $tgrupo = Tgrupo::find($cargoId);
             $tgrupo->nombre = Input::get('nombre');
+            $tgrupo->ubigeo = Input::get('ubigeo');
             $tgrupo->estado = Input::get('estado');
             $tgrupo->usuario_updated_at = Auth::user()->id;
             $tgrupo->save();

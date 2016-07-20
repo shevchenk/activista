@@ -19,6 +19,14 @@
             <input type="text" class="form-control" placeholder="Ingrese Nombre" name="txt_nombre" id="txt_nombre">
           </div>
           <div class="form-group">
+            <label class="control-label">Ubigeo:
+            </label>
+            <select class="form-control" name="slct_ubigeo" id="slct_ubigeo">
+                <option value='0'>No</option>
+                <option value='1' selected>Si</option>
+            </select>
+          </div>
+          <div class="form-group">
             <label class="control-label">Estado:
             </label>
             <select class="form-control" name="slct_estado" id="slct_estado">

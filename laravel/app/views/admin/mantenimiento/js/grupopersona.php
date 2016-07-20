@@ -38,7 +38,6 @@ $(document).ready(function() {
             data={cid:grupo_id};
             ValorBuscadoF=grupo_id; // para encontrar valor real
             var arrPorID = GrupoObj.filter(filtrarPorID);
-            ValidaTerritorial(arrPorID[0].tipo_grupo_id);
             
             modal.find('.modal-footer .btn-primary').text('Actualizar');
             modal.find('.modal-footer .btn-primary').attr('onClick','Editar();');
@@ -52,6 +51,8 @@ $(document).ready(function() {
             $('#form_grupo #txt_localidad').val( arrPorID[0].localidad );
             $('#form_grupo #slct_estado').val( arrPorID[0].estado );
             $("#form_grupo").append("<input type='hidden' value='"+button.data('id')+"' name='id'>");
+            
+            ValidaTerritorial(arrPorID[0].tipo_grupo_id);
         }
 
         $( "#form_grupo #slct_estado" ).trigger('change');
@@ -265,7 +266,7 @@ desactivar=function(id){
 
 ValidaTerritorial=function(val){
     $(".ocultar").css('display','');
-    if( val!=2 ){
+    if( $("#slct_grupo option:selected").attr("data-dat")!=1 ){
         $(".ocultar").css('display','none');
     }
 }

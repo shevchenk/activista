@@ -90,6 +90,16 @@ class SeguidorController extends \BaseController
                 $activistaCargo->usuario_created_at= Auth::user()->id;
                 $activistaCargo->save();
 
+                $escalafon=new Escalafon;
+                $escalafon->activista_id=$activista_id;
+                $escalafon->usuario_created_at=Auth::user()->id;
+                $escalafon->cargo_estrategico_id=array_key_exists('cargo', $data) ? $data['cargo']: "";
+                $escalafon->grupo_persona_id=array_key_exists('grupo', $data) ? $data['grupo']: "";
+                $escalafon->fecha_inicio=array_key_exists('fecha_inicio', $data) ? $data['fecha_inicio']: "";
+                $escalafon->documento_inicio="Redes Sociales";
+                $escalafon->estado=1;
+                $escalafon->save();
+
                 $results = array(
                     "code"=>"ok",
                     "message"=>"Datos correctamente guardados"

@@ -84,10 +84,14 @@ var slctGlobal={
                 if(obj.rst==1){
                     $.each(obj.datos,function(index,data){
                         selected="";
+                        dat="";
                         if(typeof(val)!='undefined' && val==data.id){
                             selected="selected";
                         }
-                        html += "<option value=\"" + data.id + "\" "+selected+">" + data.nombre + "</option>";
+                        if(data.dat!='undefined'){
+                            dat="data-dat='"+data.dat+"'";
+                        }
+                        html += "<option "+dat+" value=\"" + data.id + "\" "+selected+">" + data.nombre + "</option>";
                     });
                 }
                 $("#"+slct).html(html);
@@ -114,10 +118,14 @@ var slctGlobal={
                 if(obj.rst==1){
                     $.each(obj.datos,function(index,data){
                         selected="";
+                        dat="";
                         if(typeof(val)!='undefined' && val==data.id){
                             selected="selected";
                         }
-                        html += "<option value=\"" + data.id + "\" "+selected+">" + data.nombre + "</option>";
+                        if(data.dat!='undefined'){
+                            dat="data-dat='"+data.dat+"'";
+                        }
+                        html += "<option "+dat+" value=\"" + data.id + "\" "+selected+">" + data.nombre + "</option>";
                     });
                 }
                 $("#"+slct).html(html);

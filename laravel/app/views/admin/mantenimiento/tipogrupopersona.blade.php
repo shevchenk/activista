@@ -40,6 +40,7 @@
                                 <thead>
                                     <tr>
                                         <th>Nombre</th>
+                                        <th>Ubigeo</th>
                                         <th>Estado</th>
                                         <th> [ ] </th>
                                     </tr>
@@ -49,6 +50,7 @@
                                 <tfoot>
                                     <tr>
                                         <th>Nombre</th>
+                                        <th>Ubigeo</th>
                                         <th>Estado</th>
                                         <th> [ ] </th>
                                     </tr>

@@ -10,6 +10,7 @@ class Tgrupo extends Base
                 ->select(
                     'id',
                     'nombre',
+                    'ubigeo',
                     'estado'
                 )
                 ->get();
@@ -23,6 +24,8 @@ class Tgrupo extends Base
                 ->select(
                     'id',
                     'nombre',
+                    'ubigeo',
+                    'ubigeo as dat',
                     'estado'
                 )
                 ->where('estado','=',1)
