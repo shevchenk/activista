@@ -39,7 +39,7 @@
                             <li class="logo tab_1 active">
                                 <a href="#tab_1" data-toggle="tab" onclick="ActPest(1);">
                                     <button class="btn btn-primary btn-sm"><i class="fa fa-cloud fa-lg"></i> </button>
-                                    Gestion de Grupos
+                                    Gestion de Equipos
                                 </a>
                             </li>
                             <li class="logo tab_2">
@@ -64,8 +64,8 @@
                                             <table id="t_grupo" class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr>
-                                                        <th>Tipo Grupo</th>
-                                                        <th>Grupo</th>
+                                                        <th>Tipo Equipo</th>
+                                                        <th>Equipo</th>
                                                         <th>Region</th>
                                                         <th>Provincia</th>
                                                         <th>Distrito</th>
@@ -78,8 +78,8 @@
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>Tipo Grupo</th>
-                                                        <th>Grupo</th>
+                                                        <th>Tipo Equipo</th>
+                                                        <th>Equipo</th>
                                                         <th>Region</th>
                                                         <th>Provincia</th>
                                                         <th>Distrito</th>
@@ -132,7 +132,7 @@
                                             <table id="t_grupocargo" class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr>
-                                                        <th>Grupo</th>
+                                                        <th>Equipo</th>
                                                         <th>Cargo</th>
                                                         <th>Fecha de Inicio</th>
                                                         <th>Estado</th>
@@ -143,7 +143,7 @@
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>Grupo</th>
+                                                        <th>Equipo</th>
                                                         <th>Cargo</th>
                                                         <th>Fecha de Inicio</th>
                                                         <th>Estado</th>

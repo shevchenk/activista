@@ -16,13 +16,13 @@
     <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Tipo Grupo
+                Tipo Equipo
                 <small> </small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
                 <li><a href="#">Gestiones</a></li>
-                <li class="active">Tipo Grupo</li>
+                <li class="active">Tipo Equipo</li>
             </ol>
         </section>
 
