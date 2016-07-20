@@ -81,7 +81,14 @@
                         <label   class="control-label col-sm-2" for="">Fecha Ingreso</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" ng-model="seguidor.fecha_inicio" placeholder="Fe" value="{{fecha_inicio}}">
+                            <input type="text" class="form-control" ng-model="seguidor.fecha_inicio" 
+                                    value="{{fecha_inicio}}" placeholder="Fecha Inicio"
+                                       data-date-format="yyyy-MM-dd" data-model-date-format="yyyy-MM-dd"
+                                       data-date-type="string"
+                                       data-min-date="02/10/70"
+                                       data-max-date="today"
+                                       data-autoclose="1"
+                                       bs-datepicker/>
                         </div>
                     </div>
 

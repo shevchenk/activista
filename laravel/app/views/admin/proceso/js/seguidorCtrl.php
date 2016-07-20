@@ -53,6 +53,8 @@
                 $scope.seguidor = {};
                 $scope.seguidor.nivel='<?php echo $cargoS ? $cargoS->id : ''; ?>';
                 $scope.seguidor.fecha_inicio='<?php echo date("Y-m-d"); ?>';
+                slctGlobal.listarSlctFijo2('grupop','listargrupoe','slct_grupo');
+                
                 $scope.guardarSeguidor = function () {
                     $("body").append('<div class="overlay"></div><div class="loading-img"></div>');
                     Service.postSeguidor($scope.seguidor).then(function(response){
@@ -70,10 +72,7 @@
                     $location.path("/");
                 };
 
-                slctGlobal.listarSlctFijo2('grupop','listargrupoe','slct_grupo');
-
                 $scope.CargarCargoEscalafon = function() {
-                    alert($scope.seguidor.grupo);
                     var data={grupo_persona_id:$scope.seguidor.grupo};
                     slctGlobal.listarSlctFijo2('grupop','listarcargoe','slct_cargo',data);
                 }
