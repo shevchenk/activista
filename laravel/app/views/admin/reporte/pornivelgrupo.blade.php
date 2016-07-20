@@ -56,7 +56,7 @@
                             <table id="t_reporte" class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Nivel</th>
+                                        <th>Nivel de Red Social</th>
                                         <th>Paterno</th>
                                         <th>Materno</th>
                                         <th>Nombre</th>
@@ -67,7 +67,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Nivel</th>
+                                        <th>Nivel de Red Social</th>
                                         <th>Paterno</th>
                                         <th>Materno</th>
                                         <th>Nombre</th>
@@ -87,7 +87,7 @@
                         <table id="t_reporte2" class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Nivel</th>
+                                    <th>Nivel de Red Social</th>
                                     <th>Total Personas</th>
                                     <th>Total Paginas</th>
                                 </tr>

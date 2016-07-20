@@ -98,7 +98,7 @@
             </div>
           </fieldset>
           <fieldset id="f_areas_cargo">
-            <legend>Nivel de Acceso</legend>
+            <legend>Nivel de Red Social</legend>
 
             <div class="row form-group">
               <div class="col-sm-12">

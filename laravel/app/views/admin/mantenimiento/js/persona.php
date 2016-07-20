@@ -12,7 +12,7 @@ $(document).ready(function() {
     cabeceraP=  [{
                 'id'    :'nivel',
                 'idide' :'th_ni',
-                'nombre':'Nivel',
+                'nombre':'Nivel de Red Social',
                 'evento':'onBlur',
                 },
                 {

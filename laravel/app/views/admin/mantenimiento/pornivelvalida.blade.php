@@ -24,7 +24,7 @@
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
             <li><a href="#">Reporte</a></li>
-            <li class="active">Por Nivel</li>
+            <li class="active">Por Nivel de Red Social</li>
         </ol>
     </section>
 
@@ -36,7 +36,7 @@
                     <div class="row form-group" >
                         <div class="col-sm-12">
                             <div class="col-sm-4">
-                                <label class="control-label">Nivel:</label>
+                                <label class="control-label">Nivel de Red Social:</label>
                                 <select class="form-control" onchange="DetalleNivel();" name="slct_nivel" id="slct_nivel">
                                 </select>
                             </div>
@@ -63,7 +63,7 @@
                                 <thead>
                                     <tr>
                                         <th width="50px;">N°</th>
-                                        <th width="80px;">Nivel</th>
+                                        <th width="80px;">Nivel de Red Social</th>
                                         <th width="80px;">Paterno</th>
                                         <th width="80px;">Materno</th>
                                         <th width="80px;">Nombre</th>
@@ -88,7 +88,7 @@
                                 <tfoot>
                                     <tr>
                                         <th>N°</th>
-                                        <th>Nivel</th>
+                                        <th>Nivel de Red Social</th>
                                         <th>Paterno</th>
                                         <th>Materno</th>
                                         <th>Nombre</th>

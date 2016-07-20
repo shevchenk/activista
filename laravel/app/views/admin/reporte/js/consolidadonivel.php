@@ -19,7 +19,7 @@ $(document).ready(function() {
                 data = {nivel_id:nivel};
                Accion.mostrar(data,HTMLreporte);
         } else if(nivel==="") {
-            alert("Seleccione Nivel");
+            alert("Seleccione Nivel de Red Social");
         } 
     });
 });

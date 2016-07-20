@@ -18,9 +18,9 @@ $(document).ready(function() {
                 data = {nivel:nivel, persona:persona};
                Accion.mostrar(data,HTMLreporte);
         } else if(nivel==="") {
-            alert("Seleccione Nivel");
+            alert("Seleccione Nivel de Red Social");
         } else if(persona===""){
-            alert("Seleccione un Miembro del Nivel");
+            alert("Seleccione un Miembro del Nivel de Red Social");
         }
     });
 });

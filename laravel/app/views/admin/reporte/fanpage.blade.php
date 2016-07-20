@@ -23,7 +23,7 @@
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
             <li><a href="#">Reporte</a></li>
-            <li class="active">Consolidado Nivel</li>
+            <li class="active">Consolidado Nivel de Red Social</li>
         </ol>
     </section>
 
@@ -35,7 +35,7 @@
                     <div class="row form-group" >
                         <div class="col-sm-12">
                             <div class="col-sm-4">
-                                <label class="control-label">Nivel:</label>
+                                <label class="control-label">Nivel de Red Social:</label>
                                 <select class="form-control" name="slct_nivel" id="slct_nivel" multiple>
                                 </select>
                             </div>

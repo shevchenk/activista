@@ -43,7 +43,7 @@
                             <table id="t_reporte" class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th width="100px;">Nivel</th>
+                                        <th width="100px;">Nivel de Red Social</th>
                                         <th width="100px;">Paterno</th>
                                         <th width="100px;">Materno</th>
                                         <th width="100px;">Nombre</th>
@@ -57,7 +57,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Nivel</th>
+                                        <th>Nivel de Red Social</th>
                                         <th>Paterno</th>
                                         <th>Materno</th>
                                         <th>Nombre</th>
