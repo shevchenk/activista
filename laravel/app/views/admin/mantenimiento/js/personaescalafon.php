@@ -110,7 +110,7 @@ $(document).ready(function() {
         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
         var modal = $(this); //captura el modal
-        modal.find('.modal-title').text(titulo+' Persona');
+        modal.find('.modal-title').text(titulo+' Escalafon de la Persona');
         $('#form_personas [data-toggle="tooltip"]').css("display","none");
         $("#form_personas input[type='hidden']").remove();
         
