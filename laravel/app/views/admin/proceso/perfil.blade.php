@@ -71,7 +71,7 @@
                     <li role="presentation" class="active" ><a href="#home" aria-controls="home" role="tab" data-toggle="tab" ng-click="showGuardar = true">Datos Personales</a></li>
                     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" ng-click="showGuardar = true">Lugar de Nacimiento</a></li>
                     <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" ng-click="showGuardar = true">Domicilio</a></li>
-                    <li role="presentation" ng-if="idNivel < 8"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" ng-click="showGuardar = true">Centro de votacion</a></li>
+                    <li role="presentation" ng-if="idNivel < 8"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" ng-click="showGuardar = true">Centro de votación</a></li>
                     <li role="presentation"><a href="#labores" aria-controls="labores" role="tab" data-toggle="tab" ng-click="showGuardar = true">Centro de Labores</a></li>
                     <li role="presentation" ng-if="seguirAlguien > 0"><a href="#lideres" aria-controls="lideres" role="tab" data-toggle="tab" ng-click="showGuardar = false">Seleccionar @{{textoNivel}}</a></li>
                 </ul>
@@ -127,9 +127,9 @@
                                 </div>
 
                                 <div class="form-group col-sm-3">
-                                    <label class="" for="">Grado de Instruccion</label>
+                                    <label class="" for="">Grado de Instrucción</label>
                                     <select class="form-control" ng-model="perfil.grado_instruccion">
-                                        <option value="1">Sin Grado de Instruccion</option>
+                                        <option value="1">Sin Grado de Instrucción</option>
                                         <option value="2">Inicial o Preescolar</option>
                                         <option value="3">Primaria</option>
                                         <option value="4">Secundaria</option>
@@ -138,7 +138,7 @@
                                 </div>
 
                                 <div class="form-group col-sm-2">
-                                    <label class="" for="">Profesion/Ocp</label>
+                                    <label class="" for="">Profesión/Ocp</label>
                                     <input type="text" class="form-control" ng-model="perfil.profesion"/>
                                 </div>
 
@@ -148,7 +148,7 @@
                                 </div>
 
                                 <div class="form-group col-sm-3">
-                                    <label class="" for="">Correo Electronico</label>
+                                    <label class="" for="">Correo Electrónico</label>
                                     <input type="text" class="form-control" ng-model="perfil.email"/>
                                 </div>
 
@@ -177,7 +177,7 @@
                                        bs-datepicker/>
                             </div>
                             <div class="form-group col-sm-3">
-                                <label class="" for="">Region</label>
+                                <label class="" for="">Región</label>
                                 <select class="form-control"
                                        ng-model="perfil.n_departamento"
                                        ng-options="dep.id as dep.nombre for dep in departamentos"
@@ -208,7 +208,7 @@
                                 Domicilio
                             </legend>
                             <div class="form-group col-sm-4">
-                                <label class="" for="">Region</label>
+                                <label class="" for="">Región</label>
                                 <select class="form-control"
                                         ng-model="perfil.d_departamento"
                                         ng-options="dep.id as dep.nombre for dep in departamentos"
@@ -231,7 +231,7 @@
                                         /></select>
                             </div>
                             <div class="form-group col-sm-3">
-                                <label class="" for="">Urbanizacion</label>
+                                <label class="" for="">Urbanización</label>
                                 <input type="text" class="form-control" ng-model="perfil.d_urbanizacion"/>
                             </div>
                             <div class="form-group col-sm-3">
@@ -243,7 +243,7 @@
                                 <input type="text" class="form-control" ng-model="perfil.d_numero"/>
                             </div>
                             <div class="form-group col-sm-3">
-                                <label class="" for="">Telefono</label>
+                                <label class="" for="">Teléfono</label>
                                 <input type="text" class="form-control" ng-model="perfil.d_telefono"/>
                             </div>
 
@@ -255,7 +255,7 @@
                                 Centro de votación
                             </legend>
                             <div class="form-group col-sm-4">
-                                <label class="" for="">Region</label>
+                                <label class="" for="">Región</label>
                                 <select class="form-control"
                                         ng-model="perfil.cv_departamento"
                                         ng-options="dep.id as dep.nombre for dep in departamentos"
@@ -293,7 +293,7 @@
                                 Centro de labores
                             </legend>
                             <div class="form-group col-sm-4">
-                                <label class="" for="">Region</label>
+                                <label class="" for="">Región</label>
                                 <select class="form-control"
                                         ng-model="perfil.cl_departamento"
                                         ng-options="dep.id as dep.nombre for dep in departamentos"
@@ -316,11 +316,11 @@
                                         /></select>
                             </div>
                             <div class="form-group col-sm-2">
-                                <label class="" for="">Urbanizacion</label>
+                                <label class="" for="">Urbanización</label>
                                 <input type="text" class="form-control" ng-model="perfil.cl_urbanizacion"/>
                             </div>
                             <div class="form-group col-sm-3">
-                                <label class="" for="">Direccion</label>
+                                <label class="" for="">Dirección</label>
                                 <input type="text" class="form-control" ng-model="perfil.cl_direccion"/>
                             </div>
                             <div class="form-group col-sm-1">
@@ -328,7 +328,7 @@
                                 <input type="text" class="form-control" ng-model="perfil.cl_numero"/>
                             </div>
                             <div class="form-group col-sm-2">
-                                <label class="" for="">Telefono</label>
+                                <label class="" for="">Teléfono</label>
                                 <input type="text" class="form-control"  ng-model="perfil.cl_telefono"/>
                             </div>
                             <div class="form-group col-sm-4">
@@ -430,13 +430,13 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">Urbanizacoin</label>
+                                        <label class="col-sm-2 control-label">Urbanización</label>
                                         <div class="col-sm-10">
                                             <p class="form-control-static">@{{ liderPadre.d_urbanizacion }}</p>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">Direccion</label>
+                                        <label class="col-sm-2 control-label">Dirección</label>
                                         <div class="col-sm-10">
                                             <p class="form-control-static">@{{ liderPadre.d_avenidoa }}</p>
                                         </div>

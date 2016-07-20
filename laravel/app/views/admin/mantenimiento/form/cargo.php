@@ -32,7 +32,7 @@
 
             <div class="row form-group">
               <div class="col-sm-12">
-                  <label class="control-label">Opcion:
+                  <label class="control-label">Opción:
                   </label>
                   <table id="tb_opciones" class="table table-bordered table-hover">
                     <thead>

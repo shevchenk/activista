@@ -39,19 +39,19 @@
                             <li class="logo tab_1 active">
                                 <a href="#tab_1" data-toggle="tab" onclick="ActPest(1);">
                                     <button class="btn btn-primary btn-sm"><i class="fa fa-cloud fa-lg"></i> </button>
-                                    Gestion de Equipos
+                                    Gestión de Equipos
                                 </a>
                             </li>
                             <li class="logo tab_2">
                                 <a href="#tab_2" data-toggle="tab" onclick="ActPest(2);">
                                     <button class="btn btn-primary btn-sm"><i class="fa fa-cloud fa-lg"></i> </button>
-                                    Gestion de Cargos
+                                    Gestión de Cargos
                                 </a>
                             </li>
                             <li class="logo tab_3">
                                 <a href="#tab_3" data-toggle="tab" onclick="ActPest(3);">
                                     <button class="btn btn-primary btn-sm"><i class="fa fa-edit fa-lg"></i> </button>
-                                    Estructura Organizacion
+                                    Estructura Organización
                                 </a>
                             </li>
                         </ul>
@@ -66,7 +66,7 @@
                                                     <tr>
                                                         <th>Tipo Equipo</th>
                                                         <th>Equipo</th>
-                                                        <th>Region</th>
+                                                        <th>Región</th>
                                                         <th>Provincia</th>
                                                         <th>Distrito</th>
                                                         <th>Localidad</th>
@@ -80,7 +80,7 @@
                                                     <tr>
                                                         <th>Tipo Equipo</th>
                                                         <th>Equipo</th>
-                                                        <th>Region</th>
+                                                        <th>Región</th>
                                                         <th>Provincia</th>
                                                         <th>Distrito</th>
                                                         <th>Localidad</th>

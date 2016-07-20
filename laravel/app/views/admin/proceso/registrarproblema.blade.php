@@ -77,7 +77,7 @@ input:required:invalid {  border: 1px solid red;  }  input:required:valid {  bor
                         <div class="row form-group">
                             <div class="col-sm-12">
                                 <div class="col-sm-3">
-                                    <label class="control-label">Descripcion del problema:</label>
+                                    <label class="control-label">Descripción del problema:</label>
                                 </div>
                                 <div class="col-sm-9">
                                     <textarea id="descripcion" name="descripcion" class="form-control" rows="2" required></textarea>
@@ -107,7 +107,7 @@ input:required:invalid {  border: 1px solid red;  }  input:required:valid {  bor
                                                     <th>Apellido M</th>
                                                     <th>Nombres</th>
                                                     <th>Sexo</th>
-                                                    <th>Telefono</th>
+                                                    <th>Teléfono</th>
                                                     <th>Email</th>
                                                     <th> [ ] </th>
                                                 </tr>
@@ -119,7 +119,7 @@ input:required:invalid {  border: 1px solid red;  }  input:required:valid {  bor
                                                     <th>Apellido M</th>
                                                     <th>Nombres</th>
                                                     <th>Sexo</th>
-                                                    <th>Telefono</th>
+                                                    <th>Teléfono</th>
                                                     <th>Email</th>
                                                     <th> [ ] </th>
                                                 </tr>

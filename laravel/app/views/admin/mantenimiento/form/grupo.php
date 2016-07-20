@@ -29,7 +29,7 @@
             <input type="text" class="form-control" placeholder="Ingrese Nombre" name="txt_nombre" id="txt_nombre">
           </div>
           <div class="form-group ocultar">
-            <label class="control-label">Region</label>
+            <label class="control-label">Región</label>
             <select class="form-control" id='slct_region' name="slct_region" onChange='CargarProvincia(this.value)'>
               <option value="">.::Seleccione::.</option>
             </select>

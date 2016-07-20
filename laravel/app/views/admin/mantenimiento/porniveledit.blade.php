@@ -24,7 +24,7 @@
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
             <li><a href="#">Reporte</a></li>
-            <li class="active">Editar Celular y Emaild</li>
+            <li class="active">Editar Celular y Email</li>
         </ol>
     </section>
 

@@ -76,7 +76,7 @@
                                         <th>Dni</th>
                                         <th>Email</th>
                                         <th>Celular</th>
-                                        <th>Cant Pag</th>
+                                        <th>Cant Pág</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tb_reporte">
@@ -90,7 +90,7 @@
                                         <th>Dni</th>
                                         <th>Email</th>
                                         <th>Celular</th>
-                                        <th>Cant Pag</th>
+                                        <th>Cant Pág</th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -108,7 +108,7 @@
                                 <tr>
                                     <th>Nivel de Red Social</th>
                                     <th>Total Personas</th>
-                                    <th>Total Paginas</th>
+                                    <th>Total Páginas</th>
                                 </tr>
                             </thead>
                             <tbody id="tb_reporte2">

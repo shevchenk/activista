@@ -20,13 +20,13 @@
             <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Gestion de Escalafon de las Personas
+                        Gestión de Escalafon de las Personas
                         <small> </small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
-                        <li><a href="#">Gestion</a></li>
-                        <li class="active">Gestion de Escalafon de las Personas</li>
+                        <li><a href="#">Gestión</a></li>
+                        <li class="active">Gestión de Escalafon de las Personas</li>
                     </ol>
                 </section>
 

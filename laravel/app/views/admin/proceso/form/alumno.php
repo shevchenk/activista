@@ -42,7 +42,7 @@
                   <input type="text" class="form-control" placeholder="Ingrese Apellido Materno" name="txt_materno" id="txt_materno">
                 </div>
                 <div class="col-sm-6">
-                  <label class="control-label">Telefono
+                  <label class="control-label">Teléfono
                       <a id="error_telefono" style="display:none" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="bottom" title="Telefono">
                           <i class="fa fa-exclamation"></i>
                       </a>

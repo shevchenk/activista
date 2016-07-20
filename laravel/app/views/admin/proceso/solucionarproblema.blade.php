@@ -91,7 +91,7 @@
                                                 <th>Nº</th>
                                                 <th>Sede</th>
                                                 <th>Tipo</th>
-                                                <th>Descripcion</th>
+                                                <th>Descripción</th>
                                                 <th>Fecha problema</th>
                                                 <th>Fecha registro</th>
                                                 <th>Estado problema</th>
@@ -106,7 +106,7 @@
                                                 <th>Nº</th>
                                                 <th>Sede</th>
                                                 <th>Tipo</th>
-                                                <th>Descripcion</th>
+                                                <th>Descripción</th>
                                                 <th>Fecha problema</th>
                                                 <th>Fecha registro</th>
                                                 <th>Estado problema</th>

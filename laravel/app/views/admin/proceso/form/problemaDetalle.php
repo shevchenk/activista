@@ -48,7 +48,7 @@
                               <thead>
                                   <tr>
                                       <th>N</th>
-                                      <th>Descripcion</th>
+                                      <th>Descripción</th>
                                       <th>Estado</th>
                                       <th>Fecha del estado</th>
                                       <th>Fecha registro</th>
