@@ -11,7 +11,7 @@
       <div class="modal-body">
         <form id="form_grupo" name="form_grupo" action="" method="post">
           <div class="form-group">
-            <label class="control-label">Tipo Grupo
+            <label class="control-label">Tipo Equipo
                 <a id="error_nombre" style="display:none" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="bottom" title="Ingrese Nombre">
                     <i class="fa fa-exclamation"></i>
                 </a>
