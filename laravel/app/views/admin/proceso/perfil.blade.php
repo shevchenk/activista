@@ -171,7 +171,7 @@
                                 <input type="text" class="form-control" ng-model="perfil.fecha_nacimiento"
                                        data-date-format="yyyy-MM-dd" data-model-date-format="yyyy-MM-dd"
                                        data-date-type="string"
-                                       data-min-date="02/10/70"
+                                       data-min-date="01/01/30"
                                        data-max-date="today"
                                        data-autoclose="1"
                                        bs-datepicker/>
