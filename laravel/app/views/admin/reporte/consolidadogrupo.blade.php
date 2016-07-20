@@ -18,12 +18,12 @@
             <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1 id="titulo">
-            Reporte Consolidado por Grupo
+            Reporte Consolidado por Equipo
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
             <li><a href="#">Reporte</a></li>
-            <li class="active">Consolidado Grupo</li>
+            <li class="active">Consolidado Equipo</li>
         </ol>
     </section>
 
@@ -35,7 +35,7 @@
                     <div class="row form-group" >
                         <div class="col-sm-12">
                             <div class="col-sm-4">
-                                <label class="control-label">Grupo:</label>
+                                <label class="control-label">Equipo:</label>
                                 <select class="form-control" name="slct_nivel" id="slct_nivel">
                                 </select>
                             </div>

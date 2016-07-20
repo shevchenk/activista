@@ -24,7 +24,7 @@
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
             <li><a href="#">Reporte</a></li>
-            <li class="active">Por Grupos</li>
+            <li class="active">Por Equipos</li>
         </ol>
     </section>
 
@@ -36,7 +36,7 @@
                     <div class="row form-group" >
                         <div class="col-sm-12">
                             <div class="col-sm-4">
-                                <label class="control-label">Grupos:</label>
+                                <label class="control-label">Equipos:</label>
                                 <select class="form-control" name="slct_grupos" id="slct_grupos">
                                     <option>.::Seleccione::.    </option>
                                 </select>
