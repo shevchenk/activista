@@ -49,6 +49,8 @@ $(document).ready(function() {
             $('#form_grupo #txt_nombre').val( arrPorID[0].nombre );
             $('#form_grupo #slct_grupo').val( arrPorID[0].tipo_grupo_id );
             $('#form_grupo #txt_localidad').val( arrPorID[0].localidad );
+            $('#form_grupo #txt_direccion').val( arrPorID[0].direccion );
+            $('#form_grupo #txt_telefono').val( arrPorID[0].telefono );
             $('#form_grupo #slct_estado').val( arrPorID[0].estado );
             $("#form_grupo").append("<input type='hidden' value='"+button.data('id')+"' name='id'>");
             
@@ -355,6 +357,8 @@ HTMLCargarGrupo=function(datos){
             "<td >"+$.trim(data.provincia)+"</td>"+
             "<td >"+$.trim(data.distrito)+"</td>"+
             "<td >"+$.trim(data.localidad)+"</td>"+
+            "<td >"+$.trim(data.direccion)+"</td>"+
+            "<td >"+$.trim(data.telefono)+"</td>"+
             "<td id='estado_"+data.id+"' data-estado='"+data.estado+"'>"+estadohtml+"</td>"+
             '<td><a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#grupoModal" data-id="'+data.id+'" data-titulo="Editar"><i class="fa fa-edit fa-lg"></i> </a></td>';
 

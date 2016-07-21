@@ -70,6 +70,8 @@
                                                         <th>Provincia</th>
                                                         <th>Distrito</th>
                                                         <th>Localidad</th>
+                                                        <th>Dirección</th>
+                                                        <th>Teléfono Local</th>
                                                         <th>Estado</th>
                                                         <th> [ ] </th>
                                                     </tr>
@@ -84,6 +86,8 @@
                                                         <th>Provincia</th>
                                                         <th>Distrito</th>
                                                         <th>Localidad</th>
+                                                        <th>Dirección</th>
+                                                        <th>Teléfono Local</th>
                                                         <th>Estado</th>
                                                         <th> [ ] </th>
                                                     </tr>

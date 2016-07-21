@@ -67,14 +67,18 @@ class GrupoPController extends \BaseController
                 );
             }
 
+            $tpgrupo= TipoGrupoPersona::find(Input::get('grupo'));
+
             $tgrupo = new Grupo;
             $tgrupo->nombre = Input::get('nombre');
             $tgrupo->tipo_grupo_id = Input::get('grupo');
-            if( Input::get('grupo')=='2' ){
+            if( $tpgrupo->ubigeo=='1' ){
                 $tgrupo->departamento_id = Input::get('region');
                 $tgrupo->provincia_id = Input::get('provincia');
                 $tgrupo->distrito_id = Input::get('distrito');
                 $tgrupo->localidad = Input::get('localidad');
+                $tgrupo->direccion = Input::get('direccion');
+                $tgrupo->telefono = Input::get('telefono');
             }
             $tgrupo->estado = Input::get('estado');
             $tgrupo->usuario_created_at = Auth::user()->id;
@@ -115,10 +119,12 @@ class GrupoPController extends \BaseController
             }
             $cargoId = Input::get('id');
 
+            $tpgrupo= TipoGrupoPersona::find(Input::get('grupo'));
+
             $tgrupo = Grupo::find($cargoId);
             $tgrupo->nombre = Input::get('nombre');
             $tgrupo->tipo_grupo_id = Input::get('grupo');
-            if( Input::get('grupo')!='2' ){
+            if( $tpgrupo->ubigeo=='0' ){
                 $tgrupo->departamento_id = NULL;
                 $tgrupo->provincia_id = NULL;
                 $tgrupo->distrito_id = NULL;
@@ -129,6 +135,8 @@ class GrupoPController extends \BaseController
                 $tgrupo->provincia_id = Input::get('provincia');
                 $tgrupo->distrito_id = Input::get('distrito');
                 $tgrupo->localidad = Input::get('localidad');
+                $tgrupo->direccion = Input::get('direccion');
+                $tgrupo->telefono = Input::get('telefono');
             }
             $tgrupo->estado = Input::get('estado');
             $tgrupo->usuario_updated_at = Auth::user()->id;

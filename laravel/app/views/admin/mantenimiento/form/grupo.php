@@ -21,7 +21,7 @@
             </select>
           </div>
           <div class="form-group">
-            <label class="control-label">Nombre
+            <label class="control-label">Nombre del Equipo
                 <a id="error_nombre" style="display:none" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="bottom" title="Ingrese Nombre">
                     <i class="fa fa-exclamation"></i>
                 </a>
@@ -49,6 +49,14 @@
           <div class="form-group ocultar">
             <label class="control-label">Localidad</label>
             <input type="text" class="form-control" placeholder="Ingrese Localidad" name="txt_localidad" id="txt_localidad">
+          </div>
+          <div class="form-group ocultar">
+            <label class="control-label">Dirección</label>
+            <input type="text" class="form-control" placeholder="Ingrese Dirección" name="txt_direccion" id="txt_direccion">
+          </div>
+          <div class="form-group ocultar">
+            <label class="control-label">Teléfono</label>
+            <input type="text" class="form-control" placeholder="Ingrese Teléfono" name="txt_telefono" id="txt_telefono">
           </div>
           <div class="form-group">
             <label class="control-label">Estado:

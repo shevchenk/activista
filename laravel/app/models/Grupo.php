@@ -31,6 +31,8 @@ class Grupo extends Base
                     'g.departamento_id',
                     'g.provincia_id',
                     'g.localidad',
+                    'g.direccion',
+                    'g.telefono',
                     'g.estado'
                 )
                 ->get();
