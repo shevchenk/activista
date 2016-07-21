@@ -264,6 +264,9 @@ var Grupo={
                                     '</div>');
                     $('#grupocargoModal .modal-footer [data-dismiss="modal"]').click();
                 }
+                else if(obj.rst==3){
+                    alert(obj.msj);
+                }
                 else{ 
                     contador=0;
                     $.each(obj.msj,function(index,data){

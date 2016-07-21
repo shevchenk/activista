@@ -29,20 +29,34 @@ class GrupoCargoController extends \BaseController
     {
         //si la peticion es ajax
         if ( Request::ajax() ) {
-            $cargo = new GrupoCargo;
-            $cargo->grupo_persona_id = Input::get('grupop');
-            $cargo->cargo_estrategico_id = Input::get('cargo');
-            $cargo->fecha_inicio = Input::get('fecha_inicio');
-            $cargo->estado = Input::get('estado');
-            $cargo->usuario_created_at = Auth::user()->id;
-            $cargo->save();
+            $array=array();
+            $array['grupo_persona_id']=Input::get('grupop');
+            $array['cargo_estrategico_id']=Input::get('cargo');
 
-            return Response::json(
-                array(
-                'rst'=>1,
-                'msj'=>'Registro realizado correctamente',
-                )
-            );
+            if( GrupoCargo::getValidar($array)>0 ){
+                return Response::json(
+                    array(
+                    'rst'=>3,
+                    'msj'=>'Cargo y Equipo ingresados ya fueron registrados anteriormente',
+                    )
+                );
+            }
+            else{
+                $cargo = new GrupoCargo;
+                $cargo->grupo_persona_id = Input::get('grupop');
+                $cargo->cargo_estrategico_id = Input::get('cargo');
+                $cargo->fecha_inicio = Input::get('fecha_inicio');
+                $cargo->estado = Input::get('estado');
+                $cargo->usuario_created_at = Auth::user()->id;
+                $cargo->save();
+
+                return Response::json(
+                    array(
+                    'rst'=>1,
+                    'msj'=>'Registro realizado correctamente',
+                    )
+                );
+            }
         }
     }
 
@@ -58,20 +72,35 @@ class GrupoCargoController extends \BaseController
             $sql="";
             $cargoId = Input::get('id');
 
-            $cargo = GrupoCargo::find($cargoId);
-            $cargo->grupo_persona_id = Input::get('grupop');
-            $cargo->cargo_estrategico_id = Input::get('cargo');
-            $cargo->fecha_inicio = Input::get('fecha_inicio');
-            $cargo->estado = Input::get('estado');
-            $cargo->usuario_updated_at = Auth::user()->id;
-            $cargo->save();
+            $array=array();
+            $array['grupo_persona_id']=Input::get('grupop');
+            $array['cargo_estrategico_id']=Input::get('cargo');
+            $array['id']=$cargoId;
 
-            return Response::json(
-                array(
-                'rst'=>1,
-                'msj'=>'Registro actualizado correctamente',
-                )
-            );
+            if( GrupoCargo::getValidar($array)>0 ){
+                return Response::json(
+                    array(
+                    'rst'=>3,
+                    'msj'=>'Cargo y Equipo ingresados ya fueron registrados anteriormente',
+                    )
+                );
+            }
+            else{
+                $cargo = GrupoCargo::find($cargoId);
+                $cargo->grupo_persona_id = Input::get('grupop');
+                $cargo->cargo_estrategico_id = Input::get('cargo');
+                $cargo->fecha_inicio = Input::get('fecha_inicio');
+                $cargo->estado = Input::get('estado');
+                $cargo->usuario_updated_at = Auth::user()->id;
+                $cargo->save();
+
+                return Response::json(
+                    array(
+                    'rst'=>1,
+                    'msj'=>'Registro actualizado correctamente',
+                    )
+                );
+            }
         }
     }
 

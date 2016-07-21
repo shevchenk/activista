@@ -19,4 +19,21 @@ class GrupoCargo extends Base
         return $r;
 
     }
+
+    public static function getValidar($array)
+    {
+        //subconsulta
+        $sql = "SELECT count(id) cant
+                FROM grupos_cargos 
+                WHERE grupo_persona_id='".$array['grupo_persona_id']."'
+                AND cargo_estrategico_id='".$array['cargo_estrategico_id']."'
+                ";
+        if( isset($array['id']) ){
+            $sql.=" AND id!='".$array['id']."'";
+        }
+        $r=DB::select($sql);
+
+        return $r[0]->cant;
+
+    }
 }
