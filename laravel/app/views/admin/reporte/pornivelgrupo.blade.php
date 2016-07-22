@@ -60,6 +60,9 @@
                                         <th>Paterno</th>
                                         <th>Materno</th>
                                         <th>Nombre</th>
+                                        <th>Dni</th>
+                                        <th>Email</th>
+                                        <th>Celular</th>
                                         <th>Cant Pág</th>
                                     </tr>
                                 </thead>
@@ -71,6 +74,9 @@
                                         <th>Paterno</th>
                                         <th>Materno</th>
                                         <th>Nombre</th>
+                                        <th>Dni</th>
+                                        <th>Email</th>
+                                        <th>Celular</th>
                                         <th>Cant Pág</th>
                                     </tr>
                                 </tfoot>

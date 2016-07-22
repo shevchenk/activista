@@ -155,9 +155,9 @@ class ReporteController extends BaseController
                         a.dni,a.celular,a.email
                 FROM activistas a
                 INNER JOIN cargos c ON a.nivel_id=c.id
+                INNER JOIN escalafon e ON e.activista_id=a.id AND e.fecha_final IS NULL AND e.grupo_persona_id = $grupo_persona_id
                 LEFT JOIN grupos g ON a.id= g.activista_id
-                WHERE a.grupo_persona_id = $grupo_persona_id
-                AND a.estado=1
+                WHERE a.estado=1
                 GROUP BY a.id ";
 
         $r=DB::select($sql);
@@ -184,6 +184,7 @@ class ReporteController extends BaseController
                                 a.dni,a.celular,a.email
                         FROM activistas a
                         INNER JOIN cargos c ON a.nivel_id=c.id
+                        INNER JOIN escalafon e ON e.activista_id=a.id AND e.fecha_final IS NULL AND e.grupo_persona_id = $grupo_persona_id
                         LEFT JOIN grupos g ON a.id= g.activista_id
                         WHERE a.lider_padre = $id 
                         AND a.estado=1
@@ -210,6 +211,7 @@ class ReporteController extends BaseController
                                     a.dni,a.celular,a.email
                             FROM activistas a
                             INNER JOIN cargos c ON a.nivel_id=c.id
+                            INNER JOIN escalafon e ON e.activista_id=a.id AND e.fecha_final IS NULL AND e.grupo_persona_id = $grupo_persona_id
                             LEFT JOIN grupos g ON a.id= g.activista_id
                             WHERE a.lider_padre = $id 
                             AND a.estado=1
@@ -236,6 +238,7 @@ class ReporteController extends BaseController
                                         a.dni,a.celular,a.email
                                 FROM activistas a
                                 INNER JOIN cargos c ON a.nivel_id=c.id
+                                INNER JOIN escalafon e ON e.activista_id=a.id AND e.fecha_final IS NULL AND e.grupo_persona_id = $grupo_persona_id
                                 LEFT JOIN grupos g ON a.id= g.activista_id
                                 WHERE a.lider_padre = $id 
                                 AND a.estado=1
@@ -262,6 +265,7 @@ class ReporteController extends BaseController
                                             a.dni,a.celular,a.email
                                     FROM activistas a
                                     INNER JOIN cargos c ON a.nivel_id=c.id
+                                    INNER JOIN escalafon e ON e.activista_id=a.id AND e.fecha_final IS NULL AND e.grupo_persona_id = $grupo_persona_id
                                     LEFT JOIN grupos g ON a.id= g.activista_id
                                     WHERE a.lider_padre = $id 
                                     AND a.estado=1
@@ -288,6 +292,7 @@ class ReporteController extends BaseController
                                                 a.dni,a.celular,a.email
                                         FROM activistas a
                                         INNER JOIN cargos c ON a.nivel_id=c.id
+                                        INNER JOIN escalafon e ON e.activista_id=a.id AND e.fecha_final IS NULL AND e.grupo_persona_id = $grupo_persona_id
                                         LEFT JOIN grupos g ON a.id= g.activista_id
                                         WHERE a.lider_padre = $id 
                                         AND a.estado=1
@@ -314,6 +319,7 @@ class ReporteController extends BaseController
                                                     a.dni,a.celular,a.email
                                             FROM activistas a
                                             INNER JOIN cargos c ON a.nivel_id=c.id
+                                            INNER JOIN escalafon e ON e.activista_id=a.id AND e.fecha_final IS NULL AND e.grupo_persona_id = $grupo_persona_id
                                             LEFT JOIN grupos g ON a.id= g.activista_id
                                             WHERE a.lider_padre = $id 
                                             AND a.estado=1
@@ -340,6 +346,7 @@ class ReporteController extends BaseController
                                                         a.dni,a.celular,a.email
                                                 FROM activistas a
                                                 INNER JOIN cargos c ON a.nivel_id=c.id
+                                                INNER JOIN escalafon e ON e.activista_id=a.id AND e.fecha_final IS NULL AND e.grupo_persona_id = $grupo_persona_id
                                                 LEFT JOIN grupos g ON a.id= g.activista_id
                                                 WHERE a.lider_padre = $id 
                                                 AND a.estado=1
@@ -366,6 +373,7 @@ class ReporteController extends BaseController
                                                             a.dni,a.celular,a.email
                                                     FROM activistas a
                                                     INNER JOIN cargos c ON a.nivel_id=c.id
+                                                    INNER JOIN escalafon e ON e.activista_id=a.id AND e.fecha_final IS NULL AND e.grupo_persona_id = $grupo_persona_id
                                                     LEFT JOIN grupos g ON a.id= g.activista_id
                                                     WHERE a.lider_padre = $id 
                                                     AND a.estado=1
