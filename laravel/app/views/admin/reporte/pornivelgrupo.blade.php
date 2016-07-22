@@ -52,32 +52,34 @@
             <div class="box-body table-responsive">
                 <div class="row form-group reportes" id="reporte" style="display:none;">
                     <div class="col-sm-12">
-                        <div class="box-body table-responsive">
+                        <div class="box-body">
                             <table id="t_reporte" class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Nivel de Red Social</th>
+                                        <th>Equipo</th>
+                                        <th>Cargo</th>
+                                        <th>Fecha Inicio</th>
                                         <th>Paterno</th>
                                         <th>Materno</th>
                                         <th>Nombre</th>
                                         <th>Dni</th>
-                                        <th>Email</th>
                                         <th>Celular</th>
-                                        <th>Cant Pág</th>
+                                        <th>Email</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tb_reporte">
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Nivel de Red Social</th>
+                                        <th>Equipo</th>
+                                        <th>Cargo</th>
+                                        <th>Fecha Inicio</th>
                                         <th>Paterno</th>
                                         <th>Materno</th>
                                         <th>Nombre</th>
                                         <th>Dni</th>
-                                        <th>Email</th>
                                         <th>Celular</th>
-                                        <th>Cant Pág</th>
+                                        <th>Email</th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -85,26 +87,5 @@
                     </div>
                 </div>
             </div><!-- /.box -->
-            <br>
-            <br>
-            <div class="box-body table-responsive">
-                <div class="row form-group reportes" id="reporte2" style="display:none;">
-                    <div class="col-sm-12">
-                        <table id="t_reporte2" class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Nivel de Red Social</th>
-                                    <th>Total Personas</th>
-                                    <th>Total Páginas</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tb_reporte2">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <!-- Finaliza contenido -->
-        </div>
     </section><!-- /.content -->
 @stop
