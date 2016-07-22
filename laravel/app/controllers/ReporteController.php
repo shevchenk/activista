@@ -143,8 +143,7 @@ class ReporteController extends BaseController
                 INNER JOIN grupos_personas gp ON gp.id=e.grupo_persona_id
                 INNER JOIN cargos_estrategicos ce ON ce.id=e.cargo_estrategico_id
                 WHERE a.estado=1
-                AND gp.id = $grupo_persona_id
-                GROUP BY a.id ";
+                AND gp.id = $grupo_persona_id ";
         $r=DB::select($sql);
         $html='';
             foreach ($r as $key => $value) {
