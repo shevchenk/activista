@@ -161,7 +161,6 @@ class ReporteController extends BaseController
             }
         $return=array(
                 'rst'=>1,
-                'sql'=>$sql,
                 'datos'=>$html
                 );
         return Response::json($return);
