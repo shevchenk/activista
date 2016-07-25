@@ -145,8 +145,8 @@ CargarRecepcionHTML=function(datos){
         html+=  "<tr>"+
                     "<td>"+data.orden+"</td>"+
                     "<td><input type='text' class='fecha form-control' name='txt_fecha_recepcion[]' value='"+data.fecha_recepcion+"'></td>"+
-                    "<td><input type='text' class='form-control' name='txt_desde[]' onBlur='ValidaMenorMayorRecepcionada();' onKeyUp='CalTotRecepcionada(this);' value='"+data.desde+"'></td>"+
-                    "<td><input type='text' class='form-control' name='txt_hasta[]' onBlur='ValidaMenorMayorRecepcionada();' onKeyUp='CalTotRecepcionada(this);' value='"+data.hasta+"'></td>"+
+                    "<td><input type='text' class='form-control' name='txt_desde[]' onBlur='ValidaMenorMayorRecepcionada();' onKeyUp='CalTotRecepcionada(this);' onKeyPress='return msjG.validaNumeros(event);' value='"+data.desde+"'></td>"+
+                    "<td><input type='text' class='form-control' name='txt_hasta[]' onBlur='ValidaMenorMayorRecepcionada();' onKeyUp='CalTotRecepcionada(this);' onKeyPress='return msjG.validaNumeros(event);' value='"+data.hasta+"'></td>"+
                     "<td><input disabled type='text' class='form-control' value='"+data.total+"'></td>"+
                     "<td>"+
                         "<a class='btn btn-danger' onclick='RemoveTrFichaRecepcionada(this);'><i class='fa fa-lg fa-minus'></i></a>"+
@@ -174,8 +174,8 @@ AddTrFichaRecepcionada=function(){
     html+='<tr>';
         html+='<td>'+OrdenG+'</td>';
         html+='<td><input type="text" class="fecha form-control" name="txt_fecha_recepcion[]"></td>';
-        html+='<td><input type="text" class="form-control" onKeyUp="CalTotRecepcionada(this);" onBlur="ValidaMenorMayorRecepcionada();" name="txt_desde[]"></td>';
-        html+='<td><input type="text" class="form-control" onKeyUp="CalTotRecepcionada(this);" onBlur="ValidaMenorMayorRecepcionada();" name="txt_hasta[]"></td>';
+        html+='<td><input type="text" class="form-control" onKeyUp="CalTotRecepcionada(this);" onBlur="ValidaMenorMayorRecepcionada();" onKeyPress="return msjG.validaNumeros(event);" name="txt_desde[]"></td>';
+        html+='<td><input type="text" class="form-control" onKeyUp="CalTotRecepcionada(this);" onBlur="ValidaMenorMayorRecepcionada();" onKeyPress="return msjG.validaNumeros(event);" name="txt_hasta[]"></td>';
         html+='<td><input disabled type="text" class="form-control"></td>';
         html+='<td>'+
                     '<a class="btn btn-danger" onclick="RemoveTrFichaRecepcionada(this);"><i class="fa fa-lg fa-minus"></i></a>'+
