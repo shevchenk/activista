@@ -75,3 +75,4 @@ Route::controller('cargar', 'CargarController');
 Route::controller('cargo_estrategico', 'CargoEstrategicoController');
 Route::controller('grupo_cargo', 'GrupoCargoController');
 Route::controller('ubigeo', 'UbigeoController');
+Route::controller('escalafonficha', 'EscalafonFichasController');

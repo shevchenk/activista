@@ -4,6 +4,42 @@ class Grupo extends Base
 {
     public $table = "grupos_personas";
 
+    public static function getCargarPECount( $array )
+    {
+        $sSql=" SELECT  COUNT(e.id) cant
+                FROM activistas a
+                INNER JOIN escalafon e ON e.activista_id=a.id AND e.fecha_final IS NULL 
+                INNER JOIN grupos_personas gp ON gp.id=e.grupo_persona_id
+                INNER JOIN cargos_estrategicos ce ON ce.id=e.cargo_estrategico_id
+                LEFT JOIN departamentos d ON d.id=gp.departamento_id
+                LEFT JOIN provincias p ON d.id=p.departamento_id AND p.id=gp.provincia_id
+                LEFT JOIN distritos di ON p.id=di.provincia_id AND di.id=gp.distrito_id
+                WHERE a.estado=1";
+        $sSql.= $array['where'];
+        $oData = DB::select($sSql);
+        return $oData[0]->cant;
+    }
+
+    public static function getCargarPE( $array )
+    {
+        $sSql=" SELECT  e.id,a.paterno,a.materno,a.nombres,a.dni,a.celular,ce.nombre cargo,e.fecha_inicio,
+                gp.nombre equipo, d.nombre departamento, p.nombre provincia, di.nombre distrito,gp.localidad
+                FROM activistas a
+                INNER JOIN escalafon e ON e.activista_id=a.id AND e.fecha_final IS NULL 
+                INNER JOIN grupos_personas gp ON gp.id=e.grupo_persona_id
+                INNER JOIN cargos_estrategicos ce ON ce.id=e.cargo_estrategico_id
+                LEFT JOIN departamentos d ON d.id=gp.departamento_id
+                LEFT JOIN provincias p ON d.id=p.departamento_id AND p.id=gp.provincia_id
+                LEFT JOIN distritos di ON p.id=di.provincia_id AND di.id=gp.distrito_id
+                WHERE a.estado=1
+                ";
+        $sSql.= $array['where'].
+                $array['order'].
+                $array['limit'];
+        $oData = DB::select($sSql);
+        return $oData;
+    }
+
     public static function getCargar()
     {
         $r =DB::table('tipo_grupos_personas as t')
