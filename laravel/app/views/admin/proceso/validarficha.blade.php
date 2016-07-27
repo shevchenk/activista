@@ -32,7 +32,7 @@
 
         <!-- Main content -->
         <section class="content">
-            <form name="form_personas_equipos" id="form_personas_equipos" method="POST" action="">
+            <form name="form_validacion_personas" id="form_validacion_personas" method="POST" action="">
                 <div class="box-body table-responsive">
                     <div class="col-sm-12">
                         <table id="t_validacion_personas" class="table table-bordered table-hover">
