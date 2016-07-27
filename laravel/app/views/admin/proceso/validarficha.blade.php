@@ -35,17 +35,69 @@
             <form name="form_validacion_personas" id="form_validacion_personas" method="POST" action="">
                 <div class="box-body table-responsive">
                     <div class="col-sm-12">
-                        <table id="t_validacion_personas" class="table table-bordered table-hover">
-                            <thead>
-                            <tr>
-                                <th colspan='4' style='text-align:center; background-color:#A7C0DC;'><h2>Datos de Reniec</h2></th>
-                                <th colspan='4' style='text-align:center; background-color:#DEACA9;'><h2>Datos de Validación</h2></th>
-                            </tr>
-                            <tr></tr>
-                            </thead>
-                            <tbody></tbody>
-                            <tfoot><tr></tr></tfoot>
-                        </table>
+                        <h2 style='text-align:center; background-color:#A7C0DC;'>Datos de la Reniec</h2>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-2">
+                            <label>Ingrese DNI:</label>
+                            <input type="text" onKeyPress='return msjG.validaDni(event,this.id);' class='form-control' name="txt_dni_b" id="txt_dni_b">
+                            <span><a onclick="BuscarDNI();" class="btn btn-primary"><i class="fa fa-lg fa-search"></i></a></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-3">
+                            <label>DNI:</label>
+                            <input readonly type="text" class='form-control lim' name="txt_dni" id="txt_dni">
+                            <input readonly type="hidden" class='form-control lim' name="txt_reniec" id="txt_reniec">
+                            <input readonly type="hidden" class='form-control lim' name="txt_ficha_id" id="txt_ficha_id">
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Paterno:</label>
+                            <input readonly type="text" class='form-control lim' name="txt_paterno" id="txt_paterno">
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Materno:</label>
+                            <input readonly type="text" class='form-control lim' name="txt_materno" id="txt_materno">
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Nombres:</label>
+                            <input readonly type="text" class='form-control lim' name="txt_nombres" id="txt_nombres">
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <h2 style='text-align:center; background-color:#A7C0DC;'>Datos a Validar</h2>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-3">
+                            <label>Ficha:</label>
+                            <input type="text" onKeyPress='return msjG.validaNumeros(event);' class='form-control lim' name="txt_ficha" id="txt_ficha">
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-3">
+                            <label>Paterno:</label>
+                            <input type="text" onKeyPress='return msjG.validaLetras(event);' class='form-control lim' name="txt_paternon" id="txt_paternon">
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-3">
+                            <label>Materno:</label>
+                            <input type="text" onKeyPress='return msjG.validaLetras(event);' class='form-control lim' name="txt_maternon" id="txt_maternon">
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-3">
+                            <label>Nombres:</label>
+                            <input type="text" onKeyPress='return msjG.validaLetras(event);' class='form-control lim' name="txt_nombresn" id="txt_nombresn">
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-2">
+                            <a class="btn btn-primary" onclick="GuadarDatos();"> 
+                                <i class="fa fa-lg fa-save"></i>
+                                Guardar
+                            </a>
+                        </div>
                     </div>
                 </div>
             </form>

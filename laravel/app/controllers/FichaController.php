@@ -52,6 +52,23 @@ class FichaController extends \BaseController
         }
     }
 
+    public function postBuscardni()
+    {
+        if ( Request::ajax() ) {
+            $dni=Input::get('dni');
+            $aData=Reniec::getPersona($dni);
+
+            $aParametro['data'] = $aData;
+            $aParametro['rst'] = 1;
+            $aParametro['msj'] = "";
+            if( COUNT($aData)==0 ){
+                $aParametro['rst'] = 2;
+                $aParametro['msj'] = "No Existe persona con el dni:".$dni;
+            }
+            return Response::json($aParametro);
+        }
+    }
+
     public function postValidarficha()
     {
         if ( Request::ajax() ) {
@@ -73,17 +90,17 @@ class FichaController extends \BaseController
             if($reniec!='' && $fichaId!=''){
                 $fichama = Ficha::find($fichaId);
                 $fichama['usuario_updated_at']=Auth::user()->id;
-                $fichama['reniec']=$reniec;
+                $fichama['reniec_id']=$reniec;
                 $fichama['estado']=0;
                 $fichama->save();
             }
 
-            $ef=EscalafonFicha::getEFIdporFicha($ficha);
-            $efr=EscalafonFicha::getEFRIdporFicha($ficha);
+            $ef=EscalafonFichas::getEFIdporFicha($ficha);
+            $efr=EscalafonFichas::getEFRIdporFicha($ficha);
 
             $ficham= new Ficha;
             if($reniec!=''){
-                $ficham['reniec']=$reniec;
+                $ficham['reniec_id']=$reniec;
                 $ficham['dni']=$dni;
             }
             if( count($ef)>0 ){
@@ -94,20 +111,23 @@ class FichaController extends \BaseController
                 }
             }
 
-            $estadoFicha=7; //No existe dni
+            $estadoFicha=0; //No existe dni
             if( $reniec=='' AND count($ef)==0 ){
-                $estadoFicha=7; // no existe asignación de entrega y recepción y no existe persona
+                $estadoFicha=9; // no existe asignación de entrega y recepción y no existe persona
             }
             elseif( $reniec=='' AND count($ef)>0 AND count($efr)==0 ){
-                $estadoFicha=6; // no existe asignación de entrega y recepción y no existe persona
+                $estadoFicha=8; // no existe asignación de entrega y recepción y no existe persona
             }
             elseif( $reniec=='' AND count($ef)>0 AND count($efr)>0 ){
-                $estadoFicha=6; // no existe asignación de entrega y recepción y no existe persona
+                $estadoFicha=7; // no existe asignación de entrega y recepción y no existe persona
             }
             elseif( $reniec!='' AND ($paternon!=$paterno OR $maternon!=$materno OR $nombresn!=$nombres) AND count($ef)==0 ){
-                $estadoFicha=5; // no existe asignación de entrega y recepción y no existe persona
+                $estadoFicha=6; // no existe asignación de entrega y recepción y no existe persona
             }
             elseif( $reniec!='' AND ($paternon==$paterno OR $maternon==$materno OR $nombresn==$nombres) AND count($ef)>0 AND count($efr)==0 ){
+                $estadoFicha=5; // no existe asignación de recepción y no existe persona
+            }
+            elseif( $reniec!='' AND ($paternon==$paterno OR $maternon==$materno OR $nombresn==$nombres) AND count($ef)>0 AND count($efr)>0 ){
                 $estadoFicha=4; // no existe asignación de recepción y no existe persona
             }
             elseif( $reniec!='' AND $paternon==$paterno AND $maternon==$materno AND $nombresn==$nombres AND count($ef)==0 ){
@@ -130,7 +150,7 @@ class FichaController extends \BaseController
 
             if($reniec!=''){
                 $reniecm= Reniec::find($reniec);
-                $reniecm['ficha_id']=$ficham;
+                $reniecm['ficha_id']=$ficham->id;
                 $reniecm['usuario_updated_at']=Auth::user()->id;
                 $reniecm->save();
             }

@@ -42,7 +42,6 @@ class EscalafonFichas extends Base
                 FROM escalafon_fichas
                 WHERE desde<=$nro AND hasta>=$nro
                 AND estado=1 ";
-        $sSql.= $array['where'];
         $oData = DB::select($sSql);
         return $oData;
     }
@@ -57,7 +56,6 @@ class EscalafonFichas extends Base
                 FROM escalafon_fichas_recepcion
                 WHERE desde<=$nro AND hasta>=$nro
                 AND estado=1 ";
-        $sSql.= $array['where'];
         $oData = DB::select($sSql);
         return $oData;
     }
