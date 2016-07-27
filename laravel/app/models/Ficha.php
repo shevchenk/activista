@@ -18,7 +18,7 @@ class Ficha extends Base
     public static function getCargarReniec( $array )
     {
         $sSql=" SELECT  r.id,r.paterno,r.materno,r.nombres,r.dni,
-                f.paterno paternon,f.materno maternon,f.nombres nombresn
+                f.paterno paternon,f.materno maternon,f.nombres nombresn,f.ficha
                 FROM reniec r
                 LEFT JOIN fichas f ON f.id=r.ficha_id 
                 WHERE r.estado=1

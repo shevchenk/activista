@@ -13,9 +13,10 @@ $(document).ready(function() {
               materno       :'onBlur|Materno de Reniec|#DCE6F1',
               nombres       :'onBlur|Nombres de Reniec|#DCE6F1',
               dni           :'onBlur|DNI de Reniec|#DCE6F1',
-              paternon      :'|Paterno a Validar|#F2DCDB',
-              maternon      :'|Materno a Validar|#F2DCDB',
-              nombresn      :'|Nombres a Validar|#F2DCDB',
+              ficha         :'1|Ficha a Validar|#F2DCDB',
+              paternon      :'1|Paterno a Validar|#F2DCDB',
+              maternon      :'1|Materno a Validar|#F2DCDB',
+              nombresn      :'1|Nombres a Validar|#F2DCDB',
              };
 
     var resG=dataTableG.CargarCab(idG);
@@ -35,6 +36,21 @@ MostrarAjax=function(t){
             console.log(columnDefsP)
             dataTableG.CargarDatos(t,'ficha','cargarpersonas',columnDefsP);
         }
+    }
+}
+
+GeneraFn=function(row,fn){ // No olvidar q es obligatorio cuando queir efuncion fn
+    if(fn==4){
+        return "<input type='text' name='txt_ficha' value='"+$.trim(row.ficha)+"' />";
+    }
+    else if(fn==5){
+        return "<input type='text' name='txt_paternon' value='"+$.trim(row.paternon)+"' />";
+    }
+    else if(fn==6){
+        return "<input type='text' name='txt_maternon' value='"+$.trim(row.maternon)+"' />";
+    }
+    else if(fn==7){
+        return "<input type='text' name='txt_nombresn' value='"+$.trim(row.nombresn)+"' />";
     }
 }
 

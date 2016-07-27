@@ -39,7 +39,7 @@
                             <thead>
                             <tr>
                                 <th colspan='4' style='text-align:center; background-color:#A7C0DC;'><h2>Datos de Reniec</h2></th>
-                                <th colspan='3' style='text-align:center; background-color:#DEACA9;'><h2>Datos de Validación</h2></th>
+                                <th colspan='4' style='text-align:center; background-color:#DEACA9;'><h2>Datos de Validación</h2></th>
                             </tr>
                             <tr></tr>
                             </thead>

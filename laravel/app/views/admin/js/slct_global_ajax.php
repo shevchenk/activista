@@ -155,17 +155,32 @@ var dataTableG={
         );
         return r;
     },
+
     CargarCol:function(cab,col,tar,trpos,ajax,table){
         var r=[];
         for(i=0; i<cab.length; i++){
             tar++;
+
+            if(cab[i].evento*1>0){
+            EventoG=cab[i].evento;
+            col.push({
+                        "targets": tar,
+                        "data": function ( row, type, val, meta) {
+                            return GeneraFn(row,meta.col);
+                        },
+                        "defaultContent": '',
+                        "name": cab[i].id
+                    });
+            }
+            else{
             col.push({
                         "targets": tar,
                         "data": cab[i].id,
                         "name": cab[i].id
                     });
+            }
 
-            if(cab[i].evento==''){
+            if(cab[i].evento*1>0){
                 $("#"+table+">tfoot>tr,#"+table+">thead>tr:eq("+trpos+")").append('<th style="background-color:'+cab[i].color+';" class="unread">'+cab[i].nombre+'</th>');
             }
             else{
