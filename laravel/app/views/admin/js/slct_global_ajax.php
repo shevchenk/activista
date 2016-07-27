@@ -212,7 +212,7 @@ var dataTableG={
         col.push({
                     "targets": tar,
                     "data": function ( row, type, val, meta ) {
-                            return  '<a class="form-control btn '+btncolor+'" onClick="'+evento+'(this,'+row.id+')">'+
+                            return  '<a class="form-control btn '+btncolor+'" onClick="'+evento+'(this,\''+row.id+'\')">'+
                                         '<i class="fa fa-lg '+btnfigure+'"></i>'+
                                     '</a>';
                     },

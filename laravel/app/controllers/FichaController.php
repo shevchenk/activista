@@ -52,13 +52,10 @@ class FichaController extends \BaseController
         }
     }
 
-    public function postValidarFicha()
+    public function postValidarficha()
     {
         if ( Request::ajax() ) {
-            $array=array();
-            $array['where']='';$array['usuario']=Auth::user()->id;
-            $array['limit']='';$array['order']=' ORDER BY efr.orden ';
-
+            
             if( Input::has("id") ){
                 $array['where'].=" AND efr.escalafon_ficha_id='".Input::get("id")."' ";
             }

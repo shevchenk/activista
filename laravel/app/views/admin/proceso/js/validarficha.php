@@ -24,7 +24,7 @@ $(document).ready(function() {
     var resG=dataTableG.CargarCol(cabeceraP,columnDefsP,targetsP,1,'validacion_personas','t_validacion_personas');
     columnDefsP=resG[0]; // registra las columnas del datatable
     targetsP=resG[1]; // registra los contadores
-    var resG=dataTableG.CargarBtn(columnDefsP,targetsP,1,'ValidarPersona','t_validacion_personas','fa-edit');
+    var resG=dataTableG.CargarBtn(columnDefsP,targetsP,1,'ValidarPersona','t_validacion_personas','fa-copy');
     columnDefsP=resG[0]; // registra la colunmna adiciona con boton
     targetsP=resG[1]; // registra el contador actualizado
     MostrarAjax('validacion_personas');
@@ -58,13 +58,21 @@ ValidarPersona=function(btn,id){
     var tr = btn.parentNode.parentNode;
     var trs = tr.parentNode.children;
     if( ValidarFichas() ){
+        var data={
+                    reniec_id   : id.split("|")[0],
+                    ficha_id    : id.split("|")[1],
+                    ficha       : $(tr).find("input [name='ficha']").val(),
+                    paternon    : $(tr).find("input [name='paternon']").val(),
+                    maternon    : $(tr).find("input [name='maternon']").val(),
+                    nombresn    : $(tr).find("input [name='nombresn']").val()
+                }
     ValidarFicha.GuardarFichas(tr);
     }
 }
 
 ValidarFichas=function(tr){
     var r=true;
-    if( $(tr).find('input [name="ficha"]').val()=='' ){
+    /*if( $(tr).find('input [name="ficha"]').val()=='' ){
         alert('Ingrese su Nro de Ficha');
         $(tr).find('input [name="ficha"]').focus();
         r=false;
@@ -83,7 +91,7 @@ ValidarFichas=function(tr){
         alert('Ingrese su Nombre(s) a validar');
         $(tr).find('input [name="nombresn"]').focus();
         r=false;
-    }
+    }*/
     return r;
 }
 
