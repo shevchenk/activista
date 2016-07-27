@@ -57,41 +57,45 @@ GeneraFn=function(row,fn){ // No olvidar q es obligatorio cuando queir efuncion 
 ValidarPersona=function(btn,id){
     var tr = btn.parentNode.parentNode;
     var trs = tr.parentNode.children;
-    if( ValidarFichas() ){
+    if( ValidarFichas(tr) ){
         var data={
-                    reniec_id   : id.split("|")[0],
-                    ficha_id    : id.split("|")[1],
-                    ficha       : $(tr).find("input [name='ficha']").val(),
-                    paternon    : $(tr).find("input [name='paternon']").val(),
-                    maternon    : $(tr).find("input [name='maternon']").val(),
-                    nombresn    : $(tr).find("input [name='nombresn']").val()
-                }
-    ValidarFicha.GuardarFichas(tr);
+                        reniec_id   : id.split("|")[0],
+                        ficha_id    : id.split("|")[1],
+                        ficha       : $(tr).find("input[name=\"txt_ficha\"]").val(),
+                        paternon    : $(tr).find("input[name=\"txt_paternon\"]").val(),
+                        maternon    : $(tr).find("input[name=\"txt_maternon\"]").val(),
+                        nombresn    : $(tr).find("input[name=\"txt_nombresn\"]").val(),
+                        paterno     : $(tr).find("td:eq(0)").text(),
+                        materno     : $(tr).find("td:eq(1)").text(),
+                        nombres     : $(tr).find("td:eq(2)").text()
+                        dni         : $(tr).find("td:eq(3)").text(),
+                    }
+        ValidarFicha.GuardarFichas(data,MostrarAjax);
     }
 }
 
 ValidarFichas=function(tr){
     var r=true;
-    /*if( $(tr).find('input [name="ficha"]').val()=='' ){
+    if( $.trim( $(tr).find('input[name="txt_ficha"]').val() )=='' ){
         alert('Ingrese su Nro de Ficha');
-        $(tr).find('input [name="ficha"]').focus();
+        $(tr).find('input[name="txt_ficha"]').focus();
         r=false;
     }
-    else if( $(tr).find('input [name="paternon"]').val()=='' ){
+    else if( $.trim( $(tr).find('input[name="txt_paternon"]').val() )=='' ){
         alert('Ingrese su Paterno a validar');
-        $(tr).find('input [name="paternon"]').focus();
+        $(tr).find('input[name="txt_paternon"]').focus();
         r=false;
     }
-    else if( $(tr).find('input [name="maternon"]').val()=='' ){
+    else if( $.trim( $(tr).find('input[name="txt_maternon"]').val() )=='' ){
         alert('Ingrese su Materno a validar');
-        $(tr).find('input [name="maternon"]').focus();
+        $(tr).find('input[name="txt_maternon"]').focus();
         r=false;
     }
-    else if( $(tr).find('input [name="nombresn"]').val()=='' ){
+    else if( $.trim( $(tr).find('input[name="txt_nombresn"]').val() )=='' ){
         alert('Ingrese su Nombre(s) a validar');
-        $(tr).find('input [name="nombresn"]').focus();
+        $(tr).find('input[name="txt_nombresn"]').focus();
         r=false;
-    }*/
+    }
     return r;
 }
 

@@ -56,12 +56,86 @@ class FichaController extends \BaseController
     {
         if ( Request::ajax() ) {
             
-            if( Input::has("id") ){
-                $array['where'].=" AND efr.escalafon_ficha_id='".Input::get("id")."' ";
+            $ficha=Input::get('ficha');
+            $reniec=Input::get('reniec');
+            $fichaId=Input::get('ficha_id');
+            $paternon=Input::get('paternon');
+            $maternon=Input::get('maternon');
+            $nombresn=Input::get('nombresn');
+
+            $paterno=Input::get('paterno');
+            $materno=Input::get('materno');
+            $nombres=Input::get('nombres');
+            $dni=Input::get('dni');
+
+
+
+            if($reniec!='' && $fichaId!=''){
+                $fichama = Ficha::find($fichaId);
+                $fichama['usuario_updated_at']=Auth::user()->id;
+                $fichama['reniec']=$reniec;
+                $fichama['estado']=0;
+                $fichama->save();
             }
 
-            $r = EscalafonFichasRecepcion::getValidarFicha( $array );
-            return Response::json(array('rst'=>1,'datos'=>$r));
+            $ef=EscalafonFicha::getEFIdporFicha($ficha);
+            $efr=EscalafonFicha::getEFRIdporFicha($ficha);
+
+            $ficham= new Ficha;
+            if($reniec!=''){
+                $ficham['reniec']=$reniec;
+                $ficham['dni']=$dni;
+            }
+            if( count($ef)>0 ){
+                $ficham['escalafon_ficha_id']=$ef[0]->id;
+
+                if( count($efr)>0 ){
+                    $ficham['escalafon_ficha_recepcion_id']=$efr[0]->id;
+                }
+            }
+
+            $estadoFicha=7; //No existe dni
+            if( $reniec=='' AND count($ef)==0 ){
+                $estadoFicha=7; // no existe asignación de entrega y recepción y no existe persona
+            }
+            elseif( $reniec=='' AND count($ef)>0 AND count($efr)==0 ){
+                $estadoFicha=6; // no existe asignación de entrega y recepción y no existe persona
+            }
+            elseif( $reniec=='' AND count($ef)>0 AND count($efr)>0 ){
+                $estadoFicha=6; // no existe asignación de entrega y recepción y no existe persona
+            }
+            elseif( $reniec!='' AND ($paternon!=$paterno OR $maternon!=$materno OR $nombresn!=$nombres) AND count($ef)==0 ){
+                $estadoFicha=5; // no existe asignación de entrega y recepción y no existe persona
+            }
+            elseif( $reniec!='' AND ($paternon==$paterno OR $maternon==$materno OR $nombresn==$nombres) AND count($ef)>0 AND count($efr)==0 ){
+                $estadoFicha=4; // no existe asignación de recepción y no existe persona
+            }
+            elseif( $reniec!='' AND $paternon==$paterno AND $maternon==$materno AND $nombresn==$nombres AND count($ef)==0 ){
+                $estadoFicha=3; // no existe asignación de entrega y recepción
+            }
+            elseif( $reniec!='' AND $paternon==$paterno AND $maternon==$materno AND $nombresn==$nombres AND count($ef)>0 AND count($efr)==0 ){
+                $estadoFicha=2; // no existe asignación de recepción
+            }
+            else if( $reniec!='' AND $paternon==$paterno AND $maternon==$materno AND $nombresn==$nombres ){
+                $estadoFicha=1; // si existe y es válido
+            }
+
+            $ficham['ficha']=$ficha;
+            $ficham['paterno']=$paternon;
+            $ficham['materno']=$maternon;
+            $ficham['nombres']=$nombresn;
+            $ficham['estado_ficha']=$estadoFicha;
+            $ficham['usuario_created_at']=Auth::user()->id;
+            $ficham->save();
+
+            if($reniec!=''){
+                $reniecm= Reniec::find($reniec);
+                $reniecm['ficha_id']=$ficham;
+                $reniecm['usuario_updated_at']=Auth::user()->id;
+                $reniecm->save();
+            }
+            
+            return Response::json(array('rst'=>1,'msj'=>'Se registró la validación'));
         }
     }
 }

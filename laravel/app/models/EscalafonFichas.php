@@ -31,4 +31,34 @@ class EscalafonFichas extends Base
         $oData = DB::select($sSql);
         return $oData;
     }
+
+    public static function getEFIdporFicha( $nro )
+    {   
+        if( $nro==''){
+            $nro=0;
+        }
+        
+        $sSql=" SELECT id
+                FROM escalafon_fichas
+                WHERE desde<=$nro AND hasta>=$nro
+                AND estado=1 ";
+        $sSql.= $array['where'];
+        $oData = DB::select($sSql);
+        return $oData;
+    }
+
+    public static function getEFRIdporFicha( $nro )
+    {   
+        if( $nro==''){
+            $nro=0;
+        }
+        
+        $sSql=" SELECT id
+                FROM escalafon_fichas_recepcion
+                WHERE desde<=$nro AND hasta>=$nro
+                AND estado=1 ";
+        $sSql.= $array['where'];
+        $oData = DB::select($sSql);
+        return $oData;
+    }
 }
