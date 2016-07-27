@@ -67,7 +67,7 @@ ValidarPersona=function(btn,id){
                         nombresn    : $(tr).find("input[name=\"txt_nombresn\"]").val(),
                         paterno     : $(tr).find("td:eq(0)").text(),
                         materno     : $(tr).find("td:eq(1)").text(),
-                        nombres     : $(tr).find("td:eq(2)").text()
+                        nombres     : $(tr).find("td:eq(2)").text(),
                         dni         : $(tr).find("td:eq(3)").text(),
                     }
         ValidarFicha.GuardarFichas(data,MostrarAjax);
