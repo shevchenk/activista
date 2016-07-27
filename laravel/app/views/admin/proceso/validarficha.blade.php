@@ -35,11 +35,11 @@
             <form name="form_personas_equipos" id="form_personas_equipos" method="POST" action="">
                 <div class="box-body table-responsive">
                     <div class="col-sm-12">
-                        <table id="t_personas_equipos" class="table table-bordered table-hover">
+                        <table id="t_validacion_personas" class="table table-bordered table-hover">
                             <thead>
                             <tr>
                                 <th colspan='4' style='text-align:center; background-color:#A7C0DC;'><h2>Datos de Reniec</h2></th>
-                                <th colspan='4' style='text-align:center; background-color:#DEACA9;'><h2>Datos de Validación</h2></th>
+                                <th colspan='3' style='text-align:center; background-color:#DEACA9;'><h2>Datos de Validación</h2></th>
                             </tr>
                             <tr></tr>
                             </thead>

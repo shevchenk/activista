@@ -38,7 +38,7 @@ class FichaController extends \BaseController
                 $retorno["draw"]=Input::get('draw');
             }
 
-            $array['order']=" ORDER BY re.paterno,re.materno,re.nombres ";
+            $array['order']=" ORDER BY r.paterno,r.materno,r.nombres ";
 
             $cant  = Ficha::getCargarReniecCount( $array );
             $aData = Ficha::getCargarReniec( $array );

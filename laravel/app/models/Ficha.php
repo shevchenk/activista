@@ -6,15 +6,10 @@ class Ficha extends Base
 
     public static function getCargarReniecCount( $array )
     {
-        $sSql=" SELECT  COUNT(e.id) cant
-                FROM activistas a
-                INNER JOIN escalafon e ON e.activista_id=a.id AND e.fecha_final IS NULL 
-                INNER JOIN grupos_personas gp ON gp.id=e.grupo_persona_id
-                INNER JOIN cargos_estrategicos ce ON ce.id=e.cargo_estrategico_id
-                LEFT JOIN departamentos d ON d.id=gp.departamento_id
-                LEFT JOIN provincias p ON d.id=p.departamento_id AND p.id=gp.provincia_id
-                LEFT JOIN distritos di ON p.id=di.provincia_id AND di.id=gp.distrito_id
-                WHERE a.estado=1";
+        $sSql=" SELECT  COUNT(r.id) cant
+                FROM reniec r
+                LEFT JOIN fichas f ON f.id=r.ficha_id 
+                WHERE r.estado=1";
         $sSql.= $array['where'];
         $oData = DB::select($sSql);
         return $oData[0]->cant;
@@ -25,8 +20,8 @@ class Ficha extends Base
         $sSql=" SELECT  r.id,r.paterno,r.materno,r.nombres,r.dni,
                 f.paterno paternon,f.materno maternon,f.nombres nombresn
                 FROM reniec r
-                LEFT JOIN ficha di ON p.id=di.provincia_id AND di.id=gp.distrito_id
-                WHERE a.estado=1
+                LEFT JOIN fichas f ON f.id=r.ficha_id 
+                WHERE r.estado=1
                 ";
         $sSql.= $array['where'].
                 $array['order'].

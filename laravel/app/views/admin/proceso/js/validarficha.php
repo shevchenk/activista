@@ -13,9 +13,9 @@ $(document).ready(function() {
               materno       :'onBlur|Materno de Reniec|#DCE6F1',
               nombres       :'onBlur|Nombres de Reniec|#DCE6F1',
               dni           :'onBlur|DNI de Reniec|#DCE6F1',
-              paterno       :'|Paterno a Validar|#F2DCDB',
-              materno       :'|Materno a Validar|#F2DCDB',
-              nombres       :'|Nombres a Validar|#F2DCDB',
+              paternon      :'|Paterno a Validar|#F2DCDB',
+              maternon      :'|Materno a Validar|#F2DCDB',
+              nombresn      :'|Nombres a Validar|#F2DCDB',
              };
 
     var resG=dataTableG.CargarCab(idG);
@@ -32,6 +32,7 @@ $(document).ready(function() {
 MostrarAjax=function(t){
     if( t=="validacion_personas" ){
         if( columnDefsP.length>0 ){
+            console.log(columnDefsP)
             dataTableG.CargarDatos(t,'ficha','cargarpersonas',columnDefsP);
         }
     }
