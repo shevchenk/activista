@@ -37,7 +37,7 @@ class FichaController extends \BaseController
                 $array['limit']=' LIMIT '.Input::get('start').','.Input::get('length');
                 $retorno["draw"]=Input::get('draw');
             }
-            $array['limit']=' LIMIT 0,2';
+            
             $array['order']=" ORDER BY r.paterno,r.materno,r.nombres ";
 
             $cant  = Ficha::getCargarReniecCount( $array );
