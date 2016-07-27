@@ -41,59 +41,49 @@ MostrarAjax=function(t){
 
 GeneraFn=function(row,fn){ // No olvidar q es obligatorio cuando queir efuncion fn
     if(fn==4){
-        return "<input type='text' name='txt_ficha' value='"+$.trim(row.ficha)+"' />";
+        return "<input type='text' onKeyPress='return msjG.validaNumeros(event);' class='form-control' name='txt_ficha' value='"+$.trim(row.ficha)+"' />";
     }
     else if(fn==5){
-        return "<input type='text' name='txt_paternon' value='"+$.trim(row.paternon)+"' />";
+        return "<input type='text' onKeyPress='return msjG.validaLetras(event);' class='form-control' name='txt_paternon' value='"+$.trim(row.paternon)+"' />";
     }
     else if(fn==6){
-        return "<input type='text' name='txt_maternon' value='"+$.trim(row.maternon)+"' />";
+        return "<input type='text' onKeyPress='return msjG.validaLetras(event);' class='form-control' name='txt_maternon' value='"+$.trim(row.maternon)+"' />";
     }
     else if(fn==7){
-        return "<input type='text' name='txt_nombresn' value='"+$.trim(row.nombresn)+"' />";
+        return "<input type='text' onKeyPress='return msjG.validaLetras(event);' class='form-control' name='txt_nombresn' value='"+$.trim(row.nombresn)+"' />";
     }
 }
 
 ValidarPersona=function(btn,id){
-    if( ValidarFichas() ){
     var tr = btn.parentNode.parentNode;
     var trs = tr.parentNode.children;
-
-    /*var texto= '<b>Persona:</b> '+$(tr).find("td:eq(0)").text()+' '+$(tr).find("td:eq(1)").text()+' '+$(tr).find("td:eq(2)").text();
-    texto+=' <b>| Cargo:</b> '+$(tr).find("td:eq(5)").text();
-    texto+=' <b>| Equipo:</b> '+$(tr).find("td:eq(7)").text();*/
-    ValidarFicha.GuardarFichas();
+    if( ValidarFichas() ){
+    ValidarFicha.GuardarFichas(tr);
     }
 }
 
-ValidarFichas=function(){
+ValidarFichas=function(tr){
     var r=true;
-    if( $("#t_fichas tbody tr td.has-error").length>0 ){
-        alert('Verifique los casilleros con alerta(Borde Rojo)');
+    if( $(tr).find('input [name="ficha"]').val()=='' ){
+        alert('Ingrese su Nro de Ficha');
+        $(tr).find('input [name="ficha"]').focus();
         r=false;
     }
-    else{
-        if( $("#t_fichas>tbody>tr>td>input").length>0 ){
-            $("#t_fichas>tbody>tr").each( function( index ){
-                if( r==true && $.trim($(this).find("input:eq(0)").val())=='' ){
-                    alert('Ingrese Fecha de Entrega de la Posición:'+(index+1));
-                    $(this).find("input:eq(0)").focus();
-                    r=false;
-                }
-                else if( r==true && $.trim($(this).find("input:eq(1)").val())=='' ){
-                    alert('Ingrese El inicio de la ficha de la Posición :'+(index+1));
-                    $(this).find("input:eq(1)").focus();
-                    r=false;
-                }
-                else if( r==true && $.trim($(this).find("input:eq(2)").val())=='' ){
-                    alert('Ingrese El fin de la ficha de la Posición:'+(index+1));
-                    $(this).find("input:eq(2)").focus();
-                    r=false;
-                }
-            });
-        }
+    else if( $(tr).find('input [name="paternon"]').val()=='' ){
+        alert('Ingrese su Paterno a validar');
+        $(tr).find('input [name="paternon"]').focus();
+        r=false;
     }
-
+    else if( $(tr).find('input [name="maternon"]').val()=='' ){
+        alert('Ingrese su Materno a validar');
+        $(tr).find('input [name="maternon"]').focus();
+        r=false;
+    }
+    else if( $(tr).find('input [name="nombresn"]').val()=='' ){
+        alert('Ingrese su Nombre(s) a validar');
+        $(tr).find('input [name="nombresn"]').focus();
+        r=false;
+    }
     return r;
 }
 
