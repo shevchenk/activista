@@ -1,6 +1,6 @@
 <?php
 
-class EscalafonFichas extends Base
+class Ficha extends Base
 {
     public $table = "fichas";
 

@@ -1,11 +1,10 @@
 <?php
 
-class EscalafonFichasController extends \BaseController
+class FichaController extends \BaseController
 {
-    public function postCargarentregas()
+    public function postCargarpersonas()
     {
         if ( Request::ajax() ) {
-            if ( Request::ajax() ) {
             $array=array();
             $array['where']='';$array['usuario']=Auth::user()->id;
             $array['limit']='';$array['order']='';

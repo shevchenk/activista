@@ -20,7 +20,7 @@
             <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Validación de Firmas
+            Validación de Firmas de las Ficha
             <small> </small>
         </h1>
         <ol class="breadcrumb">

@@ -32,7 +32,7 @@ $(document).ready(function() {
 MostrarAjax=function(t){
     if( t=="validacion_personas" ){
         if( columnDefsP.length>0 ){
-            dataTableG.CargarDatos(t,'ficha','cargarpersona',columnDefsP);
+            dataTableG.CargarDatos(t,'ficha','cargarpersonas',columnDefsP);
         }
     }
 }
