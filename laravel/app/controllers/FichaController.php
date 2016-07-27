@@ -121,22 +121,22 @@ class FichaController extends \BaseController
             elseif( $reniec=='' AND count($ef)>0 AND count($efr)>0 ){
                 $estadoFicha=7; // no existe asignación de entrega y recepción y no existe persona
             }
-            elseif( $reniec!='' AND ($paternon!=$paterno OR $maternon!=$materno OR $nombresn!=$nombres) AND count($ef)==0 ){
+            elseif( $reniec!='' AND ( strcasecmp($paternon,$paterno)!=0 OR strcasecmp($maternon,$materno)!=0 OR strcasecmp($nombresn,$nombres)!=0 ) AND count($ef)==0 ){
                 $estadoFicha=6; // no existe asignación de entrega y recepción y no existe persona
             }
-            elseif( $reniec!='' AND ($paternon==$paterno OR $maternon==$materno OR $nombresn==$nombres) AND count($ef)>0 AND count($efr)==0 ){
+            elseif( $reniec!='' AND ( strcasecmp($paternon,$paterno)!=0 OR strcasecmp($maternon,$materno)!=0 OR strcasecmp($nombresn,$nombres)!=0 ) AND count($ef)>0 AND count($efr)==0 ){
                 $estadoFicha=5; // no existe asignación de recepción y no existe persona
             }
-            elseif( $reniec!='' AND ($paternon==$paterno OR $maternon==$materno OR $nombresn==$nombres) AND count($ef)>0 AND count($efr)>0 ){
+            elseif( $reniec!='' AND ( strcasecmp($paternon,$paterno)!=0 OR strcasecmp($maternon,$materno)!=0 OR strcasecmp($nombresn,$nombres)!=0 ) AND count($ef)>0 AND count($efr)>0 ){
                 $estadoFicha=4; // no existe asignación de recepción y no existe persona
             }
-            elseif( $reniec!='' AND $paternon==$paterno AND $maternon==$materno AND $nombresn==$nombres AND count($ef)==0 ){
+            elseif( $reniec!='' AND strcasecmp($paternon,$paterno)==0 AND strcasecmp($maternon,$materno)==0 AND strcasecmp($nombresn,$nombres)==0 AND count($ef)==0 ){
                 $estadoFicha=3; // no existe asignación de entrega y recepción
             }
-            elseif( $reniec!='' AND $paternon==$paterno AND $maternon==$materno AND $nombresn==$nombres AND count($ef)>0 AND count($efr)==0 ){
+            elseif( $reniec!='' AND strcasecmp($paternon,$paterno)==0 AND strcasecmp($maternon,$materno)==0 AND strcasecmp($nombresn,$nombres)==0 AND count($ef)>0 AND count($efr)==0 ){
                 $estadoFicha=2; // no existe asignación de recepción
             }
-            else if( $reniec!='' AND $paternon==$paterno AND $maternon==$materno AND $nombresn==$nombres ){
+            else if( $reniec!='' AND strcasecmp($paternon,$paterno)==0 AND strcasecmp($maternon,$materno)==0 AND strcasecmp($nombresn,$nombres)==0 ){
                 $estadoFicha=1; // si existe y es válido
             }
 
