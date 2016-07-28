@@ -40,53 +40,53 @@ a {
 /************************** LOGIN CONTAINER **************************/
 /********************************************************************/
 
-#loggit {
+#loggit2 {
 	background: rgba(255, 115, 47, 0.90);
 	width: 400px;
 	margin: 5% auto 0;
 	padding: 20px 40px;
 }
-#loggit h1 {
+#loggit2 h1 {
 	text-align: center;
 	font-weight: 700;
 	margin: 5px 0 15px;
 	color:#7ED1FA;
 }
-#loggit h3 {
+#loggit2 h3 {
 	text-align: center;
 	font-size: 18px;
 	color: #000;
 	margin: 0 0 20px;
 }
-#loggit .input-group-addon {
+#loggit2 .input-group-addon {
 	border: 0 none;
 }
-#loggit .form-control {
+#loggit2 .form-control {
 	border: 0 none;
 }
-#loggit .form-control:focus {
+#loggit2 .form-control:focus {
 	box-shadow: none;
 }
-#loggit .formSubmit {
+#loggit2 .formSubmit {
 	margin-bottom: 25px;
 }
-#loggit .submitWrap {
+#loggit2 .submitWrap {
 	text-align: right;
 }
-#loggit .formNotice {
+#loggit2 .formNotice {
 	margin: 0;
 	font-size: 13px;
 }
-#loggit .formNotice span {
+#loggit2 .formNotice span {
 	cursor: pointer;
 	color: #428BCA;
 }
-#loggit .formNotice span:hover,
-#loggit .formNotice span:focus {
+#loggit2 .formNotice span:hover,
+#loggit2 .formNotice span:focus {
     color: #2A6496;
     text-decoration: underline;
 }
-#loggit #regForm {
+#loggit2 #regForm {
 	display: none;
 }
 /**********************************************************************/
