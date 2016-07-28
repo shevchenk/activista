@@ -18,7 +18,7 @@
 			{{ HTML::script('lib/jquery-ui-1.11.2/jquery-ui.min.js') }}
 			{{ HTML::script('lib/bootstrap-3.3.1/js/bootstrap.min.js') }}
 
-			<?php echo HTML::style('css/login/login.css'); ?>
+			<?php echo HTML::style('css/login/login2.css'); ?>
 			
 			{{ HTML::script('js/login/login_ajax.js') }}
 			{{ HTML::script('js/login/login.js') }}
@@ -26,7 +26,7 @@
 
 <body bgcolor="#FFF">
 <div id="mainWrap">
-	<div id="loggit">
+	<div id="loggit2">
 		<h1><i class="fa fa-lock"></i> Podemos Perú  </h1>
 			<?php 	if(Session::get('valores')!=''){
 						$valores=Session::get('valores');
