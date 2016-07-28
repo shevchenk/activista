@@ -41,7 +41,7 @@ a {
 /********************************************************************/
 
 #loggit {
-	background: rgba(221, 43, 150, 0.87);
+	background: rgba(255, 115, 47, 0.90);
 	width: 400px;
 	margin: 5% auto 0;
 	padding: 20px 40px;
@@ -50,6 +50,7 @@ a {
 	text-align: center;
 	font-weight: 700;
 	margin: 5px 0 15px;
+	color:#7ED1FA;
 }
 #loggit h3 {
 	text-align: center;
