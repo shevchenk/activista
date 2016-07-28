@@ -40,4 +40,15 @@ class Ficha extends Base
         $oData = DB::select($sSql);
         return $oData[0]->cant;
     }
+
+    public static function getValidarEstadoFicha( $ficha )
+    {
+        $sSql=" SELECT COUNT(IF(estado_ficha=1,id,NULL)) buenas,COUNT(IF(estado_ficha!=1,id,NULL)) malas
+                FROM fichas
+                WHERE ficha=$ficha
+                AND estado=1
+                GROUP BY ficha";
+        $oData = DB::select($sSql);
+        return $oData;
+    }
 }

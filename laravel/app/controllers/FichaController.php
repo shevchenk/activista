@@ -56,14 +56,79 @@ class FichaController extends \BaseController
     {
         if ( Request::ajax() ) {
             $dni=Input::get('dni');
+            $ficha=Input::get('ficha');
             $aData=Reniec::getPersona($dni);
 
             $aParametro['data'] = $aData;
             $aParametro['rst'] = 1;
             $aParametro['msj'] = "";
             if( COUNT($aData)==0 ){
+                $ef=EscalafonFichas::getEFIdporFicha($ficha);
+                $efr=EscalafonFichas::getEFRIdporFicha($ficha);
+
+                $ficham= new Ficha;
+                if( count($ef)>0 ){
+                    $ficham['escalafon_ficha_id']=$ef[0]->id;
+
+                    if( count($efr)>0 ){
+                        $ficham['escalafon_ficha_recepcion_id']=$efr[0]->id;
+                    }
+                }
+                $ficham['ficha']=$ficha;
+                $ficham['estado_ficha']=3;
+                $ficham['usuario_created_at']=Auth::user()->id;
+                $ficham->save();
+
                 $aParametro['rst'] = 2;
-                $aParametro['msj'] = "No Existe persona con el dni:".$dni;
+                $aParametro['msj'] = "No Existe persona con el dni:".$dni." Será contabilizada como firma inválida";
+            }
+
+            $vef=Ficha::getValidarEstadoFicha($ficha);
+            $aParametro['estado']=$vef;
+
+
+            return Response::json($aParametro);
+        }
+    }
+
+    public function postBuscarficha()
+    {
+        if ( Request::ajax() ) {
+            $ficha=Input::get('ficha');
+            $ef=EscalafonFichas::getEFIdporFicha($ficha);
+            $efr=EscalafonFichas::getEFRIdporFicha($ficha);
+            $vef=Ficha::getValidarEstadoFicha($ficha);
+
+            $crearFicha=true;
+            $estado=5;
+            if( count($ef)>0 ){
+                $estado=4;
+                if( count($efr)>0 ){
+                    $crearFicha=false;
+                }
+            }
+
+            if( $crearFicha ){
+                $ficham= new Ficha;
+                if( count($ef)>0 ){
+                    $ficham['escalafon_ficha_id']=$ef[0]->id;
+                }
+                $ficham['ficha']=$ficha;
+                $ficham['estado_ficha']=$estado;
+                $ficham['usuario_created_at']=Auth::user()->id;
+                $ficham->save();
+            }
+
+            $aParametro['rst'] = 1;
+            $aParametro['estado']=$vef;
+            $aParametro['msj'] = "Ficha Válida";
+            if( count($ef)==0 ){
+                $aParametro['rst'] = 2;
+                $aParametro['msj'] = "Ficha inválida, No fué Entregada";
+            }
+            elseif( count($efr)==0 ){
+                $aParametro['rst'] = 2;
+                $aParametro['msj'] = "Ficha inválida, No fué Recepcionada";
             }
             return Response::json($aParametro);
         }
@@ -112,32 +177,11 @@ class FichaController extends \BaseController
             }
 
             $estadoFicha=0; //No existe dni
-            if( $reniec=='' AND count($ef)==0 ){
-                $estadoFicha=9; // no existe asignación de entrega y recepción y no existe persona
+            if( strcasecmp($paternon,$paterno)!=0 OR strcasecmp($maternon,$materno)!=0 OR strcasecmp($nombresn,$nombres)!=0  ){
+                $estadoFicha=2; // no existe asignación de entrega y recepción
             }
-            elseif( $reniec=='' AND count($ef)>0 AND count($efr)==0 ){
-                $estadoFicha=8; // no existe asignación de entrega y recepción y no existe persona
-            }
-            elseif( $reniec=='' AND count($ef)>0 AND count($efr)>0 ){
-                $estadoFicha=7; // no existe asignación de entrega y recepción y no existe persona
-            }
-            elseif( $reniec!='' AND ( strcasecmp($paternon,$paterno)!=0 OR strcasecmp($maternon,$materno)!=0 OR strcasecmp($nombresn,$nombres)!=0 ) AND count($ef)==0 ){
-                $estadoFicha=6; // no existe asignación de entrega y recepción y no existe persona
-            }
-            elseif( $reniec!='' AND ( strcasecmp($paternon,$paterno)!=0 OR strcasecmp($maternon,$materno)!=0 OR strcasecmp($nombresn,$nombres)!=0 ) AND count($ef)>0 AND count($efr)==0 ){
-                $estadoFicha=5; // no existe asignación de recepción y no existe persona
-            }
-            elseif( $reniec!='' AND ( strcasecmp($paternon,$paterno)!=0 OR strcasecmp($maternon,$materno)!=0 OR strcasecmp($nombresn,$nombres)!=0 ) AND count($ef)>0 AND count($efr)>0 ){
-                $estadoFicha=4; // no existe asignación de recepción y no existe persona
-            }
-            elseif( $reniec!='' AND strcasecmp($paternon,$paterno)==0 AND strcasecmp($maternon,$materno)==0 AND strcasecmp($nombresn,$nombres)==0 AND count($ef)==0 ){
-                $estadoFicha=3; // no existe asignación de entrega y recepción
-            }
-            elseif( $reniec!='' AND strcasecmp($paternon,$paterno)==0 AND strcasecmp($maternon,$materno)==0 AND strcasecmp($nombresn,$nombres)==0 AND count($ef)>0 AND count($efr)==0 ){
-                $estadoFicha=2; // no existe asignación de recepción
-            }
-            else if( $reniec!='' AND strcasecmp($paternon,$paterno)==0 AND strcasecmp($maternon,$materno)==0 AND strcasecmp($nombresn,$nombres)==0 ){
-                $estadoFicha=1; // si existe y es válido
+            elseif( strcasecmp($paternon,$paterno)==0 AND strcasecmp($maternon,$materno)==0 AND strcasecmp($nombresn,$nombres)==0 ){
+                $estadoFicha=1; // no existe asignación de recepción
             }
 
             $ficham['ficha']=$ficha;
@@ -154,8 +198,9 @@ class FichaController extends \BaseController
                 $reniecm['usuario_updated_at']=Auth::user()->id;
                 $reniecm->save();
             }
+            $vef=Ficha::getValidarEstadoFicha($ficha);
             
-            return Response::json(array('rst'=>1,'msj'=>'Se registró la validación'));
+            return Response::json(array('rst'=>1,'msj'=>'Se registró la validación','estado'=>$vef));
         }
     }
 }
