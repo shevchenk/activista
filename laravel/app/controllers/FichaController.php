@@ -134,6 +134,17 @@ class FichaController extends \BaseController
         }
     }
 
+    public function postFirmasvalidas()
+    {
+        if ( Request::ajax() ) {
+            $escalafon_id=Input::get('escalafon_id');
+            $datos=Ficha::getCargarFirmasValidas($escalafon_id);
+            $aParametro['rst'] = 1;
+            $aParametro['datos']=$datos;
+            return Response::json($aParametro);
+        }
+    }
+
     public function postValidarficha()
     {
         if ( Request::ajax() ) {

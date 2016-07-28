@@ -51,4 +51,21 @@ class Ficha extends Base
         $oData = DB::select($sSql);
         return $oData;
     }
+
+    public static function getCargarFirmasValidas( $id )
+    {
+        $sSql=" SELECT ficha,COUNT( IF(f.estado_ficha=1,f.id,NULL) ) buenas,
+                COUNT( IF(f.estado_ficha=2,f.id,NULL) ) malas,
+                COUNT( IF(f.estado_ficha=3,f.id,NULL) ) ndni,
+                COUNT( IF(f.estado_ficha<=3,f.id,NULL) ) total
+                FROM fichas f
+                INNER JOIN escalafon_fichas ef ON ef.id=f.escalafon_ficha_id
+                INNER JOIN escalafon e ON e.id=ef.escalafon_id
+                WHERE f.estado=1
+                AND e.id=".$id."
+                AND f.escalafon_ficha_recepcion_id IS NOT NULL
+                GROUP BY f.ficha";
+        $oData = DB::select($sSql);
+        return $oData;
+    }
 }
