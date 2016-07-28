@@ -45,13 +45,13 @@ Route::get(
             }
             $rutaBD = substr($ruta, 6);
             //si tiene accesoo si accede al inicio o a misdatos
-            if (in_array($rutaBD, $accesos) or 
+            /*if (in_array($rutaBD, $accesos) or 
                 $rutaBD == 'inicio' or $rutaBD=='mantenimiento.misdatos'
                 or $rutaBD=='proceso.perfil'
-                or $rutaBD=='proceso.perfilView') {
+                or $rutaBD=='proceso.perfilView') {*/
                 return View::make($ruta)->with($valores);
-            } else
-                return Redirect::to('/');
+            //} else
+            //    return Redirect::to('/');
         } else
             return Redirect::to('/');
     })
