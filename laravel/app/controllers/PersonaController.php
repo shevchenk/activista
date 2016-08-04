@@ -216,8 +216,9 @@ class PersonaController extends BaseController
                     )
                 );
             }
-
-            $activista = new Usuario;
+            
+            DB::beginTransaction();
+            $activista = new Persona;
             $activista->paterno = Input::get('paterno');
             $activista->materno = Input::get('materno');
             $activista->nombres = Input::get('nombres');
@@ -228,7 +229,7 @@ class PersonaController extends BaseController
             $activista->password =  Hash::make(Input::get('dni'));
             $activista->nivel_id = Input::get('cargos');
             if( Input::has('grupo') ){
-                $activista->grupo_persona_id = Input::get('grupo');
+                $activista->grupo_persona_id = Input::get('grupo')[0];
             }
             $activista->usuario_created_at = Auth::user()->id;
             $activista->save();
@@ -255,6 +256,8 @@ class PersonaController extends BaseController
                 $escalafon->estado=1;
                 $escalafon->save();
             }
+
+            DB::commit();
 
             /*$parametros=array(
                             'email'      => Input::get('email'),
