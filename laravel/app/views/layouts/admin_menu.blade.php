@@ -25,11 +25,11 @@
                                         @endforeach
                             @endforeach
                         @endif
-                        <div class="form-group row options-menu">
+                        <!--div class="form-group row options-menu">
                             <a   class="col-sm-9 bg-light-blue disabled" href="admin.proceso.firmasvalidas">
                                 <i class="fa fa-angle-double-right"></i><font size="+1"> Reporte de Firmas </font>
                             </a>
-                        </div>
+                        </div-->
                         <div class="form-group row options-menu">
                             <a   class="col-sm-9 bg-light-blue disabled" href="admin.proceso.perfilView">
                                 <i class="fa fa-angle-double-right"></i><font size="+1"> Mi Perfil</font>
