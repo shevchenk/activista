@@ -28,7 +28,7 @@ class TGrupoController extends \BaseController
             $regex='regex:/^([a-zA-Z .,ñÑÁÉÍÓÚáéíóú]{2,60})$/i';
             $required='required';
             $reglas = array(
-                'nombre' => $required.'|'.$regex.'|unique:tipo_grupos_personas',
+                'nombre' => $required.'|unique:tipo_grupos_personas',
                 //'path' =>$regex.'|unique:modulos,path,',
             );
 
@@ -70,7 +70,7 @@ class TGrupoController extends \BaseController
             $regex='regex:/^([a-zA-Z .,ñÑÁÉÍÓÚáéíóú]{2,60})$/i';
             $required='required';
             $reglas = array(
-                'nombre' => $required.'|'.$regex.'|unique:tipo_grupos_personas,nombre,'.Input::get('id'),
+                'nombre' => $required.'|unique:tipo_grupos_personas,nombre,'.Input::get('id'),
             );
 
             $mensaje= array(

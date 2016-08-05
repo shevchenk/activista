@@ -36,7 +36,7 @@ class CargoEstrategicoController extends \BaseController
             $regex='regex:/^([a-zA-Z .,ñÑÁÉÍÓÚáéíóú]{2,60})$/i';
             $required='required';
             $reglas = array(
-                'nombre' => $required.'|'.$regex.'|unique:cargos_estrategicos',
+                'nombre' => $required.'|unique:cargos_estrategicos',
                 //'path' =>$regex.'|unique:modulos,path,',
             );
 
@@ -83,7 +83,7 @@ class CargoEstrategicoController extends \BaseController
             $regex='regex:/^([a-zA-Z .,ñÑÁÉÍÓÚáéíóú]{2,60})$/i';
             $required='required';
             $reglas = array(
-                'nombre' => $required.'|'.$regex.'|unique:cargos_estrategicos,nombre,'.Input::get('id'),
+                'nombre' => $required.'|unique:cargos_estrategicos,nombre,'.Input::get('id'),
             );
 
             $mensaje= array(
