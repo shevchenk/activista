@@ -20,7 +20,7 @@
             <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Registro de Recepción de las Fichas
+            Registro de Entregas de las Fichas
             <small> </small>
         </h1>
         <ol class="breadcrumb">
