@@ -39,7 +39,7 @@
         @show
     </head>
 
-    <body class="skin-ambar">
+    <body class="skin-blue">
     <div id="msj" class="msjAlert"> </div>
         @include( 'layouts.admin_head' )
 

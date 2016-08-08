@@ -12,7 +12,8 @@ class GrupoCargo extends Base
                 cg.grupo_persona_id,GROUP_CONCAT(cg.cargo_estrategico_id) cargo_estrategico_id
                 FROM grupos_cargos cg 
                 INNER JOIN grupos_personas g ON g.id=cg.grupo_persona_id
-                INNER JOIN cargos_estrategicos c ON c.id=cg.cargo_estrategico_id
+                INNER JOIN cargos_estrategicos c ON c.id=cg.cargo_estrategico_id 
+                WHERE cg.estado=1
                 GROUP BY cg.grupo_persona_id
                 ";
         $r=DB::select($sql);

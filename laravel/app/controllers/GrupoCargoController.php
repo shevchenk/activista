@@ -34,6 +34,7 @@ class GrupoCargoController extends \BaseController
             $array['cargo_estrategico_id']=Input::get('cargo');
             $cargo_estrategico=Input::get('cargo');
 
+            DB::beginTransaction();
             for(  $i=0; $i<count($cargo_estrategico); $i++ ){
                 $cargo = new GrupoCargo;
                 $cargo->grupo_persona_id = Input::get('grupop');
@@ -43,6 +44,7 @@ class GrupoCargoController extends \BaseController
                 $cargo->usuario_created_at = Auth::user()->id;
                 $cargo->save();
             }
+            DB::commit();
             return Response::json(
                 array(
                 'rst'=>1,
@@ -70,12 +72,12 @@ class GrupoCargoController extends \BaseController
             $cargo_estrategico=Input::get('cargo');
             $array['id']=$cargoId;
 
-            DB::table('grupos_cargos')->where('grupo_persona_id', '=', Input::get('grupop'))
-                        ->update(
-                            array(
-                                'estado' => 0
-                            )
-                        );
+            DB::beginTransaction();
+            DB::table('grupos_cargos')
+            ->where('grupo_persona_id', Input::get('grupop'))
+            ->update(
+                    array('estado' => 0)
+            );
 
             for(  $i=0; $i<count($cargo_estrategico); $i++ ){
                 $sql="  SELECT id
@@ -84,7 +86,7 @@ class GrupoCargoController extends \BaseController
                         AND cargo_estrategico_id='".$cargo_estrategico[$i]."'";
                 $rf=DB::select($sql);
                 if( count($rf)>0 ){
-                    $cargo = GrupoCargo::find($rf[0]['id']);
+                    $cargo = GrupoCargo::find($rf[0]->id);
                     $cargo->fecha_inicio = Input::get('fecha_inicio');
                     $cargo->estado = 1;
                     $cargo->usuario_updated_at = Auth::user()->id;
@@ -101,7 +103,7 @@ class GrupoCargoController extends \BaseController
                 }
                 
             }
-
+            DB::commit();
                 return Response::json(
                     array(
                     'rst'=>1,
