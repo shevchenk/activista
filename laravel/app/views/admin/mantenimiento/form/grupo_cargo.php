@@ -20,7 +20,7 @@
           <div class="form-group">
             <label class="control-label">Cargo
             </label>
-            <select class="form-control" name="slct_cargo" id="slct_cargo">
+            <select class="form-control" name="slct_cargo[]" id="slct_cargo" multiple>
                 <option value=''>.::Seleccione::.</option>
             </select>
           </div>

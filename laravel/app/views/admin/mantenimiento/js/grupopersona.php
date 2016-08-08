@@ -10,6 +10,7 @@ $(document).ready(function() {
 
     Grupo.CargarGrupo(HTMLCargarGrupo);
     slctGlobal.listarSlctFijo('tgrupo','slct_grupo');
+    slctGlobalHtml('slct_cargo','multiple');
     $('#grupoModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget); // captura al boton
         var titulo = button.data('titulo'); // extrae del atributo data-
@@ -134,9 +135,13 @@ $(document).ready(function() {
         $('#form_grupocargo [data-toggle="tooltip"]').css("display","none");
         $("#form_grupocargo input[type='hidden']").remove();
         $("#form_grupocargo input[type='text'],#form_grupocargo select").val('');
+        $("#form_grupocargo #slct_cargo,#form_grupocargo #slct_grupop").multiselect("destroy");
         var data={};
         
         if(titulo=='Nuevo'){
+            var data={nuevo:1};
+            slctGlobal.listarSlctFijo('grupop','slct_grupop',null,data);
+            slctGlobal.listarSlct('cargo_estrategico','slct_cargo','multiple');
             data={cid:"0"};
             modal.find('.modal-footer .btn-primary').text('Guardar');
             modal.find('.modal-footer .btn-primary').attr('onClick','Agregar();');
@@ -149,8 +154,14 @@ $(document).ready(function() {
             modal.find('.modal-footer .btn-primary').text('Actualizar');
             modal.find('.modal-footer .btn-primary').attr('onClick','Editar();');
 
-            $('#form_grupocargo #slct_grupop').val( arrPorID[0].grupo_persona_id );
-            $('#form_grupocargo #slct_cargo').val( arrPorID[0].cargo_estrategico_id );
+            slctGlobal.listarSlctFijo('grupop','slct_grupop',arrPorID[0].grupo_persona_id);
+            var cargoidd= arrPorID[0].cargo_estrategico_id.split(",");
+            var ids=[];
+            for (var i = 0; i < cargoidd.length; i++) {
+                ids.push(cargoidd[i]);
+            }
+            slctGlobal.listarSlct('cargo_estrategico','slct_cargo','multiple',ids);
+
             $('#form_grupocargo #txt_fecha_inicio').val( arrPorID[0].fecha_inicio );
             $('#form_grupocargo #slct_estado').val( arrPorID[0].estado );
             $("#form_grupocargo").append("<input type='hidden' value='"+button.data('id')+"' name='id'>");
@@ -200,8 +211,7 @@ ActPest=function(nro){
         Grupo.CargarCargo(HTMLCargarCargo);
     }
     else if( Pest==3 ){
-        slctGlobal.listarSlctFijo('grupop','slct_grupop');
-        slctGlobal.listarSlctFijo('cargo_estrategico','slct_cargo');
+        //slctGlobal.listarSlct('cargo_estrategico','slct_cargo','multiple');
         Grupo.CargarGrupoCargo(HTMLCargarGrupoCargo);
     }
 }

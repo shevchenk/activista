@@ -17,7 +17,6 @@ var slctGlobal={
      *
      * @return string
      */
-
     listarSlct:function(controlador,slct,tipo,valarray,data,afectado,afectados,slct_id,slctant,slctant_id, funciones){
         $.ajax({
             url         : controlador+'/listar',
@@ -68,12 +67,13 @@ var slctGlobal={
             }
         });
     },
-    listarSlctFijo:function(controlador,slct,val){
+    listarSlctFijo:function(controlador,slct,val,data){
         $.ajax({
             url         : controlador+'/listar',
             type        : 'POST',
             cache       : false,
             dataType    : 'json',
+            data        : data,
             beforeSend : function() {
                 //$("body").append('<div class="overlay"></div><div class="loading-img"></div>');
             },
@@ -88,7 +88,7 @@ var slctGlobal={
                         if(typeof(val)!='undefined' && val==data.id){
                             selected="selected";
                         }
-                        if(data.dat!='undefined'){
+                        if(typeof(data.dat)!='undefined'){
                             dat="data-dat='"+data.dat+"'";
                         }
                         html += "<option "+dat+" value=\"" + data.id + "\" "+selected+">" + data.nombre + "</option>";

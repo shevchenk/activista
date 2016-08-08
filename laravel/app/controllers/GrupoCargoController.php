@@ -32,31 +32,23 @@ class GrupoCargoController extends \BaseController
             $array=array();
             $array['grupo_persona_id']=Input::get('grupop');
             $array['cargo_estrategico_id']=Input::get('cargo');
+            $cargo_estrategico=Input::get('cargo');
 
-            if( GrupoCargo::getValidar($array)>0 ){
-                return Response::json(
-                    array(
-                    'rst'=>3,
-                    'msj'=>'Cargo y Equipo ingresados ya fueron registrados anteriormente',
-                    )
-                );
-            }
-            else{
+            for(  $i=0; $i<count($cargo_estrategico); $i++ ){
                 $cargo = new GrupoCargo;
                 $cargo->grupo_persona_id = Input::get('grupop');
-                $cargo->cargo_estrategico_id = Input::get('cargo');
+                $cargo->cargo_estrategico_id = $cargo_estrategico[$i];
                 $cargo->fecha_inicio = Input::get('fecha_inicio');
                 $cargo->estado = Input::get('estado');
                 $cargo->usuario_created_at = Auth::user()->id;
                 $cargo->save();
-
-                return Response::json(
-                    array(
-                    'rst'=>1,
-                    'msj'=>'Registro realizado correctamente',
-                    )
-                );
             }
+            return Response::json(
+                array(
+                'rst'=>1,
+                'msj'=>'Registro realizado correctamente',
+                )
+            );
         }
     }
 
@@ -75,24 +67,40 @@ class GrupoCargoController extends \BaseController
             $array=array();
             $array['grupo_persona_id']=Input::get('grupop');
             $array['cargo_estrategico_id']=Input::get('cargo');
+            $cargo_estrategico=Input::get('cargo');
             $array['id']=$cargoId;
 
-            if( GrupoCargo::getValidar($array)>0 ){
-                return Response::json(
-                    array(
-                    'rst'=>3,
-                    'msj'=>'Cargo y Equipo ingresados ya fueron registrados anteriormente',
-                    )
-                );
+            DB::table('grupos_cargos')->where('grupo_persona_id', '=', Input::get('grupop'))
+                        ->update(
+                            array(
+                                'estado' => 0
+                            )
+                        );
+
+            for(  $i=0; $i<count($cargo_estrategico); $i++ ){
+                $sql="  SELECT id
+                        FROM grupos_cargos
+                        WHERE grupo_persona_id='".Input::get('grupop')."'
+                        AND cargo_estrategico_id='".$cargo_estrategico[$i]."'";
+                $rf=DB::select($sql);
+                if( count($rf)>0 ){
+                    $cargo = GrupoCargo::find($rf[0]['id']);
+                    $cargo->fecha_inicio = Input::get('fecha_inicio');
+                    $cargo->estado = 1;
+                    $cargo->usuario_updated_at = Auth::user()->id;
+                    $cargo->save();
+                }
+                else{
+                    $cargo = new GrupoCargo;
+                    $cargo->grupo_persona_id = Input::get('grupop');
+                    $cargo->cargo_estrategico_id = $cargo_estrategico[$i];
+                    $cargo->fecha_inicio = Input::get('fecha_inicio');
+                    $cargo->estado = 1;
+                    $cargo->usuario_created_at = Auth::user()->id;
+                    $cargo->save();
+                }
+                
             }
-            else{
-                $cargo = GrupoCargo::find($cargoId);
-                $cargo->grupo_persona_id = Input::get('grupop');
-                $cargo->cargo_estrategico_id = Input::get('cargo');
-                $cargo->fecha_inicio = Input::get('fecha_inicio');
-                $cargo->estado = Input::get('estado');
-                $cargo->usuario_updated_at = Auth::user()->id;
-                $cargo->save();
 
                 return Response::json(
                     array(
@@ -100,7 +108,6 @@ class GrupoCargoController extends \BaseController
                     'msj'=>'Registro actualizado correctamente',
                     )
                 );
-            }
         }
     }
 
