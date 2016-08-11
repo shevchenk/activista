@@ -70,7 +70,7 @@ class GrupoPController extends \BaseController
                 $retorno["draw"]=Input::get('draw');
             }
 
-            $array['where'].=" AND a.visible=1 ";
+            $array['where'].=" AND c.visible=1 ";
 
             $array['order']=" ORDER BY a.paterno,a.materno,a.nombres,ce.nombre ";
 
