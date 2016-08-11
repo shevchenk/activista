@@ -11,6 +11,7 @@ class Grupo extends Base
                 INNER JOIN activista_cargo pc ON a.id=pc.activista_id AND pc.estado=1
                 INNER JOIN cargos c ON c.id=pc.cargo_id
                 INNER JOIN escalafon e ON e.activista_id=a.id AND e.fecha_final IS NULL 
+                ".$array['escalafon']."
                 INNER JOIN grupos_personas gp ON gp.id=e.grupo_persona_id
                 INNER JOIN cargos_estrategicos ce ON ce.id=e.cargo_estrategico_id
                 LEFT JOIN departamentos d ON d.id=gp.departamento_id
@@ -30,7 +31,7 @@ class Grupo extends Base
                 INNER JOIN activista_cargo pc ON a.id=pc.activista_id AND pc.estado=1
                 INNER JOIN cargos c ON c.id=pc.cargo_id
                 INNER JOIN escalafon e ON e.activista_id=a.id AND e.fecha_final IS NULL 
-                $array['escalafon']
+                ".$array['escalafon']."
                 INNER JOIN grupos_personas gp ON gp.id=e.grupo_persona_id
                 INNER JOIN cargos_estrategicos ce ON ce.id=e.cargo_estrategico_id
                 LEFT JOIN departamentos d ON d.id=gp.departamento_id
