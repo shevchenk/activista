@@ -57,6 +57,10 @@ class GrupoPController extends \BaseController
                 $array['where'].=" AND gp.localidad LIKE '%".Input::get("localidad")."%' ";
             }
 
+            if( Input::has("escafon") ){
+                $array['escalafon'].=" INNER JOIN escalafon_fichas ef ON ef.escalafon_id=e.id AND ef.estado=1 ";
+            }
+
             if (Input::has('draw')) {
                 if (Input::has('order')) {
                     $inorder=Input::get('order');

@@ -33,6 +33,7 @@
         <!-- Main content -->
         <section class="content">
             <form name="form_personas_equipos" id="form_personas_equipos" method="POST" action="">
+                <input type="hidden" name="escalafon" value="1">
                 <div class="box-body table-responsive">
                     <div class="col-sm-12">
                         <table id="t_personas_equipos" class="table table-bordered table-hover">
