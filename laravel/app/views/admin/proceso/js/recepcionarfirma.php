@@ -8,6 +8,7 @@ var IdEscalafonFichaG=0; // Id Global del ecalafon ficha
 var TotalEntregadoG=0; // Total de entregados a validar
 var DesdeEntregadoG=0;
 var HastaEntregadoG=0;
+var BottonDblClick=true; // para activar el botton don dbleclick
 $(document).ready(function() {
     $("[data-toggle='offcanvas']").click();
     var data = {estado:1};
@@ -46,6 +47,14 @@ $(document).ready(function() {
     );
     $(".oculta,.oculta2").css('display','none');
 });
+
+BtnDblClick=function(){
+    $("#t_personas_equipos>tbody>tr").attr("OnDblClick","BtnDbl(this)");
+}
+
+BtnDbl=function(t){
+    $(t).find("a").click();
+}
 
 MostrarAjax=function(t){
     if( t=="personas_equipos" ){

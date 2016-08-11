@@ -4,6 +4,7 @@ var columnDefsP=[];
 var targetsP=-1;
 var OrdenG=0; // inicializa el orden
 var IdEscalafonG=0; // Id Global del ecalafon
+var BottonDblClick=true;
 $(document).ready(function() {
     $("[data-toggle='offcanvas']").click();
     var data = {estado:1};
@@ -42,6 +43,14 @@ $(document).ready(function() {
     );
     $(".oculta").css('display','none');
 });
+
+BtnDblClick=function(){
+    $("#t_personas_equipos>tbody>tr").attr("OnDblClick","BtnDbl(this)");
+}
+
+BtnDbl=function(t){
+    $(t).find("a").click();
+}
 
 MostrarAjax=function(t){
     if( t=="personas_equipos" ){

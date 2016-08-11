@@ -240,6 +240,9 @@ var dataTableG={
                 },
                 "stateSaveCallback": function (settings) { // Cuando finaliza el ajax
                     $(".overlay,.loading-img").remove();
+                    if( typeof(BottonDblClick)!='undefined' && BottonDblClick){
+                        BtnDblClick();
+                    }
                 },
                 "ajax": {
                         "url": controlador+"/"+funcion,
