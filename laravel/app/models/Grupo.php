@@ -8,6 +8,8 @@ class Grupo extends Base
     {
         $sSql=" SELECT  COUNT(e.id) cant
                 FROM activistas a
+                INNER JOIN activista_cargo pc ON a.id=pc.activista_id
+                INNER JOIN cargos c ON c.id=pc.cargo_id
                 INNER JOIN escalafon e ON e.activista_id=a.id AND e.fecha_final IS NULL 
                 INNER JOIN grupos_personas gp ON gp.id=e.grupo_persona_id
                 INNER JOIN cargos_estrategicos ce ON ce.id=e.cargo_estrategico_id
@@ -25,6 +27,8 @@ class Grupo extends Base
         $sSql=" SELECT  e.id,a.paterno,a.materno,a.nombres,a.dni,a.celular,ce.nombre cargo,e.fecha_inicio,
                 gp.nombre equipo, d.nombre departamento, p.nombre provincia, di.nombre distrito,gp.localidad
                 FROM activistas a
+                INNER JOIN activista_cargo pc ON a.id=pc.activista_id
+                INNER JOIN cargos c ON c.id=pc.cargo_id
                 INNER JOIN escalafon e ON e.activista_id=a.id AND e.fecha_final IS NULL 
                 INNER JOIN grupos_personas gp ON gp.id=e.grupo_persona_id
                 INNER JOIN cargos_estrategicos ce ON ce.id=e.cargo_estrategico_id
