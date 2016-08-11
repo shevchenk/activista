@@ -236,7 +236,7 @@ class CargoController extends \BaseController
                         $cargoOpcion->opcion_id = $opcionId;
                         $cargoOpcion->usuario_created_at= Auth::user()->id;
                         $cargoOpcion->save();
-                    } else {
+                    } elseif ( $estado==1 ) {
                         //update a la tabla cargo_opcion
                         DB::table('cargo_opcion')
                             ->where('cargo_id', '=', $cargoId)
