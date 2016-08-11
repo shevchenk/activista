@@ -7,7 +7,7 @@ class GrupoPController extends \BaseController
         if ( Request::ajax() ) {
             $array=array();
             $array['where']='';$array['usuario']=Auth::user()->id;
-            $array['limit']='';$array['order']='';
+            $array['limit']='';$array['order']='';$array['escalafon']='';
 
             if( Input::has("paterno") ){
                 $array['where'].=" AND a.paterno LIKE '%".Input::get("paterno")."%' ";
