@@ -69,7 +69,15 @@ class CargoController extends \BaseController
                         ->groupBy('m.nombre')
                         ->orderBy('m.nombre')
                         ->get();
-            } else {
+            } elseif( Input::has('id') ) {
+                $cargos = DB::table('cargos')
+                            ->select('id', 'nombre')
+                            ->where('estado', '=', '1')
+                            ->where('id', '=', Input::get('id') )
+                            ->orderBy('nombre')
+                            ->get();
+            }
+            else {
                 $cargos = DB::table('cargos')
                             ->select('id', 'nombre')
                             ->where('estado', '=', '1')

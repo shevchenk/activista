@@ -134,6 +134,10 @@ class PersonaController extends BaseController
                 $array['where'].=" AND a.estado='".Input::get("estado")."' ";
             }
 
+            if( Input::has("cargo_id") ){
+                $array['where'].=" AND c.id='".Input::get("cargo_id")."' ";
+            }
+
             $array['where'].=" AND c.visible=1 ";
 
             if (Input::has('draw')) {
