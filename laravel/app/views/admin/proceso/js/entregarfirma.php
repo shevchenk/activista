@@ -180,7 +180,9 @@ CalTot=function(btn){
 ValidaT=function(){
     var r=true;
     var desde=0;
-    var hasta=0; 
+    var hasta=0;
+    var total=0;
+    var total2=0; 
 
     $("#t_fichas tbody tr td").removeClass("has-error");
     $("#t_fichas tbody tr").each( function( index ){
@@ -205,6 +207,16 @@ ValidaT=function(){
                     $(this).addClass("danger");
                 }
             }
+
+            if(desde!='' && hasta!='' && desdeh!='' && hastah!='' && r==true){
+            total= ( (hasta*1-desde*1)+1 );
+            total2= ( (hastah*1-desdeh*1)+1 );
+                if(total!=total2){
+                    r=false;
+                    $(this).find("td:eq(4)").addClass("has-error");
+                    $(this).addClass("danger");
+                }
+            }
         }
     });
 }
@@ -224,15 +236,6 @@ ValidaMenorMayor=function(){
         desdeh=$.trim($(this).find("input:eq(3)").val());
         hastah=$.trim($(this).find("input:eq(4)").val());
 
-        if(desde!='' && hasta!='' && desdeh!='' && hastah!=''){
-            total= ( (hasta*1-desde*1)+1 );
-            total2= ( (hastah*1-desdeh*1)+1 );
-            if(total!=total2){
-                r=false;
-                mensaje="El total de fichas("+total+") no es igual al total de hojas("+total2+") ";
-            }
-        }
-
         if(desde!='' && hasta!=''){
             if( r==true && desde*1>hasta*1 ){
                 r=false;
@@ -244,6 +247,15 @@ ValidaMenorMayor=function(){
             if( r==true && desdeh*1>hastah*1 ){
                 r=false;
                 mensaje="La hoja de inicio no puede ser mayor a la hoja final";
+            }
+        }
+
+        if(desde!='' && hasta!='' && desdeh!='' && hastah!='' && r==true){
+            total= ( (hasta*1-desde*1)+1 );
+            total2= ( (hastah*1-desdeh*1)+1 );
+            if(total!=total2){
+                r=false;
+                mensaje="El total de fichas("+total+") no es igual al total de hojas("+total2+") ";
             }
         }
     });
