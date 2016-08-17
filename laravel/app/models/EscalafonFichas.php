@@ -17,7 +17,7 @@ class EscalafonFichas extends Base
     public static function getCargarEntregas( $array )
     {
         $sSql=" SELECT ef.id,ef.orden,ef.fecha_entrega,ef.desde,ef.hasta,ef.escalafon_id,
-                (ef.hasta-ef.desde+1) total,
+                (ef.hasta-ef.desde+1) total,ef.desdeh,ef.hastah,
                 (   SELECT COUNT(efr.id) 
                     FROM escalafon_fichas_recepcion efr
                     WHERE efr.escalafon_ficha_id=ef.id

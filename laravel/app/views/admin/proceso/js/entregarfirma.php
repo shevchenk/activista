@@ -96,8 +96,8 @@ CargarEntregasHTML=function(datos){
                     "<td><input type='text' class='fecha form-control' name='txt_fecha_entrega[]' value='"+data.fecha_entrega+"'></td>"+
                     "<td><input type='text' class='form-control' name='txt_desde[]' onBlur='ValidaMenorMayor();' onKeyUp='CalTot(this);' onKeyPress='return msjG.validaNumeros(event);' value='"+data.desde+"'></td>"+
                     "<td><input type='text' class='form-control' name='txt_hasta[]' onBlur='ValidaMenorMayor();' onKeyUp='CalTot(this);' onKeyPress='return msjG.validaNumeros(event);' value='"+data.hasta+"'></td>"+
-                    "<td><input type='text' class='form-control' name='txt_desdeh[]' onBlur='ValidaMenorMayor();' onKeyUp='CalTot(this);' onKeyPress='return msjG.validaNumeros(event);' value='"+data.desde+"'></td>"+
-                    "<td><input type='text' class='form-control' name='txt_hastah[]' onBlur='ValidaMenorMayor();' onKeyUp='CalTot(this);' onKeyPress='return msjG.validaNumeros(event);' value='"+data.hasta+"'></td>"+
+                    "<td><input type='text' class='form-control' name='txt_desdeh[]' onBlur='ValidaMenorMayor();' onKeyUp='CalTot(this);' onKeyPress='return msjG.validaNumeros(event);' value='"+data.desdeh+"'></td>"+
+                    "<td><input type='text' class='form-control' name='txt_hastah[]' onBlur='ValidaMenorMayor();' onKeyUp='CalTot(this);' onKeyPress='return msjG.validaNumeros(event);' value='"+data.hastah+"'></td>"+
                     "<td><input disabled type='text' class='form-control' value='"+data.total+"'></td>";
         if( data.validar==0 ){
         html+=      "<td>"+
