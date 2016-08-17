@@ -106,7 +106,7 @@ CargarEntregasHTML=function(datos){
                     "</td>";
         }
         else{
-        html+=      "<td>"+data.validar+" Recep.</td>";
+        html+=      "<td>"+data.validar+" Recep."+"<input type='hidden' name='ids[]' value='"+data.id+"'>"+"</td>";
         }
         html+=  "</tr>";
         OrdenG=data.orden;
