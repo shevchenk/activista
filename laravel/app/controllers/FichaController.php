@@ -214,4 +214,22 @@ class FichaController extends \BaseController
             return Response::json(array('rst'=>1,'msj'=>'Se registró la validación','estado'=>$vef));
         }
     }
+
+    public function postRelacion()
+    {
+        for ($i=1; $i < 21; $i++) { 
+            if( Input::get('hoja'.$i)!='' AND Input::get('ficha'.$i)!='' ){
+                $relacion= new RelacionHojaFicha;
+                $relacion['hoja']=Input::get('hoja'.$i);
+                $relacion['ficha']=Input::get('ficha'.$i);
+                $relacion['usuario_created_at']=Auth::user()->id;
+                $relacion->save();
+            }
+        }
+
+        $aParametro['rst']=1;
+        $aParametro['msj']='Se registró';
+        $aParametro['resultado']='';
+        return Response::json($aParametro); 
+    }
 }
