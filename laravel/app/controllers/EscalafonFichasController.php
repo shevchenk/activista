@@ -99,17 +99,15 @@ class EscalafonFichasController extends \BaseController
                         $escalafonFichaRecepcion= new EscalafonFichasRecepcion;
                         $escalafonFichaRecepcion['usuario_created_at']=Auth::user()->id;
                     }
-                        $escalafonFichaRecepcion['escalafon_ficha_id']=$escalafonFichaRecepcion->id;
+                        $escalafonFichaRecepcion['escalafon_ficha_id']=$escalafonFicha->id;
                         $escalafonFichaRecepcion['fecha_recepcion']=$fecha_entrega[$i];
                         $escalafonFichaRecepcion['desde']=$desde[$i];
                         $escalafonFichaRecepcion['hasta']=$hasta[$i];
-                        $escalafonFichaRecepcion['desdeh']=$desdeh[$i];
-                        $escalafonFichaRecepcion['hastah']=$hastah[$i];
                         $escalafonFichaRecepcion['orden']=$i+1;
                         $escalafonFichaRecepcion->save();
             /******************************************************************/
             /***********Validar************************************************/
-                    Fichas::where('escalafon_ficha_id', $escalafonFicha->id)
+                    Ficha::where('escalafon_ficha_id', $escalafonFicha->id)
                     ->where('escalafon_ficha_recepcion_id', $escalafonFichaRecepcion->id)
                     ->update(
                         array(
@@ -120,11 +118,12 @@ class EscalafonFichasController extends \BaseController
 
                     $l=$desdeh[$i];
                     for ($k= $desde[$i]; $k <= $hasta[$i] ; $k++) { 
-                        $ficha=new Fichas;
+                        $ficha=new Ficha;
                         $ficha['ficha']=$k;
                         $ficha['hoja']=$l;
                         $ficha['escalafon_ficha_id']=$escalafonFicha->id;
                         $ficha['escalafon_ficha_recepcion_id']=$escalafonFichaRecepcion->id;
+                        $ficha['usuario_created_at']=Auth::user()->id;
                         $ficha->save();
                         $l++;
                     }
