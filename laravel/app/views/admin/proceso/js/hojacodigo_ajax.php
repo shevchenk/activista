@@ -13,7 +13,7 @@ var Ajax={
             success : function(obj) {
                 $(".overlay,.loading-img").remove();
                 if(obj.rst==1){
-                    evento(obj.resultado);
+                    evento(obj);
                     msjG.mensaje('success',obj.msj,4000);
                 }
             },

@@ -217,19 +217,56 @@ class FichaController extends \BaseController
 
     public function postRelacion()
     {
+        $mensajea=",";
+        $mensajeb=",";
         for ($i=1; $i < 21; $i++) { 
-            if( Input::get('hoja'.$i)!='' AND Input::get('ficha'.$i)!='' ){
-                $relacion= new RelacionHojaFicha;
-                $relacion['hoja']=Input::get('hoja'.$i);
-                $relacion['ficha']=Input::get('ficha'.$i);
-                $relacion['usuario_created_at']=Auth::user()->id;
-                $relacion->save();
+            $a=trim( Input::get('hoja'.$i) );
+            $b=trim( Input::get('ficha'.$i) );
+
+            if( $a!='' AND $b!='' ){
+                $sqla=" SELECT id
+                        FROM relacion_hoja_ficha
+                        WHERE hoja='".Input::get('hoja'.$i)."'";
+                $ra=DB::select($sqla);
+
+                $sqlb=" SELECT id
+                        FROM relacion_hoja_ficha
+                        WHERE ficha='".Input::get('ficha'.$i)."'";
+                $rb=DB::select($sqlb);
+
+
+                if( count($ra)>0 AND count($rb)>0 ){
+                    $mensajea.= $ra[0]->id.",";
+                    $mensajeb.="Hoja y Ficha ya existen";
+                }
+                elseif( count($ra)>0 ){
+                    $mensajea.= $ra[0]->id.",";
+                    $mensajeb.="Hoja ya existe";
+                }
+                elseif( count($rb)>0 ){
+                    $mensajea.= $rb[0]->id.",";
+                    $mensajeb.="Ficha ya existe";
+                }
+
+                if( count($ra)==0 AND count($rb)==0 ){
+                    $relacion= new RelacionHojaFicha;
+                    $relacion['hoja']=Input::get('hoja'.$i);
+                    $relacion['ficha']=Input::get('ficha'.$i);
+                    $relacion['usuario_created_at']=Auth::user()->id;
+                    $relacion->save();
+                }
             }
         }
 
+        $add="";
+        if($mensajeb!=',' or $mensajea!=','){
+            $add="<br>Revise sus datos, no todo fue registrado.";
+        }
+
         $aParametro['rst']=1;
-        $aParametro['msj']='Se registró';
-        $aParametro['resultado']='';
+        $aParametro['msj']='Se registró '.$add;
+        $aParametro['msja']=$mensajea;
+        $aParametro['msjb']=$mensajeb;
         return Response::json($aParametro); 
     }
 }

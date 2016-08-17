@@ -57,7 +57,7 @@
                         <table id="t_fichas" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <td colspan='5' style='text-align:center; background-color:#A7C0DC;'>
+                                <td colspan='7' style='text-align:center; background-color:#A7C0DC;'>
                                     <h2>
                                         Fichas Entregadas
                                     </h2>
@@ -67,8 +67,10 @@
                             <tr>
                                 <th style='background-color: #DCE6F1'>Nro Entrega</th>
                                 <th style='background-color: #DCE6F1'>Fecha Entrega</th>
-                                <th style='background-color: #DCE6F1'>Entrega<br>Desde</th>
-                                <th style='background-color: #DCE6F1'>Entrega<br>Hasta</th>
+                                <th style='background-color: #DCE6F1'>Entrega<br>Ficha Desde</th>
+                                <th style='background-color: #DCE6F1'>Entrega<br>Ficha Hasta</th>
+                                <th style='background-color: #DCE6F1'>Entrega<br>Hoja Desde</th>
+                                <th style='background-color: #DCE6F1'>Entrega<br>Hoja Hasta</th>
                                 <th style='background-color: #DCE6F1'>Total Fichas Entregadas</th>
                                 <th>
                                     <a class="btn btn-success" onclick="AddTrFicha();"><i class="fa fa-lg fa-plus"></i></a>
@@ -80,8 +82,10 @@
                             <tr>
                                 <th style='background-color: #DCE6F1'>Nro Entrega</th>
                                 <th style='background-color: #DCE6F1'>Fecha Entrega</th>
-                                <th style='background-color: #DCE6F1'>Entrega<br>Desde</th>
-                                <th style='background-color: #DCE6F1'>Entrega<br>Hasta</th>
+                                <th style='background-color: #DCE6F1'>Entrega<br>Ficha Desde</th>
+                                <th style='background-color: #DCE6F1'>Entrega<br>Ficha Hasta</th>
+                                <th style='background-color: #DCE6F1'>Entrega<br>Hoja Desde</th>
+                                <th style='background-color: #DCE6F1'>Entrega<br>Hoja Hasta</th>
                                 <th style='background-color: #DCE6F1'>Total Fichas Entregadas</th>
                                 <th>
                                     <a class="btn btn-success" onclick="AddTrFicha();"><i class="fa fa-lg fa-plus"></i></a>

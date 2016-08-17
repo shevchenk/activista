@@ -45,9 +45,14 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="4">
+                                    <td colspan="2">
                                         <a class="btn btn-primary" onClick="Guardar();">
                                             Guardar<i class="fa fa-lg fa-save"></i>
+                                        </a>
+                                    </td>
+                                    <td colspan="2">
+                                        <a class="btn btn-danger" onClick="Limpiar();">
+                                            Limpiar<i class="fa fa-lg fa-remove"></i>
                                         </a>
                                     </td>
                                 </tr>

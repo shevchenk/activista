@@ -7,8 +7,8 @@ $(document).ready(function() {
     for (var i = 1; i < 21; i++) {
         tr="<tr>";
         tr+="<td>"+i+"</td>";
-        tr+="<td><input type=text class='form-control' id='hoja"+i+"' name='hoja"+i+"' onKeyPress='return msjG.validaNumeros(event);'></td>";
-        tr+="<td><input type=text class='form-control' id='ficha"+i+"' name='ficha"+i+"' onKeyPress='return msjG.validaNumeros(event);'></td>";
+        tr+="<td><input type=text class='form-control limpia' id='hoja"+i+"' name='hoja"+i+"' onKeyPress='return msjG.validaNumeros(event);'></td>";
+        tr+="<td><input type=text class='form-control limpia' id='ficha"+i+"' name='ficha"+i+"' onKeyPress='return msjG.validaNumeros(event);'></td>";
         tr+="<td></td>";
         tr+="</tr>";
         $("#t_fichas tbody").append(tr);
@@ -22,21 +22,30 @@ Guardar=function(){
     }
 }
 
-Resultado=function(){
+Resultado=function(obj){
+    var mensajea=obj.mensajea.split(",");
+    var mensajeb=obj.mensajeb.split(",");
+    
+    for (var i = 1; i < mensajea.lenght; i++) {
+        
+    }
+}
 
+Limpiar=function(){
+    $(".limpia").val('');
+    msjG.mensaje('warning',"Se limpiaron los datos",4000);
 }
 
 Validar=function(){
     var r=true;
     var a= "";
     var b= "";
-    var vacio=0;
+    var lleno=0;
 
     for (var i = 1; i < 21; i++) {
         a= $.trim( $("#hoja"+i).val() );
         b= $.trim( $("#ficha"+i).val() );
         if( a=='' && b=='' ){
-            vacio++;
         }
         else if( a=='' || b=='' ){
             r=false;
@@ -50,6 +59,14 @@ Validar=function(){
             }
 
         }
+        else if(a!='' && b!=''){
+            lleno++;
+        }
+    }
+
+    if(r==true && lleno==0){
+        r=false;
+        alert('Almenos realice 1 registro');
     }
     return r;
 }

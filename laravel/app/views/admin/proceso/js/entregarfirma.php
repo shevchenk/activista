@@ -96,6 +96,8 @@ CargarEntregasHTML=function(datos){
                     "<td><input type='text' class='fecha form-control' name='txt_fecha_entrega[]' value='"+data.fecha_entrega+"'></td>"+
                     "<td><input type='text' class='form-control' name='txt_desde[]' onBlur='ValidaMenorMayor();' onKeyUp='CalTot(this);' onKeyPress='return msjG.validaNumeros(event);' value='"+data.desde+"'></td>"+
                     "<td><input type='text' class='form-control' name='txt_hasta[]' onBlur='ValidaMenorMayor();' onKeyUp='CalTot(this);' onKeyPress='return msjG.validaNumeros(event);' value='"+data.hasta+"'></td>"+
+                    "<td><input type='text' class='form-control' name='txt_desdeh[]' onBlur='ValidaMenorMayor();' onKeyUp='CalTot(this);' onKeyPress='return msjG.validaNumeros(event);' value='"+data.desde+"'></td>"+
+                    "<td><input type='text' class='form-control' name='txt_hastah[]' onBlur='ValidaMenorMayor();' onKeyUp='CalTot(this);' onKeyPress='return msjG.validaNumeros(event);' value='"+data.hasta+"'></td>"+
                     "<td><input disabled type='text' class='form-control' value='"+data.total+"'></td>";
         if( data.validar==0 ){
         html+=      "<td>"+
@@ -129,6 +131,8 @@ AddTrFicha=function(){
         html+='<td><input type="text" class="fecha form-control" name="txt_fecha_entrega[]"></td>';
         html+='<td><input type="text" class="form-control" onKeyUp="CalTot(this);" onBlur="ValidaMenorMayor();" onKeyPress="return msjG.validaNumeros(event);" name="txt_desde[]"></td>';
         html+='<td><input type="text" class="form-control" onKeyUp="CalTot(this);" onBlur="ValidaMenorMayor();" onKeyPress="return msjG.validaNumeros(event);" name="txt_hasta[]"></td>';
+        html+='<td><input type="text" class="form-control" onKeyUp="CalTot(this);" onBlur="ValidaMenorMayor();" onKeyPress="return msjG.validaNumeros(event);" name="txt_desdeh[]"></td>';
+        html+='<td><input type="text" class="form-control" onKeyUp="CalTot(this);" onBlur="ValidaMenorMayor();" onKeyPress="return msjG.validaNumeros(event);" name="txt_hastah[]"></td>';
         html+='<td><input disabled type="text" class="form-control"></td>';
         html+='<td>'+
                     '<a class="btn btn-danger" onclick="RemoveTrFicha(this);"><i class="fa fa-lg fa-minus"></i></a>'+
@@ -169,7 +173,7 @@ CalTot=function(btn){
     var desde=$(tr).find("td:eq(2) input").val();
     var hasta=$(tr).find("td:eq(3) input").val();
     var total= ( (hasta*1-desde*1)+1 );
-    $(tr).find("td:eq(4) input").val(total);
+    $(tr).find("td:eq(6) input").val(total);
     ValidaT();
 }
 
@@ -180,14 +184,24 @@ ValidaT=function(){
 
     $("#t_fichas tbody tr td").removeClass("has-error");
     $("#t_fichas tbody tr").each( function( index ){
-        if( $.trim( $(this).find("td:eq(4) input").val() )!='' ){
+        if( $.trim( $(this).find("td:eq(6) input").val() )!='' ){
             desde=$.trim($(this).find("input:eq(1)").val());
             hasta=$.trim($(this).find("input:eq(2)").val());
+            desdeh=$.trim($(this).find("input:eq(3)").val());
+            hastah=$.trim($(this).find("input:eq(4)").val());
                 $(this).removeClass("danger");
             if(desde!='' && hasta!=''){
                 if( r==true && desde*1>hasta*1 ){
                     r=false;
                     $(this).find("td:eq(2)").addClass("has-error");
+                    $(this).addClass("danger");
+                }
+            }
+
+            if(desdeh!='' && hastah!=''){
+                if( r==true && desdeh*1>hastah*1 ){
+                    r=false;
+                    $(this).find("td:eq(4)").addClass("has-error");
                     $(this).addClass("danger");
                 }
             }
@@ -199,18 +213,43 @@ ValidaMenorMayor=function(){
     var r=true;
     var desde=0;
     var hasta=0;
+    var desdeh=0;
+    var hastah=0;
+    var total=0;
+    var total2=0;
+    var mensaje="";
     $("#t_fichas tbody tr").each( function( index ){
         desde=$.trim($(this).find("input:eq(1)").val());
         hasta=$.trim($(this).find("input:eq(2)").val());
+        desdeh=$.trim($(this).find("input:eq(3)").val());
+        hastah=$.trim($(this).find("input:eq(4)").val());
+
+        if(desde!='' && hasta!='' && desdeh!='' && hastah!=''){
+            total= ( (hasta*1-desde*1)+1 );
+            total2= ( (hastah*1-desdeh*1)+1 );
+            if(total!=total2){
+                r=false;
+                mensaje="El total de fichas("+total+") no es igual al total de hojas("+total2+") ";
+            }
+        }
+
         if(desde!='' && hasta!=''){
             if( r==true && desde*1>hasta*1 ){
                 r=false;
+                mensaje="La ficha de inicio no puede ser mayor a la ficha final";
+            }
+        }
+
+        if(desdeh!='' && hastah!=''){
+            if( r==true && desdeh*1>hastah*1 ){
+                r=false;
+                mensaje="La hoja de inicio no puede ser mayor a la hoja final";
             }
         }
     });
 
     if(r==false){
-        alert('La ficha de inicio no puede ser mayor a la ficha final');
+        alert(mensaje);
     }
 }
 
@@ -245,6 +284,16 @@ ValidarFichas=function(){
                 else if( r==true && $.trim($(this).find("input:eq(2)").val())=='' ){
                     alert('Ingrese El fin de la ficha de la Posición:'+(index+1));
                     $(this).find("input:eq(2)").focus();
+                    r=false;
+                }
+                else if( r==true && $.trim($(this).find("input:eq(3)").val())=='' ){
+                    alert('Ingrese El inicio de la hoja de la Posición:'+(index+1));
+                    $(this).find("input:eq(3)").focus();
+                    r=false;
+                }
+                else if( r==true && $.trim($(this).find("input:eq(4)").val())=='' ){
+                    alert('Ingrese El fin de la hoja de la Posición:'+(index+1));
+                    $(this).find("input:eq(4)").focus();
                     r=false;
                 }
             });
