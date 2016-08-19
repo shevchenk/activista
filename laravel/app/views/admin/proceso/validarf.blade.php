@@ -57,7 +57,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <a class="btn btn-primary">
+                                        <a onclick="" class="btn btn-primary">
                                             Buscar<i class="fa fa-lg fa-search"></i>
                                         </a>
                                     </td>

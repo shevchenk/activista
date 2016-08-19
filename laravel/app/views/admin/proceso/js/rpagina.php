@@ -57,7 +57,18 @@ BtnDbl=function(t){
 }
 
 ListarFicha=function(v){
-    $("#t_fichas tbody").html('');
+    var tr="";
+    for (var i = 1; i < 11; i++) {
+        tr+="<tr>";
+            tr+="<td>"+v+"</td>";
+            tr+="<td>"+i+"</td>";
+            tr+="<td><input type='text' class='form-control' onKeyPress='return msjG.validaNumeros(event);' name='txt_dni[]'></td>";
+            tr+="<td><input type='text' style='text-transform: uppercase;' class='form-control' onKeyPress='return msjG.validaLetras(event);' name='txt_paterno[]'></td>";
+            tr+="<td><input type='text' style='text-transform: uppercase;' class='form-control' onKeyPress='return msjG.validaLetras(event);' name='txt_materno[]'></td>";
+            tr+="<td><input type='text' style='text-transform: uppercase;' class='form-control' onKeyPress='return msjG.validaLetras(event);' name='txt_nombre[]'></td>";
+        tr+="</tr>";
+    }
+    $("#t_fichas tbody").append(tr);
 }
 
 MostrarAjax=function(t){
@@ -82,12 +93,14 @@ DetalleEntrega=function(btn,id){
     $(".oculta2").css("display","none");
 
     var texto= '<h2><b>Persona:</b> '+$(tr).find("td:eq(0)").text()+' '+$(tr).find("td:eq(1)").text()+' '+$(tr).find("td:eq(2)").text();
-    texto+=' <b>| Cargo:</b> '+$(tr).find("td:eq(5)").text();
-    texto+=' <b>| Equipo:</b> '+$(tr).find("td:eq(7)").text()+'</h2>';
+    /*texto+=' <b>| Cargo:</b> '+$(tr).find("td:eq(5)").text();
+    texto+=' <b>| Equipo:</b> '+$(tr).find("td:eq(7)").text()*/
+    texto+='</h2>';
     $("#t_fichas span").html(texto);
     
     IdEscalafonG=id;
-    
+    $("#form_personas_equipos").slow();
+    $("#form_firmas").show();
 }
 
 CargarEntregas=function(){

@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </form>
-            <form name="form_escalafon_fichas" id="form_escalafon_fichas" method="POST" action="">
+            <form name="form_firmas" id="form_firmas" method="POST" action="">
                 <div class="box-body table-responsive oculta">
                     <div class="col-sm-12">
                         <hr>
@@ -58,9 +58,13 @@
                         <table id="t_fichas" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <td colspan="2" style='text-align:center; background-color:#A7C0DC;'>
-                                    <label id="titulo"><h2><b>Ficha:</b></h2></label>
-                                    <input type="text" name="txt_nro_ficha" id="txt_nro_ficha" onKeyPress="return msjG.validaNumeros(event);" class="form-control input-lg" onBlur="ListarFicha(this.value);" onKeyUp="enterGlobal(event,'titulo')">
+                                <td style='text-align:center; background-color:#A7C0DC;width: 100px;'>
+                                    <label><h2><b>Ficha:</b></h2></label>
+                                    <input type="hidden" id="aux" name="aux">
+                                    <input type="text" name="txt_nro_ficha" id="txt_nro_ficha" onKeyPress="return msjG.validaNumeros(event);" class="form-control input-lg" onBlur="ListarFicha(this.value);" onKeyUp="enterGlobal(event,'aux',1);">
+                                </td>
+                                <td style='text-align:center; background-color:#A7C0DC;'>
+                                    &nbsp;
                                 </td>
                                 <td colspan='4' style='text-align:center; background-color:#A7C0DC;'>
                                     <h2>

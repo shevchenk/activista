@@ -218,6 +218,7 @@ enterGlobal=function(e,etiqueta,selecciona){
         $("#"+etiqueta).click(); 
         if( typeof(selecciona)!='undefined' ){
             $("#"+etiqueta).focus(); 
+            //alert('s');
         }
     }
 }
