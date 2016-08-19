@@ -8,6 +8,7 @@ class GrupoPController extends \BaseController
             $array=array();
             $array['where']='';$array['usuario']=Auth::user()->id;
             $array['limit']='';$array['order']='';$array['escalafon']='';
+            $array['group']='';
 
             if( Input::has("paterno") ){
                 $array['where'].=" AND a.paterno LIKE '%".Input::get("paterno")."%' ";
@@ -59,6 +60,11 @@ class GrupoPController extends \BaseController
 
             if( Input::has("escalafon") ){
                 $array['escalafon'].=" INNER JOIN escalafon_fichas ef ON ef.escalafon_id=e.id AND ef.estado=1 ";
+            }
+
+            if( Input::has("escalafong") ){
+                $array['escalafon'].=" INNER JOIN escalafon_fichas ef ON ef.escalafon_id=e.id AND ef.estado=1 ";
+                $array['group'].=" Group By e.id ";
             }
 
             if (Input::has('draw')) {
