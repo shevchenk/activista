@@ -3,13 +3,6 @@
 
 @section('includes')
     @parent
-    {{ HTML::style('lib/daterangepicker/css/daterangepicker-bs3.css') }}
-    {{ HTML::style('lib/bootstrap-multiselect/dist/css/bootstrap-multiselect.css') }}
-    {{ HTML::script('lib/daterangepicker/js/daterangepicker.js') }}
-    {{ HTML::script('lib/bootstrap-multiselect/dist/js/bootstrap-multiselect.js') }}
-    {{ HTML::script('lib/momentjs/2.9.0/moment.min.js') }}
-    {{ HTML::script('lib/daterangepicker/js/daterangepicker_single.js') }}
-
     @include( 'admin.js.slct_global_ajax' )
     @include( 'admin.js.slct_global' )
     @include( 'admin.proceso.js.rpagina_ajax' )
@@ -50,18 +43,17 @@
                     </div>
                 </div>
             </form>
-            <form name="form_firmas" id="form_firmas" method="POST" action="">
-                <div class="box-body table-responsive oculta">
+            <form name="form_firmas" id="form_firmas" method="POST" action="" style="display:none">
+                <div class="box-body table-responsive">
                     <div class="col-sm-12">
                         <hr>
                         <br>
                         <table id="t_fichas" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <td style='text-align:center; background-color:#A7C0DC;width: 100px;'>
+                                <td id="aux" style='text-align:center; background-color:#A7C0DC;width: 100px;'>
                                     <label><h2><b>Ficha:</b></h2></label>
-                                    <input type="hidden" id="aux" name="aux">
-                                    <input type="text" name="txt_nro_ficha" id="txt_nro_ficha" onKeyPress="return msjG.validaNumeros(event);" class="form-control input-lg" onBlur="ListarFicha(this.value);" onKeyUp="enterGlobal(event,'aux',1);">
+                                    <input type="text" name="txt_ficha" id="txt_ficha" onkeypress="return enterGlobal(event,'th_pd',1);" class="form-control input-lg" onBlur="ListarFicha(this.value);">
                                 </td>
                                 <td style='text-align:center; background-color:#A7C0DC;'>
                                     &nbsp;
@@ -94,14 +86,26 @@
                                 <th style='background-color: #DCE6F1'>Nombres</th>
                                 <th>[]</th>
                             </tr>
+                            <tr>
+                                <td style="text-align:center" colspan="2">
+                                    <a class="btn btn-primary" onclick="Guardar();">
+                                        <i class="fa fa-lg fa-save"></i>.::Guardar::.
+                                    </a>
+                                </td>
+                                <td style="text-align:center" colspan="2">
+                                    <a class="btn btn-primary" onclick="Cancelar();">
+                                        <i class="fa fa-lg fa-save"></i>.::Cancelar::.
+                                    </a>
+                                </td>
+                                <td style="text-align:center" colspan="2">
+                                    <a class="btn btn-primary" onclick="Cancelar();">
+                                        <i class="fa fa-lg fa-save"></i>.::Cambiar Responsable::.
+                                    </a>
+                                </td>
+                            </tr>
                             </tfoot>
                         </table>
                     </div>
-                </div>
-                <div class="col-sm-12">
-                    <hr>
-                    <br>
-                    <a class="btn btn-primary oculta2" onclick="Guardar();"><i class="fa fa-lg fa-save"></i>.::Guardar::.</a>
                 </div>
             </form>
     </section><!-- /.content -->

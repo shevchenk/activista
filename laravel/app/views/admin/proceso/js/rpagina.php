@@ -37,15 +37,6 @@ $(document).ready(function() {
     columnDefsP=resG[0]; // registra la colunmna adiciona con boton
     targetsP=resG[1]; // registra el contador actualizado
     MostrarAjax('personas_equipos');
-
-    $("#txt_fecha_inicio").daterangepicker(
-        {
-            format: 'YYYY-MM-DD',
-            singleDatePicker: true,
-            showDropdowns: true
-        }
-    );
-    $(".oculta,.oculta2").css('display','none');
 });
 
 BtnDblClick=function(){
@@ -58,17 +49,19 @@ BtnDbl=function(t){
 
 ListarFicha=function(v){
     var tr="";
-    for (var i = 1; i < 11; i++) {
-        tr+="<tr>";
-            tr+="<td>"+v+"</td>";
-            tr+="<td>"+i+"</td>";
-            tr+="<td><input type='text' class='form-control' onKeyPress='return msjG.validaNumeros(event);' name='txt_dni[]'></td>";
-            tr+="<td><input type='text' style='text-transform: uppercase;' class='form-control' onKeyPress='return msjG.validaLetras(event);' name='txt_paterno[]'></td>";
-            tr+="<td><input type='text' style='text-transform: uppercase;' class='form-control' onKeyPress='return msjG.validaLetras(event);' name='txt_materno[]'></td>";
-            tr+="<td><input type='text' style='text-transform: uppercase;' class='form-control' onKeyPress='return msjG.validaLetras(event);' name='txt_nombre[]'></td>";
-        tr+="</tr>";
+    if( v!='' && v*1>0 ){ 
+        for (var i = 1; i < 11; i++) {
+            tr+="<tr>";
+                tr+="<td>"+v+"</td>";
+                tr+="<td>"+i+"</td>";
+                tr+="<td><input type='text' class='form-control' onKeyPress='return msjG.validaNumeros(event);' name='txt_dni[]'></td>";
+                tr+="<td><input type='text' style='text-transform: uppercase;' class='form-control' onKeyPress='return msjG.validaLetras(event);' name='txt_paterno[]'></td>";
+                tr+="<td><input type='text' style='text-transform: uppercase;' class='form-control' onKeyPress='return msjG.validaLetras(event);' name='txt_materno[]'></td>";
+                tr+="<td><input type='text' style='text-transform: uppercase;' class='form-control' onKeyPress='return msjG.validaLetras(event);' name='txt_nombre[]'></td>";
+            tr+="</tr>";
+        }
     }
-    $("#t_fichas tbody").append(tr);
+    $("#t_fichas tbody").html(tr);
 }
 
 MostrarAjax=function(t){
@@ -99,8 +92,9 @@ DetalleEntrega=function(btn,id){
     $("#t_fichas span").html(texto);
     
     IdEscalafonG=id;
-    $("#form_personas_equipos").slow();
-    $("#form_firmas").show();
+    $("#form_personas_equipos").hide("slow");
+    $("#form_firmas").show("slow");
+    $("#txt_nro_ficha").val('');
 }
 
 CargarEntregas=function(){
@@ -148,10 +142,68 @@ ValidarTotal=function(){
 }
 
 Guardar=function(){
-    if( ValidarFichas() ){
-        var data=$("#form_escalafon_fichas_recepcionadas").serialize().split("txt_").join("").split("slct_").join("");
-        ValidacionFirma.GuardarFichasValidacion(data,CargarRecepcion);
+    var rs=ValidarFichas();
+    var vacios=rs.split("|")[0]*1;
+    var incompletos=rs.split("|")[1]*1;
+
+    if( $("#txt_nro_ficha").val()!='' ){
+        if( vacios>0 || incompletos>0 ){
+            if(vacios>0 && incompletos>0){
+                if( confirm("Se encontraron:\n "+vacios+" registro(s) vacio(s)\n "+incompletos+" registro(s) incompleto(s)\n Esta todo ok?") ){
+                    GuardarV();
+                }
+            }
+            else if(vacios>0){
+                if( confirm("Se encontraron:\n "+vacios+" registro(s) vacio(s)\n Esta todo ok?") ){
+                    GuardarV();
+                }
+            }
+            else if(incompletos>0){
+                if( confirm("Se encontraron:\n "+incompletos+" registro(s) incompleto(s)\n Esta todo ok?") ){
+                    GuardarV();
+                }
+            }
+        }
+        else{
+            GuardarV();
+        }
     }
+    else{
+        alert("Ingrese Nro Ficha a Validar");
+    }
+}
+
+GuardarV=function(){
+    var data=$("#form_firmas").serialize().split("txt_").join("").split("slct_").join("");
+    Rpagina.GuardarFirmas(data);
+}
+
+Cancelar=function(){
+    $("#t_fichas tbody").html("");
+    $("#txt_nro_ficha").val("");
+    $("#form_personas_equipos").show("slow");
+    $("#form_firmas").hide("slow");
+}
+
+ValidarFichas=function(){
+    var vacio=0;
+    var incompleto=0;
+    $("#t_fichas tbody tr").each(function(index,value){
+        if( $.trim( $(this).find("input:eq(0)").val() )=='' && $.trim( $(this).find("input:eq(1)").val() )=='' && 
+            $.trim( $(this).find("input:eq(2)").val() )=='' && $.trim( $(this).find("input:eq(3)").val() )==''
+        )
+        {
+            vacio++;
+        }
+        else if( $.trim( $(this).find("input:eq(0)").val() )!='' && $.trim( $(this).find("input:eq(1)").val() )!='' && 
+            $.trim( $(this).find("input:eq(2)").val() )!='' && $.trim( $(this).find("input:eq(3)").val() )!=''
+        )
+        {}
+        else{
+            incompleto++;
+        }
+    });
+    return vacio+"|"+incompleto;
 }
 
 </script>

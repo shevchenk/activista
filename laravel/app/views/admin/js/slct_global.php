@@ -215,6 +215,7 @@ filtroSlct=function(slct,tipo,slct_id,afectados,slctant,slctant_id,select,valarr
 enterGlobal=function(e,etiqueta,selecciona){
     tecla = (document.all) ? e.keyCode : e.which; // 2
     if (tecla==13){
+        e.preventDefault();
         $("#"+etiqueta).click(); 
         if( typeof(selecciona)!='undefined' ){
             $("#"+etiqueta).focus(); 

@@ -1,5 +1,5 @@
 <script type="text/javascript">
-var ValidacionFirma={
+var Rpagina={
     CargarEntregas:function( data,evento ){
         $.ajax({
             url         : 'escalafonficha/cargarentregas',
@@ -44,9 +44,9 @@ var ValidacionFirma={
             }
         });
     },
-    GuardarFichasValidacion:function(data,evento){
+    GuardarFirmas:function(data){
         $.ajax({
-            url         : 'escalafonficha/editarvalidacion',
+            url         : 'firma/guardar',
             type        : 'POST',
             cache       : false,
             dataType    : 'json',
@@ -57,8 +57,10 @@ var ValidacionFirma={
             success : function(obj) {
                 $(".overlay,.loading-img").remove();
                 if(obj.rst==1){
-                    evento();
                     msjG.mensaje('success',obj.msj,4000);
+                }
+                else{
+                    msjG.mensaje('warning',obj.msj,6000);
                 }
             },
             error: function(){
