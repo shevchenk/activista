@@ -1,3 +1,14 @@
+-- 2016-08-19
+ALTER TABLE `firmas`
+MODIFY COLUMN `estado_firma`  varchar(150) NULL DEFAULT NULL AFTER `nombre`,
+ADD COLUMN `conteo`  int(1) NULL COMMENT '1: Valido | 2: Inválido | 3: Blanco' AFTER `estado_firma`;
+
+ALTER TABLE `firmas`
+ADD COLUMN `fila`  int(11) NULL AFTER `ficha`,
+ADD COLUMN `paterno`  varchar(70) NULL AFTER `dni`,
+ADD COLUMN `materno`  varchar(70) NULL AFTER `paterno`,
+ADD COLUMN `nombre`  varchar(70) NULL AFTER `materno`;
+
 -- 2016-08-17
 ALTER TABLE `fichas`
 ADD COLUMN `bueno`  int NULL AFTER `escalafon_ficha_recepcion_id`,
