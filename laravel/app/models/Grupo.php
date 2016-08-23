@@ -6,7 +6,7 @@ class Grupo extends Base
 
     public static function getCargarPECount( $array )
     {
-        $sSql=" SELECT  COUNT(e.id) cant
+        $sSql=" SELECT  COUNT( DISTINCT(e.id) ) cant
                 FROM activistas a
                 INNER JOIN activista_cargo pc ON a.id=pc.activista_id AND pc.estado=1
                 INNER JOIN cargos c ON c.id=pc.cargo_id
@@ -18,8 +18,8 @@ class Grupo extends Base
                 LEFT JOIN provincias p ON d.id=p.departamento_id AND p.id=gp.provincia_id
                 LEFT JOIN distritos di ON p.id=di.provincia_id AND di.id=gp.distrito_id
                 WHERE a.estado=1";
-        $sSql.= $array['where'].
-                $array['group'];
+        $sSql.= $array['where'];
+                //echo $sSql;
         $oData = DB::select($sSql);
         return $oData[0]->cant;
     }
