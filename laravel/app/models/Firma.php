@@ -13,4 +13,14 @@ class Firma extends Base
 
         return $r[0]->cant;
     }
+
+    public static function ValidaFirma($dni)
+    {
+        $sql="  SELECT GROUP_CONCAT(id) ids 
+                FROM firmas
+                WHERE dni='".$dni."'";
+        $r=DB::select($sql);
+
+        return $r;
+    }
 }

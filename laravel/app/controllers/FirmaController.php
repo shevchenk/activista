@@ -28,15 +28,16 @@ class FirmaController extends \BaseController
                     $firma["paterno"] =trim($paterno[$i]);
                     $firma["materno"] =trim($materno[$i]);
                     $firma["nombre"]  =trim($nombre[$i]);
+                    $firma['conteo']  =0;
 
                     if( trim($dni[$i])=='' AND trim($paterno[$i])=='' AND trim($materno[$i])=='' AND trim($nombre[$i])=='' ){
                         $firma['conteo']=3;
-                        $firma['estado_firma']='1';
                     }
                     else if( trim($dni[$i])!='' ){
-                        $firma['conteo']=1;
-                        if( trim($paterno[$i])!='' AND trim($materno[$i])!='' AND trim($nombre[$i])!='' ){
-                            $firma['conteo']=0;
+                        $validadni= Firma::ValidaFicha( trim($dni[$i]) );
+                        if( count($validadni)>0 ){
+                            $firma['conteo']=2;
+                            $firma['estado_firma']=$validadni;
                         }
                     }
                     $firma['usuario_created_at']=Auth::user()->id;
