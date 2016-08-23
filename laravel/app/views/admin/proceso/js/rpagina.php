@@ -62,6 +62,7 @@ ListarFicha=function(v){
         }
     }
     $("#t_fichas tbody").html(tr);
+    $("#txt_pag").html('');
 }
 
 MostrarAjax=function(t){
@@ -90,7 +91,7 @@ DetalleEntrega=function(btn,id){
     texto+=' <b>| Equipo:</b> '+$(tr).find("td:eq(7)").text()*/
     texto+='</h2>';
     $("#t_fichas span").html(texto);
-    
+    $("#txt_pag").html('');
     IdEscalafonG=id;
     $("#form_personas_equipos").hide("slow");
     $("#form_firmas").show("slow");
