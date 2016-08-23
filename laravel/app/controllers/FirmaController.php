@@ -34,7 +34,7 @@ class FirmaController extends \BaseController
                         $firma['conteo']=3;
                     }
                     else if( trim($dni[$i])!='' ){
-                        $validadni= Firma::ValidaFicha( trim($dni[$i]) );
+                        $validadni= Firma::ValidaFirma( trim($dni[$i]) );
                         if( count($validadni)>0 ){
                             $firma['conteo']=2;
                             $firma['estado_firma']=$validadni;
