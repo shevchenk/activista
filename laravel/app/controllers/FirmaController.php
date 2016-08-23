@@ -6,9 +6,10 @@ class FirmaController extends \BaseController
     {
         if ( Request::ajax() ) {
             $ficha      =   Input::get('ficha');
-
+            $aParametro=array();$paginaFirma=array();
             $valida=0;
             $valida= Firma::ValidaFicha($ficha);
+
             if($valida==0){
                 DB::beginTransaction();
                 $dni        =   Input::get('dni');
@@ -20,6 +21,7 @@ class FirmaController extends \BaseController
                 $paginaFirma->save();
 
                 for ($i=0; $i < count($dni); $i++) { 
+
                     $firma=new Firma;
                     $firma["pagina_firma_id"] =$paginaFirma->id;
                     $firma["ficha"]   =trim($ficha);
@@ -30,6 +32,7 @@ class FirmaController extends \BaseController
                     $firma["nombre"]  =trim($nombre[$i]);
                     $firma['conteo']  =0;
 
+
                     if( trim($dni[$i])=='' AND trim($paterno[$i])=='' AND trim($materno[$i])=='' AND trim($nombre[$i])=='' ){
                         $firma['conteo']=3;
                     }
@@ -37,15 +40,18 @@ class FirmaController extends \BaseController
                         $validadni= Firma::ValidaFirma( trim($dni[$i]) );
                         if( count($validadni)>0 ){
                             $firma['conteo']=2;
-                            $firma['estado_firma']=$validadni;
+                            $firma['estado_firma']=$validadni[0]->ids;
                         }
                     }
                     $firma['usuario_created_at']=Auth::user()->id;
                     $firma->save();
+
                 }
                 DB::commit();
                 $aParametro['msj'] = "Se realizó ";
+                $aParametro['pagina']=$paginaFirma->id;
                 $aParametro['rst'] = 1;
+
             }
             else{
                 $aParametro['msj'] = "Ficha Existente ";

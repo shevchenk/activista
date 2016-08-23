@@ -57,7 +57,8 @@ var Rpagina={
             success : function(obj) {
                 $(".overlay,.loading-img").remove();
                 if(obj.rst==1){
-                    msjG.mensaje('success',obj.msj,4000);
+                    msjG.mensaje('success',obj.msj+"\n"+"Página creada:"+obj.pagina,4000);
+                    $("#txt_pag").html(obj.pagina);
                 }
                 else{
                     msjG.mensaje('warning',obj.msj,6000);

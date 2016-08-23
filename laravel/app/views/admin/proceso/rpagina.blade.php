@@ -46,8 +46,6 @@
             <form name="form_firmas" id="form_firmas" method="POST" action="" style="display:none">
                 <div class="box-body table-responsive">
                     <div class="col-sm-12">
-                        <hr>
-                        <br>
                         <table id="t_fichas" class="table table-bordered table-hover">
                             <thead>
                             <tr>
@@ -60,7 +58,7 @@
                                 </td>
                                 <td colspan='4' style='text-align:center; background-color:#A7C0DC;'>
                                     <h2>
-                                        <b>Responsable de la Página</b>
+                                        <b>Responsable de la Página <span id="txt_pag"></span></b>
                                     </h2>
                                     <span></span>
                                 </td>
