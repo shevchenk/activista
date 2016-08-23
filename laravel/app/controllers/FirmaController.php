@@ -16,8 +16,12 @@ class FirmaController extends \BaseController
                 $materno    =   Input::get('materno');
                 $nombre     =   Input::get('nombre');
 
+                $paginaFirma= new PaginaFirma;
+                $paginaFirma->save();
+
                 for ($i=0; $i < count($dni); $i++) { 
                     $firma=new Firma;
+                    $firma["pagina_firma_id"] =$paginaFirma->id;
                     $firma["ficha"]   =trim($ficha);
                     $firma["fila"]    =($i+1);
                     $firma["dni"]     =trim($dni[$i]);
