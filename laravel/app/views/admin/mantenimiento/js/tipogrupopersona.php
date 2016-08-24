@@ -24,15 +24,15 @@ $(document).ready(function() {
             $('#form_tgrupo #txt_nombre').focus();
         }
         else{
-            data={cid:tgrupo_id};
+            data={cid:TgrupoObj[tgrupo_id].id};
             
             modal.find('.modal-footer .btn-primary').text('Actualizar');
             modal.find('.modal-footer .btn-primary').attr('onClick','Editar();');
 
-            $('#form_tgrupo #txt_nombre').val( TgrupoObj[tgrupo_id-1].nombre );
-            $('#form_tgrupo #slct_ubigeo').val( TgrupoObj[tgrupo_id-1].ubigeo );
-            $('#form_tgrupo #slct_estado').val( TgrupoObj[tgrupo_id-1].estado );
-            $("#form_tgrupo").append("<input type='hidden' value='"+button.data('id')+"' name='id'>");
+            $('#form_tgrupo #txt_nombre').val( TgrupoObj[tgrupo_id].nombre );
+            $('#form_tgrupo #slct_ubigeo').val( TgrupoObj[tgrupo_id].ubigeo );
+            $('#form_tgrupo #slct_estado').val( TgrupoObj[tgrupo_id].estado );
+            $("#form_tgrupo").append("<input type='hidden' value='"+TgrupoObj[tgrupo_id].id+"' name='id'>");
         }
 
         $( "#form_tgrupo #slct_estado" ).trigger('change');
@@ -165,7 +165,7 @@ HTMLCargarTgrupo=function(datos){
             "<td >"+data.nombre+"</td>"+
             "<td id='estado_"+data.id+"' data-ubigeo='"+data.ubigeo+"'>"+estadoubigeo+"</td>"+
             "<td id='estado_"+data.id+"' data-estado='"+data.estado+"'>"+estadohtml+"</td>"+
-            '<td><a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tgrupoModal" data-id="'+data.id+'" data-titulo="Editar"><i class="fa fa-edit fa-lg"></i> </a></td>';
+            '<td><a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tgrupoModal" data-id="'+index+'" data-titulo="Editar"><i class="fa fa-edit fa-lg"></i> </a></td>';
         html+="</tr>";
     });
     $("#tb_tgrupo").html(html); 
