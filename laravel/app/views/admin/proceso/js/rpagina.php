@@ -175,6 +175,8 @@ Guardar=function(){
 }
 
 GuardarV=function(){
+    $("#form_firmas #txt_escalafon_id").remove();
+    $("#form_firmas").append("<input type='hidden' id='txt_escalafon_id' name='txt_escalafon_id' value='"+IdEscalafonG+"'>");
     var data=$("#form_firmas").serialize().split("txt_").join("").split("slct_").join("");
     Rpagina.GuardarFirmas(data);
 }
