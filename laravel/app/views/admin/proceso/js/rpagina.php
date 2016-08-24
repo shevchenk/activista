@@ -146,31 +146,34 @@ Guardar=function(){
     var rs=ValidarFichas();
     var vacios=rs.split("|")[0]*1;
     var incompletos=rs.split("|")[1]*1;
+    var validacion=rs.split("|")[2]*1;
 
-    if( $("#txt_nro_ficha").val()!='' ){
-        if( vacios>0 || incompletos>0 ){
-            if(vacios>0 && incompletos>0){
-                if( confirm("Se encontraron:\n "+vacios+" registro(s) vacio(s)\n "+incompletos+" registro(s) incompleto(s)\n Esta todo ok?") ){
-                    GuardarV();
+    if( validacion==0 ){
+        if( $("#txt_nro_ficha").val()!='' ){
+            if( vacios>0 || incompletos>0 ){
+                if(vacios>0 && incompletos>0){
+                    if( confirm("Se encontraron:\n "+vacios+" registro(s) vacio(s)\n "+incompletos+" registro(s) incompleto(s)\n Esta todo ok?") ){
+                        GuardarV();
+                    }
+                }
+                else if(vacios>0){
+                    if( confirm("Se encontraron:\n "+vacios+" registro(s) vacio(s)\n Esta todo ok?") ){
+                        GuardarV();
+                    }
+                }
+                else if(incompletos>0){
+                    if( confirm("Se encontraron:\n "+incompletos+" registro(s) incompleto(s)\n Esta todo ok?") ){
+                        GuardarV();
+                    }
                 }
             }
-            else if(vacios>0){
-                if( confirm("Se encontraron:\n "+vacios+" registro(s) vacio(s)\n Esta todo ok?") ){
-                    GuardarV();
-                }
-            }
-            else if(incompletos>0){
-                if( confirm("Se encontraron:\n "+incompletos+" registro(s) incompleto(s)\n Esta todo ok?") ){
-                    GuardarV();
-                }
+            else{
+                GuardarV();
             }
         }
         else{
-            GuardarV();
+            alert("Ingrese Nro Ficha a Validar");
         }
-    }
-    else{
-        alert("Ingrese Nro Ficha a Validar");
     }
 }
 
@@ -191,7 +194,14 @@ Cancelar=function(){
 ValidarFichas=function(){
     var vacio=0;
     var incompleto=0;
+    var validacion=0;
     $("#t_fichas tbody tr").each(function(index,value){
+        if( validacion==0 && $.trim( $(this).find("input:eq(0)").val() )!='' && $(this).find("input:eq(0)").val().length<8 ){
+            validacion++;
+            alert("El casillero del dni debe contener 8 caracteres o estar vacio");
+            $(this).find("input:eq(0)").focus();
+        }
+
         if( $.trim( $(this).find("input:eq(0)").val() )=='' && $.trim( $(this).find("input:eq(1)").val() )=='' && 
             $.trim( $(this).find("input:eq(2)").val() )=='' && $.trim( $(this).find("input:eq(3)").val() )==''
         )
@@ -206,7 +216,7 @@ ValidarFichas=function(){
             incompleto++;
         }
     });
-    return vacio+"|"+incompleto;
+    return vacio+"|"+incompleto+"|"+validacion;
 }
 
 </script>
