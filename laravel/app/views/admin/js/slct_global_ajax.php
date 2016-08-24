@@ -288,10 +288,10 @@ var msjG = {
         $("#msj").effect('shake');
         $("#msj").fadeOut(tiempo);
     },
-    validaDni:function(e,id){ 
+    validaDni:function(e,t){ 
         tecla = (document.all) ? e.keyCode : e.which;//captura evento teclado
         if (tecla==8 || tecla==0) return true;//8 barra, 0 flechas desplaz
-        if($('#'+id).val().length==8)return false;
+        if($(t).val().length==8)return false;
         patron = /\d/; // Solo acepta números
         te = String.fromCharCode(tecla); 
         return patron.test(te);

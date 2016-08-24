@@ -54,7 +54,7 @@ ListarFicha=function(v){
             tr+="<tr>";
                 tr+="<td>"+v+"</td>";
                 tr+="<td>"+i+"</td>";
-                tr+="<td><input type='text' class='form-control' onKeyPress='return msjG.validaNumeros(event);' name='txt_dni[]'></td>";
+                tr+="<td><input type='text' class='form-control' onKeyPress='return msjG.validaDni(event,this);' name='txt_dni[]'></td>";
                 tr+="<td><input type='text' style='text-transform: uppercase;' class='form-control' onKeyPress='return msjG.validaLetras(event);' name='txt_paterno[]'></td>";
                 tr+="<td><input type='text' style='text-transform: uppercase;' class='form-control' onKeyPress='return msjG.validaLetras(event);' name='txt_materno[]'></td>";
                 tr+="<td><input type='text' style='text-transform: uppercase;' class='form-control' onKeyPress='return msjG.validaLetras(event);' name='txt_nombre[]'></td>";
