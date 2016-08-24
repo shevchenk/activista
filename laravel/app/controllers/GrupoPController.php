@@ -62,11 +62,6 @@ class GrupoPController extends \BaseController
                 $array['escalafon'].=" INNER JOIN escalafon_fichas ef ON ef.escalafon_id=e.id AND ef.estado=1 ";
             }
 
-            if( Input::has("escalafong") ){
-                $array['escalafon'].=" INNER JOIN escalafon_fichas ef ON ef.escalafon_id=e.id AND ef.estado=1 ";
-                $array['group'].=" Group By e.id ";
-            }
-
             if (Input::has('draw')) {
                 if (Input::has('order')) {
                     $inorder=Input::get('order');

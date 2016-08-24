@@ -28,7 +28,6 @@
             <form name="form_personas_equipos" id="form_personas_equipos" method="POST" action="">
                 <div class="box-body table-responsive">
                     <div class="col-sm-12">
-                        <input type="hidden" name="escalafong" value="1">
                         <table id="t_personas_equipos" class="table table-bordered table-hover">
                             <thead>
                             <tr>
