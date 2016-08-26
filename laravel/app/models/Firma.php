@@ -23,4 +23,14 @@ class Firma extends Base
 
         return $r;
     }
+
+    public static function CargarFichaPagina($array)
+    {
+        $sql="  SELECT GROUP_CONCAT(id) ids 
+                FROM firmas
+                WHERE dni='".$dni."'";
+        $r=DB::select($sql);
+
+        return $r;
+    }
 }

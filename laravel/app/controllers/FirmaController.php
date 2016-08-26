@@ -108,4 +108,19 @@ class FirmaController extends \BaseController
             return Response::json($aParametro);
         }
     }
+
+    public function postValidar()
+    {
+        if ( Request::ajax() ) {
+            $tipo      =   Input::get('tipo');
+            $valor     =   Input::get('valor');
+            $array=array();
+            if( $tipo=="f" ){
+                $array['w']="";
+            }
+            $valida= Firma::CargarFichaPagina($array);
+
+            return Response::json($aParametro);
+        }
+    }
 }

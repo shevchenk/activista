@@ -50,7 +50,7 @@
                             <tr>
                                 <td id="aux" style='text-align:center; background-color:#A7C0DC;width: 100px;'>
                                     <label><h2><b>Ficha:</b></h2></label>
-                                    <input type="text" name="txt_ficha" id="txt_ficha" onkeypress="return enterGlobal(event,'th_pd',1);" class="form-control input-lg" onBlur="ListarFicha(this.value);">
+                                    <input type="text" name="txt_ficha" id="txt_ficha" onkeypress="return enterGlobal(event,'aux',1);" class="form-control input-lg" onBlur="ListarFicha(this.value);">
                                 </td>
                                 <td style='text-align:center; background-color:#A7C0DC;'>
                                     &nbsp;
