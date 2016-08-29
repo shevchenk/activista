@@ -3,7 +3,7 @@ var Consulta, ConsultaDetalle, ConsultaDetalle2;
 var Accion={
     Validar:function( data,evento ){
         $.ajax({
-            url         : 'firmas/validar',
+            url         : 'firma/validar',
             type        : 'POST',
             cache       : false,
             dataType    : 'json',

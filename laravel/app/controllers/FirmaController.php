@@ -114,11 +114,18 @@ class FirmaController extends \BaseController
         if ( Request::ajax() ) {
             $tipo      =   Input::get('tipo');
             $valor     =   Input::get('valor');
-            $array=array();
+            $array["w"]="";
+
             if( $tipo=="f" ){
-                $array['w']="";
+                $array['w']=" AND f.ficha='".$valor."'";
+            }
+            elseif( $tipo=="p" ){
+                $array['w']=" AND f.pagina_firma_id='".$valor."'";
             }
             $valida= Firma::CargarFichaPagina($array);
+
+            $aParametro['rst']=1;
+            $aParametro['data']=$valida;
 
             return Response::json($aParametro);
         }

@@ -59,10 +59,9 @@
                                 <table id="t_personas" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th colspan='9' style='text-align:center; background-color:#A7C0DC;'>
-                                            <h2>Responsable de la Página</h2>
-                                            <br>
+                                        <th colspan='10' style='text-align:center; background-color:#A7C0DC;'>
                                             <h2 id="responsable"></h2>
+                                            <span>Responsable de la Página</span>
                                         </th>
                                     </tr>
                                     <tr>
@@ -75,6 +74,7 @@
                                         <th>Tipo Error</th>
                                         <th>Firma ya Existente</th>
                                         <th>Conteo</th>
+                                        <th>Se validó?</th>
                                     </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -89,6 +89,30 @@
                                         <th>Tipo Error</th>
                                         <th>Firma ya Existente</th>
                                         <th>Conteo</th>
+                                        <th>Se validó?</th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="3">
+                                            <a class="btn btn-primary" onclick="Guardar();">
+                                                Guardar
+                                                <i class="fa fa-lg fa-save">
+                                                </i>
+                                            </a>
+                                        </th>
+                                        <th colspan="3">
+                                            <a class="btn btn-primary" onclick="Cancelar();">
+                                                Cancelar
+                                                <i class="fa fa-lg fa-remove">
+                                                </i>
+                                            </a>
+                                        </th>
+                                        <th colspan="3">
+                                            <a class="btn btn-primary" onclick="BuscarReniec();">
+                                                Buscar Data en Reniec
+                                                <i class="fa fa-lg fa-search">
+                                                </i>
+                                            </a>
+                                        </th>
                                     </tr>
                                     </tfoot>
                                 </table>
