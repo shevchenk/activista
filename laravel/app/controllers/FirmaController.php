@@ -130,4 +130,81 @@ class FirmaController extends \BaseController
             return Response::json($aParametro);
         }
     }
+
+    public function postValidarreniec()
+    {
+        if ( Request::ajax() ) {
+            $inicio=Input::get('inicio');
+            $fin=Input::get('fin');
+            $array["w"]=" AND pagina_firma_id BETWEEN '".$inicio."' AND '".$fin."' ";
+            $listaFirmas= Firma::ListarFirmas($array);
+            DB::beginTransaction();
+            for ($i=0; $i<count($listaFirmas); $i++) {
+                $nombre=$listaFirmas[$i]->nombre;
+                $paterno=$listaFirmas[$i]->paterno;
+                $materno=$listaFirmas[$i]->materno;
+                $dni=$listaFirmas[$i]->dni;
+                $id=$listaFirmas[$i]->id;
+                $conteo=$listaFirmas[$i]->conteo;
+                $estado_firma=$listaFirmas[$i]->estado_firma;
+
+                $f=Firma::find($id);
+                $f['valida']=1;
+                $f['conteo']=2;
+                $f['tconteo']=0;
+                if( trim($estado_firma)=='' ){
+                    if( $conteo!=3 ){
+                        $array["w"]="   AND (
+                                        (paterno='".$paterno."'
+                                        AND materno='".$materno."'
+                                        AND substr(nombres,1,(LENGTH('".$nombre."')-2) )=substr('".$nombre."',1,(LENGTH('".$nombre."')-2) )
+                                        ) OR dni='".$dni."') ";
+                        $reniec=Firma::ValidarReniec($array);
+                        $reniecdni=0;
+                        if( count($reniec)>0 ){
+                            for ( $j=0; $j<count($reniec); $j++) {
+                                if( $reniecdni==0 ){
+                                $f['rdni']=$reniec[$j]->dni;
+                                $f['rpaterno']=$reniec[$j]->paterno;
+                                $f['rmaterno']=$reniec[$j]->materno;
+                                $f['rnombres']=$reniec[$j]->nombres;
+                                $f['conteo']=2;
+                                $f['tconteo']=2;
+                                    if($reniec[$j]->dni==$dni AND $reniecdni==0){
+                                        $f['conteo']=2;
+                                        $f['tconteo']=1;
+                                        if( $paterno==$reniec[$j]->paterno AND $materno==$reniec[$j]->materno AND $nombre==trim($reniec[$j]->nombres) )
+                                        {
+                                            $f['conteo']=1;
+                                            $f['tconteo']=0;
+                                        }
+                                        $reniecdni++;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        else{
+                            $f['tconteo']=3;
+                        }
+                    }
+                    else{
+                        $f['conteo']=3;
+                        $f['tconteo']=0;
+                    }
+                }
+                else{
+                    $f['conteo']=2;
+                    $f['tconteo']=4;
+                }
+
+                $f['usuario_created_at']=Auth::user()->id;
+                $f->save();
+            }
+            DB::commit();
+            $aParametro['rst']=1;
+            $aParametro['msj']="Se validaron las páginas entre el nro ".$inicio." y el nro ".$fin;
+            return Response::json($aParametro);
+        }
+    }
 }

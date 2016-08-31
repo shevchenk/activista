@@ -54,8 +54,8 @@
                 </fieldset>
                 <fieldset>
                     <form name="form_personas_equipos" id="form_personas_equipos" method="POST" action="">
-                        <div class="box-body table-responsive">
-                            <div class="col-sm-12">
+                        <div class="col-sm-12">
+                            <div class="table-responsive">
                                 <table id="t_personas" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
@@ -72,7 +72,7 @@
                                         <th>Materno</th>
                                         <th>Nombres</th>
                                         <th>Tipo Error</th>
-                                        <th>Firma ya Existente</th>
+                                        <th style="width:250px !important;">Firma ya Existente</th>
                                         <th>Conteo</th>
                                         <th>Se validó?</th>
                                     </tr>
