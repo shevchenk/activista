@@ -173,7 +173,7 @@ class FirmaController extends \BaseController
                                     if($reniec[$j]->dni==$dni AND $reniecdni==0){
                                         $f['conteo']=2;
                                         $f['tconteo']=1;
-                                        if( $paterno==$reniec[$j]->paterno AND $materno==$reniec[$j]->materno AND $nombre==trim($reniec[$j]->nombres) )
+                                        if( strtoupper($paterno)==$reniec[$j]->paterno AND strtoupper($materno)==$reniec[$j]->materno AND strtoupper($nombre)==trim($reniec[$j]->nombres) )
                                         {
                                             $f['conteo']=1;
                                             $f['tconteo']=0;
