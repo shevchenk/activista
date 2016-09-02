@@ -253,6 +253,10 @@ class FirmaController extends \BaseController
                     $f['valida']=1;
                     $f['conteo']=2;
                     $f['tconteo']=0;
+                    $f['paterno']=$paterno;
+                    $f['materno']=$materno;
+                    $f['nombre']=$nombreG[$i];
+                    $f['dni']=$dni;
                     $f['rdni']='';
                     $f['rpaterno']='';
                     $f['rmaterno']='';
