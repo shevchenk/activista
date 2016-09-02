@@ -152,39 +152,59 @@ class FirmaController extends \BaseController
                 $f['valida']=1;
                 $f['conteo']=2;
                 $f['tconteo']=0;
+                $f['rdni']='';
+                $f['rpaterno']='';
+                $f['rmaterno']='';
+                $f['rnombres']='';
                 if( trim($estado_firma)=='' ){
                     if( $conteo!=3 ){
-                        $array["w"]="   AND (
-                                        (paterno='".$paterno."'
+
+                        $array["w"]="   AND dni='".$dni."' ";
+                        $reniec=Firma::ValidarReniec($array);
+                        
+                        if( count($reniec)>0 ){
+                            $f['conteo']=2;
+                            $f['tconteo']=1;
+                            $drnombre=explode(" ",trim($reniec[0]->nombres));
+                            $rnombre=$drnombre[0];
+                                if( strtoupper($paterno)==$reniec[0]->paterno AND strtoupper($materno)==$reniec[0]->materno AND strtoupper($nombre)==$rnombre )
+                                {
+                                    $f['conteo']=1;
+                                    $f['tconteo']=0;
+                                }
+                                else{
+                                    if( strtoupper($paterno)==$reniec[0]->paterno OR strtoupper($materno)==$reniec[0]->materno ){
+                                        $f['conteo']=4;
+                                    }
+                                    $f['rdni']=$reniec[0]->dni;
+                                    $f['rpaterno']=$reniec[0]->paterno;
+                                    $f['rmaterno']=$reniec[0]->materno;
+                                    $f['rnombres']=$reniec[0]->nombres;
+                                }
+                        }
+
+                        if( $f['conteo']==2 || $f['conteo']==4 ){
+                        $array["w"]="   AND paterno='".$paterno."'
                                         AND materno='".$materno."'
                                         AND substr(nombres,1,(LENGTH('".$nombre."')-2) )=substr('".$nombre."',1,(LENGTH('".$nombre."')-2) )
-                                        ) OR dni='".$dni."') ";
-                        $reniec=Firma::ValidarReniec($array);
-                        $reniecdni=0;
-                        if( count($reniec)>0 ){
-                            for ( $j=0; $j<count($reniec); $j++) {
-                                if( $reniecdni==0 ){
-                                $f['rdni']=$reniec[$j]->dni;
-                                $f['rpaterno']=$reniec[$j]->paterno;
-                                $f['rmaterno']=$reniec[$j]->materno;
-                                $f['rnombres']=$reniec[$j]->nombres;
-                                $f['conteo']=2;
-                                $f['tconteo']=2;
-                                    if($reniec[$j]->dni==$dni AND $reniecdni==0){
-                                        $f['conteo']=2;
-                                        $f['tconteo']=1;
-                                        if( strtoupper($paterno)==$reniec[$j]->paterno AND strtoupper($materno)==$reniec[$j]->materno AND strtoupper($nombre)==trim($reniec[$j]->nombres) )
-                                        {
-                                            $f['conteo']=1;
-                                            $f['tconteo']=0;
-                                        }
-                                        $reniecdni++;
-                                        break;
+                                        AND dni!='".$dni."'
+                                    ";
+                        $reniec2=Firma::ValidarReniec($array);
+                            if( count($reniec2)>0 AND count($reniec2)<3 ){
+                                for ( $j=0; $j<count($reniec2); $j++) {
+                                    $f['rdni'].="|".$reniec2[$j]->dni;
+                                    $f['rpaterno'].="|".$reniec2[$j]->paterno;
+                                    $f['rmaterno'].="|".$reniec2[$j]->materno;
+                                    $f['rnombres'].="|".$reniec2[$j]->nombres;
+                                    $f['conteo']=4;
+                                    if( $f['tconteo']!=1 ){
+                                        $f['tconteo']=2;
                                     }
                                 }
                             }
                         }
-                        else{
+
+                        if( $f['rdni']=='' ){
                             $f['tconteo']=3;
                         }
                     }
@@ -204,6 +224,95 @@ class FirmaController extends \BaseController
             DB::commit();
             $aParametro['rst']=1;
             $aParametro['msj']="Se validaron las páginas entre el nro ".$inicio." y el nro ".$fin;
+            return Response::json($aParametro);
+        }
+    }
+
+    public function postActualizar()
+    {
+        if ( Request::ajax() ) {
+            $dniG= Input::get('dni');
+            $paternoG= Input::get('paterno');
+            $maternoG= Input::get('materno');
+            $nombreG= Input::get('nombre');
+            $actualizaG= Input::get('actualiza');
+
+            DB::beginTransaction();
+            for( $i=0; $i<count($dniG); $i++ ){
+                if( $actualizaG[$i]!='0' ){
+                    $actg=explode("|",$actualizaG[$i]);
+                    $dnombre=explode(" ",$nombreG[$i]);
+                    $nombre=$dnombre[0];
+                    $paterno=$paternoG[$i];
+                    $materno=$maternoG[$i];
+                    $dni=$dniG[$i];
+                    $id=$actg[1];
+
+                    $f=Firma::find($id);
+                    $f['valida']=1;
+                    $f['conteo']=2;
+                    $f['tconteo']=0;
+                    $f['rdni']='';
+                    $f['rpaterno']='';
+                    $f['rmaterno']='';
+                    $f['rnombres']='';
+
+                    $array["w"]="   AND dni='".$dni."' ";
+                    $reniec=Firma::ValidarReniec($array);
+                    
+                    if( count($reniec)>0 ){
+                        $f['conteo']=2;
+                        $f['tconteo']=1;
+                        $drnombre=explode(" ",trim($reniec[0]->nombres));
+                        $rnombre=$drnombre[0];
+                            if( strtoupper($paterno)==$reniec[0]->paterno AND strtoupper($materno)==$reniec[0]->materno AND strtoupper($nombre)==$rnombre )
+                            {
+                                $f['conteo']=1;
+                                $f['tconteo']=0;
+                            }
+                            else{
+                                if( strtoupper($paterno)==$reniec[0]->paterno OR strtoupper($materno)==$reniec[0]->materno ){
+                                    $f['conteo']=4;
+                                }
+                                $f['rdni']=$reniec[0]->dni;
+                                $f['rpaterno']=$reniec[0]->paterno;
+                                $f['rmaterno']=$reniec[0]->materno;
+                                $f['rnombres']=$reniec[0]->nombres;
+                            }
+                    }
+
+                    if( $f['conteo']==2 || $f['conteo']==4 ){
+                    $array["w"]="   AND paterno='".$paterno."'
+                                    AND materno='".$materno."'
+                                    AND substr(nombres,1,(LENGTH('".$nombre."')-2) )=substr('".$nombre."',1,(LENGTH('".$nombre."')-2) )
+                                    AND dni!='".$dni."'
+                                ";
+                    $reniec2=Firma::ValidarReniec($array);
+                        if( count($reniec2)>0 AND count($reniec2)<3 ){
+                            for ( $j=0; $j<count($reniec2); $j++) {
+                                $f['rdni'].="|".$reniec2[$j]->dni;
+                                $f['rpaterno'].="|".$reniec2[$j]->paterno;
+                                $f['rmaterno'].="|".$reniec2[$j]->materno;
+                                $f['rnombres'].="|".$reniec2[$j]->nombres;
+                                $f['conteo']=4;
+                                if( $f['tconteo']!=1 ){
+                                    $f['tconteo']=2;
+                                }
+                            }
+                        }
+                    }
+
+                    if( $f['rdni']=='' ){
+                        $f['tconteo']=3;
+                    }
+
+                    $f['usuario_created_at']=Auth::user()->id;
+                    $f->save();
+                }
+            }
+            DB::commit();
+            $aParametro['rst']=1;
+            $aParametro['msj']="Se realizaron los cambios correctamente";
             return Response::json($aParametro);
         }
     }

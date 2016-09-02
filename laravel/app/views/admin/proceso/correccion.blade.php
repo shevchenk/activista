@@ -53,7 +53,7 @@
                     </div>
                 </fieldset>
                 <fieldset>
-                    <form name="form_personas_equipos" id="form_personas_equipos" method="POST" action="">
+                    <form name="form_reniec_validacion" id="form_reniec_validacion" method="POST" action="">
                         <div class="col-sm-12">
                             <div class="table-responsive">
                                 <table id="t_personas" class="table table-bordered table-hover">

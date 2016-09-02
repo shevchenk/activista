@@ -31,7 +31,7 @@ class Firma extends Base
                 f.conteo,f.tconteo,f.pagina_firma_id pagina,f.valida,
                 IF( f.estado_firma<>'',
                     MostrarExistentes(f.estado_firma),''
-                ) rst,f.rpaterno,f.rmaterno,f.rdni,f.rnombres
+                ) rst,f.rpaterno,f.rmaterno,f.rdni,f.rnombres,f.id
                 FROM firmas f
                 INNER JOIN escalafon_fichas ef ON ef.desdeh=f.pagina_firma_id
                 INNER JOIN escalafon e ON e.id=ef.escalafon_id

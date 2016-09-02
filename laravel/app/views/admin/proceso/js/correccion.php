@@ -4,6 +4,11 @@ $("[data-toggle='offcanvas']").click();
 $("#t_personas").dataTable();
 });
 
+Guardar=function(){
+    var data=$("#form_reniec_validacion").serialize().split("txt_").join("").split("slct_").join("");
+    Accion.Actualizar(data,Listar);
+}
+
 LimpiaText=function(id){
     $("#"+id).val('');
 }
@@ -40,6 +45,9 @@ ValidarHTML=function(obj){
         else if( data.conteo==3 ){
             conteo='Blanco';
         }
+        else if( data.conteo==4 ){
+            conteo='-';
+        }
 
         tconteo='';
         tr='';
@@ -58,6 +66,17 @@ ValidarHTML=function(obj){
         }
         else if( data.valida==1 && data.tconteo==3 ){
             tconteo='No Existe en Reniec';
+        }
+        else if( data.valida==1 && data.tconteo==4 ){
+            tconteo='Firma Existente';
+        }
+
+        chk='';
+        if( data.valida==1 ){
+            chk='<select name="actualiza[]"><option value="0" selected>No</option><option value="1|'+data.id+'">Si</option></select>';
+            if( data.rst!='' || data.conteo==1 ){
+                chk='<select name="actualiza[]"><option value="0" selected>No</option></select>';
+            }
         }
 
         html+=  "<tr class='"+tr+"'>"+
@@ -85,18 +104,12 @@ ValidarHTML=function(obj){
 
         html+=  "<tr>"+
                     "<td>"+data.ficha+"</td>"+
-                    "<td>&nbsp;</td>";
-        if( data.tconteo==1 ){
-        html+=      "<td>&nbsp;</td>"+
-                    "<td>"+data.rpaterno+"</td>"+
-                    "<td>"+data.rmaterno+"</td>"+
-                    "<td>"+data.rnombres+"</td>";
-        }
-        else if( data.tconteo==2 ){
-        html+=      "<td>"+data.rdni+"</td>"+
-                    "<td>"+data.rpaterno+"</td>"+
-                    "<td>"+data.rmaterno+"</td>"+
-                    "<td>"+data.rnombres+"</td>";
+                    "<td>&nbsp;"+chk+"</td>";
+        if( data.tconteo==1 || data.tconteo==2 ){
+        html+=      "<td>"+data.rdni.split("|").join("<br>")+"</td>"+
+                    "<td>"+data.rpaterno.split("|").join("<br>")+"</td>"+
+                    "<td>"+data.rmaterno.split("|").join("<br>")+"</td>"+
+                    "<td>"+data.rnombres.split("|").join("<br>")+"</td>";
         }
         else{
         html+=      "<td>&nbsp;</td>"+
