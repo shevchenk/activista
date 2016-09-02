@@ -219,7 +219,7 @@ class FirmaController extends \BaseController
                     $f['tconteo']=4;
                 }
 
-                $f['usuario_created_at']=Auth::user()->id;
+                $f['usuario_updated_at']=Auth::user()->id;
                 $f->save();
             }
             DB::commit();
@@ -311,7 +311,7 @@ class FirmaController extends \BaseController
                         $f['tconteo']=3;
                     }
 
-                    $f['usuario_created_at']=Auth::user()->id;
+                    $f['usuario_updated_at']=Auth::user()->id;
                     $f->save();
                 }
             }
