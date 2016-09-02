@@ -37,7 +37,7 @@ ValidarHTML=function(obj){
         $("#responsable").text(data.recolector);
 
         if( data.conteo==1 ){
-            conteo='Validado';
+            conteo='Válido';
         }
         else if( data.conteo==2 ){
             conteo='Inválido';
@@ -46,7 +46,7 @@ ValidarHTML=function(obj){
             conteo='Blanco';
         }
         else if( data.conteo==4 ){
-            conteo='-';
+            conteo='Subsanado';
         }
 
         tconteo='';
@@ -81,7 +81,7 @@ ValidarHTML=function(obj){
 
         html+=  "<tr class='"+tr+"'>"+
                     "<td>"+data.ficha+"</td>"+
-                    "<td>"+data.fila+"</td>";
+                    "<td>"+data.fila+chk+"</td>";
         if( data.valida==0 ){
             analizado='Falta Validar';
         html+=      "<td>"+data.dni+"</td>"+
@@ -99,12 +99,11 @@ ValidarHTML=function(obj){
         html+=      "<td>"+tconteo+"</td>"+
                     "<td>"+data.rst.split("|").join("<br>")+"</td>"+
                     "<td>"+conteo+"</td>"+
-                    "<td>"+analizado+"</td>"+
                 "</tr>";
 
         html+=  "<tr>"+
                     "<td>"+data.ficha+"</td>"+
-                    "<td>&nbsp;"+chk+"</td>";
+                    "<td>&nbsp;</td>";
         if( data.tconteo==1 || data.tconteo==2 ){
         html+=      "<td>"+data.rdni.split("|").join("<br>")+"</td>"+
                     "<td>"+data.rpaterno.split("|").join("<br>")+"</td>"+
@@ -118,7 +117,6 @@ ValidarHTML=function(obj){
                     "<td>&nbsp;</td>";
         }
         html+=      "<td>&nbsp;</td>"+
-                    "<td>&nbsp;</td>"+
                     "<td>&nbsp;</td>"+
                     "<td>&nbsp;</td>"+
                 "</tr>";

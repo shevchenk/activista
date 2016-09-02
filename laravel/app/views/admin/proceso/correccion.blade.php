@@ -74,7 +74,6 @@
                                         <th>Tipo Error</th>
                                         <th style="width:250px !important;">Firma ya Existente</th>
                                         <th>Conteo</th>
-                                        <th>Se validó?</th>
                                     </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -89,7 +88,6 @@
                                         <th>Tipo Error</th>
                                         <th>Firma ya Existente</th>
                                         <th>Conteo</th>
-                                        <th>Se validó?</th>
                                     </tr>
                                     <tr>
                                         <th colspan="3">
@@ -100,11 +98,7 @@
                                             </a>
                                         </th>
                                         <th colspan="3">
-                                            <a class="btn btn-primary" onclick="Cancelar();">
-                                                Cancelar
-                                                <i class="fa fa-lg fa-remove">
-                                                </i>
-                                            </a>
+                                            &nbsp;
                                         </th>
                                         <th colspan="3">
                                             <a class="btn btn-primary" onclick="BuscarReniec();">
