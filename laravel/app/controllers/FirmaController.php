@@ -140,7 +140,8 @@ class FirmaController extends \BaseController
             $listaFirmas= Firma::ListarFirmas($array);
             DB::beginTransaction();
             for ($i=0; $i<count($listaFirmas); $i++) {
-                $nombre=$listaFirmas[$i]->nombre;
+                $dnombre=explode(" ",$listaFirmas[$i]->nombre);
+                $nombre=$dnombre[0];
                 $paterno=$listaFirmas[$i]->paterno;
                 $materno=$listaFirmas[$i]->materno;
                 $dni=$listaFirmas[$i]->dni;
