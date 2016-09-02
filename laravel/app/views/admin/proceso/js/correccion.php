@@ -81,7 +81,7 @@ ValidarHTML=function(obj){
 
         html+=  "<tr class='"+tr+"'>"+
                     "<td>"+data.ficha+"</td>"+
-                    "<td>"+data.fila+"</td>";
+                    "<td>"+data.fila+chk+"</td>";
         if( data.valida==0 ){
         html+=      "<td>"+data.dni+"</td>"+
                     "<td>"+data.paterno+"</td>"+
@@ -101,7 +101,7 @@ ValidarHTML=function(obj){
 
         html+=  "<tr>"+
                     "<td>"+data.ficha+"</td>"+
-                    "<td>&nbsp;"+chk+"</td>";
+                    "<td>&nbsp;</td>";
         if( data.tconteo==1 || data.tconteo==2 ){
         html+=      "<td>"+data.rdni.split("|").join("<br>")+"</td>"+
                     "<td>"+data.rpaterno.split("|").join("<br>")+"</td>"+
