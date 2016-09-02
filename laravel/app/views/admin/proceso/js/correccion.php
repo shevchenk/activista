@@ -35,7 +35,7 @@ ValidarHTML=function(obj){
     $('#t_personas').dataTable().fnDestroy();
     $.each(obj.data,function(index,data){
         $("#responsable").text(data.recolector);
-
+        conteo='';
         if( data.conteo==1 ){
             conteo='Válido';
         }
