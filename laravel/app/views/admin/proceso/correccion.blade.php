@@ -97,7 +97,7 @@
                                                 </i>
                                             </a>
                                         </th>
-                                        <th colspan="3">
+                                        <th colspan="2">
                                             &nbsp;
                                         </th>
                                         <th colspan="3">

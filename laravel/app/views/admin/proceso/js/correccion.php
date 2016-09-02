@@ -81,16 +81,14 @@ ValidarHTML=function(obj){
 
         html+=  "<tr class='"+tr+"'>"+
                     "<td>"+data.ficha+"</td>"+
-                    "<td>"+data.fila+chk+"</td>";
+                    "<td>"+data.fila+"</td>";
         if( data.valida==0 ){
-            analizado='Falta Validar';
         html+=      "<td>"+data.dni+"</td>"+
                     "<td>"+data.paterno+"</td>"+
                     "<td>"+data.materno+"</td>"+
                     "<td>"+data.nombre+"</td>";
         }
         else{
-            analizado='Se Validó';
         html+=      "<td><input type='text' class='form-control' name='txt_dni[]' value='"+data.dni+"'></td>"+
                     "<td><input type='text' class='form-control' name='txt_paterno[]' value='"+data.paterno+"'></td>"+
                     "<td><input type='text' class='form-control' name='txt_materno[]' value='"+data.materno+"'></td>"+
@@ -103,7 +101,7 @@ ValidarHTML=function(obj){
 
         html+=  "<tr>"+
                     "<td>"+data.ficha+"</td>"+
-                    "<td>&nbsp;</td>";
+                    "<td>&nbsp;"+chk+"</td>";
         if( data.tconteo==1 || data.tconteo==2 ){
         html+=      "<td>"+data.rdni.split("|").join("<br>")+"</td>"+
                     "<td>"+data.rpaterno.split("|").join("<br>")+"</td>"+
