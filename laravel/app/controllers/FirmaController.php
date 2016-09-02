@@ -205,7 +205,7 @@ class FirmaController extends \BaseController
                             }
                         }
 
-                        if( $f['rdni']=='' AND $f['conteo']==2 ) ){
+                        if( $f['rdni']=='' AND $f['conteo']==2 ){
                             $f['tconteo']=3;
                         }
                     }
