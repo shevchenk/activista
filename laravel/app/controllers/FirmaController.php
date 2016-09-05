@@ -346,4 +346,29 @@ class FirmaController extends \BaseController
             return Response::json($aParametro);
         }
     }
+
+    public function postDetallado()
+    {
+        if ( Request::ajax() ) {
+            $operador   =   Input::get('operador');
+            $fecha      =   Input::get('fecha');
+            $array["w"]="";
+
+            if( count($operador)>0 ){
+                $doperador=implode(",",$operador);
+                $array['w'].=" AND a.id IN (".$doperador.") ";
+            }
+            
+            if( $fecha!="" ){
+                $f=explode(" - ",$fecha);
+                $array['w'].=" AND DATE(f.created_at) BETWEEN '".$f[0]."' AND '".$f[1]."' ";
+            }
+            $valida= Firma::DetalladoFirmas($array);
+
+            $aParametro['rst']=1;
+            $aParametro['data']=$valida;
+
+            return Response::json($aParametro);
+        }
+    }
 }

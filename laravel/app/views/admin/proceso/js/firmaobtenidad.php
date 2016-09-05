@@ -17,39 +17,21 @@ Listar=function(){
     fecha=$("#txt_fecha").val();
     
     var data={ operador:operador,fecha:fecha };
-    Accion.Consolidado(data,ConsolidadoHTML);
+    Accion.Detallado(data,DetalladoHTML);
 }
 
-ConsolidadoHTML=function(obj){
+DetalladoHTML=function(obj){
     var html=''; var total=0; var pagar=0;
     $('#t_personas').dataTable().fnDestroy();
     $.each(obj.data,function(index,data){
         html+='<tr>';
         html+='<td>'+data.operador+'</td>';
         html+='<td>'+data.fecha+'</td>';
-        html+='<td>'+data.fichas+'</td>';
+        html+='<td>'+data.ficha+'</td>';
         html+='<td>'+data.blancos+'</td>';
         html+='<td>'+data.duplicado+'</td>';
         html+='<td>'+data.no_valido+'</td>';
         html+='<td>'+data.pago+'</td>';
-        total+=data.pago*1;
-
-        if( index+1==obj.data.length ){
-            pagar=total*0.6;
-            html+='<td>'+total+'</td>';
-            html+='<td>'+Math.round(pagar * 100) / 100+'</td>';
-            total=0;
-        }
-        else if( obj.data[index].id!=obj.data[(index+1)].id ){
-            pagar=total*0.6;
-            html+='<td>'+total+'</td>';
-            html+='<td>'+Math.round(pagar * 100) / 100+'</td>';
-            total=0;
-        }
-        else{
-            html+='<td>&nbsp;</td>';
-            html+='<td>&nbsp;</td>';
-        }
         html+='</tr>';
     });
 
