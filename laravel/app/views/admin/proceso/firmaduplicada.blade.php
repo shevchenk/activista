@@ -63,8 +63,8 @@
                                 <table id="t_personas" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th colspan='2' style='text-align:center; background-color:#A7C0DC;'><h2>Datos de la Persona</h2></th>
-                                        <th colspan='5' style='text-align:center; background-color:#DEACA9;'><h2>Datos del Equipo</h2></th>
+                                        <th colspan='2' style='text-align:center; background-color:#A7C0DC;'><h2>Adherente</h2></th>
+                                        <th colspan='5' style='text-align:center; background-color:#DEACA9;'><h2>Operadores que han obtenido la firma</h2></th>
                                     </tr>
                                     <tr>
                                         <th style='background-color: #DCE6F1'>DNI</th>
