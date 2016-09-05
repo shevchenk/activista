@@ -17,10 +17,10 @@ Listar=function(){
     fecha=$("#txt_fecha").val();
     
     var data={ digitador:digitador,fecha:fecha };
-    Accion.Detallado(data,DetalladoHTML);
+    Accion.Registrados(data,RegistradosHTML);
 }
 
-DetalladoHTML=function(obj){
+RegistradosHTML=function(obj){
     var html=''; var total=0; var pagar=0;
     $('#t_personas').dataTable().fnDestroy();
     $.each(obj.data,function(index,data){

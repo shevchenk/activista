@@ -65,7 +65,7 @@
                                     <tr>
                                         <th style='background-color: #DCE6F1'>Digitador</th>
                                         <th style='background-color: #DCE6F1'>Fecha</th>
-                                        <th style='background-color: #DCE6F1'>Cantidad de Páginas<br>Registradas</th>
+                                        <th style='background-color: #DCE6F1'>Cantidad de Páginas Registradas</th>
                                     </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -73,7 +73,7 @@
                                     <tr>
                                         <th>Digitador</th>
                                         <th>Fecha</th>
-                                        <th>Cantidad de Páginas<br>Registradas</th>
+                                        <th>Cantidad de Páginas Registradas</th>
                                     </tr>
                                     </tfoot>
                                 </table>

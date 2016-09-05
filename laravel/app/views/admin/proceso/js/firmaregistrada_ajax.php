@@ -1,9 +1,9 @@
 <script type="text/javascript">
 var Consulta, ConsultaDetalle, ConsultaDetalle2;
 var Accion={
-    Detallado:function( data,evento ){
+    Registrados:function( data,evento ){
         $.ajax({
-            url         : 'firma/detallado',
+            url         : 'firma/registrados',
             type        : 'POST',
             cache       : false,
             dataType    : 'json',
