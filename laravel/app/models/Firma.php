@@ -105,4 +105,19 @@ class Firma extends Base
 
         return $r;
     }
+
+    public static function RegistrosFirmas($array)
+    {
+        $sql="  SELECT a.id,CONCAT(a.paterno,' ',a.materno,', ',a.nombres) digitador,DATE(f.created_at) fecha,
+                COUNT(DISTINCT(f.pagina_firma_id)) paginas
+                FROM firmas f
+                INNER JOIN activistas a ON a.id=f.usuario_created_at
+                WHERE f.estado=1";
+        $sql.= $array['w'];
+        $sql.= "GROUP BY a.id,DATE(f.created_at)
+                ORDER BY a.paterno,a.materno,a.nombres,fecha";
+        $r=DB::select($sql);
+
+        return $r;
+    }
 }
