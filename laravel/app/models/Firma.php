@@ -70,7 +70,8 @@ class Firma extends Base
     {
         $sql="  SELECT date(f.created_at) fecha,COUNT(DISTINCT(f.ficha)) fichas,COUNT(IF(f.conteo=3,f.id,NULL)) blancos,
                 COUNT(IF(f.conteo=2 AND f.tconteo=4,f.id,NULL)) duplicado,COUNT(IF(f.conteo=2 AND f.tconteo!=4,f.id,NULL)) no_valido,
-                COUNT(IF(f.conteo=2 OR f.conteo=3,f.id,NULL)) total_no_valido,10*COUNT(DISTINCT(f.ficha))-COUNT(IF(f.conteo=2 OR f.conteo=3,f.id,NULL)) pago,
+                COUNT(IF(f.conteo=2 OR f.conteo=3,f.id,NULL)) total_no_valido,10*COUNT(DISTINCT(f.ficha))-COUNT(IF( (f.conteo=2 AND f.tconteo!=4) OR f.conteo=3,f.id,NULL)) pago,
+                COUNT(IF(f.conteo=1 AND f.tconteo=0,f.id,NULL)) valido,COUNT(IF(f.conteo=4,f.id,NULL)) subsanado,
                 CONCAT(a.paterno,' ',a.materno,', ',a.nombres) operador,a.id
                 FROM firmas f
                 INNER JOIN escalafon_fichas ef ON ef.desdeh=f.pagina_firma_id
@@ -90,8 +91,9 @@ class Firma extends Base
     {
         $sql="  SELECT date(f.created_at) fecha,f.ficha,COUNT(IF(f.conteo=3,f.id,NULL)) blancos,
                 COUNT(IF(f.conteo=2 AND f.tconteo=4,f.id,NULL)) duplicado,COUNT(IF(f.conteo=2 AND f.tconteo!=4,f.id,NULL)) no_valido,
-                COUNT(IF(f.conteo=2 OR f.conteo=3,f.id,NULL)) total,10-COUNT(IF(f.conteo=2 OR f.conteo=3,f.id,NULL)) pago,
-                CONCAT(a.paterno,' ',a.materno,', ',a.nombres) operador
+                COUNT(IF(f.conteo=2 OR f.conteo=3,f.id,NULL)) total,10-COUNT(IF( (f.conteo=2 AND f.tconteo!=4) OR f.conteo=3,f.id,NULL)) pago,
+                COUNT(IF(f.conteo=1 AND f.tconteo=0,f.id,NULL)) valido,COUNT(IF(f.conteo=4,f.id,NULL)) subsanado,
+                CONCAT(a.paterno,' ',a.materno,', ',a.nombres) operador,a.id
                 FROM firmas f
                 INNER JOIN escalafon_fichas ef ON ef.desdeh=f.pagina_firma_id
                 INNER JOIN escalafon e ON e.id=ef.escalafon_id

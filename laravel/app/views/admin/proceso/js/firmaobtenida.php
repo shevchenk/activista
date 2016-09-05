@@ -31,6 +31,8 @@ ConsolidadoHTML=function(obj){
         html+='<td>'+data.blancos+'</td>';
         html+='<td>'+data.duplicado+'</td>';
         html+='<td>'+data.no_valido+'</td>';
+        html+='<td>'+data.valido+'</td>';
+        html+='<td>'+data.subsanado+'</td>';
         html+='<td>'+data.pago+'</td>';
         total+=data.pago*1;
 

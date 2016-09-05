@@ -69,6 +69,8 @@
                                         <th style='background-color: #DCE6F1'>Blancos</th>
                                         <th style='background-color: #DCE6F1'>Duplicados</th>
                                         <th style='background-color: #DCE6F1'>No<br>Válidos</th>
+                                        <th style='background-color: #DCE6F1'>Válidos</th>
+                                        <th style='background-color: #DCE6F1'>Subsanados</th>
                                         <th style='background-color: #DCE6F1'>Firmas a<br>Pagar</th>
                                     </tr>
                                     </thead>
@@ -81,6 +83,8 @@
                                         <th>Blancos</th>
                                         <th>Duplicados</th>
                                         <th>No<br>Válidos</th>
+                                        <th>Válidos</th>
+                                        <th>Subsanados</th>
                                         <th>Firmas a<br>Pagar</th>
                                     </tr>
                                     </tfoot>
