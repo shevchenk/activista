@@ -13,7 +13,7 @@ ValidaDNI=function(){
         alert('Ingrese DNI');
     }
     else if( d.length!=8 ){
-        alert('Complete su dni a 8 caracteres');
+        alert('El DNI debe contener 8 caracteres, no '+d.length+' caracteres');
     }
 }
 </script>
