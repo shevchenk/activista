@@ -92,7 +92,7 @@
                                 <div class="col-sm-12">
                                     <div class="col-sm-3">
                                         <label class="control-label">DNI:</label>
-                                        <input class="form-control" type="number" name="txt_dni" id="txt_dni" onKeyPress='return msjG.validaDni(event,this);'>
+                                        <input class="form-control" maxlength="8" type="number" name="txt_dni" id="txt_dni" onKeyPress='return msjG.validaDni(event,this);'>
                                     </div>
                                     <div class="col-sm-2">
                                         <br>
