@@ -10,8 +10,8 @@
 
     @include( 'admin.js.slct_global_ajax' )
     @include( 'admin.js.slct_global' )
-    @include( 'admin.proceso.js.firmaobtenida_ajax' )
-    @include( 'admin.proceso.js.firmaobtenida' )
+    @include( 'admin.proceso.js.firmaobtenidad_ajax' )
+    @include( 'admin.proceso.js.firmaobtenidad' )
 @stop
 <!-- Right side column. Contains the navbar and content of the page -->
 @section('contenido')
