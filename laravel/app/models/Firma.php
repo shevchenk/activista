@@ -120,4 +120,23 @@ class Firma extends Base
 
         return $r;
     }
+
+    public static function DuplicadoFirmas($array)
+    {
+        $sql="  SELECT f.dni,CONCAT(f.paterno,' ',f.materno,', ',f.nombre) adherente,
+                CONCAT(a.paterno,' ',a.materno,', ',a.nombres) operador,DATE(f.created_at) fecha,
+                f.ficha,f.pagina_firma_id pagina, f.fila
+                FROM firmas f
+                INNER JOIN escalafon_fichas ef ON ef.desdeh=f.pagina_firma_id
+                INNER JOIN escalafon e ON e.id=ef.escalafon_id
+                INNER JOIN activistas a ON a.id=e.activista_id
+                INNER JOIN activistas a2 ON a2.id=f.usuario_created_at
+                WHERE f.estado=1
+                AND f.conteo=2 AND f.tconteo=4";
+        $sql.= $array['w'];
+        $sql.= "ORDER BY f.dni,a.paterno,a.materno,a.nombres";
+        $r=DB::select($sql);
+
+        return $r;
+    }
 }

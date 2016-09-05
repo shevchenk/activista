@@ -10,21 +10,21 @@
 
     @include( 'admin.js.slct_global_ajax' )
     @include( 'admin.js.slct_global' )
-    @include( 'admin.proceso.js.firmaregistrada_ajax' )
-    @include( 'admin.proceso.js.firmaregistrada' )
+    @include( 'admin.proceso.js.firmaduplicada_ajax' )
+    @include( 'admin.proceso.js.firmaduplicada' )
 @stop
 <!-- Right side column. Contains the navbar and content of the page -->
 @section('contenido')
             <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            PRODUCCIÓN CONSOLIDADA DE REGISTRO DE FIRMAS
+            DETALLE DE FIRMAS DUPLICADAS OBTENIDAS POR OPERADORES
             <small> </small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
             <li><a href="#">Reporte</a></li>
-            <li class="active">registros</li>
+            <li class="active">Duplicadas</li>
         </ol>
     </section>
 
@@ -36,8 +36,8 @@
                     <div class="row form-group" >
                         <div class="col-sm-12">
                             <div class="col-sm-6">
-                                <label class="control-label">Digitador(a):</label>
-                                <select name="slct_digitador" id="slct_digitador" multiple>
+                                <label class="control-label">Operador:</label>
+                                <select name="slct_operador" id="slct_operador" multiple>
                                     <option>.::Selecciona::.</option>
                                 </select>
                             </div>
@@ -63,17 +63,29 @@
                                 <table id="t_personas" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th style='background-color: #DCE6F1'>Digitador(a)</th>
-                                        <th style='background-color: #DCE6F1'>Fecha</th>
-                                        <th style='background-color: #DCE6F1'>Cantidad de Páginas Registradas</th>
+                                        <th colspan='2' style='text-align:center; background-color:#A7C0DC;'><h2>Datos de la Persona</h2></th>
+                                        <th colspan='5' style='text-align:center; background-color:#DEACA9;'><h2>Datos del Equipo</h2></th>
+                                    </tr>
+                                    <tr>
+                                        <th style='background-color: #DCE6F1'>DNI</th>
+                                        <th style='background-color: #DCE6F1'>Apellidos y Nombres</th>
+                                        <th style='background-color: #F2DCDB'>Apellidos y Nombres</th>
+                                        <th style='background-color: #F2DCDB'>Fecha</th>
+                                        <th style='background-color: #F2DCDB'>Ficha</th>
+                                        <th style='background-color: #F2DCDB'>Página</th>
+                                        <th style='background-color: #F2DCDB'>Fila</th>
                                     </tr>
                                     </thead>
                                     <tbody></tbody>
                                     <tfoot>
                                     <tr>
-                                        <th>Digitador(a)</th>
-                                        <th>Fecha</th>
-                                        <th>Cantidad de Páginas Registradas</th>
+                                        <th style='background-color: #DCE6F1'>DNI</th>
+                                        <th style='background-color: #DCE6F1'>Apellidos y Nombres</th>
+                                        <th style='background-color: #F2DCDB'>Apellidos y Nombres</th>
+                                        <th style='background-color: #F2DCDB'>Fecha</th>
+                                        <th style='background-color: #F2DCDB'>Ficha</th>
+                                        <th style='background-color: #F2DCDB'>Página</th>
+                                        <th style='background-color: #F2DCDB'>Fila</th>
                                     </tr>
                                     </tfoot>
                                 </table>
