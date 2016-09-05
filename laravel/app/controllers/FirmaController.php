@@ -330,12 +330,13 @@ class FirmaController extends \BaseController
             $array["w"]="";
 
             if( count($operador)>0 ){
-                //$array['w']=" AND f.ficha='".$operador."'";
+                $doperador=implode(",",$operador);
+                $array['w'].=" AND a.id IN (".$operador.") ";
             }
             
             if( $fecha!="" ){
                 $f=explode(" - ",$fecha);
-                $array['w']=" AND DATE(f.created_at) BETWEEN '".$f[0]."' AND '".$f[1]."' ";
+                $array['w'].=" AND DATE(f.created_at) BETWEEN '".$f[0]."' AND '".$f[1]."' ";
             }
             $valida= Firma::ConsolidadoFirmas($array);
 
