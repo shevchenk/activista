@@ -321,4 +321,28 @@ class FirmaController extends \BaseController
             return Response::json($aParametro);
         }
     }
+
+    public function postConsolidado()
+    {
+        if ( Request::ajax() ) {
+            $operador   =   Input::get('operador');
+            $fecha      =   Input::get('fecha');
+            $array["w"]="";
+
+            if( count($operador)>0 ){
+                //$array['w']=" AND f.ficha='".$operador."'";
+            }
+            
+            if( $fecha!="" ){
+                $f=explode(" - ",$fecha);
+                $array['w']=" AND DATE(f.created_at) BETWEEN '".$f[0]."' AND '".$f[1]."' ";
+            }
+            $valida= Firma::ConsolidadoFirmas($array);
+
+            $aParametro['rst']=1;
+            $aParametro['data']=$valida;
+
+            return Response::json($aParametro);
+        }
+    }
 }

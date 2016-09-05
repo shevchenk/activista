@@ -65,4 +65,24 @@ class Firma extends Base
 
         return $r;
     }
+
+    public static function ConsolidadoFirmas($array)
+    {
+        $sql="  SELECT date(f.created_at) fecha,COUNT(DISTINCT(f.ficha)) fichas,COUNT(IF(f.conteo=3,f.id,NULL)) blancos,
+                COUNT(IF(f.conteo=2 AND f.tconteo=4,f.id,NULL)) duplicado,COUNT(IF(f.conteo=2 AND f.tconteo!=4,f.id,NULL)) no_valido,
+                COUNT(IF(f.conteo=2 OR f.conteo=3,f.id,NULL)) total_no_valido,10*COUNT(DISTINCT(f.ficha))-COUNT(IF(f.conteo=2 OR f.conteo=3,f.id,NULL)) pago,
+                CONCAT(a.paterno,' ',a.materno,', ',a.nombres) operador,a.id
+                FROM firmas f
+                INNER JOIN escalafon_fichas ef ON ef.desdeh=f.pagina_firma_id
+                INNER JOIN escalafon e ON e.id=ef.escalafon_id
+                INNER JOIN activistas a ON a.id=e.activista_id
+                INNER JOIN activistas a2 ON a2.id=f.usuario_created_at
+                WHERE f.estado=1";
+        $sql.= $array['w'];
+        $sql.= "GROUP BY a.id,DATE(f.created_at)
+                ORDER BY a.paterno,a.materno,a.nombres,f.created_at";
+        $r=DB::select($sql);
+
+        return $r;
+    }
 }

@@ -78,3 +78,4 @@ Route::controller('ubigeo', 'UbigeoController');
 Route::controller('escalafonficha', 'EscalafonFichasController');
 Route::controller('ficha', 'FichaController');
 Route::controller('firma', 'FirmaController');
+Route::controller('operador', 'OperadorController');
