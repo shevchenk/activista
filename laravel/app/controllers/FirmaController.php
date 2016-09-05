@@ -331,7 +331,7 @@ class FirmaController extends \BaseController
 
             if( count($operador)>0 ){
                 $doperador=implode(",",$operador);
-                $array['w'].=" AND a.id IN (".$operador.") ";
+                $array['w'].=" AND a.id IN (".$doperador.") ";
             }
             
             if( $fecha!="" ){
