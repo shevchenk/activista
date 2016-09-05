@@ -12,7 +12,7 @@ ValidaDNI=function(){
     else if( $.trim( d )=='' ){
         alert('Ingrese DNI');
     }
-    else if( d.length<8 ){
+    else if( d.length!=8 ){
         alert('Complete su dni a 8 caracteres');
     }
 }
