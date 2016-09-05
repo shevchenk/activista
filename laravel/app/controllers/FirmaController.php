@@ -329,7 +329,7 @@ class FirmaController extends \BaseController
             $fecha      =   Input::get('fecha');
             $array["w"]="";
 
-            if( strlen($operador)>0 ){
+            if( is_array($operador) ){
                 $doperador=implode(",",$operador);
                 $array['w'].=" AND a.id IN (".$doperador.") ";
             }
@@ -354,7 +354,7 @@ class FirmaController extends \BaseController
             $fecha      =   Input::get('fecha');
             $array["w"]="";
 
-            if( strlen($operador)>0 ){
+            if( is_array($operador) ){
                 $doperador=implode(",",$operador);
                 $array['w'].=" AND a.id IN (".$doperador.") ";
             }
