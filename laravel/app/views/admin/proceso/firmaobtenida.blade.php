@@ -63,21 +63,15 @@
                                 <table id="t_personas" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th colspan='9' style='text-align:center; background-color:#A7C0DC;'>
-                                            <h2 id="responsable"></h2>
-                                            <span>Responsable de la Página</span>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>Operador</th>
-                                        <th>Fecha</th>
-                                        <th>Número de<br>Fichas</th>
-                                        <th>Blancos</th>
-                                        <th>Duplicados</th>
-                                        <th>No<br>Válidos</th>
-                                        <th>Firmas a<br>Pagar</th>
-                                        <th>Firmas por<br>Operador</th>
-                                        <th>S/. a Pagar<br>X Operador</th>
+                                        <th style='background-color: #DCE6F1'>Operador</th>
+                                        <th style='background-color: #DCE6F1'>Fecha</th>
+                                        <th style='background-color: #DCE6F1'>Número de<br>Fichas</th>
+                                        <th style='background-color: #DCE6F1'>Blancos</th>
+                                        <th style='background-color: #DCE6F1'>Duplicados</th>
+                                        <th style='background-color: #DCE6F1'>No<br>Válidos</th>
+                                        <th style='background-color: #DCE6F1'>Firmas a<br>Pagar</th>
+                                        <th style='background-color: #DCE6F1'>Firmas por<br>Operador</th>
+                                        <th style='background-color: #DCE6F1'>S/. a Pagar<br>X Operador</th>
                                     </tr>
                                     </thead>
                                     <tbody></tbody>
