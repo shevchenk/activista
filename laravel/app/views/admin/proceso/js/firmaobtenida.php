@@ -46,7 +46,7 @@ ConsolidadoHTML=function(obj){
         if( index+1==obj.data.length ){
             pagar=total*0.6;
             html+='<td>'+total+'</td>';
-            html+='<td>'+pagar+'</td>';
+            html+='<td>'+Math.round(pagar * 100) / 100+'</td>';
             total=0;
         }
         else if( obj.data[index].id!=obj.data[(index+1)].id ){
