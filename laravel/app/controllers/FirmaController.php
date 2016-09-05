@@ -421,4 +421,17 @@ class FirmaController extends \BaseController
             return Response::json($aParametro);
         }
     }
+
+    public function postValidadni()
+    {
+        if ( Request::ajax() ) {
+            $dni      =   Input::get('dni');
+            $valida= Firma::ValidaDNI($dni);
+
+            $aParametro['rst']=1;
+            $aParametro['msj']=$valida;
+
+            return Response::json($aParametro);
+        }
+    }
 }

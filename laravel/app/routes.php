@@ -18,6 +18,12 @@ Route::get(
     }
 );
 
+Route::get(
+    '/validadni', function () {
+            return View::make('/admin.proceso.validadni');
+    }
+);
+
 Route::controller('validar', 'ValidarController');
 
 Route::get("search", function () {

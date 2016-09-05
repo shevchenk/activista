@@ -139,4 +139,33 @@ class Firma extends Base
 
         return $r;
     }
+
+    public static function ValidaDNI($dni)
+    {
+        $sql="  SELECT dni
+                FROM reniec
+                WHERE dni='$dni'";
+
+        $sql2=" SELECT dni
+                FROM firmas
+                WHERE dni='$dni'";
+
+        $r=DB::select($sql);
+        $r2=DB::select($sql2);
+
+        $mensaje='';
+        if( count($r)>0 ){
+            if( count($r2)>0 ){
+                $mensaje='DNI no permitido; Ya Existe en las firmas';
+            }
+            else{
+                $mensaje='DNI permitido';
+            }
+        }
+        else{
+            $mensaje='DNI no permitido; No exite en BD de Reniec';
+        }
+
+        return $mensaje;
+    }
 }
