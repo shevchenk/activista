@@ -91,7 +91,7 @@ class Grupo extends Base
             $and=" AND gc.id IS NULL ";
         }
         $sql="  SELECT g.id, CONCAT(t.nombre,' => ',g.nombre) nombre, 
-                t.nombre as grupo, g.tipo_grupo_id, g.estado 
+                t.nombre as grupo, g.tipo_grupo_id
                 FROM tipo_grupos_personas as t 
                 INNER JOIN grupos_personas as g on t.id = g.tipo_grupo_id 
                 LEFT JOIN grupos_cargos as gc on gc.grupo_persona_id = g.id 

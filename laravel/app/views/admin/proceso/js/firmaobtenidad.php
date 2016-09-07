@@ -8,6 +8,7 @@ $("#t_personas").dataTable();
         showDropdowns: true
     });
     slctGlobal.listarSlct('operador','slct_operador','multiple');
+    slctGlobal.listarSlct('grupop','slct_equipo','multiple');
 });
 
 Listar=function(){
@@ -15,8 +16,11 @@ Listar=function(){
     var fecha="";
     operador= $("#slct_operador").val();
     fecha=$("#txt_fecha").val();
+    equipo= $("#slct_equipo").val();
+    pini= $("#txt_pinicio").val();
+    pfin= $("#txt_pfinal").val();
     
-    var data={ operador:operador,fecha:fecha };
+    var data={ operador:operador,fecha:fecha,equipo:equipo,pini:pini,pfin:pfin };    
     Accion.Detallado(data,DetalladoHTML);
 }
 

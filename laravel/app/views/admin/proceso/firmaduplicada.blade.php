@@ -47,12 +47,6 @@
                                 <label class="control-label">Rango Fecha:</label>
                                 <input type="text" class="form-control fecha" name="txt_fecha" id="txt_fecha">
                             </div>
-                            <div class="col-sm-1">
-                                <br>
-                                <a class="btn btn-primary" onclick="Listar();">
-                                    <i class="fa fa-search fa-lg"></i>
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </fieldset>

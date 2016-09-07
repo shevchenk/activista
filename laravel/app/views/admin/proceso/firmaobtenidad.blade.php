@@ -47,6 +47,24 @@
                                 <label class="control-label">Rango Fecha:</label>
                                 <input type="text" class="form-control fecha" name="txt_fecha" id="txt_fecha">
                             </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="col-sm-4">
+                                <label class="control-label">Equipo:</label>
+                                <select name="slct_equipo" id="slct_equipo" multiple>
+                                    <option>.::Selecciona::.</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="col-sm-1">
+                                <label class="control-label">Página Inicio:</label>
+                                <input type="text" class="form-control" onKeyPress='return msjG.validaNumeros(event);' name="txt_pinicio" id="txt_pinicio">
+                            </div>
+                            <div class="col-sm-1">
+                                <label class="control-label">Página Fin:</label>
+                                <input type="text" class="form-control" onKeyPress='return msjG.validaNumeros(event);' name="txt_pfinal" id="txt_pfinal">
+                            </div>
                             <div class="col-sm-1">
                                 <br>
                                 <a class="btn btn-primary" onclick="Listar();">

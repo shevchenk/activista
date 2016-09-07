@@ -325,9 +325,13 @@ class FirmaController extends \BaseController
     public function postConsolidado()
     {
         if ( Request::ajax() ) {
-            $operador   =   Input::get('operador');
-            $fecha      =   Input::get('fecha');
-            $array["w"]="";
+            $operador =   Input::get('operador');
+            $equipo   =   Input::get('equipo');
+            $fecha    =   Input::get('fecha');
+            $pini     =   Input::get('pini');
+            $pfin     =   Input::get('pfin');
+
+            $array["w"]=""; $w=array();
 
             if( is_array($operador) ){
                 $doperador=implode(",",$operador);
@@ -336,7 +340,20 @@ class FirmaController extends \BaseController
             
             if( $fecha!="" ){
                 $f=explode(" - ",$fecha);
-                $array['w'].=" AND DATE(f.created_at) BETWEEN '".$f[0]."' AND '".$f[1]."' ";
+                array_push($w, " DATE(f.created_at) BETWEEN '".$f[0]."' AND '".$f[1]."' ");
+            }
+
+            if( is_array($equipo) ){
+                $dequipo=implode(",",$equipo);
+                array_push($w, " FIND_IN_SET(e.grupo_persona_id,'".$dequipo."')>0 ");
+            }
+
+            if( $pini!='' AND $pfin!='' ){
+                array_push($w, " f.pagina_firma_id BETWEEN '".$pini."' AND '".$pfin."' ");
+            }
+
+            if( count($w)>0 ){
+                $array['w'].=" AND (".implode("OR",$w).")";
             }
             $valida= Firma::ConsolidadoFirmas($array);
 
@@ -352,7 +369,11 @@ class FirmaController extends \BaseController
         if ( Request::ajax() ) {
             $operador   =   Input::get('operador');
             $fecha      =   Input::get('fecha');
-            $array["w"]="";
+            $equipo   =   Input::get('equipo');
+            $pini     =   Input::get('pini');
+            $pfin     =   Input::get('pfin');
+
+            $array["w"]=""; $w=array();
 
             if( is_array($operador) ){
                 $doperador=implode(",",$operador);
@@ -361,8 +382,22 @@ class FirmaController extends \BaseController
             
             if( $fecha!="" ){
                 $f=explode(" - ",$fecha);
-                $array['w'].=" AND DATE(f.created_at) BETWEEN '".$f[0]."' AND '".$f[1]."' ";
+                array_push($w, " DATE(f.created_at) BETWEEN '".$f[0]."' AND '".$f[1]."' ");
             }
+
+            if( is_array($equipo) ){
+                $dequipo=implode(",",$equipo);
+                array_push($w, " FIND_IN_SET(e.grupo_persona_id,'".$dequipo."')>0 ");
+            }
+
+            if( $pini!='' AND $pfin!='' ){
+                array_push($w, " f.pagina_firma_id BETWEEN '".$pini."' AND '".$pfin."' ");
+            }
+
+            if( count($w)>0 ){
+                $array['w'].=" AND (".implode("OR",$w).")";
+            }
+
             $valida= Firma::DetalladoFirmas($array);
 
             $aParametro['rst']=1;
@@ -377,16 +412,33 @@ class FirmaController extends \BaseController
         if ( Request::ajax() ) {
             $digitador  =   Input::get('digitador');
             $fecha      =   Input::get('fecha');
-            $array["w"]="";
+            $equipo   =   Input::get('equipo');
+            $pini     =   Input::get('pini');
+            $pfin     =   Input::get('pfin');
+
+            $array["w"]=""; $w=array();
 
             if( is_array($digitador) ){
                 $ddigitador=implode(",",$digitador);
-                $array['w'].=" AND a.id IN (".$ddigitador.") ";
+                $array['w'].=" AND a2.id IN (".$ddigitador.") ";
             }
             
             if( $fecha!="" ){
                 $f=explode(" - ",$fecha);
-                $array['w'].=" AND DATE(f.created_at) BETWEEN '".$f[0]."' AND '".$f[1]."' ";
+                array_push($w, " DATE(f.created_at) BETWEEN '".$f[0]."' AND '".$f[1]."' ");
+            }
+
+            if( is_array($equipo) ){
+                $dequipo=implode(",",$equipo);
+                array_push($w, " FIND_IN_SET(e.grupo_persona_id,'".$dequipo."')>0 ");
+            }
+
+            if( $pini!='' AND $pfin!='' ){
+                array_push($w, " f.pagina_firma_id BETWEEN '".$pini."' AND '".$pfin."' ");
+            }
+
+            if( count($w)>0 ){
+                $array['w'].=" AND (".implode("OR",$w).")";
             }
             $valida= Firma::RegistrosFirmas($array);
 
@@ -402,7 +454,10 @@ class FirmaController extends \BaseController
         if ( Request::ajax() ) {
             $operador   =   Input::get('operador');
             $fecha      =   Input::get('fecha');
-            $array["w"]="";
+            $equipo   =   Input::get('equipo');
+            $pini     =   Input::get('pini');
+            $pfin     =   Input::get('pfin');
+            $array["w"]=""; $w=array();
 
             if( is_array($operador) ){
                 $doperador=implode(",",$operador);
@@ -411,7 +466,20 @@ class FirmaController extends \BaseController
             
             if( $fecha!="" ){
                 $f=explode(" - ",$fecha);
-                $array['w'].=" AND DATE(f.created_at) BETWEEN '".$f[0]."' AND '".$f[1]."' ";
+                array_push($w, " DATE(f.created_at) BETWEEN '".$f[0]."' AND '".$f[1]."' ");
+            }
+
+            if( is_array($equipo) ){
+                $dequipo=implode(",",$equipo);
+                array_push($w, " FIND_IN_SET(e.grupo_persona_id,'".$dequipo."')>0 ");
+            }
+
+            if( $pini!='' AND $pfin!='' ){
+                array_push($w, " f.pagina_firma_id BETWEEN '".$pini."' AND '".$pfin."' ");
+            }
+
+            if( count($w)>0 ){
+                $array['w'].=" AND (".implode("OR",$w).")";
             }
             $valida= Firma::DuplicadoFirmas($array);
 

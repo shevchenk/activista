@@ -8,6 +8,7 @@ $("#t_personas").dataTable();
         showDropdowns: true
     });
     slctGlobal.listarSlct('digitador','slct_digitador','multiple');
+    slctGlobal.listarSlct('grupop','slct_equipo','multiple');
 });
 
 Listar=function(){
@@ -15,8 +16,11 @@ Listar=function(){
     var fecha="";
     digitador= $("#slct_digitador").val();
     fecha=$("#txt_fecha").val();
+    equipo= $("#slct_equipo").val();
+    pini= $("#txt_pinicio").val();
+    pfin= $("#txt_pfinal").val();
     
-    var data={ digitador:digitador,fecha:fecha };
+    var data={ digitador:digitador,fecha:fecha,equipo:equipo,pini:pini,pfin:pfin };
     Accion.Registrados(data,RegistradosHTML);
 }
 
