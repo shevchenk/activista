@@ -164,7 +164,7 @@ class Firma extends Base
                 $mensaje='DNI no permitido; Ya Existe en las firmas';
             }
             else{
-                $mensaje='DNI permitido.|'.$r[0]->paterno.' '.$r[0]->materno.', '.$r[0]->nombres;
+                $mensaje='DNI permitido.||PATERNO:   '.$r[0]->paterno.'|MATERNO:  '.$r[0]->materno.'|NOMBRES: '.$r[0]->nombres;
             }
         }
         else{

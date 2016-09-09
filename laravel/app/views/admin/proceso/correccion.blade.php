@@ -61,7 +61,7 @@
                                     <tr>
                                         <th colspan='10' style='text-align:center; background-color:#A7C0DC;'>
                                             <h2 id="responsable"></h2>
-                                            <span>Responsable de la Página</span>
+                                            <span id="pag">Responsable de la Página</span>
                                         </th>
                                     </tr>
                                     <tr>

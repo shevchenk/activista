@@ -32,9 +32,12 @@ ValidarHTML=function(obj){
     var analizado='';
     var conteo='';
     var tconteo='';
+    $("#responsable").text("");
+    $("#pag").text("Responsable de la Página");
     $('#t_personas').dataTable().fnDestroy();
     $.each(obj.data,function(index,data){
         $("#responsable").text(data.recolector);
+        $("#pag").text("Responsable de la Página "+data.pagina);
         conteo='';
         if( data.conteo==1 ){
             conteo='Válido';
