@@ -147,7 +147,7 @@ class Firma extends Base
 
     public static function ValidaDNI($dni)
     {
-        $sql="  SELECT dni
+        $sql="  SELECT dni,paterno,materno,nombres
                 FROM reniec
                 WHERE dni='$dni'";
 
@@ -164,7 +164,7 @@ class Firma extends Base
                 $mensaje='DNI no permitido; Ya Existe en las firmas';
             }
             else{
-                $mensaje='DNI permitido';
+                $mensaje='DNI permitido.|'.$r[0]->paterno.' '.$r[0]->materno.', '.$r[0]->nombres;
             }
         }
         else{

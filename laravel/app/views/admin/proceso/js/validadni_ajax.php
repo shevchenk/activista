@@ -12,7 +12,7 @@ var Accion={
             },
             success : function(obj) {
                 $(".overlay,.loading-img").remove();
-                    alert(obj.msj);
+                    alert(obj.msj.split("|").join("\n"));
             },
             error: function(){
                 $(".overlay,.loading-img").remove();
