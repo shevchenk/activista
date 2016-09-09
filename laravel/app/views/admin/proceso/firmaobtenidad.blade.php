@@ -81,6 +81,7 @@
                                 <table id="t_personas" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
+                                        <th style='background-color: #DCE6F1'>Equipo</th>
                                         <th style='background-color: #DCE6F1'>Operador</th>
                                         <th style='background-color: #DCE6F1'>Fecha</th>
                                         <th style='background-color: #DCE6F1'>Fichas</th>
@@ -95,6 +96,7 @@
                                     <tbody></tbody>
                                     <tfoot>
                                     <tr>
+                                        <th>Equipo</th>
                                         <th>Operador</th>
                                         <th>Fecha</th>
                                         <th>Fichas</th>

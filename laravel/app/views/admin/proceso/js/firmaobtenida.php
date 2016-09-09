@@ -29,6 +29,7 @@ ConsolidadoHTML=function(obj){
     $('#t_personas').dataTable().fnDestroy();
     $.each(obj.data,function(index,data){
         html+='<tr>';
+        html+='<td>'+data.equipo+'</td>';
         html+='<td>'+data.operador+'</td>';
         html+='<td>'+data.fecha+'</td>';
         html+='<td>'+data.fichas+'</td>';

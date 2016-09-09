@@ -81,6 +81,7 @@
                                 <table id="t_personas" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
+                                        <th style='background-color: #DCE6F1'>Equipo</th>
                                         <th style='background-color: #DCE6F1'>Digitador(a)</th>
                                         <th style='background-color: #DCE6F1'>Fecha</th>
                                         <th style='background-color: #DCE6F1'>Cantidad de Páginas Registradas</th>
@@ -89,6 +90,7 @@
                                     <tbody></tbody>
                                     <tfoot>
                                     <tr>
+                                        <th>Equipo</th>
                                         <th>Digitador(a)</th>
                                         <th>Fecha</th>
                                         <th>Cantidad de Páginas Registradas</th>

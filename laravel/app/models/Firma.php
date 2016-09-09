@@ -72,15 +72,16 @@ class Firma extends Base
                 COUNT(IF(f.conteo=2 AND f.tconteo=4,f.id,NULL)) duplicado,COUNT(IF(f.conteo=2 AND f.tconteo!=4,f.id,NULL)) no_valido,
                 COUNT(IF(f.conteo=2 OR f.conteo=3,f.id,NULL)) total_no_valido,10*COUNT(DISTINCT(f.ficha))-COUNT(IF( (f.conteo=2 AND f.tconteo!=4) OR f.conteo=3,f.id,NULL)) pago,
                 COUNT(IF(f.conteo=1 AND f.tconteo=0,f.id,NULL)) valido,COUNT(IF(f.conteo=4,f.id,NULL)) subsanado,
-                CONCAT(a.paterno,' ',a.materno,', ',a.nombres) operador,a.id
+                CONCAT(a.paterno,' ',a.materno,', ',a.nombres) operador,a.id,gp.nombre equipo
                 FROM firmas f
                 INNER JOIN escalafon_fichas ef ON ef.desdeh=f.pagina_firma_id
                 INNER JOIN escalafon e ON e.id=ef.escalafon_id
+                INNER JOIN grupos_personas gp ON gp.id=e.grupo_persona_id
                 INNER JOIN activistas a ON a.id=e.activista_id
                 INNER JOIN activistas a2 ON a2.id=f.usuario_created_at
                 WHERE f.estado=1";
         $sql.= $array['w'];
-        $sql.= "GROUP BY a.id,DATE(f.created_at)
+        $sql.= "GROUP BY gp.id,a.id,DATE(f.created_at)
                 ORDER BY a.paterno,a.materno,a.nombres,f.created_at";
         $r=DB::select($sql);
 
@@ -93,15 +94,16 @@ class Firma extends Base
                 COUNT(IF(f.conteo=2 AND f.tconteo=4,f.id,NULL)) duplicado,COUNT(IF(f.conteo=2 AND f.tconteo!=4,f.id,NULL)) no_valido,
                 COUNT(IF(f.conteo=2 OR f.conteo=3,f.id,NULL)) total,10-COUNT(IF( (f.conteo=2 AND f.tconteo!=4) OR f.conteo=3,f.id,NULL)) pago,
                 COUNT(IF(f.conteo=1 AND f.tconteo=0,f.id,NULL)) valido,COUNT(IF(f.conteo=4,f.id,NULL)) subsanado,
-                CONCAT(a.paterno,' ',a.materno,', ',a.nombres) operador,a.id
+                CONCAT(a.paterno,' ',a.materno,', ',a.nombres) operador,a.id,gp.nombre equipo
                 FROM firmas f
                 INNER JOIN escalafon_fichas ef ON ef.desdeh=f.pagina_firma_id
                 INNER JOIN escalafon e ON e.id=ef.escalafon_id
+                INNER JOIN grupos_personas gp ON gp.id=e.grupo_persona_id
                 INNER JOIN activistas a ON a.id=e.activista_id
                 INNER JOIN activistas a2 ON a2.id=f.usuario_created_at
                 WHERE f.estado=1";
         $sql.= $array['w'];
-        $sql.= "GROUP BY a.id,DATE(f.created_at),f.ficha
+        $sql.= "GROUP BY gp.id,a.id,DATE(f.created_at),f.ficha
                 ORDER BY a.paterno,a.materno,a.nombres,f.created_at";
         $r=DB::select($sql);
 
@@ -111,15 +113,16 @@ class Firma extends Base
     public static function RegistrosFirmas($array)
     {
         $sql="  SELECT a2.id,CONCAT(a2.paterno,' ',a2.materno,', ',a2.nombres) digitador,DATE(f.created_at) fecha,
-                COUNT(DISTINCT(f.pagina_firma_id)) paginas
+                COUNT(DISTINCT(f.pagina_firma_id)) paginas,gp.nombre equipo
                 FROM firmas f
                 INNER JOIN escalafon_fichas ef ON ef.desdeh=f.pagina_firma_id
                 INNER JOIN escalafon e ON e.id=ef.escalafon_id
+                INNER JOIN grupos_personas gp ON gp.id=e.grupo_persona_id
                 INNER JOIN activistas a ON a.id=e.activista_id
                 INNER JOIN activistas a2 ON a2.id=f.usuario_created_at
                 WHERE f.estado=1";
         $sql.= $array['w'];
-        $sql.= "GROUP BY a.id,DATE(f.created_at)
+        $sql.= "GROUP BY gp.id,a.id,DATE(f.created_at)
                 ORDER BY a.paterno,a.materno,a.nombres,fecha";
         $r=DB::select($sql);
 
