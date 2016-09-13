@@ -31,6 +31,7 @@ DuplicadoHTML=function(obj){
         html+='<tr>';
         html+='<td>'+data.dni+'</td>';
         html+='<td>'+data.adherente+'</td>';
+        html+='<td>'+data.equipo+'</td>';
         html+='<td>'+data.operador+'</td>';
         html+='<td>'+data.fecha+'</td>';
         html+='<td>'+data.ficha+'</td>';

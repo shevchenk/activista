@@ -82,11 +82,12 @@
                                     <thead>
                                     <tr>
                                         <th colspan='2' style='text-align:center; background-color:#A7C0DC;'><h2>Adherente</h2></th>
-                                        <th colspan='5' style='text-align:center; background-color:#DEACA9;'><h2>Operadores que han obtenido la firma</h2></th>
+                                        <th colspan='6' style='text-align:center; background-color:#DEACA9;'><h2>Operadores que han obtenido la firma</h2></th>
                                     </tr>
                                     <tr>
                                         <th style='background-color: #DCE6F1'>DNI</th>
                                         <th style='background-color: #DCE6F1'>Apellidos y Nombres</th>
+                                        <th style='background-color: #F2DCDB'>Equipo</th>
                                         <th style='background-color: #F2DCDB'>Apellidos y Nombres</th>
                                         <th style='background-color: #F2DCDB'>Fecha</th>
                                         <th style='background-color: #F2DCDB'>Ficha</th>
@@ -99,6 +100,7 @@
                                     <tr>
                                         <th style='background-color: #DCE6F1'>DNI</th>
                                         <th style='background-color: #DCE6F1'>Apellidos y Nombres</th>
+                                        <th style='background-color: #F2DCDB'>Equipo</th>
                                         <th style='background-color: #F2DCDB'>Apellidos y Nombres</th>
                                         <th style='background-color: #F2DCDB'>Fecha</th>
                                         <th style='background-color: #F2DCDB'>Ficha</th>
