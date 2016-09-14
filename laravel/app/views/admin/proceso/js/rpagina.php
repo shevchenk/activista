@@ -63,6 +63,8 @@ ListarFicha=function(v){
     }
     $("#t_fichas tbody").html(tr);
     $("#txt_pag").html('');
+    var data={ficha:v};
+    Rpagina.ValidarV(data);
 }
 
 MostrarAjax=function(t){

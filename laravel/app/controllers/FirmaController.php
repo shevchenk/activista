@@ -502,4 +502,25 @@ class FirmaController extends \BaseController
             return Response::json($aParametro);
         }
     }
+
+    public function postValidarficha()
+    {
+        if ( Request::ajax() ) {
+            $ficha      =   Input::get('ficha');
+            $valida= Firma::ValidaFicha($ficha);
+
+            if($valida==0){
+                $msj="Ficha Disponible";
+                $aParametro['rst']=1;
+            }
+            else{
+                $aParametro['rst']=2;
+                $msj="Ficha Existente";
+            }
+
+            $aParametro['msj']=$msj;
+
+            return Response::json($aParametro);
+        }
+    }
 }
