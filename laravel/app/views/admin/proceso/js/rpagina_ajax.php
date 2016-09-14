@@ -73,7 +73,7 @@ var Rpagina={
     },
     ValidarV:function(data){
         $.ajax({
-            url         : 'firma/validar',
+            url         : 'firma/validarficha',
             type        : 'POST',
             cache       : false,
             dataType    : 'json',
