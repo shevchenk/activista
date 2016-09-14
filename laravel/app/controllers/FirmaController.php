@@ -353,7 +353,7 @@ class FirmaController extends \BaseController
             }
 
             if( count($w)>0 ){
-                $array['w'].=" AND (".implode("OR",$w).")";
+                $array['w'].=" AND ".implode("AND",$w)." ";
             }
             $valida= Firma::ConsolidadoFirmas($array);
 
@@ -395,7 +395,7 @@ class FirmaController extends \BaseController
             }
 
             if( count($w)>0 ){
-                $array['w'].=" AND (".implode("OR",$w).")";
+                $array['w'].=" AND ".implode("AND",$w)." ";
             }
 
             $valida= Firma::DetalladoFirmas($array);
@@ -438,7 +438,7 @@ class FirmaController extends \BaseController
             }
 
             if( count($w)>0 ){
-                $array['w'].=" AND (".implode("OR",$w).")";
+                $array['w'].=" AND ".implode("AND",$w)." ";
             }
             $valida= Firma::RegistrosFirmas($array);
 
@@ -479,7 +479,7 @@ class FirmaController extends \BaseController
             }
 
             if( count($w)>0 ){
-                $array['w'].=" AND (".implode("OR",$w).")";
+                $array['w'].=" AND ".implode("AND",$w)." ";
             }
             $valida= Firma::DuplicadoFirmas($array);
 
