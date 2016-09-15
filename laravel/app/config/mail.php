@@ -12,10 +12,10 @@ return array(
 	| your application here. By default, Laravel is setup for SMTP mail.
 	|
 	| Supported: "smtp", "mail", "sendmail", "mailgun", "mandrill", "log"
-	|
+	| mail
 	*/
 
-	'driver' => 'mail',
+	'driver' => 'smtp',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -27,9 +27,10 @@ return array(
 	| the Mailgun mail service which will provide reliable deliveries.
 	| mindependencia1.grupodsp.net
 	| mail.castimor.com
+	| soyppkausa.pe
 	*/
 
-	'host' => 'soyppkausa.pe',
+	'host' => 'smtp.munindependencia.pe',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -39,10 +40,10 @@ return array(
 	| This is the SMTP port used by your application to deliver e-mails to
 	| users of the application. Like the host we have set this value to
 	| stay compatible with the Mailgun e-mail application by default.
-	|
+	|2525
 	*/
 
-	'port' => 2525,
+	'port' => 587,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,9 +81,10 @@ return array(
 	| connection. You may also set the "password" value below this one.
 	| administrador@muniindependencia.gob.pe
 	| administrador@castimor.com
+	| ppk@soyppkausa.pe
 	*/
 
-	'username' => 'ppk@soyppkausa.pe',
+	'username' => 'administracion@munindependencia.pe',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -94,9 +96,10 @@ return array(
 	| connection so that the application will be able to send messages.
 	| (_XV2!pPu~*a
 	| jorge1988S
+	| $admin$123
 	*/
 
-	'password' => '$admin$123',
+	'password' => '009x1e8mvon5',
 
 	/*
 	|--------------------------------------------------------------------------

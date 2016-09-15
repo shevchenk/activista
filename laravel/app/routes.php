@@ -1,4 +1,28 @@
 <?php
+Route::get(
+    'email/{email}', function($email){
+        $i=4;
+        $parametros=array(
+            'paso'      => ($i+1),
+            'persona'   => 'Salcedo Franco Jorge Luis',
+            'area'      => 'Area GMGM',
+            'procesoe'  => 'Proceso Nuevo',
+            'personae'  => 'Juan Luna Galvez',
+            'areae'     => 'Gerente de la Calidad'
+        );
+
+            Mail::send('prueba', $parametros ,
+                function($message) use($email){
+                $message
+                ->to($email)
+                ->subject('.::Se ha involucrado en nuevo proceso::.');
+                }
+            );
+
+            echo 'Se realizó con éxito su registro, <strong>valide su email.</strong>';
+
+    }
+);
 
 Route::get(
     '/', function () {
