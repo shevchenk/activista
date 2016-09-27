@@ -31,7 +31,7 @@
                         <table id="t_personas_equipos" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th colspan='7' style='text-align:center; background-color:#A7C0DC;'><h2>Datos de la Persona</h2></th>
+                                <th colspan='4' style='text-align:center; background-color:#A7C0DC;'><h2>Datos de la Persona</h2></th>
                                 <th colspan='5' style='text-align:center; background-color:#DEACA9;'><h2>Datos del Equipo</h2></th>
                             </tr>
                             <tr></tr>
@@ -92,11 +92,6 @@
                                 <td style="text-align:center" colspan="2">
                                     <a class="btn btn-primary" onclick="Cancelar();">
                                         <i class="fa fa-lg fa-save"></i>.::Cancelar::.
-                                    </a>
-                                </td>
-                                <td style="text-align:center" colspan="2">
-                                    <a class="btn btn-primary" onclick="Cancelar();">
-                                        <i class="fa fa-lg fa-save"></i>.::Cambiar Responsable::.
                                     </a>
                                 </td>
                             </tr>

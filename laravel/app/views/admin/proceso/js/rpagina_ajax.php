@@ -60,6 +60,9 @@ var Rpagina={
                     msjG.mensaje('success',obj.msj+"\n"+"Página creada:"+obj.pagina,7000);
                     $("#txt_pag").html(obj.pagina);
                     $("#t_fichas tbody input").val('');
+                    if( confirm("Desea cambiar de Responsable?") ){
+                        Cancelar();
+                    }
                 }
                 else{
                     msjG.mensaje('warning',obj.msj,6000);
