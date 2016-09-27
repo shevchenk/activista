@@ -85,7 +85,7 @@ DetalleEntrega=function(btn,id){
     $(".oculta").css("display","");
     $(".oculta2").css("display","none");
 
-    var texto= '<h2><b>Persona:</b> '+$(tr).find("td:eq(0)").text()+' '+$(tr).find("td:eq(1)").text()+' '+$(tr).find("td:eq(2)").text();
+    var texto= '<h2><b>Equipo:</b> '+$(tr).find("td:eq(4)").text()+' <b>Persona:</b> '+$(tr).find("td:eq(0)").text()+' '+$(tr).find("td:eq(1)").text()+' '+$(tr).find("td:eq(2)").text();
     /*texto+=' <b>| Cargo:</b> '+$(tr).find("td:eq(5)").text();
     texto+=' <b>| Equipo:</b> '+$(tr).find("td:eq(7)").text()*/
     texto+='</h2>';
