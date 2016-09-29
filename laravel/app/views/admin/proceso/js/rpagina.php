@@ -14,6 +14,8 @@ $(document).ready(function() {
     var data = {estado:1};
     var ids = [];
 
+    slctGlobal.listarSlctFijo('grupop','slct_equipo_id');
+
     var idG={ paterno       :'onBlur|Paterno|#DCE6F1',
               materno       :'onBlur|Materno|#DCE6F1',
               nombres       :'onBlur|Nombres|#DCE6F1',
@@ -33,8 +35,11 @@ $(document).ready(function() {
     var resG=dataTableG.CargarBtn(columnDefsP,targetsP,1,'DetalleEntrega','t_personas_equipos','fa-edit');
     columnDefsP=resG[0]; // registra la colunmna adiciona con boton
     targetsP=resG[1]; // registra el contador actualizado
-    MostrarAjax('personas_equipos');
 });
+
+CargarPersonas=function(){
+    MostrarAjax('personas_equipos');
+}
 
 BtnDblClick=function(){
     $("#t_personas_equipos>tbody>tr").attr("OnDblClick","BtnDbl(this)");

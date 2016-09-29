@@ -26,8 +26,16 @@
         <!-- Main content -->
         <section class="content">
             <form name="form_personas_equipos" id="form_personas_equipos" method="POST" action="">
-                <div class="box-body table-responsive">
-                    <div class="col-sm-12">
+                <div class="col-sm-12">
+                    <div class="col-sm-4">
+                        <div><b>Seleccione Equipo a Gestionar:</b></div>
+                        <select class="form-control" name="slct_equipo_id" id="slct_equipo_id" onchange="CargarPersonas();">
+                            <option>.::Seleccione::.</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="box-body table-responsive">
                         <table id="t_personas_equipos" class="table table-bordered table-hover">
                             <thead>
                             <tr>
@@ -43,8 +51,8 @@
                 </div>
             </form>
             <form name="form_firmas" id="form_firmas" method="POST" action="" style="display:none">
-                <div class="box-body table-responsive">
-                    <div class="col-sm-12">
+                <div class="col-sm-12">
+                    <div class="box-body table-responsive">
                         <table id="t_fichas" class="table table-bordered table-hover">
                             <thead>
                             <tr>
