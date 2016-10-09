@@ -124,6 +124,7 @@ class Firma extends Base
         $sql.= $array['w'];
         $sql.= "GROUP BY gp.id,a.id,DATE(f.created_at)
                 ORDER BY a.paterno,a.materno,a.nombres,fecha";
+                echo $sql;
         $r=DB::select($sql);
 
         return $r;
