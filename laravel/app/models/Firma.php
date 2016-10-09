@@ -113,7 +113,7 @@ class Firma extends Base
     public static function RegistrosFirmas($array)
     {
         $sql="  SELECT a2.id,CONCAT(a2.paterno,' ',a2.materno,', ',a2.nombres) digitador,DATE(f.created_at) fecha,
-                COUNT(DISTINCT(f.pagina_firma_id)) paginas,gp.nombre equipo
+                COUNT(f.id) cant,COUNT(DISTINCT(f.pagina_firma_id)) paginas,COUNT(DISTINCT(f.ficha)) fichas,gp.nombre equipo
                 FROM firmas f
                 INNER JOIN escalafon_fichas ef ON ef.desdeh=f.pagina_firma_id
                 INNER JOIN escalafon e ON e.id=ef.escalafon_id
@@ -122,9 +122,8 @@ class Firma extends Base
                 INNER JOIN activistas a2 ON a2.id=f.usuario_created_at
                 WHERE f.estado=1";
         $sql.= $array['w'];
-        $sql.= "GROUP BY gp.id,a.id,DATE(f.created_at)
+        $sql.= "GROUP BY a2.id,fecha,gp.id
                 ORDER BY a.paterno,a.materno,a.nombres,fecha";
-                echo $sql;
         $r=DB::select($sql);
 
         return $r;

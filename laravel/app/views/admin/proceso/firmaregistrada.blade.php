@@ -84,7 +84,8 @@
                                         <th style='background-color: #DCE6F1'>Equipo</th>
                                         <th style='background-color: #DCE6F1'>Digitador(a)</th>
                                         <th style='background-color: #DCE6F1'>Fecha</th>
-                                        <th style='background-color: #DCE6F1'>Cantidad de Páginas Registradas</th>
+                                        <th style='background-color: #DCE6F1'>Números de Páginas</th>
+                                        <th style='background-color: #DCE6F1'>Números de Fichas</th>
                                     </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -93,7 +94,8 @@
                                         <th>Equipo</th>
                                         <th>Digitador(a)</th>
                                         <th>Fecha</th>
-                                        <th>Cantidad de Páginas Registradas</th>
+                                        <th>Números de Páginas</th>
+                                        <th>Números de Fichas</th>
                                     </tr>
                                     </tfoot>
                                 </table>
