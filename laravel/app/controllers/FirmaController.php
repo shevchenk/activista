@@ -407,6 +407,42 @@ class FirmaController extends \BaseController
         }
     }
 
+    public function postRegistradosg()
+    {
+        if ( Request::ajax() ) {
+            $fecha      =   Input::get('fecha');
+            $equipo   =   Input::get('equipo');
+            /*$pini     =   Input::get('pini');
+            $pfin     =   Input::get('pfin');*/
+
+            $array["w"]=""; $w=array();
+
+            if( $fecha!="" ){
+                $f=explode(" - ",$fecha);
+                array_push($w, " DATE(f.created_at) BETWEEN '".$f[0]."' AND '".$f[1]."' ");
+            }
+
+            if( is_array($equipo) ){
+                $dequipo=implode(",",$equipo);
+                array_push($w, " FIND_IN_SET(e.grupo_persona_id,'".$dequipo."')>0 ");
+            }
+
+            /*if( $pini!='' AND $pfin!='' ){
+                array_push($w, " f.pagina_firma_id BETWEEN '".$pini."' AND '".$pfin."' ");
+            }*/
+
+            if( count($w)>0 ){
+                $array['w'].=" AND ".implode("AND",$w)." ";
+            }
+            $valida= Firma::RegistrosFirmasG($array);
+
+            $aParametro['rst']=1;
+            $aParametro['data']=$valida;
+
+            return Response::json($aParametro);
+        }
+    }
+
     public function postRegistrados()
     {
         if ( Request::ajax() ) {
