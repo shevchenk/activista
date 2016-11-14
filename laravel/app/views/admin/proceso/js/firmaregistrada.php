@@ -8,7 +8,7 @@ $("#t_personas,#t_personasg").dataTable();
         showDropdowns: true
     });
     slctGlobal.listarSlct('digitador','slct_digitador','multiple');
-    slctGlobal.listarSlct('grupop','slct_equipo,slct_equipog','multiple');
+    slctGlobal.listarSlct('grupop','slct_equipo,#slct_equipog','multiple');
 });
 
 Listar=function(){
