@@ -33,7 +33,7 @@ RegistradosHTML=function(obj){
         html+='<td>'+data.digitador+'</td>';
         html+='<td>'+data.fecha+'</td>';
         html+='<td>'+data.paginas+'</td>';
-        html+='<td>'+data.fichas+'</td>';
+        html+='<td>'+data.firmas+'</td>';
         html+='</tr>';
     });
 

@@ -85,7 +85,7 @@
                                         <th style='background-color: #DCE6F1'>Digitador(a)</th>
                                         <th style='background-color: #DCE6F1'>Fecha</th>
                                         <th style='background-color: #DCE6F1'>Números de Páginas</th>
-                                        <th style='background-color: #DCE6F1'>Números de Fichas</th>
+                                        <th style='background-color: #DCE6F1'>Números de Firmas</th>
                                     </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -95,7 +95,7 @@
                                         <th>Digitador(a)</th>
                                         <th>Fecha</th>
                                         <th>Números de Páginas</th>
-                                        <th>Números de Fichas</th>
+                                        <th>Números de Firmas</th>
                                     </tr>
                                     </tfoot>
                                 </table>

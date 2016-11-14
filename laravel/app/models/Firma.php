@@ -113,7 +113,8 @@ class Firma extends Base
     public static function RegistrosFirmas($array)
     {
         $sql="  SELECT a2.id,CONCAT(a2.paterno,' ',a2.materno,', ',a2.nombres) digitador,DATE(f.created_at) fecha,
-                COUNT(f.id) cant,COUNT(DISTINCT(f.pagina_firma_id)) paginas,COUNT(DISTINCT(f.ficha)) fichas,gp.nombre equipo
+                COUNT(f.id) cant,COUNT(DISTINCT(f.pagina_firma_id)) paginas,COUNT(DISTINCT(f.ficha)) fichas,gp.nombre equipo,
+                COUNT(DISTINCT(IF(f.conteo!=3,f.id,NULL))) firmas
                 FROM firmas f
                 INNER JOIN escalafon_fichas ef ON ef.desdeh=f.pagina_firma_id
                 INNER JOIN escalafon e ON e.id=ef.escalafon_id
