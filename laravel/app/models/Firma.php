@@ -153,7 +153,7 @@ class Firma extends Base
                 else{
         $sql.=" GROUP BY gp.id ";
                 }
-        $sql.=" ORDER BY a.paterno,a.materno,a.nombres,fecha"
+        $sql.=" ORDER BY a.paterno,a.materno,a.nombres,fecha";
         $r=DB::select($sql);
 
         return $r;
