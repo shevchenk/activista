@@ -142,6 +142,15 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
+                                    <div class="col-sm-4">
+                                        <label class="control-label">Visualizar Fechas?:</label>
+                                        <select name="slct_visualiza" id="slct_visualiza" multiple>
+                                            <option value="1" selected>Si</option>
+                                            <option value="0">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
                                     <div class="col-sm-1">
                                         <br>
                                         <a class="btn btn-primary" onclick="ListarG();">

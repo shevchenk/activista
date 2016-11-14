@@ -46,10 +46,11 @@ ListarG=function(){
     var fecha="";
     fecha=$("#txt_fechag").val();
     equipo= $("#slct_equipog").val();
+    visualiza= $("#slct_visualiza").val();
     /*pini= $("#txt_pinicio").val();
     pfin= $("#txt_pfinal").val();*/
     
-    var data={ fecha:fecha,equipo:equipo };
+    var data={ fecha:fecha,equipo:equipo,visualiza:visualiza };
     Accion.RegistradosG(data,RegistradosHTMLG);
 }
 
@@ -59,7 +60,6 @@ RegistradosHTMLG=function(obj){
     $.each(obj.data,function(index,data){
         html+='<tr>';
         html+='<td>'+data.equipo+'</td>';
-        html+='<td>'+data.digitador+'</td>';
         html+='<td>'+data.fecha+'</td>';
         html+='<td>'+data.paginas+'</td>';
         html+='<td>'+data.firmas+'</td>';

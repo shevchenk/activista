@@ -132,7 +132,11 @@ class Firma extends Base
 
     public static function RegistrosFirmasG($array)
     {
-        $sql="  SELECT DATE(f.created_at) fecha,
+        $fecha="";
+        if($array['visualiza']==1){
+            $fecha="DATE(f.created_at) fecha, ";
+        }
+        $sql="  SELECT ".$fecha."
                 COUNT(f.id) cant,COUNT(DISTINCT(f.pagina_firma_id)) paginas,COUNT(DISTINCT(f.ficha)) fichas,gp.nombre equipo,
                 COUNT(DISTINCT(IF(f.conteo!=3,f.id,NULL))) firmas
                 FROM firmas f
@@ -141,10 +145,15 @@ class Firma extends Base
                 INNER JOIN grupos_personas gp ON gp.id=e.grupo_persona_id
                 INNER JOIN activistas a ON a.id=e.activista_id
                 INNER JOIN activistas a2 ON a2.id=f.usuario_created_at
-                WHERE f.estado=1";
+                WHERE f.estado=1 ";
         $sql.= $array['w'];
-        $sql.= "GROUP BY fecha,gp.id
-                ORDER BY a.paterno,a.materno,a.nombres,fecha";
+                if($array['visualiza']==1){
+        $sql.= " GROUP BY fecha,gp.id ";
+                }
+                else{
+        $sql.=" GROUP BY gp.id ";
+                }
+        $sql.=" ORDER BY a.paterno,a.materno,a.nombres,fecha"
         $r=DB::select($sql);
 
         return $r;

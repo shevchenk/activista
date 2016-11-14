@@ -412,10 +412,11 @@ class FirmaController extends \BaseController
         if ( Request::ajax() ) {
             $fecha      =   Input::get('fecha');
             $equipo   =   Input::get('equipo');
+            $visualiza   =   Input::get('visualiza');
             /*$pini     =   Input::get('pini');
             $pfin     =   Input::get('pfin');*/
 
-            $array["w"]=""; $w=array();
+            $array["w"]=""; $w=array();$array["visualiza"]=$visualiza;
 
             if( $fecha!="" ){
                 $f=explode(" - ",$fecha);
