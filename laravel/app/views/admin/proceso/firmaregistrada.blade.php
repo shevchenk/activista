@@ -168,7 +168,7 @@
                                             <thead>
                                             <tr>
                                                 <th style='background-color: #DCE6F1'>Equipo</th>
-                                                <th style='background-color: #DCE6F1'>Fecha</th>
+                                                <th style='background-color: #DCE6F1' class="oculta">Fecha</th>
                                                 <th style='background-color: #DCE6F1'>Números de Páginas</th>
                                                 <th style='background-color: #DCE6F1'>Números de Firmas</th>
                                             </tr>
@@ -177,7 +177,7 @@
                                             <tfoot>
                                             <tr>
                                                 <th>Equipo</th>
-                                                <th>Fecha</th>
+                                                <th class="oculta">Fecha</th>
                                                 <th>Números de Páginas</th>
                                                 <th>Números de Firmas</th>
                                             </tr>

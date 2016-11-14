@@ -60,13 +60,16 @@ RegistradosHTMLG=function(obj){
     $.each(obj.data,function(index,data){
         html+='<tr>';
         html+='<td>'+data.equipo+'</td>';
-        html+='<td>'+data.fecha+'</td>';
+        html+='<td class="oculta">'+data.fecha+'</td>';
         html+='<td>'+data.paginas+'</td>';
         html+='<td>'+data.firmas+'</td>';
         html+='</tr>';
     });
-
     $("#t_personasg>tbody").html(html); 
+    $(".oculta").css("display",'none');
+    if( $("#slct_visualiza").val()==1 ){
+        $(".oculta").css("display",'');
+    }
     $("#t_personasg").dataTable();
 }
 
