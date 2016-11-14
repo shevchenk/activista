@@ -148,12 +148,14 @@ class Firma extends Base
                 WHERE f.estado=1 ";
         $sql.= $array['w'];
                 if($array['visualiza']==1){
-        $sql.= " GROUP BY fecha,gp.id ";
+        $sql.=" GROUP BY fecha,gp.id ";
+        $sql.=" ORDER BY equipo,fecha";
                 }
                 else{
         $sql.=" GROUP BY gp.id ";
+        $sql.=" ORDER BY equipo";
                 }
-        $sql.=" ORDER BY a.paterno,a.materno,a.nombres,fecha";
+        
         $r=DB::select($sql);
 
         return $r;
