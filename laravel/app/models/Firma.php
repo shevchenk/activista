@@ -191,21 +191,41 @@ class Firma extends Base
                 FROM firmas
                 WHERE dni='$dni'";
 
+        $sql3="  SELECT dni
+                FROM reservas
+                where dni='$dni'";
+
         $r=DB::select($sql);
         $r2=DB::select($sql2);
+        $r3=DB::select($sql3);
 
         $mensaje='';
         if( count($r)>0 ){
             if( count($r2)>0 ){
-                $mensaje='DNI no permitido; Ya Existe en las firmas';
+                $mensaje='DNI no permitido; Ya Existe en las firmas^^0';
+            }
+            elseif( count($r3)>0 ){
+                $mensaje='DNI no permitido; se encuentra reservado^^0';
             }
             else{
-                $mensaje='DNI permitido.||PATERNO:   '.$r[0]->paterno.'|MATERNO:  '.$r[0]->materno.'|NOMBRES: '.$r[0]->nombres;
+                $mensaje='DNI permitido.||PATERNO:   '.$r[0]->paterno.'|MATERNO:  '.$r[0]->materno.'|NOMBRES: '.$r[0]->nombres.'^^1';
             }
         }
         else{
-            $mensaje='DNI no permitido; No exite en BD de Reniec';
+            $mensaje='DNI No exite en BD de Reniec^^1';
         }
+
+        return $mensaje;
+    }
+
+    public static function ReservaDNI($dni)
+    {
+        $reserva= new Reserva;
+        $reserva->dni=$dni;
+        $reserva->usuario_created_at=Auth::user()->id;
+        $reserva->save();
+
+        $mensaje='El DNI '.$dni.' ha sido reservado.';
 
         return $mensaje;
     }

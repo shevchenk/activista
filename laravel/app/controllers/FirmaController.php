@@ -540,6 +540,19 @@ class FirmaController extends \BaseController
         }
     }
 
+    public function postReservadni()
+    {
+        if ( Request::ajax() ) {
+            $dni      =   Input::get('dni');
+            $valida= Firma::ReservaDNI($dni);
+
+            $aParametro['rst']=1;
+            $aParametro['msj']=$valida;
+
+            return Response::json($aParametro);
+        }
+    }
+
     public function postValidarficha()
     {
         if ( Request::ajax() ) {
