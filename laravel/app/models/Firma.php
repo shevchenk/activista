@@ -222,7 +222,7 @@ class Firma extends Base
     {
         $reserva= new Reserva;
         $reserva->dni=$dni;
-        $reserva->usuario_created_at=Auth::user()->id;
+        //$reserva->usuario_created_at=Auth::user()->id;
         $reserva->save();
 
         $mensaje='El DNI '.$dni.' ha sido reservado.';
