@@ -25,7 +25,7 @@ var Accion={
             }
         });
     },
-    ValidaDNI:function( data ){
+    ReservaDNI:function( data ){
         $.ajax({
             url         : 'firma/reservadni',
             type        : 'POST',
