@@ -208,7 +208,7 @@ class Firma extends Base
                 $mensaje='DNI no permitido; se encuentra reservado^^0';
             }
             else{
-                $mensaje='DNI permitido.||PATERNO:   '.$r[0]->paterno.'|MATERNO:  '.$r[0]->materno.'|NOMBRES: '.$r[0]->nombres.'^^1';
+                $mensaje='DNI permitido.||MATERNO:  '.$r[0]->materno.'^^1';
             }
         }
         else{
