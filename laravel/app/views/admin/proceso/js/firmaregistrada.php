@@ -55,7 +55,7 @@ ListarG=function(){
 }
 
 RegistradosHTMLG=function(obj){
-    var html=''; var total=0; var pagar=0;
+    var html=''; var total=0; var pagar=0; 
     $('#t_personasg').dataTable().fnDestroy();
     $.each(obj.data,function(index,data){
         html+='<tr>';
@@ -64,7 +64,16 @@ RegistradosHTMLG=function(obj){
         html+='<td>'+data.paginas+'</td>';
         html+='<td>'+data.firmas+'</td>';
         html+='</tr>';
+        total+=data.paginas*1;
+        pagar+=data.firmas*1;
     });
+        html+='<tr>';
+        html+='<td><b>Total:</b></td>';
+        html+='<td class="oculta">&nbps;</td>';
+        html+='<td>'+total+'</td>';
+        html+='<td>'+pagar+'</td>';
+        html+='</tr>';
+
     $("#t_personasg>tbody").html(html); 
     $(".oculta").css("display",'none');
     if( $("#slct_visualiza").val()==1 ){
