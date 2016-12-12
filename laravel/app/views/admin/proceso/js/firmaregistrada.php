@@ -79,7 +79,9 @@ RegistradosHTMLG=function(obj){
     if( $("#slct_visualiza").val()==1 ){
         $(".oculta").css("display",'');
     }
-    $("#t_personasg").dataTable();
+    $("#t_personasg").dataTable({
+        "order": [[ 1, "desc" ],[ 2, "desc" ]]
+    });
 }
 
 </script>
