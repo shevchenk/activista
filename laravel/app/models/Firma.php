@@ -116,9 +116,9 @@ class Firma extends Base
                 COUNT(f.id) cant,COUNT(DISTINCT(f.pagina_firma_id)) paginas,COUNT(DISTINCT(f.ficha)) fichas,gp.nombre equipo,
                 COUNT(DISTINCT(IF(f.conteo!=3,f.id,NULL))) firmas
                 FROM firmas f
-                INNER JOIN escalafon_fichas ef ON ef.desdeh=f.pagina_firma_id
-                INNER JOIN escalafon e ON e.id=ef.escalafon_id
-                INNER JOIN grupos_personas gp ON gp.id=e.grupo_persona_id
+                INNER JOIN escalafon_fichas ef ON ef.desdeh=f.pagina_firma_id AND ef.estado=1
+                INNER JOIN escalafon e ON e.id=ef.escalafon_id AND e.estado=1
+                INNER JOIN grupos_personas gp ON gp.id=e.grupo_persona_id AND gp.estado=1
                 INNER JOIN activistas a ON a.id=e.activista_id
                 INNER JOIN activistas a2 ON a2.id=f.usuario_created_at
                 WHERE f.estado=1";
@@ -140,9 +140,9 @@ class Firma extends Base
                 COUNT(f.id) cant,COUNT(DISTINCT(f.pagina_firma_id)) paginas,COUNT(DISTINCT(f.ficha)) fichas,gp.nombre equipo,
                 COUNT(DISTINCT(IF(f.conteo!=3,f.id,NULL))) firmas
                 FROM firmas f
-                INNER JOIN escalafon_fichas ef ON ef.desdeh=f.pagina_firma_id
-                INNER JOIN escalafon e ON e.id=ef.escalafon_id
-                INNER JOIN grupos_personas gp ON gp.id=e.grupo_persona_id
+                INNER JOIN escalafon_fichas ef ON ef.desdeh=f.pagina_firma_id AND ef.estado=1
+                INNER JOIN escalafon e ON e.id=ef.escalafon_id AND e.estado=1
+                INNER JOIN grupos_personas gp ON gp.id=e.grupo_persona_id AND gp.estado=1
                 INNER JOIN activistas a ON a.id=e.activista_id
                 INNER JOIN activistas a2 ON a2.id=f.usuario_created_at
                 WHERE f.estado=1 ";
