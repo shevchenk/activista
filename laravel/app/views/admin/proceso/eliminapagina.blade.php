@@ -18,13 +18,13 @@
             <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Validación
+            Elimina Página
             <small> </small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
             <li><a href="#">Proceso</a></li>
-            <li class="active">Validación</li>
+            <li class="active">Elimina Página</li>
         </ol>
     </section>
 
@@ -38,7 +38,7 @@
                         <div class="col-sm-12">
                             <div class="col-sm-3">
                                 <label>Nro Página</label>
-                                <input type="text" name="txt_pagina" onKeyPress="return msjG.validaNumeros(event);">
+                                <input type="text" name="txt_pagina" id="txt_pagina" onKeyPress="return msjG.validaNumeros(event);">
                             </div>
                             <div class="col-sm-3">
                                 <a id="valida" class="btn btn-primary">
