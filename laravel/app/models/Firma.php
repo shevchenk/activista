@@ -24,6 +24,28 @@ class Firma extends Base
         return $r;
     }
 
+    public static function ValidaPagina($id)
+    {
+        $pag=PaginaFirma::find($id);
+        $r=array();
+        $r['rst']=1;
+        if( count($pag)>0 ){
+            if( $pag->estado==2 ){
+                $r['msj']='Página Libre';
+            }
+            else{
+                $r['msj']='Página existente';
+                $r['rst']=2;
+            }
+        }
+        else{
+            $r['msj']='Página no existe';
+            $r['rst']=2;
+        }
+
+        return $r;
+    }
+
     public static function CargarFichaPagina($array)
     {
         $sql="  SELECT f.fila,f.ficha,f.dni,f.paterno,f.materno,f.nombre,

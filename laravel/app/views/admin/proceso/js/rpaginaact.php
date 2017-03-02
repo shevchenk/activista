@@ -64,7 +64,7 @@ ListarFicha=function(v){
         }
     }
     $("#t_fichas tbody").html(tr);
-    $("#txt_pag").html('');
+    //$("#txt_pag").html('');
     var data={ficha:v};
     Rpagina.ValidarV(data);
 }
@@ -95,11 +95,30 @@ DetalleEntrega=function(btn,id){
     texto+=' <b>| Equipo:</b> '+$(tr).find("td:eq(7)").text()*/
     texto+='</h2>';
     $("#t_fichas span").html(texto);
-    $("#txt_pag").html('');
     IdEscalafonG=id;
     $("#form_personas_equipos").hide("slow");
     $("#form_firmas").show("slow");
     $("#txt_nro_ficha").val('');
+    var n1 = prompt("Ingrese nro de Página");
+    var data={p:n1};
+    $("#txt_pag").html(n1);
+    $("#txt_pag_id").val(n1);
+    if( n1 ){
+        Rpagina.ValidarPagina(data,ValidarPaginaJS);
+    }
+    else{
+        Cancelar();
+    }
+}
+
+ValidarPaginaJS=function(obj){
+    if(obj.rst==1){
+        msjG.mensaje('success',obj.msj,5000);
+    }
+    else{
+        msjG.mensaje('warning',obj.msj,5000);
+        Cancelar();
+    }
 }
 
 CargarEntregas=function(){

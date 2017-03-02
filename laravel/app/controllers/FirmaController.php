@@ -63,10 +63,20 @@ class FirmaController extends \BaseController
                 $paterno    =   Input::get('paterno');
                 $materno    =   Input::get('materno');
                 $nombre     =   Input::get('nombre');
+                $paginaFirma=array();
 
-                $paginaFirma= new PaginaFirma;
-                $paginaFirma['escalafon_id'] = $id;
-                $paginaFirma->save();
+                if( Input::has('pag_id') ){
+                    $pagina_id = Input::get('pag_id');
+                    $paginaFirma= PaginaFirma::find($pagina_id);
+                    $paginaFirma['escalafon_id'] = $id;
+                    $paginaFirma['estado'] = 1;
+                    $paginaFirma->save();
+                }
+                else{
+                    $paginaFirma= new PaginaFirma;
+                    $paginaFirma['escalafon_id'] = $id;
+                    $paginaFirma->save();
+                }
 
                 for ($i=0; $i < count($dni); $i++) { 
 
@@ -173,6 +183,17 @@ class FirmaController extends \BaseController
             $aParametro['data']=$valida;
 
             return Response::json($aParametro);
+        }
+    }
+
+    public function postValidarpagina()
+    {
+        if ( Request::ajax() ) {
+            $p      =   Input::get('p');
+
+            $valida= Firma::ValidaPagina($p);
+
+            return Response::json($valida);
         }
     }
 

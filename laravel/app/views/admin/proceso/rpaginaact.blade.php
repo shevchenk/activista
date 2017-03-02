@@ -51,6 +51,7 @@
                 </div>
             </form>
             <form name="form_firmas" id="form_firmas" method="POST" action="" style="display:none">
+                <input type="hidden" name="txt_pag_id" id="txt_pag_id">
                 <div class="col-sm-12">
                     <div class="box-body table-responsive">
                         <table id="t_fichas" class="table table-bordered table-hover">
