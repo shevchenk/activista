@@ -1,6 +1,6 @@
 <script type="text/javascript">
 $(document).ready(function() {
-   
+   $("#valida").click(Eliminar);
 });
 
 Eliminar=function(){
@@ -9,7 +9,8 @@ Eliminar=function(){
 }
 
 Limpiar=function(){
-    
+    $("#txt_pagina").val('');
+    $("#txt_pagina").focus();
 }
 
 </script>
