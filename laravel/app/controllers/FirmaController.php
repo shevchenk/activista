@@ -2,6 +2,40 @@
 
 class FirmaController extends \BaseController
 {
+    public function postEliminar()
+    {
+        if ( Request::ajax() ) {
+            $pagina      =   Input::get('pagina');
+
+            DB::beginTransaction();
+            $paginas=PaginaFirma::find($pagina);
+            $paginas['estado']=2;
+            $paginas->save();
+
+            $escalafonFicha=EscalafonFichas::where('escalafon_id','=',$paginas->escalafon_id)->firts();
+            $escalafonFichaRecepcion=EscalafonFichasRecepcion::where('escalafon_ficha_id','=',$escalafonFicha->id)->firts();
+            $ficha=Ficha::where("hoja",'=',$paginas->id)->firts();
+
+            $delete1='  DELETE FROM escalafon_fichas_recepcion 
+                        WHERE escalafon_ficha_id IN 
+                            (SELECT id 
+                            FROM escalafon_fichas 
+                            WHERE escalafon_id='.$paginas->escalafon_id.')';
+            $delete2='DELETE FROM escalafon_fichas WHERE escalafon_id='.$paginas->escalafon_id;
+            $delete3='DELETE FROM fichas WHERE hoja='.$paginas->id;
+            DB::delete($delete1);
+            DB::delete($delete2);
+            DB::delete($delete3);
+            
+            DB::commit();
+            $aParametro['msj'] = "Se realizó la eliminación";
+            $aParametro['pagina']=$paginas->id;
+            $aParametro['rst'] = 1;
+
+            return Response::json($aParametro);
+        }
+    }
+
     public function postGuardar()
     {
         if ( Request::ajax() ) {
