@@ -12,10 +12,6 @@ class FirmaController extends \BaseController
             $paginas['estado']=2;
             $paginas->save();
 
-            $escalafonFicha=EscalafonFichas::where('escalafon_id','=',$paginas->escalafon_id)->firts();
-            $escalafonFichaRecepcion=EscalafonFichasRecepcion::where('escalafon_ficha_id','=',$escalafonFicha->id)->firts();
-            $ficha=Ficha::where("hoja",'=',$paginas->id)->firts();
-
             $delete1='  DELETE FROM escalafon_fichas_recepcion 
                         WHERE escalafon_ficha_id IN 
                             (SELECT id 
