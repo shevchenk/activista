@@ -4,7 +4,7 @@ $(document).ready(function() {
 });
 
 Cargar=function(){
-    Cargar.PaginasPendientes(CargarHtml);
+    Paginas.PaginasPendientes(CargarHtml);
 }
 
 CargarHtml=function(){

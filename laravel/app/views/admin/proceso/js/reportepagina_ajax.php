@@ -1,5 +1,5 @@
 <script type="text/javascript">
-var Cargar={
+var Paginas={
     PaginasPendientes:function( evento ){
         $.ajax({
             url         : 'pagina/paginaspendientes',
