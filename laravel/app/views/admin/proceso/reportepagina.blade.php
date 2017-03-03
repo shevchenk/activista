@@ -42,6 +42,15 @@
                                 </a>
                             </div>
                         </div>
+                        <div class="col-sm-12">
+                            <table id="table">
+                                <thead>
+                                    <th>Página Libre</th>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
                     </form>
                     </div>
                 </fieldset>

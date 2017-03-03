@@ -11,7 +11,6 @@ CargarHtml=function(){
     html='';
     $.each(datos,function(index,data){
         html+=  "<tr>"+
-                    "<td>"+(index+1)+"</td>"+
                     "<td>"+
                         data.id+
                     "</td>"+
