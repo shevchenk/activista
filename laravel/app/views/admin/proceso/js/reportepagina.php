@@ -9,6 +9,7 @@ Cargar=function(){
 
 CargarHtml=function(){
     html='';
+    $("#table tbody").html(html);
     $.each(datos,function(index,data){
         html+=  "<tr>"+
                     "<td>"+
@@ -16,6 +17,6 @@ CargarHtml=function(){
                     "</td>"+
                 "</tr>";
     });
-    $("#table").html(html);
+    $("#table tbody").html(html);
 }
 </script>

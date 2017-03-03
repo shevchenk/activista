@@ -42,8 +42,9 @@
                                 </a>
                             </div>
                         </div>
+                        <br><hr><br>
                         <div class="col-sm-12">
-                            <table id="table">
+                            <table id="table" class="table table-bordered table-striped">
                                 <thead>
                                     <th>Página Libre</th>
                                 </thead>
