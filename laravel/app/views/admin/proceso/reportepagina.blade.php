@@ -10,21 +10,21 @@
 
     @include( 'admin.js.slct_global_ajax' )
     @include( 'admin.js.slct_global' )
-    @include( 'admin.proceso.js.eliminapagina_ajax' )
-    @include( 'admin.proceso.js.eliminapagina' )
+    @include( 'admin.proceso.js.reportepagina_ajax' )
+    @include( 'admin.proceso.js.reportepagina' )
 @stop
 <!-- Right side column. Contains the navbar and content of the page -->
 @section('contenido')
             <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Elimina Página
+            Reporte Página Libre
             <small> </small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
             <li><a href="#">Proceso</a></li>
-            <li class="active">Elimina Página</li>
+            <li class="active">Reporte Página Libre</li>
         </ol>
     </section>
 
