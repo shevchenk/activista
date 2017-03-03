@@ -2,7 +2,7 @@
 
 class PaginaFirmaController extends \BaseController
 {
-    public function postPaginasPendientes()
+    public function postPaginaspendientes()
     {
         if ( Request::ajax() ) {
             $valida= PaginaFirma::PaginasPendientes($p);
