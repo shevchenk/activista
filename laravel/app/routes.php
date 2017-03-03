@@ -110,3 +110,4 @@ Route::controller('ficha', 'FichaController');
 Route::controller('firma', 'FirmaController');
 Route::controller('operador', 'OperadorController');
 Route::controller('digitador', 'DigitadorController');
+Route::controller('pagina', 'PaginaFirmaController');
