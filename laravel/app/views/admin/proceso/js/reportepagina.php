@@ -7,7 +7,7 @@ Cargar=function(){
     Paginas.PaginasPendientes(CargarHtml);
 }
 
-CargarHtml=function(){
+CargarHtml=function(datos){
     html='';
     $("#table tbody").html(html);
     $.each(datos,function(index,data){
