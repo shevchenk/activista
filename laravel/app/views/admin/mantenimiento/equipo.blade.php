@@ -19,13 +19,13 @@
     <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Estructura Organizacional
+                Gestión de Equipo(s)
                 <small> </small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
                 <li><a href="#">Gestiones</a></li>
-                <li class="active">Estructura Oranizacional</li>
+                <li class="active">Gestión de Equipo(s)</li>
             </ol>
         </section>
 
