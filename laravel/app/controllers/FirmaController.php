@@ -24,12 +24,14 @@ class FirmaController extends \BaseController
                                 WHERE escalafon_ficha_id IN 
                                     (SELECT id 
                                     FROM escalafon_fichas 
-                                    WHERE escalafon_id='.$paginas->escalafon_id.')';
-                    $delete2='DELETE FROM escalafon_fichas WHERE escalafon_id='.$paginas->escalafon_id;
+                                    WHERE desdeh='.$paginas->id.')';
+                    $delete2='DELETE FROM escalafon_fichas WHERE desdeh='.$paginas->id;
                     $delete3='DELETE FROM fichas WHERE hoja='.$paginas->id;
+                    $delete4='DELETE FROM firmas WHERE pagina_firma_id='.$paginas->id;
                     DB::delete($delete1);
                     DB::delete($delete2);
                     DB::delete($delete3);
+                    DB::delete($delete4);
                     
                     DB::commit();
                     $aParametro['msj'] = "Se realizó la eliminación de la página nro ".$pagina;
