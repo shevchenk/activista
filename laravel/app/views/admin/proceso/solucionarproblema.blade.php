@@ -90,7 +90,8 @@
                                             <tr>
                                                 <th>Nº</th>
                                                 <th>Sede</th>
-                                                <th>Tipo</th>
+                                                <th>Problema General</th>
+                                                <th>Tipo Problema</th>
                                                 <th>Descripción</th>
                                                 <th>Fecha problema</th>
                                                 <th>Fecha registro</th>
@@ -105,7 +106,8 @@
                                             <tr>
                                                 <th>Nº</th>
                                                 <th>Sede</th>
-                                                <th>Tipo</th>
+                                                <th>Problema General</th>
+                                                <th>Tipo Problema</th>
                                                 <th>Descripción</th>
                                                 <th>Fecha problema</th>
                                                 <th>Fecha registro</th>
