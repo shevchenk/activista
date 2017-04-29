@@ -17,7 +17,12 @@ class FirmaController extends \BaseController
                 else{
                     DB::beginTransaction();
                     $paginas['estado']=2;
-                    $paginas->save();
+                    $paginas->save(); 
+                    
+                    $historial= new HistorialPaginaFirma;
+                    $historial->usuario_id=Auth::user()->id;
+                    $historial->pagina_firma_id=$paginas->id;
+                    $historial->save();
 
 
                     $delete1='  DELETE FROM escalafon_fichas_recepcion 
