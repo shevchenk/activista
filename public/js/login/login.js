@@ -1,8 +1,8 @@
 var clickbtn="btnIniciar";
 $(document).ready(function() {
-	$('.formNotice span').click(function() {
+	//$('.formNotice span').click(function() {
 		$("body").attr("onkeyup","return validaEnter(event,'"+clickbtn+"')");
-	});
+	//});
 
 	$("#btnIniciar").click(IniciarSession);
 	$("#mensaje_msj").fadeOut(3500);
