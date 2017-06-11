@@ -13,11 +13,11 @@ var Paginas={
                 $(".overlay,.loading-img").remove();
                 if(obj.rst==1){
                     msjG.mensaje('success',obj.msj,4000);
-                    evento(obj.data);
                 }
                 else if(obj.rst==2){
                     msjG.mensaje('warning',obj.msj,3000);
                 }
+                    evento(obj);
             },
             error: function(){
                 $(".overlay,.loading-img").remove();

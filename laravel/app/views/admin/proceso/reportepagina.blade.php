@@ -43,14 +43,39 @@
                             </div>
                         </div>
                         <br><hr><br>
-                        <div class="col-sm-12">
-                            <table id="table" class="table table-bordered table-striped">
-                                <thead>
-                                    <th>Página Libre</th>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
+                        <div class="col-md-6">
+                          <!-- Custom Tabs (Pulled to the right) -->
+                          <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs pull-right">
+                              <li class="active"><a href="#tab_1-1" data-toggle="tab">Tab 1</a></li>
+                              <li><a href="#tab_2-2" data-toggle="tab">Tab 2</a></li>
+                            </ul>
+                            <div class="tab-content">
+                              <div class="tab-pane active" id="tab_1-1">
+                                <table id="table" class="table table-bordered table-striped">
+                                    <thead>
+                                        <th>Página Libre</th>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                              </div>
+                              <!-- /.tab-pane -->
+                              <div class="tab-pane" id="tab_2-2">
+                                <table id="table2" class="table table-bordered table-striped">
+                                    <thead>
+                                        <th>Pagina Inicio</th>
+                                        <th>Página Final</th>
+                                        <th>Página(s) Libre(s)</th>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                              </div>
+                            </div>
+                            <!-- /.tab-content -->
+                          </div>
+                          <!-- nav-tabs-custom -->
                         </div>
                     </form>
                     </div>
