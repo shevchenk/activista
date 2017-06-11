@@ -33,7 +33,7 @@ CargarHtml=function(datos){
                         data.fin+
                     "</td>"+
                     "<td>"+
-                        data.vacios+
+                        $.trim(data.vacios)+
                     "</td>"+
                 "</tr>";
     });

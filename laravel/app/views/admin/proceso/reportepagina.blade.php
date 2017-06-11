@@ -46,9 +46,9 @@
                         <div class="col-md-6">
                           <!-- Custom Tabs (Pulled to the right) -->
                           <div class="nav-tabs-custom">
-                            <ul class="nav nav-tabs pull-right">
-                              <li class="active"><a href="#tab_1-1" data-toggle="tab">Tab 1</a></li>
-                              <li><a href="#tab_2-2" data-toggle="tab">Tab 2</a></li>
+                            <ul class="nav nav-tabs">
+                              <li class="active"><a href="#tab_1-1" data-toggle="tab">Páginas Libres</a></li>
+                              <li><a href="#tab_2-2" data-toggle="tab">Páginas Libres en Bloques</a></li>
                             </ul>
                             <div class="tab-content">
                               <div class="tab-pane active" id="tab_1-1">
