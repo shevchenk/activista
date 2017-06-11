@@ -6,8 +6,8 @@ class PaginaFirmaController extends \BaseController
     {
         if ( Request::ajax() ) {
             $r=array();
-            $r= PaginaFirma::PaginasPendientes();
-            $r= PaginaFirma::PaginasPendientesDosCientos();
+            $r= PaginaFirma::PaginasPendientes($r);
+            $r= PaginaFirma::PaginasPendientesDosCientos($r);
             return Response::json($r);
         }
     }
