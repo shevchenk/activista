@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <br><hr><br>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                           <!-- Custom Tabs (Pulled to the right) -->
                           <div class="nav-tabs-custom">
                             <ul class="nav nav-tabs">
