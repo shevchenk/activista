@@ -51,7 +51,7 @@
                               <li><a href="#tab_2-2" data-toggle="tab">Páginas Libres en Bloques</a></li>
                             </ul>
                             <div class="tab-content">
-                              <div class="tab-pane active" id="tab_1-1">
+                              <div class="tab-pane active table-responsive" id="tab_1-1">
                                 <table id="table" class="table table-bordered table-striped">
                                     <thead>
                                         <th>Página Libre</th>
@@ -61,7 +61,7 @@
                                 </table>
                               </div>
                               <!-- /.tab-pane -->
-                              <div class="tab-pane" id="tab_2-2">
+                              <div class="tab-pane table-responsive" id="tab_2-2">
                                 <table id="table2" class="table table-bordered table-striped">
                                     <thead>
                                         <th>Pagina Inicio</th>
