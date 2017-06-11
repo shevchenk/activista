@@ -15,7 +15,7 @@ class PaginaFirma extends Base
     }
     public static function PaginasPendientesDosCientos($r)
     {
-        $set=DB::select('SET group_concat_max_len := @@max_allowed_packet');
+        $set=DB::select('SET SESSION group_concat_max_len = 10000');
         $sql="  SELECT min(id) inicio,if(id%200=0,id-id%200,id-id%200+200) fin, 
                 max(id) maximo, GROUP_CONCAT( IF(estado=2,id,NULL) ) vacios
                 FROM paginafirma
