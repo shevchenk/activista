@@ -649,8 +649,6 @@ class FirmaController extends \BaseController
 
     public function postExportar()
     {
-
-        if ( Request::ajax() ) {
             ini_set('memory_limit','512M');
             set_time_limit(600);
             $result=Firma::select('pagina_firma_id','fila','dni','paterno','materno','nombre')->where('id','<=',1000)->get();
@@ -731,5 +729,4 @@ class FirmaController extends \BaseController
         exit;
 
         }
-    }
 }
