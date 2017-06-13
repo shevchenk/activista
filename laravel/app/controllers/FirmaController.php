@@ -656,6 +656,9 @@ class FirmaController extends \BaseController
             $result=Firma::select('pagina_firma_id','fila','dni','paterno','materno','nombre')->where('id','<=',1000)->get();
 
         
+        $az=array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','AA','AB','AC','AD','AE','AF','AG','AH','AI','AJ','AK','AL','AM','AN','AO','AP','AQ','AR','AS','AT','AU','AV','AW','AX','AY','AZ','BA','BB','BC','BD','BE','BF','BG','BH','BI','BJ','BK','BL','BM','BN','BO','BP','BQ','BR','BS','BT','BU','BV','BW','BX','BY','BZ','CA','CB','CC','CD','CE','CF','CG','CH','CI','CJ','CK','CL','CM','CN','CO','CP','CQ','CR','CS','CT','CU','CV','CW','CX','CY','CZ','DA','DB','DC','DD','DE','DF','DG','DH','DI','DJ','DK','DL','DM','DN','DO','DP','DQ','DR','DS','DT','DU','DV','DW','DX','DY','DZ');
+        $azcount=array(17,17,17,17,17,17,17,18,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15);
+
         $styleThinBlackBorderAllborders = array(
             'borders' => array(
                 'allborders' => array(
@@ -663,13 +666,6 @@ class FirmaController extends \BaseController
                     'color' => array('argb' => 'FF000000'),
                 ),
             ),
-            'font'    => array(
-                'bold'      => true
-            ),
-            'alignment' => array(
-                'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
-                'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER,
-            )
         );
         $styleAlignmentBold= array(
             'font'    => array(
@@ -686,64 +682,53 @@ class FirmaController extends \BaseController
                 'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER,
             ),
         );
-        /*end style*/
 
-          /*export*/
-            /* instanciar phpExcel!*/
-            
-            $objPHPExcel = new PHPExcel();
+        $objPHPExcel = new PHPExcel();
+        $objPHPExcel->getProperties()->setCreator("Jorge Salcedo")
+                                     ->setLastModifiedBy("Jorge Salcedo")
+                                     ->setTitle("Office 2007 XLSX Test Document")
+                                     ->setSubject("Office 2007 XLSX Test Document")
+                                     ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
+                                     ->setKeywords("office 2007 openxml php")
+                                     ->setCategory("Test result file");
 
-            /*configure*/
-            $objPHPExcel->getProperties()->setCreator("Gerencia Modernizacion")
-               ->setSubject("Reporte de Contrataciones");
+        $objPHPExcel->getDefaultStyle()->getFont()->setName('Bookman Old Style');
+        $objPHPExcel->getDefaultStyle()->getFont()->setSize(8);
 
-            $objPHPExcel->getDefaultStyle()->getFont()->setName('Bookman Old Style');
-            $objPHPExcel->getDefaultStyle()->getFont()->setSize(8);
-            /*end configure*/
+        $cabecera=array('NUM_PAG','NUM_ITE','NUM_ELE','APE_PAT','APE_MAT','NOM_ADE');
 
-            /*head*/       
-            $objPHPExcel->setActiveSheetIndex(0)
-                        ->setCellValue('A1', 'NUM_PAG')
-                        ->setCellValue('B1', 'NUM_ITE')
-                        ->setCellValue('C1', 'NUM_ELE')
-                        ->setCellValue('D1', 'APE_PAT')
-                        ->setCellValue('E1', 'APE_MAT')
-                        ->setCellValue('F1', 'NOM_ADE');
-            
-            /*end head*/
-            /*body*/
-            if($result){
-              foreach ($result as $key => $value) {
-                
-                $objPHPExcel->setActiveSheetIndex(0)
-                        
-                              ->setCellValueExplicit('A' . ($key + 1), $value->pagina_firma_id)
-                              ->setCellValueExplicit('B' . ($key + 1), $value->fila)
-                              ->setCellValueExplicit('C' . ($key + 1), $value->dni)
-                              ->setCellValueExplicit('D' . ($key + 1), $value->paterno)
-                              ->setCellValueExplicit('E' . ($key + 1), $value->materno)
-                              ->setCellValueExplicit('F' . ($key + 1), $value->nombre)
-                              ; 
-              }
+            for($i=0;$i<count($cabecera);$i++){
+            $objPHPExcel->getActiveSheet()->setCellValue($az[$i]."1",$cabecera[$i]);
+            $objPHPExcel->getActiveSheet()->getStyle($az[$i]."1")->getAlignment()->setWrapText(true);
+            $objPHPExcel->getActiveSheet()->getColumnDimension($az[$i])->setWidth($azcount[$i]);
             }
-            // Rename worksheet
-            $objPHPExcel->getActiveSheet()->setTitle('Reporte');
-            // Set active sheet index to the first sheet, so Excel opens this as the first sheet
-            $objPHPExcel->setActiveSheetIndex(0);
-            // Redirect output to a client’s web browser (Excel5)
-            header('Content-Type: application/vnd.ms-excel');
-            header('Content-Disposition: attachment;filename="reporteni.xls"'); // file name of excel
-            header('Cache-Control: max-age=0');
-            // If you're serving to IE 9, then the following may be needed
-            header('Cache-Control: max-age=1');
-            // If you're serving to IE over SSL, then the following may be needed
-            header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
-            header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
-            header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
-            header ('Pragma: public'); // HTTP/1.0
-            $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-            $objWriter->save('php://output');
-            exit;
+        $objPHPExcel->getActiveSheet()->getStyle('A1:'.$az[($i-1)].'1')->applyFromArray($styleAlignmentBold);
+
+        
+        $cont=0;
+        $valorinicial=1;
+        $azcant=0;
+        foreach($result as $r){ 
+            $cont++;
+            $valorinicial++;
+            $azcant=0;
+            $objPHPExcel->getActiveSheet()->setCellValue($az[$azcant].$valorinicial,$r->pagina_firma_id);$azcant++;
+            $objPHPExcel->getActiveSheet()->setCellValue($az[$azcant].$valorinicial,$r->fila);$azcant++;
+            $objPHPExcel->getActiveSheet()->setCellValue($az[$azcant].$valorinicial,$r->dni);$azcant++;
+            $objPHPExcel->getActiveSheet()->setCellValue($az[$azcant].$valorinicial,$r->paterno);$azcant++;
+            $objPHPExcel->getActiveSheet()->setCellValue($az[$azcant].$valorinicial,$r->materno);$azcant++;
+            $objPHPExcel->getActiveSheet()->setCellValue($az[$azcant].$valorinicial,$r->nombre);$azcant++;
+        }
+        $objPHPExcel->getActiveSheet()->getStyle('A2:'.$az[$azcant].$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+        $objPHPExcel->getActiveSheet()->setTitle('Listado');
+        $objPHPExcel->setActiveSheetIndex(0);
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="Listado_'.date("Y-m-d_H-i-s").'.xlsx"');
+        header('Cache-Control: max-age=0');
+
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+        $objWriter->save('php://output');
+        exit;
 
         }
     }
