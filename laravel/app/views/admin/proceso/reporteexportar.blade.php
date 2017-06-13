@@ -29,7 +29,7 @@
                     <form name="form_validacion" id="form_validacion" method="POST" action="firma/exportar">
                         <div class="col-sm-12">
                             <div class="col-sm-3">
-                                <a id="valida" onclick="submit();" class="btn btn-primary">
+                                <a id="valida" class="btn btn-primary">
                                     <i class="fa fa-lg fa-file">Exportar</i>
                                 </a>
                             </div>
