@@ -654,24 +654,99 @@ class FirmaController extends \BaseController
             ini_set('memory_limit','512M');
             set_time_limit(600);
             $valida=Firma::select('pagina_firma_id','fila','dni','paterno','materno','nombre')->limit(1000)->get();
-            header("Content-Type:   application/vnd.ms-excel; charset=utf-8");
-            header("Content-Disposition: attachment; filename=data.xls");  //File name extension was wrong
-            header("Expires: 0");
-            header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-            header("Cache-Control: private",false);
+            $propiedades = array(
+              'creador'=>'Gerencia Modernizacion',
+              'subject'=>'Detalle de Tareas',
+              'tittle'=>'Plataforma',
+              'font-name'=>'Bookman Old Style',
+              'font-size'=>8,
+            );
 
-            echo "<table boder='1'>";
-            foreach ($variable as $key => $value) {
-                echo "<tr>";
-                    echo "<td>".str_pad($value['pagina_firma_id'], 6, "0", STR_PAD_LEFT)."</td>";
-                    echo "<td>".str_pad($value['fila'], 2, "0", STR_PAD_LEFT)."</td>";
-                    echo "<td>".str_pad($value['dni'], 8, "0", STR_PAD_LEFT)."</td>";
-                    echo "<td>".str_pad($value['paterno'], 40, " ", STR_PAD_LEFT)."</td>";
-                    echo "<td>".str_pad($value['materno'], 40, " ", STR_PAD_LEFT)."</td>";
-                    echo "<td>".str_pad($value['nombre'], 35, " ", STR_PAD_LEFT)."</td>";
-                echo "</tr>";
+            $cabecera = array(
+              'PROCESO',
+              'AREA',
+              'ID_UNION',
+              'SUMILLA',
+              'FECHA',
+            );
+            $styleThinBlackBorderAllborders = array(
+                'borders' => array(
+                    'allborders' => array(
+                        'style' => PHPExcel_Style_Border::BORDER_THIN,
+                        'color' => array('argb' => 'FF000000'),
+                    ),
+                ),
+                'font'    => array(
+                    'bold'      => true
+                ),
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                    'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER,
+                )
+            );
+            $styleAlignmentBold= array(
+                'font'    => array(
+                    'bold'      => true
+                ),
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                    'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER,
+                ),
+            );
+            $styleAlignment= array(
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                    'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER,
+                ),
+            );
+            /*end style*/
+
+          $head=array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','AA','AB','AC','AD','AE','AF','AG','AH','AI','AJ','AK','AL','AM','AN','AO','AP','AQ','AR','AS','AT','AU','AV','AW','AX','AY','AZ','BA','BB','BC','BD','BE','BF','BG','BH','BI','BJ','BK','BL','BM','BN','BO','BP','BQ','BR','BS','BT','BU','BV','BW','BX','BY','BZ','CA','CB','CC','CD','CE','CF','CG','CH','CI','CJ','CK','CL','CM','CN','CO','CP','CQ','CR','CS','CT','CU','CV','CW','CX','CY','CZ','DA','DB','DC','DD','DE','DF','DG','DH','DI','DJ','DK','DL','DM','DN','DO','DP','DQ','DR','DS','DT','DU','DV','DW','DX','DY','DZ');
+
+          /*instanciar phpExcel*/            
+          $objPHPExcel = new PHPExcel();
+          /*end instanciar phpExcel*/
+
+          /*configure*/
+          $objPHPExcel->getProperties()->setCreator($propiedades['creador'])
+                                      ->setSubject($propiedades['subject']);
+
+          $objPHPExcel->getDefaultStyle()->getFont()->setName($propiedades['font-name']);
+          $objPHPExcel->getDefaultStyle()->getFont()->setSize($propiedades['font-size']);
+          $objPHPExcel->getActiveSheet()->setTitle($propiedades['tittle']);
+
+          foreach($data as $key => $value){
+            $cont = 0;
+
+            if($key == 0){ // set style to heade
+
             }
-            echo "</table>";
+
+            $objPHPExcel->setActiveSheetIndex(0)->setCellValue($head[0].($key + 1), str_pad($value['pagina_firma_id'], 6, "0", STR_PAD_LEFT));
+            $objPHPExcel->setActiveSheetIndex(0)->setCellValue($head[0].($key + 1), str_pad($value['fila'], 2, "0", STR_PAD_LEFT));
+            $objPHPExcel->setActiveSheetIndex(0)->setCellValue($head[0].($key + 1), str_pad($value['dni'], 8, "0", STR_PAD_LEFT));
+            $objPHPExcel->setActiveSheetIndex(0)->setCellValue($head[0].($key + 1), str_pad($value['paterno'], 40, " ", STR_PAD_LEFT));
+            $objPHPExcel->setActiveSheetIndex(0)->setCellValue($head[0].($key + 1), str_pad($value['materno'], 40, " ", STR_PAD_LEFT));
+            $objPHPExcel->setActiveSheetIndex(0)->setCellValue($head[0].($key + 1), str_pad($value['nombre'], 35, " ", STR_PAD_LEFT));
+
+          }
+          /*end set up structure*/
+
+          $objPHPExcel->setActiveSheetIndex(0);
+          // Redirect output to a client’s web browser (Excel5)
+          header('Content-Type: application/vnd.ms-excel');
+          header('Content-Disposition: attachment;filename="reporte.xls"'); // file name of excel
+          header('Cache-Control: max-age=0');
+          // If you're serving to IE 9, then the following may be needed
+          header('Cache-Control: max-age=1');
+          // If you're serving to IE over SSL, then the following may be needed
+          header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+          header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
+          header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+          header ('Pragma: public'); // HTTP/1.0
+          $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+          $objWriter->save('php://output');
+          exit;
 
         }
     }
