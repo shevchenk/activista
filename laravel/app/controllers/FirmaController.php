@@ -647,7 +647,7 @@ class FirmaController extends \BaseController
         }
     }
 
-    public function postExportar()
+    public function getExportar()
     {
             ini_set('memory_limit','512M');
             set_time_limit(600);
