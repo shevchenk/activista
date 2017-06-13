@@ -1396,7 +1396,7 @@ class ReporteController extends BaseController
 
     public function getExportar()
     {
-            ini_set('memory_limit','512M');
+            ini_set('memory_limit','2048M');
             set_time_limit(600);
             $result=Firma::select('pagina_firma_id','fila','dni','paterno','materno','nombre')->get();
             header("Content-Type: application/vnd.ms-excel");
