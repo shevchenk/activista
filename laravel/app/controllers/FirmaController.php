@@ -712,14 +712,14 @@ class FirmaController extends \BaseController
             $cont++;
             $valorinicial++;
             $azcant=0;
-            $objPHPExcel->getActiveSheet()->setCellValue($az[$azcant].$valorinicial,$r->pagina_firma_id);$azcant++;
+            $objPHPExcel->getActiveSheet()->setCellValue($az[$azcant].$valorinicial,$r->pagina_firma_id);
             $objPHPExcel->getActiveSheet()->setCellValue($az[$azcant].$valorinicial,$r->fila);$azcant++;
             $objPHPExcel->getActiveSheet()->setCellValue($az[$azcant].$valorinicial,$r->dni);$azcant++;
             $objPHPExcel->getActiveSheet()->setCellValue($az[$azcant].$valorinicial,$r->paterno);$azcant++;
             $objPHPExcel->getActiveSheet()->setCellValue($az[$azcant].$valorinicial,$r->materno);$azcant++;
             $objPHPExcel->getActiveSheet()->setCellValue($az[$azcant].$valorinicial,$r->nombre);$azcant++;
         }
-        $objPHPExcel->getActiveSheet()->getStyle('A2:'.$az[$azcant].$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
+        $objPHPExcel->getActiveSheet()->getStyle('A1:'.$az[$azcant].$valorinicial)->applyFromArray($styleThinBlackBorderAllborders);
         $objPHPExcel->getActiveSheet()->setTitle('Listado');
         $objPHPExcel->setActiveSheetIndex(0);
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
