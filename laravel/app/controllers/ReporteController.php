@@ -1399,14 +1399,16 @@ class ReporteController extends BaseController
             ini_set('memory_limit','512M');
             set_time_limit(600);
 
-            header("Content-Type: application/vnd.ms-excel");
+            /*header("Content-Type: application/vnd.ms-excel");
             header("Content-Disposition: attachment; filename=exportar.xls");
             header("Pragma: no-cache");
-            header("Expires: 0");
+            header("Expires: 0");*/
+            header('Content-type: text/plain');
+            header('Content-Disposition: attachment; filename=txt/exportar.txt'); 
             $inicia=0;
             $fin=0;
             $acumula=100000;
-            echo "<table>";
+            //echo "<table>";
 
 
             $sql="  SELECT pagina_firma_id, fila, dni, paterno, materno, nombre
@@ -1414,7 +1416,24 @@ class ReporteController extends BaseController
                     limit 0,100000";
             $result=DB::select($sql);
 
+            $jump = "\r\n";
+            $separator = "\t";
+            $file="txt/exportar.txt";
+            $fp = fopen($file, 'w+');
+            fwrite($fp, $registro);
             foreach ($result as $r) {
+                $registro = str_pad( substr($r->pagina_firma_id,0,6) ,6,'0',STR_PAD_LEFT).$separator.
+                            str_pad( substr($r->fila,0,2) ,2,'0',STR_PAD_LEFT).$separator.
+                            str_pad( substr($r->dni,0,8) ,8,'0',STR_PAD_LEFT).$separator.
+                            str_pad( substr($r->paterno,0,40) ,40,' ',STR_PAD_LEFT).$separator.
+                            str_pad( substr($r->materno,0,40) ,40,' ',STR_PAD_LEFT).$separator.
+                            str_pad( substr($r->nombre,0,35) ,35,' ',STR_PAD_LEFT).$jump;
+                fwrite($fp, $registro);
+            }
+            fclose($fp);
+            chmod($file, 0777);
+
+            /*foreach ($result as $r) {
                 echo "<tr>";
                 echo "<td>".str_pad( substr($r->pagina_firma_id,0,6) ,6,'0',STR_PAD_LEFT)."</td>";
                 echo "<td>".str_pad( substr($r->fila,0,2) ,2,'0',STR_PAD_LEFT)."</td>";
@@ -1423,9 +1442,9 @@ class ReporteController extends BaseController
                 echo "<td>".str_pad( substr($r->materno,0,40) ,40,' ',STR_PAD_LEFT)."</td>";
                 echo "<td>".str_pad( substr($r->nombre,0,35) ,35,' ',STR_PAD_LEFT)."</td>";
                 echo "</tr>";
-            }
+            }*/
 
-            
-            echo "</table>";
+
+            //echo "</table>";
     }
 }
