@@ -1405,31 +1405,36 @@ class ReporteController extends BaseController
             header("Expires: 0");*/
             header('Content-type: text/plain');
             header('Content-Disposition: attachment; filename=exportar.txt'); 
-            $inicia=0;
-            $fin=0;
+            $inicio=0;
             $acumula=100000;
+            $cantidad=100000;
             //echo "<table>";
 
 
-            $sql="  SELECT pagina_firma_id, fila, dni, paterno, materno, nombre
-                    FROM firmas 
-                    limit 0,100000";
-            $result=DB::select($sql);
+            while ( $cantidad>0) {
 
-            $jump = "\r\n";
-            $separator = "\t";
-            //$file="txt/exportar.txt";
-            //$fp = fopen($file, 'w+');
-            //fwrite($fp, $registro);
-            foreach ($result as $r) {
-                $registro = str_pad( substr($r->pagina_firma_id,0,6) ,6,'0',STR_PAD_LEFT).$separator.
-                            str_pad( substr($r->fila,0,2) ,2,'0',STR_PAD_LEFT).$separator.
-                            str_pad( substr($r->dni,0,8) ,8,'0',STR_PAD_LEFT).$separator.
-                            str_pad( substr($r->paterno,0,40) ,40,' ',STR_PAD_LEFT).$separator.
-                            str_pad( substr($r->materno,0,40) ,40,' ',STR_PAD_LEFT).$separator.
-                            str_pad( substr($r->nombre,0,35) ,35,' ',STR_PAD_LEFT).$jump;
-                            echo $registro;
+                $sql="  SELECT pagina_firma_id, fila, dni, paterno, materno, nombre
+                        FROM firmas 
+                        limit $inicio,$acumula";
+                $result=DB::select($sql);
+                $cantidad=count( $result );
+                $inicio+=$acumula;
+
+                $jump = "\r\n";
+                $separator = "\t";
+                //$file="txt/exportar.txt";
+                //$fp = fopen($file, 'w+');
                 //fwrite($fp, $registro);
+                foreach ($result as $r) {
+                    $registro = str_pad( substr($r->pagina_firma_id,0,6) ,6,'0',STR_PAD_LEFT).$separator.
+                                str_pad( substr($r->fila,0,2) ,2,'0',STR_PAD_LEFT).$separator.
+                                str_pad( substr($r->dni,0,8) ,8,'0',STR_PAD_LEFT).$separator.
+                                substr( trim( $r->paterno ), 0, 40).$separator.
+                                substr( trim( $r->materno ), 0, 40).$separator.
+                                substr( trim( $r->nombre ), 0, 35).$jump;
+                                echo $registro;
+                    //fwrite($fp, $registro);
+                }
             }
             //fclose($fp);
             //chmod($file, 0777);
