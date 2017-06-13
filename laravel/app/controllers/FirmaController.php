@@ -649,8 +649,14 @@ class FirmaController extends \BaseController
 
     public function postExportar()
     {
+
         if ( Request::ajax() ) {
+            ini_set('memory_limit','512M');
+            set_time_limit(600);
             $valida=Firma::select('pagina_firma_id','fila','dni','paterno','materno','nombre')->limit(1000)->get();
+            header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            header("Content-Disposition: attachment;filename=\"filename.xlsx\"");
+            header("Cache-Control: max-age=0");
 
             echo "<table boder='1'>";
             foreach ($variable as $key => $value) {
@@ -665,9 +671,6 @@ class FirmaController extends \BaseController
             }
             echo "</table>";
 
-            header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-            header("Content-Disposition: attachment;filename=\"filename.xlsx\"");
-            header("Cache-Control: max-age=0");
         }
     }
 }
