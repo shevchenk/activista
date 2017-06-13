@@ -722,12 +722,12 @@ class FirmaController extends \BaseController
 
             }
 
-            $objPHPExcel->setActiveSheetIndex(0)->setCellValue($head[0].($key + 1), str_pad($value['pagina_firma_id'], 6, "0", STR_PAD_LEFT));
-            $objPHPExcel->setActiveSheetIndex(0)->setCellValue($head[0].($key + 1), str_pad($value['fila'], 2, "0", STR_PAD_LEFT));
-            $objPHPExcel->setActiveSheetIndex(0)->setCellValue($head[0].($key + 1), str_pad($value['dni'], 8, "0", STR_PAD_LEFT));
-            $objPHPExcel->setActiveSheetIndex(0)->setCellValue($head[0].($key + 1), str_pad($value['paterno'], 40, " ", STR_PAD_LEFT));
-            $objPHPExcel->setActiveSheetIndex(0)->setCellValue($head[0].($key + 1), str_pad($value['materno'], 40, " ", STR_PAD_LEFT));
-            $objPHPExcel->setActiveSheetIndex(0)->setCellValue($head[0].($key + 1), str_pad($value['nombre'], 35, " ", STR_PAD_LEFT));
+            $objPHPExcel->setActiveSheetIndex(0)->setCellValue($head[0].($key + 1), str_pad($value->pagina_firma_id, 6, "0", STR_PAD_LEFT));
+            $objPHPExcel->setActiveSheetIndex(0)->setCellValue($head[1].($key + 1), str_pad($value->fila, 2, "0", STR_PAD_LEFT));
+            $objPHPExcel->setActiveSheetIndex(0)->setCellValue($head[2].($key + 1), str_pad($value->dni, 8, "0", STR_PAD_LEFT));
+            $objPHPExcel->setActiveSheetIndex(0)->setCellValue($head[3].($key + 1), str_pad($value->paterno, 40, " ", STR_PAD_LEFT));
+            $objPHPExcel->setActiveSheetIndex(0)->setCellValue($head[4].($key + 1), str_pad($value->materno, 40, " ", STR_PAD_LEFT));
+            $objPHPExcel->setActiveSheetIndex(0)->setCellValue($head[5].($key + 1), str_pad($value->nombre, 35, " ", STR_PAD_LEFT));
 
           }
           /*end set up structure*/
