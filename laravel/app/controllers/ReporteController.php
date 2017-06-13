@@ -1404,7 +1404,7 @@ class ReporteController extends BaseController
             header("Pragma: no-cache");
             header("Expires: 0");*/
             header('Content-type: text/plain');
-            header('Content-Disposition: attachment; filename=txt/exportar.txt'); 
+            header('Content-Disposition: attachment; filename=exportar.txt'); 
             $inicia=0;
             $fin=0;
             $acumula=100000;
@@ -1418,9 +1418,9 @@ class ReporteController extends BaseController
 
             $jump = "\r\n";
             $separator = "\t";
-            $file="txt/exportar.txt";
-            $fp = fopen($file, 'w+');
-            fwrite($fp, $registro);
+            //$file="txt/exportar.txt";
+            //$fp = fopen($file, 'w+');
+            //fwrite($fp, $registro);
             foreach ($result as $r) {
                 $registro = str_pad( substr($r->pagina_firma_id,0,6) ,6,'0',STR_PAD_LEFT).$separator.
                             str_pad( substr($r->fila,0,2) ,2,'0',STR_PAD_LEFT).$separator.
@@ -1428,10 +1428,11 @@ class ReporteController extends BaseController
                             str_pad( substr($r->paterno,0,40) ,40,' ',STR_PAD_LEFT).$separator.
                             str_pad( substr($r->materno,0,40) ,40,' ',STR_PAD_LEFT).$separator.
                             str_pad( substr($r->nombre,0,35) ,35,' ',STR_PAD_LEFT).$jump;
-                fwrite($fp, $registro);
+                            echo $registro;
+                //fwrite($fp, $registro);
             }
-            fclose($fp);
-            chmod($file, 0777);
+            //fclose($fp);
+            //chmod($file, 0777);
 
             /*foreach ($result as $r) {
                 echo "<tr>";
