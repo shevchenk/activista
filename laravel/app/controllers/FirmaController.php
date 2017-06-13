@@ -654,9 +654,11 @@ class FirmaController extends \BaseController
             ini_set('memory_limit','512M');
             set_time_limit(600);
             $valida=Firma::select('pagina_firma_id','fila','dni','paterno','materno','nombre')->limit(1000)->get();
-            header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-            header("Content-Disposition: attachment;filename=\"filename.xlsx\"");
-            header("Cache-Control: max-age=0");
+            header("Content-Type:   application/vnd.ms-excel; charset=utf-8");
+            header("Content-Disposition: attachment; filename=data.xls");  //File name extension was wrong
+            header("Expires: 0");
+            header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+            header("Cache-Control: private",false);
 
             echo "<table boder='1'>";
             foreach ($variable as $key => $value) {
