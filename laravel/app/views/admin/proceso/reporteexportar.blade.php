@@ -26,7 +26,7 @@
             <div class="box">
                 <fieldset>
                     <div class="row form-group" >
-                    <form name="form_validacion" id="form_validacion" method="GET" action="firma/exportar">
+                    <form name="form_validacion" id="form_validacion" method="GET" action="reporte/exportar">
                         <div class="col-sm-12">
                             <div class="col-sm-3">
                                 <a id="valida" class="btn btn-primary">

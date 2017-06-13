@@ -1393,4 +1393,28 @@ class ReporteController extends BaseController
             )
         );
     }
+
+    public function getExportar()
+    {
+            ini_set('memory_limit','512M');
+            set_time_limit(600);
+            $result=Firma::select('pagina_firma_id','fila','dni','paterno','materno','nombre')->get();
+            header("Content-Type: application/vnd.ms-excel");
+            header("Content-Disposition: attachment; filename=exportar.xls");
+            header("Pragma: no-cache");
+            header("Expires: 0");
+
+            echo "<table>";
+            foreach ($result as $r) {
+                echo "<tr>";
+                echo "<td>".str_pad($r->pagina_firma_id,6,'0',STR_PAD_LEFT)."</td>";
+                echo "<td>".str_pad($r->fila,2,'0',STR_PAD_LEFT)."</td>";
+                echo "<td>".str_pad($r->dni,8,'0',STR_PAD_LEFT)."</td>";
+                echo "<td>".str_pad($r->paterno,40,' ',STR_PAD_LEFT)."</td>";
+                echo "<td>".str_pad($r->materno,40,' ',STR_PAD_LEFT)."</td>";
+                echo "<td>".str_pad($r->nombre,35,' ',STR_PAD_LEFT)."</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+    }
 }

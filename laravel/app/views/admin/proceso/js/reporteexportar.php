@@ -1,5 +1,9 @@
 <script type="text/javascript">
 $(document).ready(function() {
-    $("#form_validacion").submit();
+    $("#valida").click(Exportar);
 });
+
+Exportar=function(){
+    $("#form_validacion").submit();
+}
 </script>
