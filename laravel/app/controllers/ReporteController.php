@@ -1396,25 +1396,36 @@ class ReporteController extends BaseController
 
     public function getExportar()
     {
-            ini_set('memory_limit','2048M');
+            ini_set('memory_limit','512M');
             set_time_limit(600);
-            $result=Firma::select('pagina_firma_id','fila','dni','paterno','materno','nombre')->get();
+
             header("Content-Type: application/vnd.ms-excel");
             header("Content-Disposition: attachment; filename=exportar.xls");
             header("Pragma: no-cache");
             header("Expires: 0");
-
+            $inicia=0;
+            $fin=0;
+            $acumula=100000;
             echo "<table>";
+
+
+            $sql="  SELECT pagina_firma_id, fila, dni, paterno, materno, nombre
+                    FROM firmas 
+                    limit 0,100000";
+            $result=DB::select($sql);
+
             foreach ($result as $r) {
                 echo "<tr>";
-                echo "<td>".str_pad($r->pagina_firma_id,6,'0',STR_PAD_LEFT)."</td>";
-                echo "<td>".str_pad($r->fila,2,'0',STR_PAD_LEFT)."</td>";
-                echo "<td>".str_pad($r->dni,8,'0',STR_PAD_LEFT)."</td>";
-                echo "<td>".str_pad($r->paterno,40,' ',STR_PAD_LEFT)."</td>";
-                echo "<td>".str_pad($r->materno,40,' ',STR_PAD_LEFT)."</td>";
-                echo "<td>".str_pad($r->nombre,35,' ',STR_PAD_LEFT)."</td>";
+                echo "<td>".str_pad( substr($r->pagina_firma_id,0,6) ,6,'0',STR_PAD_LEFT)."</td>";
+                echo "<td>".str_pad( substr($r->fila,0,2) ,2,'0',STR_PAD_LEFT)."</td>";
+                echo "<td>".str_pad( substr($r->dni,0,8) ,8,'0',STR_PAD_LEFT)."</td>";
+                echo "<td>".str_pad( substr($r->paterno,0,40) ,40,' ',STR_PAD_LEFT)."</td>";
+                echo "<td>".str_pad( substr($r->materno,0,40) ,40,' ',STR_PAD_LEFT)."</td>";
+                echo "<td>".str_pad( substr($r->nombre,0,35) ,35,' ',STR_PAD_LEFT)."</td>";
                 echo "</tr>";
             }
+
+            
             echo "</table>";
     }
 }
