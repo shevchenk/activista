@@ -646,4 +646,28 @@ class FirmaController extends \BaseController
             return Response::json($aParametro);
         }
     }
+
+    public function postExportar()
+    {
+        if ( Request::ajax() ) {
+            $valida=Firma::select('pagina_firma_id','fila','dni','paterno','materno','nombre')->limit(1000)->get();
+
+            echo "<table boder='1'>";
+            foreach ($variable as $key => $value) {
+                echo "<tr>";
+                    echo "<td>".str_pad($value['pagina_firma_id'], 6, "0", STR_PAD_LEFT)."</td>";
+                    echo "<td>".str_pad($value['fila'], 2, "0", STR_PAD_LEFT)."</td>";
+                    echo "<td>".str_pad($value['dni'], 8, "0", STR_PAD_LEFT)."</td>";
+                    echo "<td>".str_pad($value['paterno'], 40, " ", STR_PAD_LEFT)."</td>";
+                    echo "<td>".str_pad($value['materno'], 40, " ", STR_PAD_LEFT)."</td>";
+                    echo "<td>".str_pad($value['nombre'], 35, " ", STR_PAD_LEFT)."</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+
+            header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            header("Content-Disposition: attachment;filename=\"filename.xlsx\"");
+            header("Cache-Control: max-age=0");
+        }
+    }
 }
