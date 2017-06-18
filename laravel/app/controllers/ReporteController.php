@@ -1415,6 +1415,7 @@ class ReporteController extends BaseController
 
                 $sql="  SELECT pagina_firma_id, fila, dni, paterno, materno, nombre
                         FROM firmas 
+                        ORDER BY pagina_firma_id
                         limit $inicio,$acumula";
                 $result=DB::select($sql);
                 $cantidad=count( $result );
