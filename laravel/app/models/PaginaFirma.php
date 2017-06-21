@@ -29,8 +29,7 @@ class PaginaFirma extends Base
     public static function LimpiarNuevamente()
     {
         $sql="DELETE FROM paginafirma_copy";
-        $sql2=" SET @numero=0";
-        $sql3="  INSERT INTO paginafirma_copy (id,escalafon_id,estado,created_at)
+        $sql2=" SET @numero=0;  INSERT INTO paginafirma_copy (id,escalafon_id,estado,created_at)
                 SELECT 
                 @numero:=(@numero+1),0,2,'2017-03-04 00:00:00'
                 FROM paginafirma";
@@ -43,7 +42,7 @@ class PaginaFirma extends Base
 
         $dd=DB::delete($sql);
         $dd=DB::select($sql2);
-        $dd=DB::insert($sql3);
+        //$dd=DB::insert($sql3);
         $dd=DB::insert($sql4);
     }
 }
