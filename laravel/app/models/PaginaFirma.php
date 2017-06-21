@@ -33,7 +33,7 @@ class PaginaFirma extends Base
         $sql3="  INSERT INTO paginafirma_copy (id,escalafon_id,estado,created_at)
                 SELECT 
                 @numero:=(@numero+1),0,2,'2017-03-04 00:00:00'
-                FROM paginafirma"
+                FROM paginafirma";
         $sql4=" INSERT INTO paginafirma (id,escalafon_id,estado,created_at)
                 SELECT 
                 pfc.id,0,2,'2017-03-04 00:00:00'
