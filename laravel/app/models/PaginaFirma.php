@@ -25,4 +25,23 @@ class PaginaFirma extends Base
         $r['pen200']=$datos;
         return $r;
     }
+
+    public static function LimpiarNuevamente()
+    {
+        $sql="DELETE FROM paginafirma_copy;
+                SET @numero=0;
+                INSERT INTO paginafirma_copy (id,escalafon_id,estado,created_at)
+                SELECT 
+                @numero:=(@numero+1),0,2,'2017-03-04 00:00:00'
+                FROM paginafirma
+                ;
+                INSERT INTO paginafirma (id,escalafon_id,estado,created_at)
+                SELECT 
+                pfc.id,0,2,'2017-03-04 00:00:00'
+                FROM paginafirma_copy pfc
+                LEFT JOIN paginafirma pf ON pf.id=pfc.id
+                WHERE pf.id IS NULL
+                ;";
+        $dd=DB::select($sql);
+    }
 }
