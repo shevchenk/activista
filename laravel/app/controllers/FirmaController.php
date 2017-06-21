@@ -67,9 +67,9 @@ class FirmaController extends \BaseController
             if($valida==0){
                 DB::beginTransaction();
                 $dni        =   Input::get('dni');
-                $paterno    =   Input::get('paterno');
-                $materno    =   Input::get('materno');
-                $nombre     =   Input::get('nombre');
+                $paterno    =   str_replace("'","",Input::get('paterno'));
+                $materno    =   str_replace("'","",Input::get('materno'));
+                $nombre     =   str_replace("'","",Input::get('nombre'));
                 $paginaFirma=array();
 
                 if( Input::has('pag_id') ){
@@ -306,9 +306,9 @@ class FirmaController extends \BaseController
     {
         if ( Request::ajax() ) {
             $dniG= Input::get('dni');
-            $paternoG= Input::get('paterno');
-            $maternoG= Input::get('materno');
-            $nombreG= Input::get('nombre');
+            $paternoG    =   str_replace("'","",Input::get('paterno'));
+            $maternoG    =   str_replace("'","",Input::get('materno'));
+            $nombreG     =   str_replace("'","",Input::get('nombre'));
             $actualizaG= Input::get('actualiza');
 
             DB::beginTransaction();
