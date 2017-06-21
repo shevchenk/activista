@@ -30,7 +30,7 @@ class PaginaFirma extends Base
     {
         $sql="DELETE FROM paginafirma_copy";
         $sql2=" SET @numero=0";
-        $sql3"  INSERT INTO paginafirma_copy (id,escalafon_id,estado,created_at)
+        $sql3="  INSERT INTO paginafirma_copy (id,escalafon_id,estado,created_at)
                 SELECT 
                 @numero:=(@numero+1),0,2,'2017-03-04 00:00:00'
                 FROM paginafirma"
@@ -40,7 +40,7 @@ class PaginaFirma extends Base
                 FROM paginafirma_copy pfc
                 LEFT JOIN paginafirma pf ON pf.id=pfc.id
                 WHERE pf.id IS NULL";
-                
+
         $dd=DB::delete($sql);
         $dd=DB::select($sql2);
         $dd=DB::insert($sql3);
