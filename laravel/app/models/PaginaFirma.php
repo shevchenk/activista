@@ -4,6 +4,22 @@ class PaginaFirma extends Base
 {
     public $table = "paginafirma";
 
+    public static function PaginasRegistradas($limit,$offset)
+    {
+        $datos= PaginaFirma::where('estado','=','1')
+                ->offset($offset)
+                ->limit($limit)
+                ->orderBy('id','DESC')
+                ->get();
+        return $datos;
+    }
+
+    public static function PaginasPendientesD()
+    {
+        $datos=PaginaFirma::where('estado','=','2')->get();
+        return $datos;
+    }
+
     public static function PaginasPendientes($r)
     {
         $datos=PaginaFirma::where('estado','=','2')->get();
