@@ -24,13 +24,14 @@ class PaginaFirmaController extends \BaseController
         for ($i=0; $i < count($r); $i++) {
             DB::beginTransaction(); 
             $paginaFirmaExistente=PaginaFirma::find($r2[$i]->id);
-            $paginaFirmaExistente->estado=0;
+            $paginaFirmaExistente->estado=2;
             $paginaFirmaExistente->save();
 
 
             $paginaFirmaPendiente=PaginaFirma::find($r[$i]->id);
             $paginaFirmaPendiente->pagina_firma_id_cambio=$paginaFirmaExistente->id;
             $paginaFirmaPendiente->escalafon_id=$paginaFirmaExistente->escalafon_id;
+            $paginaFirmaPendiente->estado=1;
             $paginaFirmaPendiente->save();
 
             $sqlfirmas="UPDATE firmas
