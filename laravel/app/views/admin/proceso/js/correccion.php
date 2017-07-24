@@ -98,7 +98,7 @@ ValidarHTML=function(obj){
                     "<td><input type='text' class='form-control' name='txt_nombre[]' value='"+data.nombre+"'></td>";
         }
         html+=      "<td>"+tconteo+"</td>"+
-                    "<td>"+data.rst.split("|").join("<br>")+"</td>"+
+                    "<td>"+$.trim(data.rst).split("|").join("<br>")+"</td>"+
                     "<td>"+conteo+"</td>"+
                 "</tr>";
 
