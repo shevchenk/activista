@@ -106,10 +106,10 @@ ValidarHTML=function(obj){
                     "<td>"+data.ficha+"</td>"+
                     "<td>&nbsp;</td>";
         if( data.tconteo==1 || data.tconteo==2 ){
-        html+=      "<td>"+data.rdni.split("|").join("<br>")+"</td>"+
-                    "<td>"+data.rpaterno.split("|").join("<br>")+"</td>"+
-                    "<td>"+data.rmaterno.split("|").join("<br>")+"</td>"+
-                    "<td>"+data.rnombres.split("|").join("<br>")+"</td>";
+        html+=      "<td>"+$.trim(data.rdni).split("|").join("<br>")+"</td>"+
+                    "<td>"+$.trim(data.rpaterno).split("|").join("<br>")+"</td>"+
+                    "<td>"+$.trim(data.rmaterno).split("|").join("<br>")+"</td>"+
+                    "<td>"+$.trim(data.rnombres).split("|").join("<br>")+"</td>";
         }
         else{
         html+=      "<td>&nbsp;</td>"+
