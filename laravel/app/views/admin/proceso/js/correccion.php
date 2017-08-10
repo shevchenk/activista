@@ -77,7 +77,7 @@ ValidarHTML=function(obj){
         chk='';
         if( data.valida==1 ){
             chk='<select name="actualiza[]"><option value="0" selected>No</option><option value="1|'+data.id+'">Si</option></select>';
-            if( data.rst!='' || data.conteo==1 ){
+            if( $.trim(data.rst)!='' || data.conteo==1 ){
                 chk='<select name="actualiza[]"><option value="0" selected>No</option></select>';
             }
         }
