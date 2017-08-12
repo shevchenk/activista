@@ -1447,6 +1447,8 @@ class ReporteController extends BaseController
                                 str_pad( substr($r->dni,0,8) ,8,'0',STR_PAD_LEFT).$separator.
                                 substr( trim( $r->paterno ), 0, 40).$separator.
                                 substr( trim( $r->materno ), 0, 40).$separator.
+                                trim( $r->tconteo ).$separator.
+                                trim( $r->conteo ).$separator.
                                 substr( trim( $r->nombre ), 0, 35).$jump;
                                 echo $registro;
                     //fwrite($fp, $registro);
