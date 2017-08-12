@@ -1428,7 +1428,11 @@ class ReporteController extends BaseController
                                     )
                                 )
                             )
-                        ) tconteo
+                        ) tconteo,
+                        IF( estado_firma<>'',
+                            (SELECT GROUP_CONCAT(f2.pagina_firma_id) FROM firmas f2 WHERE FIND_IN_SET(f2.id,estado_firma)>0),
+                            ''
+                        ) paginas_repetidas
                         FROM firmas 
                         ORDER BY pagina_firma_id
                         limit $inicio,$acumula";
@@ -1449,6 +1453,7 @@ class ReporteController extends BaseController
                                 substr( trim( $r->materno ), 0, 40).$separator.
                                 substr( trim( $r->nombre ), 0, 35).$separator.
                                 trim( $r->tconteo ).$separator.
+                                trim( $r->paginas_repetidas ).$separator.
                                 trim( $r->conteo ).$jump;
                                 echo $registro;
                     //fwrite($fp, $registro);
