@@ -1413,7 +1413,22 @@ class ReporteController extends BaseController
 
             while ( $cantidad>0) {
 
-                $sql="  SELECT pagina_firma_id, fila, dni, paterno, materno, nombre
+                $sql="  SELECT pagina_firma_id, fila, dni, paterno, materno, nombre,
+                        CASE conteo
+                        WHEN 1 THEN 'Válido'
+                        WHEN 2 THEN 'Inválido'
+                        WHEN 3 THEN 'Blanco'
+                        WHEN 4 THEN 'Subsanado'
+                        END conteo,
+                        IF(tconteo=1 AND valida=1,'Aprox. Por DNI',
+                            IF(tconteo=1 AND valida=1,'Aprox. Por Nombres',
+                                IF(tconteo=1 AND valida=1,'No Existe en Reniec',
+                                    IF(tconteo=1 AND valida=1,'Firma Existente',
+                                        ''
+                                    )
+                                )
+                            )
+                        ) tconteo
                         FROM firmas 
                         ORDER BY pagina_firma_id
                         limit $inicio,$acumula";
