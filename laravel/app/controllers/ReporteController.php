@@ -1413,27 +1413,29 @@ class ReporteController extends BaseController
 
             while ( $cantidad>0) {
 
-                $sql="  SELECT pagina_firma_id, fila, dni, paterno, materno, nombre,
-                        CASE conteo
+                $sql="  SELECT f.pagina_firma_id, f.fila, f.dni, f.paterno, f.materno, f.nombre,
+                        CASE f.conteo
                         WHEN 1 THEN 'Válido'
                         WHEN 2 THEN 'Inválido'
                         WHEN 3 THEN 'Blanco'
                         WHEN 4 THEN 'Subsanado'
                         END conteo,
-                        IF(tconteo=1 AND valida=1,'Aprox. Por DNI',
-                            IF(tconteo=2 AND valida=1,'Aprox. Por Nombres',
-                                IF(tconteo=3 AND valida=1,'No Existe en Reniec',
-                                    IF(tconteo=4 AND valida=1,'Firma Existente',
+                        IF(f.tconteo=1 AND f.valida=1,'Aprox. Por DNI',
+                            IF(f.tconteo=2 AND f.valida=1,'Aprox. Por Nombres',
+                                IF(f.tconteo=3 AND f.valida=1,'No Existe en Reniec',
+                                    IF(f.tconteo=4 AND f.valida=1,'Firma Existente',
                                         ''
                                     )
                                 )
                             )
                         ) tconteo,
-                        IF( estado_firma<>'',
-                            (SELECT GROUP_CONCAT(f2.pagina_firma_id) FROM firmas f2 WHERE FIND_IN_SET(f2.id,estado_firma)>0),
+                        IF( f.estado_firma<>'',
+                            (SELECT GROUP_CONCAT(f2.pagina_firma_id) 
+                            FROM firmas f2 
+                            WHERE FIND_IN_SET(f2.id,f.estado_firma)>0),
                             ''
                         ) paginas_repetidas
-                        FROM firmas 
+                        FROM firmas f
                         ORDER BY pagina_firma_id
                         limit $inicio,$acumula";
                 $result=DB::select($sql);
