@@ -1432,7 +1432,8 @@ class ReporteController extends BaseController
                         IF( f.estado_firma<>'',
                             (SELECT GROUP_CONCAT(f2.pagina_firma_id) 
                             FROM firmas f2 
-                            WHERE FIND_IN_SET(f2.id,f.estado_firma)>0),
+                            WHERE f2.dni=f.dni
+                            AND f.id!=f2.id),
                             ''
                         ) paginas_repetidas
                         FROM firmas f
