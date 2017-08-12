@@ -1421,9 +1421,9 @@ class ReporteController extends BaseController
                         WHEN 4 THEN 'Subsanado'
                         END conteo,
                         IF(tconteo=1 AND valida=1,'Aprox. Por DNI',
-                            IF(tconteo=1 AND valida=1,'Aprox. Por Nombres',
-                                IF(tconteo=1 AND valida=1,'No Existe en Reniec',
-                                    IF(tconteo=1 AND valida=1,'Firma Existente',
+                            IF(tconteo=2 AND valida=1,'Aprox. Por Nombres',
+                                IF(tconteo=3 AND valida=1,'No Existe en Reniec',
+                                    IF(tconteo=4 AND valida=1,'Firma Existente',
                                         ''
                                     )
                                 )
