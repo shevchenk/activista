@@ -1435,7 +1435,29 @@ class ReporteController extends BaseController
                             WHERE f2.dni=f.dni
                             AND f.id!=f2.id),
                             ''
-                        ) paginas_repetidas
+                        ) paginas_repetidas,
+                        CASE f.conteo2
+                        WHEN 1 THEN 'Válido'
+                        WHEN 2 THEN 'Inválido'
+                        WHEN 3 THEN 'Blanco'
+                        WHEN 4 THEN 'Subsanado'
+                        END conteo2,
+                        IF(f.tconteo2=1,'Aprox. Por DNI',
+                            IF(f.tconteo2=2,'Aprox. Por Nombres',
+                                IF(f.tconteo2=3,'No Existe en Reniec',
+                                    IF(f.tconteo2=4,'Firma Existente',
+                                        ''
+                                    )
+                                )
+                            )
+                        ) tconteo2,
+                        IF( f.estado_firma2<>'',
+                            (SELECT GROUP_CONCAT(f2.pagina_firma_id) 
+                            FROM firmas f2 
+                            WHERE f2.dni=f.dni
+                            AND f.id!=f2.id),
+                            ''
+                        ) paginas_repetidas2
                         FROM firmas f
                         ORDER BY pagina_firma_id
                         limit $inicio,$acumula";
@@ -1457,7 +1479,10 @@ class ReporteController extends BaseController
                                 substr( trim( $r->nombre ), 0, 35).$separator.
                                 trim( $r->tconteo ).$separator.
                                 trim( $r->paginas_repetidas ).$separator.
-                                trim( $r->conteo ).$jump;
+                                trim( $r->conteo ).$separator.
+                                trim( $r->tconteo2 ).$separator.
+                                trim( $r->paginas_repetidas2 ).$separator.
+                                trim( $r->conteo2 ).$jump;
                                 echo $registro;
                     //fwrite($fp, $registro);
                 }
