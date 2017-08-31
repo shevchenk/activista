@@ -311,8 +311,8 @@ class FirmaController extends \BaseController
             $fin=Input::get('fin');
             $array["w"]=" AND pagina_firma_id BETWEEN '".$inicio."' AND '".$fin."' ";
             $listaFirmas= Firma::ListarFirmas2($array);
-            DB::beginTransaction();
             for ($i=0; $i<count($listaFirmas); $i++) {
+                DB::beginTransaction();
                 $dnombre=explode(" ",$listaFirmas[$i]->nombre);
                 $nombre=$dnombre[0];
                 $paterno=$listaFirmas[$i]->paterno;
@@ -387,8 +387,8 @@ class FirmaController extends \BaseController
 
                 //$f['usuario_updated_at']=Auth::user()->id;
                 $f->save();
+                DB::commit();
             }
-            DB::commit();
             $aParametro['rst']=1;
             $aParametro['msj']="Se validaron las páginas entre el nro ".$inicio." y el nro ".$fin;
             return Response::json($aParametro);
