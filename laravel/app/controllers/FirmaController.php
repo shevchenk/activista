@@ -302,6 +302,99 @@ class FirmaController extends \BaseController
         }
     }
 
+    public function postValidarreniec2()
+    {
+        if ( Request::ajax() ) {
+            ini_set('memory_limit','512M');
+            set_time_limit(600);
+            $inicio=Input::get('inicio');
+            $fin=Input::get('fin');
+            $array["w"]=" AND pagina_firma_id BETWEEN '".$inicio."' AND '".$fin."' ";
+            $listaFirmas= Firma::ListarFirmas2($array);
+            DB::beginTransaction();
+            for ($i=0; $i<count($listaFirmas); $i++) {
+                $dnombre=explode(" ",$listaFirmas[$i]->nombre);
+                $nombre=$dnombre[0];
+                $paterno=$listaFirmas[$i]->paterno;
+                $materno=$listaFirmas[$i]->materno;
+                $dni=$listaFirmas[$i]->dni;
+                $id=$listaFirmas[$i]->id;
+                $conteo=$listaFirmas[$i]->conteo2;
+                $estado_firma=$listaFirmas[$i]->estado_firma2;
+
+                $f=Firma::find($id);
+                //$f['valida']=1;
+                $f['conteo2']=2;
+                $f['tconteo2']=0;
+                /*$f['rdni2']='';
+                $f['rpaterno2']='';
+                $f['rmaterno2']='';
+                $f['rnombres2']='';*/
+                if( trim($estado_firma)=='' ){
+                    if( $conteo!=3 ){
+
+                        $array["w"]="   AND dni='".$dni."' ";
+                        $reniec=Firma::ValidarReniec($array);
+                        
+                        if( count($reniec)>0 ){
+                            $f['conteo2']=2;
+                            $f['tconteo2']=1;
+                            $drnombre=explode(" ",trim($reniec[0]->nombres));
+                            $rnombre=$drnombre[0];
+                                if( strtoupper($paterno)==$reniec[0]->paterno AND strtoupper($materno)==$reniec[0]->materno AND strtoupper($nombre)==$rnombre )
+                                {
+                                    $f['conteo2']=1;
+                                    $f['tconteo2']=0;
+                                }
+                                else{
+                                    if( strtoupper($paterno)==$reniec[0]->paterno OR strtoupper($materno)==$reniec[0]->materno ){
+                                        $f['conteo2']=4;
+                                        $f['tconteo2']=1;
+                                    }
+                                    /*$f['rdni']=$reniec[0]->dni;
+                                    $f['rpaterno']=$reniec[0]->paterno;
+                                    $f['rmaterno']=$reniec[0]->materno;
+                                    $f['rnombres']=$reniec[0]->nombres;*/
+                                }
+                        }
+
+                        if( $f['conteo2']==2 || $f['conteo2']==4 ){
+                            $array["w"]="   AND paterno='".$paterno."'
+                                            AND materno='".$materno."'
+                                            AND substr(nombres,1,(LENGTH('".$nombre."')-2) )=substr('".$nombre."',1,(LENGTH('".$nombre."')-2) )
+                                            AND dni!='".$dni."'
+                                        ";
+                            $reniec2=Firma::ValidarReniec($array);
+                                if( count($reniec2)>0 ){
+                                    $f['conteo2']=4;
+                                    $f['tconteo2']=2;
+                                }
+                        }
+
+                        if( $f['conteo2']==2 AND $f['tconteo2']==0 ){
+                            $f['tconteo2']=3;
+                        }
+                    }
+                    else{
+                        $f['conteo2']=3;
+                        $f['tconteo2']=0;
+                    }
+                }
+                else{
+                    $f['conteo2']=2;
+                    $f['tconteo2']=4;
+                }
+
+                //$f['usuario_updated_at']=Auth::user()->id;
+                $f->save();
+            }
+            DB::commit();
+            $aParametro['rst']=1;
+            $aParametro['msj']="Se validaron las páginas entre el nro ".$inicio." y el nro ".$fin;
+            return Response::json($aParametro);
+        }
+    }
+
     public function postActualizar()
     {
         if ( Request::ajax() ) {
@@ -649,9 +742,9 @@ class FirmaController extends \BaseController
 
     public function getExportar()
     {
-            ini_set('memory_limit','512M');
-            set_time_limit(600);
-            $result=Firma::select('pagina_firma_id','fila','dni','paterno','materno','nombre')->where('id','<=',1000)->get();
+        ini_set('memory_limit','512M');
+        set_time_limit(600);
+        $result=Firma::select('pagina_firma_id','fila','dni','paterno','materno','nombre')->where('id','<=',1000)->get();
 
         
         $az=array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','AA','AB','AC','AD','AE','AF','AG','AH','AI','AJ','AK','AL','AM','AN','AO','AP','AQ','AR','AS','AT','AU','AV','AW','AX','AY','AZ','BA','BB','BC','BD','BE','BF','BG','BH','BI','BJ','BK','BL','BM','BN','BO','BP','BQ','BR','BS','BT','BU','BV','BW','BX','BY','BZ','CA','CB','CC','CD','CE','CF','CG','CH','CI','CJ','CK','CL','CM','CN','CO','CP','CQ','CR','CS','CT','CU','CV','CW','CX','CY','CZ','DA','DB','DC','DD','DE','DF','DG','DH','DI','DJ','DK','DL','DM','DN','DO','DP','DQ','DR','DS','DT','DU','DV','DW','DX','DY','DZ');

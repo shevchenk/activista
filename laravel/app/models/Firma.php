@@ -77,6 +77,18 @@ class Firma extends Base
         return $r;
     }
 
+    public static function ListarFirmas2($array)
+    {
+        $sql="SELECT id,fila,dni,paterno,materno,nombre,conteo,estado_firma,conteo2,estado_firma2
+              FROM firmas
+              WHERE estado=1
+              AND conteo2=0";
+        $sql.=$array['w'];
+        $r=DB::select($sql);
+
+        return $r;
+    }
+
     public static function ValidarReniec($array)
     {
         $sql="SELECT dni,paterno,materno,nombres
