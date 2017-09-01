@@ -1406,8 +1406,8 @@ class ReporteController extends BaseController
             header('Content-type: text/plain');
             header('Content-Disposition: attachment; filename=exportar.txt'); 
             $inicio=0;
-            $acumula=100000;
-            $cantidad=100000;
+            $acumula=50000;
+            $cantidad=50000;
             //echo "<table>";
 
 
