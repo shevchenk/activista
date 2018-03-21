@@ -1413,7 +1413,14 @@ class ReporteController extends BaseController
 
             while ( $cantidad>0) {
                 DB::statement(DB::raw('SET @@group_concat_max_len = 4294967295'));
-                $sql="  SELECT f.pagina_firma_id, f.fila, f.dni, f.paterno, f.materno, f.nombre,
+                $sql="  SELECT 
+                            (SELECT CONCAT_WS(' ',a.paterno, a.materno, a.nombres,'|', a.dni)
+                            FROM paginafirma pf 
+                            INNER JOIN escalafon e ON e.id=pf.escalafon_id
+                            INNER JOIN activistas a ON a.id=e.activista_id
+                            WHERE pf.id=f.pagina_firma_id
+                            ) responsable,
+                        f.pagina_firma_id, f.fila, f.dni, f.paterno, f.materno, f.nombre,
                         CASE f.conteo
                         WHEN 1 THEN 'Válido'
                         WHEN 2 THEN 'Inválido'
@@ -1471,7 +1478,8 @@ class ReporteController extends BaseController
                 //$fp = fopen($file, 'w+');
                 //fwrite($fp, $registro);
                 foreach ($result as $r) {
-                    $registro = str_pad( substr($r->pagina_firma_id,0,6) ,6,'0',STR_PAD_LEFT).$separator.
+                    $registro = trim( $r->responsable ).$separator.
+                                str_pad( substr($r->pagina_firma_id,0,6) ,6,'0',STR_PAD_LEFT).$separator.
                                 str_pad( substr($r->fila,0,2) ,2,'0',STR_PAD_LEFT).$separator.
                                 str_pad( substr($r->dni,0,8) ,8,'0',STR_PAD_LEFT).$separator.
                                 substr( trim( $r->paterno ), 0, 40).$separator.
