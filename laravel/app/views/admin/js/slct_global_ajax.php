@@ -135,6 +135,31 @@ var slctGlobal={
                 Psi.mensaje('danger', '<?php echo trans("greetings.mensaje_error"); ?>', 6000);
             }
         });
+    },
+    listarSlctFijo3:function(controlador,evento,slct){
+        $.ajax({
+            url         : controlador+'/'+evento,
+            type        : 'POST',
+            cache       : false,
+            dataType    : 'json',
+            beforeSend : function() {
+                //$("body").append('<div class="overlay"></div><div class="loading-img"></div>');
+            },
+            success : function(obj) {
+                var html="";
+                var selected="";
+                html += "<option value=''>Seleccione</option>";
+                if(obj.rst==1){
+                    $.each(obj.datos,function(index,data){
+                        html += "<option value=\"" + data.id + "\" >" + data.nombre + "</option>";
+                    });
+                }
+                $("#"+slct).html(html);
+            },
+            error: function(){
+                Psi.mensaje('danger', '<?php echo trans("greetings.mensaje_error"); ?>', 6000);
+            }
+        });
     }
 };
 

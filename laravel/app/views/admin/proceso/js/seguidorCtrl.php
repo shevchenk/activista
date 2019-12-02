@@ -53,7 +53,7 @@
                 $scope.seguidor = {};
                 $scope.seguidor.nivel='<?php echo $cargoS ? $cargoS->id : ''; ?>';
                 $scope.seguidor.fecha_inicio='<?php echo date("Y-m-d"); ?>';
-                slctGlobal.listarSlctFijo2('grupop','listargrupoe','slct_grupo');
+                slctGlobal.listarSlctFijo3('grupop','listargrupoe','slct_grupo');
                 
                 $scope.guardarSeguidor = function () {
                     $("body").append('<div class="overlay"></div><div class="loading-img"></div>');
